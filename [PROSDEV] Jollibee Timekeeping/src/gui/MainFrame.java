@@ -31,6 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
         textfieldLoginUsername = new javax.swing.JTextField();
         passwordfieldLoginPassword = new javax.swing.JPasswordField();
         buttonLogin = new javax.swing.JButton();
+        panelMain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jollibee Construction Timekeeping");
@@ -39,6 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.CardLayout());
 
         panelLogin.setBackground(new java.awt.Color(255, 204, 51));
+        panelLogin.setName("panelLogin"); // NOI18N
         panelLogin.setLayout(new java.awt.GridBagLayout());
 
         labelLoginJollibeeConstructionLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Jollibee Construction.png"))); // NOI18N
@@ -82,7 +84,10 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         panelLogin.add(buttonLogin, gridBagConstraints);
 
-        getContentPane().add(panelLogin, "card2");
+        getContentPane().add(panelLogin, "panelLogin");
+
+        panelMain.setName("panelMain"); // NOI18N
+        getContentPane().add(panelMain, "panelMain");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -95,7 +100,24 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton buttonLogin;
     private javax.swing.JLabel labelLoginJollibeeConstructionLogo;
     private javax.swing.JPanel panelLogin;
+    private javax.swing.JPanel panelMain;
     private javax.swing.JPasswordField passwordfieldLoginPassword;
     private javax.swing.JTextField textfieldLoginUsername;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getButtonLogin() {
+        return buttonLogin;
+    }
+
+    public javax.swing.JPanel getPanelLogin() {
+        return panelLogin;
+    }
+
+    public javax.swing.JPasswordField getPasswordfieldLoginPassword() {
+        return passwordfieldLoginPassword;
+    }
+
+    public javax.swing.JTextField getTextfieldLoginUsername() {
+        return textfieldLoginUsername;
+    }
 }
