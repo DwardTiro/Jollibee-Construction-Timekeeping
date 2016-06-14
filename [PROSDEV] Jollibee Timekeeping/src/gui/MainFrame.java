@@ -38,6 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanelHeader = new javax.swing.JPanel();
         mainLabelJollibeeConstructionLogo = new javax.swing.JLabel();
         mainTextFieldSearch = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         mainPanelCardPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,10 +106,9 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.05;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         mainPanelHeader.add(mainLabelJollibeeConstructionLogo, gridBagConstraints);
 
         mainTextFieldSearch.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -118,11 +118,20 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipady = 20;
+        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 50.0;
+        gridBagConstraints.weightx = 0.7;
         gridBagConstraints.weighty = 1.0;
         mainPanelHeader.add(mainTextFieldSearch, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setText("Administrator Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 1.0;
+        mainPanelHeader.add(jLabel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -155,6 +164,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelLoginJollibeeConstructionLogo;
     private javax.swing.JLabel mainLabelJollibeeConstructionLogo;
     private javax.swing.JPanel mainPanelCardPanel;
