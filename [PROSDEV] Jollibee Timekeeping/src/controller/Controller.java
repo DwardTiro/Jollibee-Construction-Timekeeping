@@ -8,6 +8,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.DbConnection;
 
 public class Controller {
     
@@ -136,8 +141,14 @@ public class Controller {
     // returns true if login is successful (username and password is correct), false otherwise
     private boolean tryLogin(String username, String password){
         boolean login = false;
-        
-        // backend logic here
+       
+        try {
+            Statement s = DbConnection.con.createStatement();
+            s.execute("select id from admin where id =  username");
+            // backend logic here
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return login;
     }
