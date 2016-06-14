@@ -113,8 +113,8 @@ public class Controller {
             public void mouseClicked(MouseEvent e) {
                 
                 if(tryLogin(mainFrame.getTextfieldLoginUsername().getText(), String.copyValueOf(mainFrame.getPasswordfieldLoginPassword().getPassword()))){
-                    CardLayout cardLayout = (CardLayout) mainFrame.getLayout();
-                    cardLayout.show(mainFrame, CARD_MAIN);
+                    CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
+                    cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
                 }
             }
 
@@ -143,7 +143,7 @@ public class Controller {
     }
     
     private void logout(){
-        CardLayout cardLayout = (CardLayout) mainFrame.getLayout();
-        cardLayout.show(mainFrame, CARD_LOGIN);
+        CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
+        cardLayout.show(mainFrame.getContentPane(), CARD_LOGIN);
     }
 }
