@@ -144,6 +144,6 @@ public class Controller {
     
     private void logout(){
         CardLayout cardLayout = (CardLayout) mainFrame.getLayout();
-        cardLayout.show(mainFrame, CARD_MAIN);
+        cardLayout.show(mainFrame, CARD_LOGIN);
     }
 }
