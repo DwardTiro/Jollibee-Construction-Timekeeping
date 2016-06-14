@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 public class Controller {
     
     private final String USERNAME_FIELD_DEFAULT = "Username";
+    private final String PASSWORD_FIELD_DEFAULT = "Password";
     private final String CARD_LOGIN = "panelLogin";
     private final String CARD_MAIN = "panelMain";
     
@@ -92,14 +93,28 @@ public class Controller {
             
         });
         
+        mainFrame.getPasswordfieldLoginPassword().addFocusListener(new FocusListener(){
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(String.copyValueOf(mainFrame.getPasswordfieldLoginPassword().getPassword()).equalsIgnoreCase(PASSWORD_FIELD_DEFAULT)){
+                    mainFrame.getPasswordfieldLoginPassword().setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {}
+            
+        });
+        
         mainFrame.getButtonLogin().addMouseListener(new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 
                 if(tryLogin(mainFrame.getTextfieldLoginUsername().getText(), String.copyValueOf(mainFrame.getPasswordfieldLoginPassword().getPassword()))){
-                    CardLayout cardLayout = (CardLayout) mainFrame.getLayout();
-                    cardLayout.show(mainFrame, CARD_MAIN);
+                    CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
+                    cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
                 }
             }
 
@@ -125,5 +140,10 @@ public class Controller {
         // backend logic here
         
         return login;
+    }
+    
+    private void logout(){
+        CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
+        cardLayout.show(mainFrame.getContentPane(), CARD_LOGIN);
     }
 }
