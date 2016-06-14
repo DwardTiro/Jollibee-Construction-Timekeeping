@@ -1,6 +1,9 @@
 
 package gui;
 
+import java.awt.Toolkit;
+import sun.net.www.content.image.png;
+
 public class MainFrame extends javax.swing.JFrame {
 
     private static final MainFrame mainFrame = new MainFrame();
@@ -36,6 +39,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jollibee Construction Timekeeping");
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Jollibee Construction.png")));
         setPreferredSize(getMaximumSize());
         getContentPane().setLayout(new java.awt.CardLayout());
 
