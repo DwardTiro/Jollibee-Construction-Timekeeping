@@ -2,11 +2,14 @@
 package gui;
 
 import java.awt.Toolkit;
-import sun.net.www.content.image.png;
 
 public class MainFrame extends javax.swing.JFrame {
 
     private static final MainFrame mainFrame = new MainFrame();
+
+    public static MainFrame getMainFrame() {
+        return mainFrame;
+    }
     
     private MainFrame() {
         
@@ -30,16 +33,16 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         panelLogin = new javax.swing.JPanel();
-        labelLoginJollibeeConstructionLogo = new javax.swing.JLabel();
-        textfieldLoginUsername = new javax.swing.JTextField();
-        passwordfieldLoginPassword = new javax.swing.JPasswordField();
-        buttonLogin = new javax.swing.JButton();
+        loginLabelJollibeeConstructionLogo = new javax.swing.JLabel();
+        loginTextFieldUsername = new javax.swing.JTextField();
+        loginPasswordFieldPassword = new javax.swing.JPasswordField();
+        loginButtonLogin = new javax.swing.JButton();
         panelMain = new javax.swing.JPanel();
         mainPanelHeader = new javax.swing.JPanel();
         mainLabelJollibeeConstructionLogo = new javax.swing.JLabel();
         mainTextFieldSearch = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        mainLabelName = new javax.swing.JLabel();
+        mainLabelLogout = new javax.swing.JLabel();
         mainPanelCardPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,46 +56,46 @@ public class MainFrame extends javax.swing.JFrame {
         panelLogin.setName("panelLogin"); // NOI18N
         panelLogin.setLayout(new java.awt.GridBagLayout());
 
-        labelLoginJollibeeConstructionLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Jollibee Construction.png"))); // NOI18N
+        loginLabelJollibeeConstructionLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Jollibee Construction.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
-        panelLogin.add(labelLoginJollibeeConstructionLogo, gridBagConstraints);
+        panelLogin.add(loginLabelJollibeeConstructionLogo, gridBagConstraints);
 
-        textfieldLoginUsername.setText("Username");
-        textfieldLoginUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        loginTextFieldUsername.setText("Username");
+        loginTextFieldUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
-        panelLogin.add(textfieldLoginUsername, gridBagConstraints);
+        panelLogin.add(loginTextFieldUsername, gridBagConstraints);
 
-        passwordfieldLoginPassword.setText("Password");
-        passwordfieldLoginPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        loginPasswordFieldPassword.setText("Password");
+        loginPasswordFieldPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
-        panelLogin.add(passwordfieldLoginPassword, gridBagConstraints);
+        panelLogin.add(loginPasswordFieldPassword, gridBagConstraints);
 
-        buttonLogin.setBackground(new java.awt.Color(231, 28, 35));
-        buttonLogin.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
-        buttonLogin.setText("Log-in");
+        loginButtonLogin.setBackground(new java.awt.Color(231, 28, 35));
+        loginButtonLogin.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        loginButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
+        loginButtonLogin.setText("Log-in");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        panelLogin.add(buttonLogin, gridBagConstraints);
+        panelLogin.add(loginButtonLogin, gridBagConstraints);
 
         getContentPane().add(panelLogin, "panelLogin");
 
@@ -125,24 +128,24 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         mainPanelHeader.add(mainTextFieldSearch, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Administrator Name");
+        mainLabelName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        mainLabelName.setText("Administrator Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        mainPanelHeader.add(jLabel1, gridBagConstraints);
+        mainPanelHeader.add(mainLabelName, gridBagConstraints);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout.png"))); // NOI18N
-        jLabel2.setToolTipText("Logout");
+        mainLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout.png"))); // NOI18N
+        mainLabelLogout.setToolTipText("Logout");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 0.01;
         gridBagConstraints.weighty = 1.0;
-        mainPanelHeader.add(jLabel2, gridBagConstraints);
+        mainPanelHeader.add(mainLabelLogout, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -174,33 +177,65 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonLogin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel labelLoginJollibeeConstructionLogo;
+    private javax.swing.JButton loginButtonLogin;
+    private javax.swing.JLabel loginLabelJollibeeConstructionLogo;
+    private javax.swing.JPasswordField loginPasswordFieldPassword;
+    private javax.swing.JTextField loginTextFieldUsername;
     private javax.swing.JLabel mainLabelJollibeeConstructionLogo;
+    private javax.swing.JLabel mainLabelLogout;
+    private javax.swing.JLabel mainLabelName;
     private javax.swing.JPanel mainPanelCardPanel;
     private javax.swing.JPanel mainPanelHeader;
     private javax.swing.JTextField mainTextFieldSearch;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
-    private javax.swing.JPasswordField passwordfieldLoginPassword;
-    private javax.swing.JTextField textfieldLoginUsername;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JButton getButtonLogin() {
-        return buttonLogin;
+    public javax.swing.JButton getLoginButtonLogin() {
+        return loginButtonLogin;
+    }
+
+    public javax.swing.JLabel getLoginLabelJollibeeConstructionLogo() {
+        return loginLabelJollibeeConstructionLogo;
+    }
+
+    public javax.swing.JPasswordField getLoginPasswordFieldPassword() {
+        return loginPasswordFieldPassword;
+    }
+
+    public javax.swing.JTextField getLoginTextFieldUsername() {
+        return loginTextFieldUsername;
+    }
+
+    public javax.swing.JLabel getMainLabelJollibeeConstructionLogo() {
+        return mainLabelJollibeeConstructionLogo;
+    }
+
+    public javax.swing.JLabel getMainLabelLogout() {
+        return mainLabelLogout;
+    }
+
+    public javax.swing.JLabel getMainLabelName() {
+        return mainLabelName;
+    }
+
+    public javax.swing.JPanel getMainPanelCardPanel() {
+        return mainPanelCardPanel;
+    }
+
+    public javax.swing.JPanel getMainPanelHeader() {
+        return mainPanelHeader;
+    }
+
+    public javax.swing.JTextField getMainTextFieldSearch() {
+        return mainTextFieldSearch;
     }
 
     public javax.swing.JPanel getPanelLogin() {
         return panelLogin;
     }
 
-    public javax.swing.JPasswordField getPasswordfieldLoginPassword() {
-        return passwordfieldLoginPassword;
-    }
-
-    public javax.swing.JTextField getTextfieldLoginUsername() {
-        return textfieldLoginUsername;
+    public javax.swing.JPanel getPanelMain() {
+        return panelMain;
     }
 }

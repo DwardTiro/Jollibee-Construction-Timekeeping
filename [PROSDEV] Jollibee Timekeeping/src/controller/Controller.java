@@ -18,6 +18,8 @@ public class Controller {
     
     private final String USERNAME_FIELD_DEFAULT = "Username";
     private final String PASSWORD_FIELD_DEFAULT = "Password";
+    private final String SEARCH_FIELD_DEFAULT = "Search";
+    
     private final String CARD_LOGIN = "panelLogin";
     private final String CARD_MAIN = "panelMain";
     
@@ -39,31 +41,31 @@ public class Controller {
     private void addListeners(){
         // login panel listeners
         addPanelLoginListeners();
-        
+        addPanelMainListeners();
     }
     
     private void addPanelLoginListeners(){
         
-        mainFrame.getTextfieldLoginUsername().addFocusListener(new FocusListener(){
+        mainFrame.getLoginTextFieldUsername().addFocusListener(new FocusListener(){
 
             @Override
             public void focusGained(FocusEvent e) {}
 
             @Override
             public void focusLost(FocusEvent e) {
-                if(mainFrame.getTextfieldLoginUsername().getText().equalsIgnoreCase("")){
-                    mainFrame.getTextfieldLoginUsername().setText(USERNAME_FIELD_DEFAULT);
+                if(mainFrame.getLoginTextFieldUsername().getText().equalsIgnoreCase("")){
+                    mainFrame.getLoginTextFieldUsername().setText(USERNAME_FIELD_DEFAULT);
                 }
             }
             
         });
         
-        mainFrame.getTextfieldLoginUsername().addMouseListener(new MouseListener(){
+        mainFrame.getLoginTextFieldUsername().addMouseListener(new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(mainFrame.getTextfieldLoginUsername().getText().equalsIgnoreCase(USERNAME_FIELD_DEFAULT)){
-                    mainFrame.getTextfieldLoginUsername().setText("");
+                if(mainFrame.getLoginTextFieldUsername().getText().equalsIgnoreCase(USERNAME_FIELD_DEFAULT)){
+                    mainFrame.getLoginTextFieldUsername().setText("");
                 }
             }
 
@@ -81,12 +83,12 @@ public class Controller {
             
         });
         
-        mainFrame.getTextfieldLoginUsername().addKeyListener(new KeyListener(){
+        mainFrame.getLoginTextFieldUsername().addKeyListener(new KeyListener(){
 
             @Override
             public void keyTyped(KeyEvent e) {
-                if(mainFrame.getTextfieldLoginUsername().getText().equalsIgnoreCase(USERNAME_FIELD_DEFAULT)){
-                    mainFrame.getTextfieldLoginUsername().setText("");
+                if(mainFrame.getLoginTextFieldUsername().getText().equalsIgnoreCase(USERNAME_FIELD_DEFAULT)){
+                    mainFrame.getLoginTextFieldUsername().setText("");
                 }
             }
 
@@ -98,12 +100,12 @@ public class Controller {
             
         });
         
-        mainFrame.getPasswordfieldLoginPassword().addFocusListener(new FocusListener(){
+        mainFrame.getLoginPasswordFieldPassword().addFocusListener(new FocusListener(){
 
             @Override
             public void focusGained(FocusEvent e) {
-                if(String.copyValueOf(mainFrame.getPasswordfieldLoginPassword().getPassword()).equalsIgnoreCase(PASSWORD_FIELD_DEFAULT)){
-                    mainFrame.getPasswordfieldLoginPassword().setText("");
+                if(String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()).equalsIgnoreCase(PASSWORD_FIELD_DEFAULT)){
+                    mainFrame.getLoginPasswordFieldPassword().setText("");
                 }
             }
 
@@ -112,12 +114,11 @@ public class Controller {
             
         });
         
-        mainFrame.getButtonLogin().addMouseListener(new MouseListener(){
+        mainFrame.getLoginButtonLogin().addMouseListener(new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                
-                if(tryLogin(mainFrame.getTextfieldLoginUsername().getText(), String.copyValueOf(mainFrame.getPasswordfieldLoginPassword().getPassword()))){
+                if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
                     CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
                     cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
                 }
@@ -135,6 +136,45 @@ public class Controller {
             @Override
             public void mouseExited(MouseEvent e) {}
             
+        });
+    }
+    
+    private void addPanelMainListeners(){
+        mainFrame.getMainTextFieldSearch().addFocusListener(new FocusListener(){
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(mainFrame.getMainTextFieldSearch().getText().equalsIgnoreCase(SEARCH_FIELD_DEFAULT)){
+                    mainFrame.getMainTextFieldSearch().setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(mainFrame.getMainTextFieldSearch().getText().equalsIgnoreCase("")){
+                    mainFrame.getMainTextFieldSearch().setText(SEARCH_FIELD_DEFAULT);
+                }
+            } 
+        });
+        
+        mainFrame.getMainLabelLogout().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                logout();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
         });
     }
     
