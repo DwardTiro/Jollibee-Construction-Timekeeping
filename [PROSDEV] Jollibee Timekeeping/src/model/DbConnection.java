@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Jet
  */
 public class DbConnection {
-     public static Connection con = getConnection("root", "", "");
+     public static Connection con = getConnection("root", "", "timekeep");
     
     private static Connection getConnection(String user, String password, String schema){
         

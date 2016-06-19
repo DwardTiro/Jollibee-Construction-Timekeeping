@@ -10,8 +10,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import model.DbConnection;
 
 public class Controller {
@@ -22,16 +24,20 @@ public class Controller {
     
     private final String CARD_LOGIN = "panelLogin";
     private final String CARD_MAIN = "panelMain";
+    private final String HOME_PAGE = "add_time";
     
     private static final Controller controller = new Controller();
     
     private final MainFrame mainFrame;
+    private final JPanel mainCardPanel;
+    private final CardLayout mainLayout;
     
     private Controller(){
         mainFrame = MainFrame.getInstance();
         mainFrame.setVisible(true);
-        
         addListeners();
+        mainCardPanel = mainFrame.getMainPanelCardPanel();
+        mainLayout =(CardLayout) mainCardPanel.getLayout();
     }
     
     public static Controller getInstance(){
@@ -121,6 +127,7 @@ public class Controller {
                 if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
                     CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
                     cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
+                    showHomePage();
                 }
             }
 
@@ -181,10 +188,24 @@ public class Controller {
     // returns true if login is successful (username and password is correct), false otherwise
     private boolean tryLogin(String username, String password){
         boolean login = false;
-       
+        ResultSet rs = null;
+        String query = "select id,password from admin where username = '"+  username+"'\n"+
+                "and password = '"+password+"'";
+        System.out.println("Im here!!");
         try {
             Statement s = DbConnection.con.createStatement();
-            s.execute("select id from admin where id =  username");
+            System.out.println(query);
+            s.executeQuery(query);
+            
+            rs = s.getResultSet();
+            
+            if(rs.next()){
+                login= true;
+                System.out.println("Success Login");
+                
+            }else{
+                System.out.println("Failed to log in");
+            }
             // backend logic here
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -197,4 +218,14 @@ public class Controller {
         CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
         cardLayout.show(mainFrame.getContentPane(), CARD_LOGIN);
     }
+    
+    private void showHomePage(){
+        System.out.println("Here!!! :D");
+        mainLayout.show(mainCardPanel,HOME_PAGE);
+        
+        
+    }
+    
+    
+    
 }

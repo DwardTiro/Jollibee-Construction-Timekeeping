@@ -37,6 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
         loginTextFieldUsername = new javax.swing.JTextField();
         loginPasswordFieldPassword = new javax.swing.JPasswordField();
         loginButtonLogin = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         panelMain = new javax.swing.JPanel();
         mainPanelHeader = new javax.swing.JPanel();
         mainLabelJollibeeConstructionLogo = new javax.swing.JLabel();
@@ -44,6 +45,11 @@ public class MainFrame extends javax.swing.JFrame {
         mainLabelName = new javax.swing.JLabel();
         mainLabelLogout = new javax.swing.JLabel();
         mainPanelCardPanel = new javax.swing.JPanel();
+        add_time = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        employeeTime = new javax.swing.JLabel();
+        testing = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jollibee Construction Timekeeping");
@@ -96,6 +102,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.ipady = 5;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         panelLogin.add(loginButtonLogin, gridBagConstraints);
+        panelLogin.add(jPanel1, new java.awt.GridBagConstraints());
 
         getContentPane().add(panelLogin, "panelLogin");
 
@@ -157,6 +164,36 @@ public class MainFrame extends javax.swing.JFrame {
         panelMain.add(mainPanelHeader, gridBagConstraints);
 
         mainPanelCardPanel.setBackground(new java.awt.Color(251, 251, 251));
+        mainPanelCardPanel.setLayout(new java.awt.CardLayout());
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        employeeTime.setText("Employee Time");
+
+        javax.swing.GroupLayout add_timeLayout = new javax.swing.GroupLayout(add_time);
+        add_time.setLayout(add_timeLayout);
+        add_timeLayout.setHorizontalGroup(
+            add_timeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_timeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(add_timeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(employeeTime, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(915, Short.MAX_VALUE))
+        );
+        add_timeLayout.setVerticalGroup(
+            add_timeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_timeLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(employeeTime)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(318, Short.MAX_VALUE))
+        );
+
+        mainPanelCardPanel.add(add_time, "card2");
+        mainPanelCardPanel.add(testing, "card3");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -177,6 +214,11 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel add_time;
+    private javax.swing.JLabel employeeTime;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loginButtonLogin;
     private javax.swing.JLabel loginLabelJollibeeConstructionLogo;
     private javax.swing.JPasswordField loginPasswordFieldPassword;
@@ -189,6 +231,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mainTextFieldSearch;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
+    private javax.swing.JPanel testing;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JButton getLoginButtonLogin() {
