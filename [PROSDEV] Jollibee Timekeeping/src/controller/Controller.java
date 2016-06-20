@@ -64,6 +64,7 @@ public class Controller {
         addShowEmployeePanelListeners();
         addAddEmployeePanelListeners();
         addEditEmployeePanelListeners();
+        addViewEmployeePanelListeners();
     }
     
     private void addPanelLoginListeners(){
@@ -278,6 +279,10 @@ public class Controller {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
+    }
+    
+    private void addViewEmployeePanelListeners(){
+        
     }
     
     // sample only

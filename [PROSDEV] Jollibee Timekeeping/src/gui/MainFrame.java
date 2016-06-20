@@ -47,6 +47,9 @@ public class MainFrame extends javax.swing.JFrame {
         labelShowEmployeeName = new javax.swing.JLabel();
         labelShowEmployeeID = new javax.swing.JLabel();
         panelShowEmployeeCalendar = new javax.swing.JPanel();
+        labelShowEmployeeMonthYear = new javax.swing.JLabel();
+        labelShowEmployeeNextMonth = new javax.swing.JLabel();
+        labelShowEmployeePreviousMonth = new javax.swing.JLabel();
         testing = new javax.swing.JPanel();
         add_time = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -208,17 +211,34 @@ public class MainFrame extends javax.swing.JFrame {
         panelShowEmployeeCalendar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 0, new java.awt.Color(224, 224, 224)));
         panelShowEmployeeCalendar.setLayout(new java.awt.GridLayout(6, 7));
 
+        labelShowEmployeeMonthYear.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelShowEmployeeMonthYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelShowEmployeeMonthYear.setText("MONTH YEAR");
+
+        labelShowEmployeeNextMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right.png"))); // NOI18N
+
+        labelShowEmployeePreviousMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png"))); // NOI18N
+
         javax.swing.GroupLayout showEmployeePanelLayout = new javax.swing.GroupLayout(showEmployeePanel);
         showEmployeePanel.setLayout(showEmployeePanelLayout);
         showEmployeePanelLayout.setHorizontalGroup(
             showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(showEmployeePanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelShowEmployeeID)
-                    .addComponent(labelShowEmployeeName)
-                    .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(showEmployeePanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelShowEmployeeID)
+                            .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelShowEmployeeName)))
+                    .addGroup(showEmployeePanelLayout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(labelShowEmployeePreviousMonth)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelShowEmployeeMonthYear, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelShowEmployeeNextMonth)))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
         showEmployeePanelLayout.setVerticalGroup(
             showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,9 +247,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelShowEmployeeName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelShowEmployeeID)
-                .addGap(36, 36, 36)
-                .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(showEmployeePanelLayout.createSequentialGroup()
+                        .addGroup(showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelShowEmployeeMonthYear)
+                            .addComponent(labelShowEmployeePreviousMonth))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelShowEmployeeNextMonth))
+                .addGap(50, 50, 50))
         );
 
         mainPanelCardPanel.add(showEmployeePanel, "card4");
@@ -417,7 +444,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonEditEmployeeSaveChanges)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(362, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(editEmployeePanel, "card6");
@@ -485,7 +512,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelEditEmployeeMiddleName;
     private javax.swing.JLabel labelEditEmployeeSalary;
     private javax.swing.JLabel labelShowEmployeeID;
+    private javax.swing.JLabel labelShowEmployeeMonthYear;
     private javax.swing.JLabel labelShowEmployeeName;
+    private javax.swing.JLabel labelShowEmployeeNextMonth;
+    private javax.swing.JLabel labelShowEmployeePreviousMonth;
     private javax.swing.JButton loginButtonLogin;
     private javax.swing.JLabel loginLabelJollibeeConstructionLogo;
     private javax.swing.JPasswordField loginPasswordFieldPassword;
