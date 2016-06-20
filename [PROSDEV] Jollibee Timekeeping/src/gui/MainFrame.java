@@ -83,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
         textFieldAddEmployeeFirstName = new javax.swing.JTextField();
         textFieldAddEmployeeMiddleName = new javax.swing.JTextField();
         textFieldAddEmployeeSalary = new javax.swing.JTextField();
-        ButtonAddEmployee = new javax.swing.JButton();
+        buttonAddEmployee = new javax.swing.JButton();
         editEmployeePanel = new javax.swing.JPanel();
         labelEditEmployee = new javax.swing.JLabel();
         labelEditEmployeeIDNumber = new javax.swing.JLabel();
@@ -237,7 +237,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelShowEmployeeID)
                     .addComponent(labelShowEmployeeName)
                     .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         showEmployeePanelLayout.setVerticalGroup(
             showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +248,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelShowEmployeeID)
                 .addGap(36, 36, 36)
                 .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(showEmployeePanel, "card4");
@@ -302,10 +302,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         labelAddEmployeeSalary.setText("Salary");
 
-        ButtonAddEmployee.setBackground(new java.awt.Color(231, 28, 35));
-        ButtonAddEmployee.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        ButtonAddEmployee.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonAddEmployee.setText("Add Employee");
+        buttonAddEmployee.setBackground(new java.awt.Color(231, 28, 35));
+        buttonAddEmployee.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        buttonAddEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        buttonAddEmployee.setText("Add Employee");
 
         javax.swing.GroupLayout addEmployeePanelLayout = new javax.swing.GroupLayout(addEmployeePanel);
         addEmployeePanel.setLayout(addEmployeePanelLayout);
@@ -322,15 +322,15 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(labelAddEmployeeFirstName)
                             .addComponent(labelAddEmployeeMiddleName)
                             .addComponent(labelAddEmployeeSalary))
-                        .addGap(48, 48, 48)
+                        .addGap(42, 42, 42)
                         .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textFieldAddEmployeeIDNumber)
+                            .addComponent(textFieldAddEmployeeIDNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(textFieldAddEmployeeLastName)
                             .addComponent(textFieldAddEmployeeFirstName)
                             .addComponent(textFieldAddEmployeeMiddleName)
-                            .addComponent(textFieldAddEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
-                    .addComponent(ButtonAddEmployee, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(731, Short.MAX_VALUE))
+                            .addComponent(textFieldAddEmployeeSalary)))
+                    .addComponent(buttonAddEmployee, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addEmployeePanelLayout.setVerticalGroup(
             addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,8 +358,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelAddEmployeeSalary)
                     .addComponent(textFieldAddEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(ButtonAddEmployee)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addComponent(buttonAddEmployee)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(addEmployeePanel, "card5");
@@ -399,15 +399,15 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(labelEditEmployeeFirstName)
                             .addComponent(labelEditEmployeeMiddleName)
                             .addComponent(labelEditEmployeeSalary))
-                        .addGap(48, 48, 48)
+                        .addGap(42, 42, 42)
                         .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textFieldEditEmployeeIDNumber)
+                            .addComponent(textFieldEditEmployeeIDNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(textFieldEditEmployeeLastName)
                             .addComponent(textFieldEditEmployeeFirstName)
                             .addComponent(textFieldEditEmployeeMiddleName)
-                            .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
-                    .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(731, Short.MAX_VALUE))
+                            .addComponent(textFieldEditEmployeeSalary)))
+                    .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         editEmployeePanelLayout.setVerticalGroup(
             editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,23 +423,23 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelEditEmployeeLastName)
                     .addComponent(textFieldEditEmployeeLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelEditEmployeeFirstName)
                     .addComponent(textFieldEditEmployeeFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelEditEmployeeMiddleName)
                     .addComponent(textFieldEditEmployeeMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelEditEmployeeSalary)
                     .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonEditEmployeeSaveChanges)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
 
-        mainPanelCardPanel.add(editEmployeePanel, "card5");
+        mainPanelCardPanel.add(editEmployeePanel, "card6");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -483,9 +483,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonAddEmployee;
     private javax.swing.JPanel addEmployeePanel;
     private javax.swing.JPanel add_time;
+    private javax.swing.JButton buttonAddEmployee;
     private javax.swing.JButton buttonEditEmployeeSaveChanges;
     private javax.swing.JPanel editEmployeePanel;
     private javax.swing.JLabel employeeTime;
@@ -533,8 +533,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldEditEmployeeSalary;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JButton getButtonAddEmployee() {
-        return ButtonAddEmployee;
+    public JPanel[] getViewCalendar() {
+        return viewCalendar;
+    }
+
+    public int getCALENDAR_ROWS() {
+        return CALENDAR_ROWS;
+    }
+
+    public int getCALENDAR_COLS() {
+        return CALENDAR_COLS;
     }
 
     public javax.swing.JPanel getAddEmployeePanel() {
@@ -543,6 +551,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getAdd_time() {
         return add_time;
+    }
+
+    public javax.swing.JButton getButtonAddEmployee() {
+        return buttonAddEmployee;
     }
 
     public javax.swing.JButton getButtonEditEmployeeSaveChanges() {
@@ -673,6 +685,10 @@ public class MainFrame extends javax.swing.JFrame {
         return panelMain;
     }
 
+    public javax.swing.JPanel getPanelShowEmployeeCalendar() {
+        return panelShowEmployeeCalendar;
+    }
+
     public javax.swing.JPanel getShowEmployeePanel() {
         return showEmployeePanel;
     }
@@ -720,5 +736,4 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTextField getTextFieldEditEmployeeSalary() {
         return textFieldEditEmployeeSalary;
     }
-
 }

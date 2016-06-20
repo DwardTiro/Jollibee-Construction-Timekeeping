@@ -47,7 +47,10 @@ public class Controller {
     private void addListeners(){
         // login panel listeners
         addPanelLoginListeners();
-        addPanelMainListeners();
+        addMainPanelHeaderListeners();
+        addShowEmployeePanelListeners();
+        addAddEmployeePanelListeners();
+        addEditEmployeePanelListeners();
     }
     
     private void addPanelLoginListeners(){
@@ -146,7 +149,7 @@ public class Controller {
         });
     }
     
-    private void addPanelMainListeners(){
+    private void addMainPanelHeaderListeners(){
         mainFrame.getMainTextFieldSearch().addFocusListener(new FocusListener(){
 
             @Override
@@ -169,6 +172,85 @@ public class Controller {
             @Override
             public void mouseClicked(MouseEvent e) {
                 logout();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+    }
+    
+    private void addShowEmployeePanelListeners(){
+        
+    }
+    
+    private void addAddEmployeePanelListeners(){
+        mainFrame.getButtonAddEmployee().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(!mainFrame.getTextFieldAddEmployeeIDNumber().getText().isEmpty() &&
+                   !mainFrame.getTextFieldAddEmployeeLastName().getText().isEmpty() &&
+                   !mainFrame.getTextFieldAddEmployeeFirstName().getText().isEmpty() &&
+                   !mainFrame.getTextFieldAddEmployeeMiddleName().getText().isEmpty() &&
+                   !mainFrame.getTextFieldAddEmployeeSalary().getText().isEmpty()){
+                    
+                    if(tryAddEmployee(Integer.parseInt(mainFrame.getTextFieldAddEmployeeIDNumber().getText()),
+                            mainFrame.getTextFieldAddEmployeeLastName().getText(),
+                            mainFrame.getTextFieldAddEmployeeFirstName().getText(),
+                            mainFrame.getTextFieldAddEmployeeMiddleName().getText(),
+                            Float.parseFloat(mainFrame.getTextFieldAddEmployeeSalary().toString()))){
+                        // success: notify user
+                    } else{
+                        // failure: notify user
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+            
+        });
+    }
+    
+    private void addEditEmployeePanelListeners(){
+        mainFrame.getButtonEditEmployeeSaveChanges().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(!mainFrame.getTextFieldEditEmployeeIDNumber().getText().isEmpty() &&
+                   !mainFrame.getTextFieldEditEmployeeLastName().getText().isEmpty() &&
+                   !mainFrame.getTextFieldEditEmployeeFirstName().getText().isEmpty() &&
+                   !mainFrame.getTextFieldEditEmployeeMiddleName().getText().isEmpty() &&
+                   !mainFrame.getTextFieldEditEmployeeSalary().getText().isEmpty()){
+                    
+                    if(tryEditEmployee(Integer.parseInt(mainFrame.getTextFieldEditEmployeeIDNumber().getText()),
+                            mainFrame.getTextFieldEditEmployeeLastName().getText(),
+                            mainFrame.getTextFieldEditEmployeeFirstName().getText(),
+                            mainFrame.getTextFieldEditEmployeeMiddleName().getText(),
+                            Float.parseFloat(mainFrame.getTextFieldEditEmployeeSalary().toString()))){
+                        // success: notify user
+                    } else{
+                        // failure: notify user
+                    }
+                }
             }
 
             @Override
@@ -212,6 +294,24 @@ public class Controller {
         }
         
         return login;
+    }
+    
+    // returns true if successful in adding employee, false if there is a similar IDNumber in database
+    private boolean tryAddEmployee(int IDNumber, String lastName, String firstName, String middleName, float salary){
+        boolean tryAdd = false;
+        
+        // logic here
+        
+        return tryAdd;
+    }
+    
+    // returns true if successful in editing employee, false if there is a similar IDNumber in database
+    private boolean tryEditEmployee(int IDNumber, String lastName, String firstName, String middleName, float salary){
+        boolean tryEdit = false;
+        
+        // logic here
+        
+        return tryEdit;
     }
     
     private void logout(){
