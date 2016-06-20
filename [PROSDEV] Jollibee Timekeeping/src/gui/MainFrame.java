@@ -2,11 +2,16 @@
 package gui;
 
 import java.awt.Toolkit;
+import javax.swing.JPanel;
 
 public class MainFrame extends javax.swing.JFrame {
 
     private static final MainFrame mainFrame = new MainFrame();
 
+    private JPanel viewCalendar[];
+    private final int CALENDAR_ROWS = 6;
+    private final int CALENDAR_COLS = 7;
+    
     public static MainFrame getMainFrame() {
         return mainFrame;
     }
@@ -23,10 +28,23 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
         initComponents();
+        buildCalendar();
     }
 
+    // sample only
+    private void buildCalendar(){
+        viewCalendar = new JPanel[CALENDAR_ROWS * CALENDAR_COLS];
+        for(int i = 0; i < CALENDAR_ROWS; i++){
+            for(int j = 0; j < CALENDAR_COLS; j++){
+                JPanel temp = new CalendarDatePanel(i * CALENDAR_COLS + j + 1, "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
+                temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
+                viewCalendar[i * CALENDAR_COLS + j] = temp;
+                panelShowEmployeeCalendar.add(temp);
+            }
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -44,14 +62,15 @@ public class MainFrame extends javax.swing.JFrame {
         mainLabelName = new javax.swing.JLabel();
         mainLabelLogout = new javax.swing.JLabel();
         mainPanelCardPanel = new javax.swing.JPanel();
+        showEmployeePanel = new javax.swing.JPanel();
+        labelShowEmployeeName = new javax.swing.JLabel();
+        labelShowEmployeeID = new javax.swing.JLabel();
+        panelShowEmployeeCalendar = new javax.swing.JPanel();
         testing = new javax.swing.JPanel();
         add_time = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         employeeTime = new javax.swing.JLabel();
-        showEmployeePanel = new javax.swing.JPanel();
-        labelShowEmployeeName = new javax.swing.JLabel();
-        labelShowEmployeeID = new javax.swing.JLabel();
         addEmployeePanel = new javax.swing.JPanel();
         labelAddEmployee = new javax.swing.JLabel();
         labelAddEmployeeIDNumber = new javax.swing.JLabel();
@@ -197,6 +216,43 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanelCardPanel.setPreferredSize(new java.awt.Dimension(0, 0));
         mainPanelCardPanel.setLayout(new java.awt.CardLayout());
 
+        showEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        labelShowEmployeeName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelShowEmployeeName.setText("LastName, FirstName MiddleName");
+
+        labelShowEmployeeID.setText("ID Number");
+
+        panelShowEmployeeCalendar.setBackground(new java.awt.Color(255, 255, 255));
+        panelShowEmployeeCalendar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 0, new java.awt.Color(224, 224, 224)));
+        panelShowEmployeeCalendar.setLayout(new java.awt.GridLayout(6, 7));
+
+        javax.swing.GroupLayout showEmployeePanelLayout = new javax.swing.GroupLayout(showEmployeePanel);
+        showEmployeePanel.setLayout(showEmployeePanelLayout);
+        showEmployeePanelLayout.setHorizontalGroup(
+            showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(showEmployeePanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelShowEmployeeID)
+                    .addComponent(labelShowEmployeeName)
+                    .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(352, Short.MAX_VALUE))
+        );
+        showEmployeePanelLayout.setVerticalGroup(
+            showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(showEmployeePanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelShowEmployeeName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelShowEmployeeID)
+                .addGap(36, 36, 36)
+                .addComponent(panelShowEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        mainPanelCardPanel.add(showEmployeePanel, "card4");
+
         testing.setBackground(new java.awt.Color(255, 255, 255));
         testing.setMinimumSize(new java.awt.Dimension(0, 0));
         testing.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -230,36 +286,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         mainPanelCardPanel.add(add_time, "card2");
-
-        showEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        labelShowEmployeeName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        labelShowEmployeeName.setText("LastName, FirstName MiddleName");
-
-        labelShowEmployeeID.setText("ID Number");
-
-        javax.swing.GroupLayout showEmployeePanelLayout = new javax.swing.GroupLayout(showEmployeePanel);
-        showEmployeePanel.setLayout(showEmployeePanelLayout);
-        showEmployeePanelLayout.setHorizontalGroup(
-            showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(showEmployeePanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelShowEmployeeID)
-                    .addComponent(labelShowEmployeeName))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        showEmployeePanelLayout.setVerticalGroup(
-            showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(showEmployeePanelLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(labelShowEmployeeName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelShowEmployeeID)
-                .addContainerGap(551, Short.MAX_VALUE))
-        );
-
-        mainPanelCardPanel.add(showEmployeePanel, "card4");
 
         addEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -492,6 +518,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mainTextFieldSearch;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
+    private javax.swing.JPanel panelShowEmployeeCalendar;
     private javax.swing.JPanel showEmployeePanel;
     private javax.swing.JPanel testing;
     private javax.swing.JTextField textFieldAddEmployeeFirstName;
