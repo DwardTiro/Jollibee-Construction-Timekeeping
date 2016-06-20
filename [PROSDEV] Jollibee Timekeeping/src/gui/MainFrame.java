@@ -388,7 +388,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(textFieldEditEmployeeMiddleName)
                             .addComponent(textFieldEditEmployeeSalary)))
                     .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(737, Short.MAX_VALUE))
         );
         editEmployeePanelLayout.setVerticalGroup(
             editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +417,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonEditEmployeeSaveChanges)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(editEmployeePanel, "card6");

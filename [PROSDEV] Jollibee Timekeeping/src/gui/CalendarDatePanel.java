@@ -2,6 +2,8 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class CalendarDatePanel extends javax.swing.JPanel {
 
@@ -26,13 +28,34 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         labelProjectName.setText(projectName);
         
         switch(attendanceStatus){
-            case ATTENDANCE_STATUS_COMPLETE: panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
-            case ATTENDANCE_STATUS_UNDERTIME: panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
-            case ATTENDANCE_STATUS_OVERTIME: panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
-            case ATTENDANCE_STATUS_ABSENT: panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
-            case ATTENDANCE_STATUS_LEAVE: panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
-            case ATTENDANCE_STATUS_NO_PROJ: panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
+            case ATTENDANCE_STATUS_COMPLETE:    panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
+            case ATTENDANCE_STATUS_UNDERTIME:   panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
+            case ATTENDANCE_STATUS_OVERTIME:    panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
+            case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
+            case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
+            case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
         }
+        
+        this.addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+            
+        });
     }
 
     @SuppressWarnings("unchecked")

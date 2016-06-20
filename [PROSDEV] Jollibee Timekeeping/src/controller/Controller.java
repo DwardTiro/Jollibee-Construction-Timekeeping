@@ -140,11 +140,11 @@ public class Controller {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
+                if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
                     CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
                     cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
-                //    showHomePage();
-                //}
+                    showHomePage();
+                }
             }
 
             @Override
