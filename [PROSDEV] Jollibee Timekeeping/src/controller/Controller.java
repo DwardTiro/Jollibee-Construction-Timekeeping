@@ -222,10 +222,5 @@ public class Controller {
     private void showHomePage(){
         System.out.println("Here!!! :D");
         mainLayout.show(mainCardPanel,HOME_PAGE);
-        
-        
     }
-    
-    
-    
 }

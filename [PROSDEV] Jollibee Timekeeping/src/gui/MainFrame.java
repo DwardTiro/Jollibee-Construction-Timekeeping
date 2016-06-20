@@ -49,8 +49,11 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         employeeTime = new javax.swing.JLabel();
+        showEmployeePanel = new javax.swing.JPanel();
+        labelShowEmployeeName = new javax.swing.JLabel();
+        labelShowEmployeeID = new javax.swing.JLabel();
         addEmployeePanel = new javax.swing.JPanel();
-        labelAddNewEmployee = new javax.swing.JLabel();
+        labelAddEmployee = new javax.swing.JLabel();
         labelAddEmployeeIDNumber = new javax.swing.JLabel();
         labelAddEmployeeLastName = new javax.swing.JLabel();
         labelAddEmployeeFirstName = new javax.swing.JLabel();
@@ -61,7 +64,7 @@ public class MainFrame extends javax.swing.JFrame {
         textFieldAddEmployeeFirstName = new javax.swing.JTextField();
         textFieldAddEmployeeMiddleName = new javax.swing.JTextField();
         textFieldAddEmployeeSalary = new javax.swing.JTextField();
-        buttonAddEmployee = new javax.swing.JButton();
+        ButtonAddEmployee = new javax.swing.JButton();
         editEmployeePanel = new javax.swing.JPanel();
         labelEditEmployee = new javax.swing.JLabel();
         labelEditEmployeeIDNumber = new javax.swing.JLabel();
@@ -214,7 +217,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(add_timeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(employeeTime, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(503, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         add_timeLayout.setVerticalGroup(
             add_timeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,30 +226,60 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(employeeTime)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(add_time, "card2");
 
+        showEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        labelShowEmployeeName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelShowEmployeeName.setText("LastName, FirstName MiddleName");
+
+        labelShowEmployeeID.setText("ID Number");
+
+        javax.swing.GroupLayout showEmployeePanelLayout = new javax.swing.GroupLayout(showEmployeePanel);
+        showEmployeePanel.setLayout(showEmployeePanelLayout);
+        showEmployeePanelLayout.setHorizontalGroup(
+            showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(showEmployeePanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelShowEmployeeID)
+                    .addComponent(labelShowEmployeeName))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        showEmployeePanelLayout.setVerticalGroup(
+            showEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(showEmployeePanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelShowEmployeeName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelShowEmployeeID)
+                .addContainerGap(551, Short.MAX_VALUE))
+        );
+
+        mainPanelCardPanel.add(showEmployeePanel, "card4");
+
         addEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelAddNewEmployee.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        labelAddNewEmployee.setText("Add New Employee");
+        labelAddEmployee.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelAddEmployee.setText("Add New Employee");
 
-        labelAddEmployeeIDNumber.setText("ID Number:");
+        labelAddEmployeeIDNumber.setText("ID Number");
 
-        labelAddEmployeeLastName.setText("Last Name:");
+        labelAddEmployeeLastName.setText("Last Name");
 
-        labelAddEmployeeFirstName.setText("First Name:");
+        labelAddEmployeeFirstName.setText("First Name");
 
-        labelAddEmployeeMiddleName.setText("Middle Name:");
+        labelAddEmployeeMiddleName.setText("Middle Name");
 
-        labelAddEmployeeSalary.setText("Salary:");
+        labelAddEmployeeSalary.setText("Salary");
 
-        buttonAddEmployee.setBackground(new java.awt.Color(231, 28, 35));
-        buttonAddEmployee.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        buttonAddEmployee.setForeground(new java.awt.Color(255, 255, 255));
-        buttonAddEmployee.setText("Add Employee");
+        ButtonAddEmployee.setBackground(new java.awt.Color(231, 28, 35));
+        ButtonAddEmployee.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        ButtonAddEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonAddEmployee.setText("Add Employee");
 
         javax.swing.GroupLayout addEmployeePanelLayout = new javax.swing.GroupLayout(addEmployeePanel);
         addEmployeePanel.setLayout(addEmployeePanelLayout);
@@ -255,30 +288,29 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAddNewEmployee)
-                    .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(buttonAddEmployee)
-                        .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                            .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelAddEmployeeIDNumber)
-                                .addComponent(labelAddEmployeeLastName)
-                                .addComponent(labelAddEmployeeFirstName)
-                                .addComponent(labelAddEmployeeMiddleName)
-                                .addComponent(labelAddEmployeeSalary))
-                            .addGap(27, 27, 27)
-                            .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textFieldAddEmployeeIDNumber)
-                                .addComponent(textFieldAddEmployeeLastName)
-                                .addComponent(textFieldAddEmployeeFirstName)
-                                .addComponent(textFieldAddEmployeeMiddleName)
-                                .addComponent(textFieldAddEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))))
-                .addContainerGap(623, Short.MAX_VALUE))
+                    .addComponent(labelAddEmployee)
+                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
+                        .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAddEmployeeIDNumber)
+                            .addComponent(labelAddEmployeeLastName)
+                            .addComponent(labelAddEmployeeFirstName)
+                            .addComponent(labelAddEmployeeMiddleName)
+                            .addComponent(labelAddEmployeeSalary))
+                        .addGap(48, 48, 48)
+                        .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textFieldAddEmployeeIDNumber)
+                            .addComponent(textFieldAddEmployeeLastName)
+                            .addComponent(textFieldAddEmployeeFirstName)
+                            .addComponent(textFieldAddEmployeeMiddleName)
+                            .addComponent(textFieldAddEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                    .addComponent(ButtonAddEmployee, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(731, Short.MAX_VALUE))
         );
         addEmployeePanelLayout.setVerticalGroup(
             addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(labelAddNewEmployee)
+                .addComponent(labelAddEmployee)
                 .addGap(18, 18, 18)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAddEmployeeIDNumber)
@@ -300,26 +332,26 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelAddEmployeeSalary)
                     .addComponent(textFieldAddEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(buttonAddEmployee)
+                .addComponent(ButtonAddEmployee)
                 .addContainerGap(360, Short.MAX_VALUE))
         );
 
-        mainPanelCardPanel.add(addEmployeePanel, "card4");
+        mainPanelCardPanel.add(addEmployeePanel, "card5");
 
         editEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
 
         labelEditEmployee.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         labelEditEmployee.setText("Edit Employee");
 
-        labelEditEmployeeIDNumber.setText("ID Number:");
+        labelEditEmployeeIDNumber.setText("ID Number");
 
-        labelEditEmployeeLastName.setText("Last Name:");
+        labelEditEmployeeLastName.setText("Last Name");
 
-        labelEditEmployeeFirstName.setText("First Name:");
+        labelEditEmployeeFirstName.setText("First Name");
 
-        labelEditEmployeeMiddleName.setText("Middle Name:");
+        labelEditEmployeeMiddleName.setText("Middle Name");
 
-        labelEditEmployeeSalary.setText("Salary:");
+        labelEditEmployeeSalary.setText("Salary");
 
         buttonEditEmployeeSaveChanges.setBackground(new java.awt.Color(231, 28, 35));
         buttonEditEmployeeSaveChanges.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -334,23 +366,22 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelEditEmployee)
-                    .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(buttonEditEmployeeSaveChanges)
-                        .addGroup(editEmployeePanelLayout.createSequentialGroup()
-                            .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelEditEmployeeIDNumber)
-                                .addComponent(labelEditEmployeeLastName)
-                                .addComponent(labelEditEmployeeFirstName)
-                                .addComponent(labelEditEmployeeMiddleName)
-                                .addComponent(labelEditEmployeeSalary))
-                            .addGap(27, 27, 27)
-                            .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textFieldEditEmployeeIDNumber)
-                                .addComponent(textFieldEditEmployeeLastName)
-                                .addComponent(textFieldEditEmployeeFirstName)
-                                .addComponent(textFieldEditEmployeeMiddleName)
-                                .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))))
-                .addContainerGap(622, Short.MAX_VALUE))
+                    .addGroup(editEmployeePanelLayout.createSequentialGroup()
+                        .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelEditEmployeeIDNumber)
+                            .addComponent(labelEditEmployeeLastName)
+                            .addComponent(labelEditEmployeeFirstName)
+                            .addComponent(labelEditEmployeeMiddleName)
+                            .addComponent(labelEditEmployeeSalary))
+                        .addGap(48, 48, 48)
+                        .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textFieldEditEmployeeIDNumber)
+                            .addComponent(textFieldEditEmployeeLastName)
+                            .addComponent(textFieldEditEmployeeFirstName)
+                            .addComponent(textFieldEditEmployeeMiddleName)
+                            .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                    .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(731, Short.MAX_VALUE))
         );
         editEmployeePanelLayout.setVerticalGroup(
             editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,19 +413,19 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(360, Short.MAX_VALUE))
         );
 
-        mainPanelCardPanel.add(editEmployeePanel, "card4");
+        mainPanelCardPanel.add(editEmployeePanel, "card5");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.weightx = 0.8;
         gridBagConstraints.weighty = 1.0;
         panelMain.add(mainPanelCardPanel, gridBagConstraints);
 
         mainPanelSidePanel.setBackground(new java.awt.Color(247, 247, 247));
-        mainPanelSidePanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(224, 224, 224)));
+        mainPanelSidePanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(224, 224, 224)));
 
         javax.swing.GroupLayout mainPanelSidePanelLayout = new javax.swing.GroupLayout(mainPanelSidePanel);
         mainPanelSidePanel.setLayout(mainPanelSidePanelLayout);
@@ -408,11 +439,11 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 1.0;
         panelMain.add(mainPanelSidePanel, gridBagConstraints);
 
@@ -426,26 +457,28 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonAddEmployee;
     private javax.swing.JPanel addEmployeePanel;
     private javax.swing.JPanel add_time;
-    private javax.swing.JButton buttonAddEmployee;
     private javax.swing.JButton buttonEditEmployeeSaveChanges;
     private javax.swing.JPanel editEmployeePanel;
     private javax.swing.JLabel employeeTime;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelAddEmployee;
     private javax.swing.JLabel labelAddEmployeeFirstName;
     private javax.swing.JLabel labelAddEmployeeIDNumber;
     private javax.swing.JLabel labelAddEmployeeLastName;
     private javax.swing.JLabel labelAddEmployeeMiddleName;
     private javax.swing.JLabel labelAddEmployeeSalary;
-    private javax.swing.JLabel labelAddNewEmployee;
     private javax.swing.JLabel labelEditEmployee;
     private javax.swing.JLabel labelEditEmployeeFirstName;
     private javax.swing.JLabel labelEditEmployeeIDNumber;
     private javax.swing.JLabel labelEditEmployeeLastName;
     private javax.swing.JLabel labelEditEmployeeMiddleName;
     private javax.swing.JLabel labelEditEmployeeSalary;
+    private javax.swing.JLabel labelShowEmployeeID;
+    private javax.swing.JLabel labelShowEmployeeName;
     private javax.swing.JButton loginButtonLogin;
     private javax.swing.JLabel loginLabelJollibeeConstructionLogo;
     private javax.swing.JPasswordField loginPasswordFieldPassword;
@@ -459,6 +492,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mainTextFieldSearch;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
+    private javax.swing.JPanel showEmployeePanel;
     private javax.swing.JPanel testing;
     private javax.swing.JTextField textFieldAddEmployeeFirstName;
     private javax.swing.JTextField textFieldAddEmployeeIDNumber;
@@ -473,7 +507,15 @@ public class MainFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JButton getButtonAddEmployee() {
-        return buttonAddEmployee;
+        return ButtonAddEmployee;
+    }
+
+    public javax.swing.JPanel getAddEmployeePanel() {
+        return addEmployeePanel;
+    }
+
+    public javax.swing.JPanel getAdd_time() {
+        return add_time;
     }
 
     public javax.swing.JButton getButtonEditEmployeeSaveChanges() {
@@ -496,6 +538,10 @@ public class MainFrame extends javax.swing.JFrame {
         return jScrollPane1;
     }
 
+    public javax.swing.JLabel getLabelAddEmployee() {
+        return labelAddEmployee;
+    }
+
     public javax.swing.JLabel getLabelAddEmployeeFirstName() {
         return labelAddEmployeeFirstName;
     }
@@ -514,10 +560,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JLabel getLabelAddEmployeeSalary() {
         return labelAddEmployeeSalary;
-    }
-
-    public javax.swing.JLabel getLabelAddNewEmployee() {
-        return labelAddNewEmployee;
     }
 
     public javax.swing.JLabel getLabelEditEmployee() {
@@ -544,8 +586,20 @@ public class MainFrame extends javax.swing.JFrame {
         return labelEditEmployeeSalary;
     }
 
+    public javax.swing.JLabel getLabelShowEmployeeID() {
+        return labelShowEmployeeID;
+    }
+
+    public javax.swing.JLabel getLabelShowEmployeeName() {
+        return labelShowEmployeeName;
+    }
+
     public javax.swing.JButton getLoginButtonLogin() {
         return loginButtonLogin;
+    }
+
+    public javax.swing.JLabel getLoginLabelJollibeeConstructionLogo() {
+        return loginLabelJollibeeConstructionLogo;
     }
 
     public javax.swing.JPasswordField getLoginPasswordFieldPassword() {
@@ -554,6 +608,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JTextField getLoginTextFieldUsername() {
         return loginTextFieldUsername;
+    }
+
+    public javax.swing.JLabel getMainLabelJollibeeConstructionLogo() {
+        return mainLabelJollibeeConstructionLogo;
     }
 
     public javax.swing.JLabel getMainLabelLogout() {
@@ -566,6 +624,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getMainPanelCardPanel() {
         return mainPanelCardPanel;
+    }
+
+    public javax.swing.JPanel getMainPanelHeader() {
+        return mainPanelHeader;
     }
 
     public javax.swing.JPanel getMainPanelSidePanel() {
@@ -582,6 +644,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getPanelMain() {
         return panelMain;
+    }
+
+    public javax.swing.JPanel getShowEmployeePanel() {
+        return showEmployeePanel;
+    }
+
+    public javax.swing.JPanel getTesting() {
+        return testing;
     }
 
     public javax.swing.JTextField getTextFieldAddEmployeeFirstName() {
@@ -623,4 +693,5 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTextField getTextFieldEditEmployeeSalary() {
         return textFieldEditEmployeeSalary;
     }
+
 }
