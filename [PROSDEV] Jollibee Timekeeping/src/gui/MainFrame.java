@@ -2,16 +2,11 @@
 package gui;
 
 import java.awt.Toolkit;
-import javax.swing.JPanel;
 
 public class MainFrame extends javax.swing.JFrame {
 
     private static final MainFrame mainFrame = new MainFrame();
 
-    private JPanel viewCalendar[];
-    private final int CALENDAR_ROWS = 6;
-    private final int CALENDAR_COLS = 7;
-    
     public static MainFrame getMainFrame() {
         return mainFrame;
     }
@@ -29,22 +24,8 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         initComponents();
-        buildCalendar();
     }
 
-    // sample only
-    private void buildCalendar(){
-        viewCalendar = new JPanel[CALENDAR_ROWS * CALENDAR_COLS];
-        for(int i = 0; i < CALENDAR_ROWS; i++){
-            for(int j = 0; j < CALENDAR_COLS; j++){
-                JPanel temp = new CalendarDatePanel(i * CALENDAR_COLS + j + 1, "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
-                temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
-                viewCalendar[i * CALENDAR_COLS + j] = temp;
-                panelShowEmployeeCalendar.add(temp);
-            }
-        }
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -532,18 +513,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldEditEmployeeMiddleName;
     private javax.swing.JTextField textFieldEditEmployeeSalary;
     // End of variables declaration//GEN-END:variables
-
-    public JPanel[] getViewCalendar() {
-        return viewCalendar;
-    }
-
-    public int getCALENDAR_ROWS() {
-        return CALENDAR_ROWS;
-    }
-
-    public int getCALENDAR_COLS() {
-        return CALENDAR_COLS;
-    }
 
     public javax.swing.JPanel getAddEmployeePanel() {
         return addEmployeePanel;

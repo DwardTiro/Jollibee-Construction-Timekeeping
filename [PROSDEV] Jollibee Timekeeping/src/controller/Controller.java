@@ -1,7 +1,9 @@
 package controller;
 
+import gui.CalendarDatePanel;
 import gui.MainFrame;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -14,6 +16,7 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import model.CalendarModel;
 import model.DbConnection;
 
 public class Controller {
@@ -26,18 +29,28 @@ public class Controller {
     private final String CARD_MAIN = "panelMain";
     private final String HOME_PAGE = "add_time";
     
+    private JPanel viewCalendar[];
+    private final int CALENDAR_ROWS = 6;
+    private final int CALENDAR_COLS = 7;
+    
     private static final Controller controller = new Controller();
     
     private final MainFrame mainFrame;
+    private final CalendarModel calendarModel;
     private final JPanel mainCardPanel;
     private final CardLayout mainLayout;
     
     private Controller(){
         mainFrame = MainFrame.getInstance();
         mainFrame.setVisible(true);
+        
+        calendarModel = CalendarModel.getInstance();
+        
         addListeners();
         mainCardPanel = mainFrame.getMainPanelCardPanel();
         mainLayout =(CardLayout) mainCardPanel.getLayout();
+        
+        buildCalendar();
     }
     
     public static Controller getInstance(){
@@ -127,11 +140,11 @@ public class Controller {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
+                //if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
                     CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
                     cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
-                    showHomePage();
-                }
+                //    showHomePage();
+                //}
             }
 
             @Override
@@ -265,6 +278,30 @@ public class Controller {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
+    }
+    
+    // sample only
+    private void buildCalendar(){
+        viewCalendar = new JPanel[CALENDAR_ROWS * CALENDAR_COLS];
+        
+        for(int i = 0; i < calendarModel.getFirstDay(); i++){
+            JPanel temp = new JPanel();
+            temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
+            temp.setBackground(Color.WHITE);
+            mainFrame.getPanelShowEmployeeCalendar().add(temp);
+        }
+        for(int i = 0; i < calendarModel.getMaxDays(); i++){
+            JPanel temp = new CalendarDatePanel(i + 1, "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
+            temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
+            viewCalendar[i] = temp;
+            mainFrame.getPanelShowEmployeeCalendar().add(temp);
+        }
+        for(int i = calendarModel.getMaxDays() + calendarModel.getFirstDay(); i < CALENDAR_ROWS * CALENDAR_COLS; i++){
+            JPanel temp = new JPanel();
+            temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
+            temp.setBackground(Color.WHITE);
+            mainFrame.getPanelShowEmployeeCalendar().add(temp);
+        }
     }
     
     // returns true if login is successful (username and password is correct), false otherwise

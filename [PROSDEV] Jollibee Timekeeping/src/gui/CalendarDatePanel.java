@@ -33,7 +33,6 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             case ATTENDANCE_STATUS_LEAVE: panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
             case ATTENDANCE_STATUS_NO_PROJ: panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
         }
-                
     }
 
     @SuppressWarnings("unchecked")
