@@ -329,10 +329,10 @@
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="textFieldAddEmployeeIDNumber" max="32767" attributes="0"/>
-                                          <Component id="textfieldAddEmployeeLastName" max="32767" attributes="0"/>
-                                          <Component id="textfieldAddEmployeeFirstName" max="32767" attributes="0"/>
-                                          <Component id="textfieldAddEmployeeMiddleName" max="32767" attributes="0"/>
-                                          <Component id="textfieldAddEmployeeSalary" pref="190" max="32767" attributes="0"/>
+                                          <Component id="textFieldAddEmployeeLastName" max="32767" attributes="0"/>
+                                          <Component id="textFieldAddEmployeeFirstName" max="32767" attributes="0"/>
+                                          <Component id="textFieldAddEmployeeMiddleName" max="32767" attributes="0"/>
+                                          <Component id="textFieldAddEmployeeSalary" pref="190" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -354,22 +354,22 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelAddEmployeeLastName" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textfieldAddEmployeeLastName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldAddEmployeeLastName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelAddEmployeeFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textfieldAddEmployeeFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldAddEmployeeFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelAddEmployeeMiddleName" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textfieldAddEmployeeMiddleName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldAddEmployeeMiddleName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelAddEmployeeSalary" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textfieldAddEmployeeSalary" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldAddEmployeeSalary" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="buttonAddEmployee" min="-2" max="-2" attributes="0"/>
@@ -414,13 +414,13 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="textFieldAddEmployeeIDNumber">
                 </Component>
-                <Component class="javax.swing.JTextField" name="textfieldAddEmployeeLastName">
+                <Component class="javax.swing.JTextField" name="textFieldAddEmployeeLastName">
                 </Component>
-                <Component class="javax.swing.JTextField" name="textfieldAddEmployeeFirstName">
+                <Component class="javax.swing.JTextField" name="textFieldAddEmployeeFirstName">
                 </Component>
-                <Component class="javax.swing.JTextField" name="textfieldAddEmployeeMiddleName">
+                <Component class="javax.swing.JTextField" name="textFieldAddEmployeeMiddleName">
                 </Component>
-                <Component class="javax.swing.JTextField" name="textfieldAddEmployeeSalary">
+                <Component class="javax.swing.JTextField" name="textFieldAddEmployeeSalary">
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonAddEmployee">
                   <Properties>
@@ -434,6 +434,147 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Add Employee"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="editEmployeePanel">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                  <CardConstraints cardName="card4"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelEditEmployee" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Component id="buttonEditEmployeeSaveChanges" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelEditEmployeeIDNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelEditEmployeeLastName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelEditEmployeeFirstName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelEditEmployeeMiddleName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelEditEmployeeSalary" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="textFieldEditEmployeeIDNumber" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="textFieldEditEmployeeLastName" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="textFieldEditEmployeeFirstName" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="textFieldEditEmployeeMiddleName" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="textFieldEditEmployeeSalary" alignment="0" pref="190" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="622" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="labelEditEmployee" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelEditEmployeeIDNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldEditEmployeeIDNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelEditEmployeeLastName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldEditEmployeeLastName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelEditEmployeeFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldEditEmployeeFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelEditEmployeeMiddleName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldEditEmployeeMiddleName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelEditEmployeeSalary" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldEditEmployeeSalary" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="buttonEditEmployeeSaveChanges" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="360" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="labelEditEmployee">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Dialog" size="24" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Edit Employee"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelEditEmployeeIDNumber">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="ID Number:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelEditEmployeeLastName">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Last Name:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelEditEmployeeFirstName">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="First Name:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelEditEmployeeMiddleName">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Middle Name:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelEditEmployeeSalary">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Salary:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="textFieldEditEmployeeIDNumber">
+                </Component>
+                <Component class="javax.swing.JTextField" name="textFieldEditEmployeeLastName">
+                </Component>
+                <Component class="javax.swing.JTextField" name="textFieldEditEmployeeFirstName">
+                </Component>
+                <Component class="javax.swing.JTextField" name="textFieldEditEmployeeMiddleName">
+                </Component>
+                <Component class="javax.swing.JTextField" name="textFieldEditEmployeeSalary">
+                </Component>
+                <Component class="javax.swing.JButton" name="buttonEditEmployeeSaveChanges">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="23" green="1c" red="e7" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Dialog" size="14" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Save Changes"/>
                   </Properties>
                 </Component>
               </SubComponents>
