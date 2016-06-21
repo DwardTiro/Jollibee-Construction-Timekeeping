@@ -13,9 +13,11 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import model.AttendanceModel;
 import model.CalendarModel;
 import model.DbConnection;
 
@@ -32,6 +34,7 @@ public class Controller {
     private JPanel viewCalendar[];
     private final int CALENDAR_ROWS = 6;
     private final int CALENDAR_COLS = 7;
+    private ArrayList<AttendanceModel> attendance;
     
     private static final Controller controller = new Controller();
     
@@ -49,6 +52,8 @@ public class Controller {
         addListeners();
         mainCardPanel = mainFrame.getMainPanelCardPanel();
         mainLayout =(CardLayout) mainCardPanel.getLayout();
+        
+        attendance = new ArrayList<>();
         
         buildCalendar();
     }
@@ -141,11 +146,11 @@ public class Controller {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
+                //if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
                     CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
                     cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
-                    showHomePage();
-                }
+                //    showHomePage();
+                //}
             }
 
             @Override
@@ -282,12 +287,66 @@ public class Controller {
     }
     
     private void addViewEmployeePanelListeners(){
+        mainFrame.getLabelShowEmployeeNextMonth().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                calendarModel.moveToNextMonth();
+                buildCalendar();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.getLabelShowEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right Hover.png")));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainFrame.getLabelShowEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right.png")));
+            }
+        });
         
+        mainFrame.getLabelShowEmployeePreviousMonth().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                calendarModel.moveToPreviousMonth();
+                buildCalendar();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.getLabelShowEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left Hover.png")));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainFrame.getLabelShowEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png")));
+            }
+        });
     }
     
     // sample only
     private void buildCalendar(){
         viewCalendar = new JPanel[CALENDAR_ROWS * CALENDAR_COLS];
+        
+        mainFrame.getPanelShowEmployeeCalendar().removeAll();
+        
+        mainFrame.getLabelShowEmployeeMonthYear().setText(monthToString(calendarModel.getMonth()) + " " + calendarModel.getYear());
+        
+        // fill attendance arraylist here
         
         for(int i = 0; i < calendarModel.getFirstDay(); i++){
             JPanel temp = new JPanel();
@@ -307,6 +366,27 @@ public class Controller {
             temp.setBackground(Color.WHITE);
             mainFrame.getPanelShowEmployeeCalendar().add(temp);
         }
+    }
+    
+    private String monthToString(int month){
+        String sMonth = "";
+        
+        switch(month){
+            case(CalendarModel.NJANUARY): sMonth = CalendarModel.SJANUARY; break;
+            case(CalendarModel.NFEBRUARY): sMonth = CalendarModel.SFEBRUARY; break;
+            case(CalendarModel.NMARCH): sMonth = CalendarModel.SMARCH; break;
+            case(CalendarModel.NAPRIL): sMonth = CalendarModel.SAPRIL; break;
+            case(CalendarModel.NMAY): sMonth = CalendarModel.SMAY; break;
+            case(CalendarModel.NJUNE): sMonth = CalendarModel.SJUNE; break;
+            case(CalendarModel.NJULY): sMonth = CalendarModel.SJULY; break;
+            case(CalendarModel.NAUGUST): sMonth = CalendarModel.SAUGUST; break;
+            case(CalendarModel.NSEPTEMBER): sMonth = CalendarModel.SSEPTEMBER; break;
+            case(CalendarModel.NOCTOBER): sMonth = CalendarModel.SOCTOBER; break;
+            case(CalendarModel.NNOVEMBER): sMonth = CalendarModel.SNOVEMBER; break;
+            case(CalendarModel.NDECEMBER): sMonth = CalendarModel.SDECEMBER; break;
+        }
+        
+        return sMonth;
     }
     
     // returns true if login is successful (username and password is correct), false otherwise

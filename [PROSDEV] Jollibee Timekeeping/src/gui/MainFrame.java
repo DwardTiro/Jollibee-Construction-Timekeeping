@@ -628,8 +628,20 @@ public class MainFrame extends javax.swing.JFrame {
         return labelShowEmployeeID;
     }
 
+    public javax.swing.JLabel getLabelShowEmployeeMonthYear() {
+        return labelShowEmployeeMonthYear;
+    }
+
     public javax.swing.JLabel getLabelShowEmployeeName() {
         return labelShowEmployeeName;
+    }
+
+    public javax.swing.JLabel getLabelShowEmployeeNextMonth() {
+        return labelShowEmployeeNextMonth;
+    }
+
+    public javax.swing.JLabel getLabelShowEmployeePreviousMonth() {
+        return labelShowEmployeePreviousMonth;
     }
 
     public javax.swing.JButton getLoginButtonLogin() {

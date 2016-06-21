@@ -5,6 +5,35 @@ import java.util.Calendar;
 
 public class CalendarModel {
     
+    public static final int NJANUARY = 1;
+    public static final int NFEBRUARY = 2;
+    public static final int NMARCH = 3;
+    public static final int NAPRIL = 4;
+    public static final int NMAY = 5;
+    public static final int NJUNE = 6;
+    public static final int NJULY = 7;
+    public static final int NAUGUST = 8;
+    public static final int NSEPTEMBER = 9;
+    public static final int NOCTOBER = 10;
+    public static final int NNOVEMBER = 11;
+    public static final int NDECEMBER = 12;
+    
+    public static final String SJANUARY = "January";
+    public static final String SFEBRUARY = "February";
+    public static final String SMARCH = "March";
+    public static final String SAPRIL = "April";
+    public static final String SMAY = "May";
+    public static final String SJUNE = "June";
+    public static final String SJULY = "July";
+    public static final String SAUGUST = "August";
+    public static final String SSEPTEMBER = "September";
+    public static final String SOCTOBER = "October";
+    public static final String SNOVEMBER = "November";
+    public static final String SDECEMBER = "December";
+    
+    private static final int MIN_MONTHS = 1;
+    private static final int MAX_MONTHS = 12;
+    
     private static final CalendarModel calendarModel = new CalendarModel();
     
     private int month;
@@ -92,5 +121,32 @@ public class CalendarModel {
             case "Sat" : tempDay = 6;   break;
         }
         return tempDay;
+    }
+    
+    public void moveToNextMonth(){
+        month++;
+        if(month > MAX_MONTHS){
+            month = 1;
+            year++;
+        }
+        refreshCalendar();
+    }
+    
+    public void moveToPreviousMonth(){
+        month--;
+        if(month < MIN_MONTHS){
+            month = 12;
+            year--;
+        }
+        refreshCalendar();
+    }
+    
+    private void refreshCalendar(){
+        Calendar c = Calendar.getInstance();
+        c.set(year, month - 1, 1);
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        
+        setFirstDay(getEquivalentDay(preset[0]));
+        setMaxDays(c.getActualMaximum(Calendar.DAY_OF_MONTH));
     }
 }
