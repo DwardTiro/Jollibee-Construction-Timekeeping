@@ -4,7 +4,7 @@ import gui.MainFrame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class EditEmployeeController implements Listen{
+public class EditEmployeeController implements Listen, PanelChanger{
 
     private static final EditEmployeeController editEmployeeController =  new EditEmployeeController();
     private final MainFrame mainFrame;
@@ -55,6 +55,11 @@ public class EditEmployeeController implements Listen{
             @Override
             public void mouseExited(MouseEvent e) {}
         });
+    }
+    
+    @Override
+    public void showPanel() {
+        
     }
     
     // returns true if successful in editing employee, false if there is a similar IDNumber in database

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import model.AttendanceModel;
 import model.CalendarModel;
 
-public class ViewEmployeeController implements Listen{
+public class ViewEmployeeController implements Listen, PanelChanger{
 
     private static final ViewEmployeeController viewEmployeeController = new ViewEmployeeController();
     private final MainFrame mainFrame;
@@ -85,6 +85,11 @@ public class ViewEmployeeController implements Listen{
                 mainFrame.getLabelShowEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png")));
             }
         });
+    }
+    
+    @Override
+    public void showPanel() {
+        
     }
     
     // sample only

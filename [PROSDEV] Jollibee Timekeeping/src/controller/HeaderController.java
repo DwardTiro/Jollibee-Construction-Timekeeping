@@ -72,13 +72,13 @@ public class HeaderController implements Listen {
         });
     }
     
+    public void showPanel(){
+        System.out.println("Here!!! :D");
+        mainLayout.show(mainCardPanel, HOME_PAGE);
+    }
+    
     private void logout(){
         CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
         cardLayout.show(mainFrame.getContentPane(), CARD_LOGIN);
-    }
-    
-    private void showHomePage(){
-        System.out.println("Here!!! :D");
-        mainLayout.show(mainCardPanel, HOME_PAGE);
     }
 }

@@ -5,7 +5,7 @@ import gui.MainFrame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class AddEmployeeController implements Listen{
+public class AddEmployeeController implements Listen, PanelChanger{
 
     private static final AddEmployeeController addEmployeeController = new AddEmployeeController();
     private final MainFrame mainFrame;
@@ -59,6 +59,11 @@ public class AddEmployeeController implements Listen{
         });
     }
     
+    @Override
+    public void showPanel() {
+        
+    }
+    
     // returns true if successful in adding employee, false if there is a similar IDNumber in database
     private boolean tryAddEmployee(int IDNumber, String lastName, String firstName, String middleName, float salary){
         boolean tryAdd = false;
@@ -67,5 +72,4 @@ public class AddEmployeeController implements Listen{
         
         return tryAdd;
     }
-    
 }
