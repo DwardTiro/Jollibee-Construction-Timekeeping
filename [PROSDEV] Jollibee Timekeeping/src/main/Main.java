@@ -1,12 +1,16 @@
 
 package main;
 
-import controller.Controller;
+import controller.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Controller.getInstance();
+        LoginController.getInstance();
+        HeaderController.getInstance();
+        AddEmployeeController.getInstance();
+        EditEmployeeController.getInstance();
+        ViewEmployeeController.getInstance();
     }
     
 }
