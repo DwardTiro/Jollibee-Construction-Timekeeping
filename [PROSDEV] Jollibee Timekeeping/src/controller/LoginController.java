@@ -22,7 +22,7 @@ public class LoginController implements Listen, PanelChanger {
 
     private final String USERNAME_FIELD_DEFAULT = "Username";
     private final String PASSWORD_FIELD_DEFAULT = "Password";
-    private final String CARD_MAIN = "panelMain";
+    private final String PANEL_NAME = "panelMain";
 
     private LoginController() {
         mainFrame = MainFrame.getInstance();
@@ -119,7 +119,7 @@ public class LoginController implements Listen, PanelChanger {
             public void mouseClicked(MouseEvent e) {
                 //if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
                 CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
-                cardLayout.show(mainFrame.getContentPane(), CARD_MAIN);
+                cardLayout.show(mainFrame.getContentPane(), PANEL_NAME);
                 //}
             }
 

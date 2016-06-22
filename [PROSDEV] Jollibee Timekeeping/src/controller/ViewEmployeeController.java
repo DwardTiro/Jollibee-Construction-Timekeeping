@@ -15,6 +15,8 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     private static final ViewEmployeeController viewEmployeeController = new ViewEmployeeController();
     private final MainFrame mainFrame;
     
+    private final String PANEL_NAME = "viewEmployeePanel";
+    
     private JPanel viewCalendar[];
     private final int CALENDAR_ROWS = 6;
     private final int CALENDAR_COLS = 7;
@@ -27,7 +29,7 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         
         attendance = new ArrayList<>();
         addListeners();
-        buildCalendar();
+        buildCalendar(); //  remove here
     }
     
     public static ViewEmployeeController getInstance(){
@@ -36,7 +38,7 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     
     @Override
     public void addListeners() {
-        mainFrame.getLabelShowEmployeeNextMonth().addMouseListener(new MouseListener(){
+        mainFrame.getLabelViewEmployeeNextMonth().addMouseListener(new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -52,16 +54,16 @@ public class ViewEmployeeController implements Listen, PanelChanger{
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                mainFrame.getLabelShowEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right Hover.png")));
+                mainFrame.getLabelViewEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right Hover.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                mainFrame.getLabelShowEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right.png")));
+                mainFrame.getLabelViewEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right.png")));
             }
         });
         
-        mainFrame.getLabelShowEmployeePreviousMonth().addMouseListener(new MouseListener(){
+        mainFrame.getLabelViewEmployeePreviousMonth().addMouseListener(new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -77,12 +79,12 @@ public class ViewEmployeeController implements Listen, PanelChanger{
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                mainFrame.getLabelShowEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left Hover.png")));
+                mainFrame.getLabelViewEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left Hover.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                mainFrame.getLabelShowEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png")));
+                mainFrame.getLabelViewEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png")));
             }
         });
     }
@@ -96,9 +98,9 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     private void buildCalendar(){
         viewCalendar = new JPanel[CALENDAR_ROWS * CALENDAR_COLS];
         
-        mainFrame.getPanelShowEmployeeCalendar().removeAll();
+        mainFrame.getPanelViewEmployeeCalendar().removeAll();
         
-        mainFrame.getLabelShowEmployeeMonthYear().setText(monthToString(calendarModel.getMonth()) + " " + calendarModel.getYear());
+        mainFrame.getLabelViewEmployeeMonthYear().setText(monthToString(calendarModel.getMonth()) + " " + calendarModel.getYear());
         
         // fill attendance arraylist here
         
@@ -106,19 +108,19 @@ public class ViewEmployeeController implements Listen, PanelChanger{
             JPanel temp = new JPanel();
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             temp.setBackground(Color.WHITE);
-            mainFrame.getPanelShowEmployeeCalendar().add(temp);
+            mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }
         for(int i = 0; i < calendarModel.getMaxDays(); i++){
             JPanel temp = new CalendarDatePanel(i + 1, "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             viewCalendar[i] = temp;
-            mainFrame.getPanelShowEmployeeCalendar().add(temp);
+            mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }
         for(int i = calendarModel.getMaxDays() + calendarModel.getFirstDay(); i < CALENDAR_ROWS * CALENDAR_COLS; i++){
             JPanel temp = new JPanel();
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             temp.setBackground(Color.WHITE);
-            mainFrame.getPanelShowEmployeeCalendar().add(temp);
+            mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }
     }
     

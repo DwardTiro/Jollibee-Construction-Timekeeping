@@ -10,6 +10,8 @@ public class AddEmployeeController implements Listen, PanelChanger{
     private static final AddEmployeeController addEmployeeController = new AddEmployeeController();
     private final MainFrame mainFrame;
     
+    private final String PANEL_NAME = "addEmployeePanel";
+    
     private AddEmployeeController(){
         mainFrame = MainFrame.getInstance();
         

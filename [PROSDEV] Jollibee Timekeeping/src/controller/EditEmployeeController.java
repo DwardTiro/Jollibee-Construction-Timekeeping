@@ -9,6 +9,8 @@ public class EditEmployeeController implements Listen, PanelChanger{
     private static final EditEmployeeController editEmployeeController =  new EditEmployeeController();
     private final MainFrame mainFrame;
     
+    private final String PANEL_NAME = "editEmployeePanel";
+    
     private EditEmployeeController(){
         mainFrame = MainFrame.getInstance();
         
