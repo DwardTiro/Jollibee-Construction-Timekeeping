@@ -43,6 +43,12 @@ public class MainFrame extends javax.swing.JFrame {
         mainLabelName = new javax.swing.JLabel();
         mainLabelLogout = new javax.swing.JLabel();
         mainPanelCardPanel = new javax.swing.JPanel();
+        welcomePanel = new javax.swing.JPanel();
+        labelWelcomeProjectWatch = new javax.swing.JLabel();
+        labelWelcomePreviousMonth = new javax.swing.JLabel();
+        labelWelcomeMonthYear = new javax.swing.JLabel();
+        labelWelcomeNextMonth = new javax.swing.JLabel();
+        panelWelcomeCalendar = new javax.swing.JPanel();
         viewEmployeePanel = new javax.swing.JPanel();
         labelViewEmployeeName = new javax.swing.JLabel();
         labelViewEmployeeID = new javax.swing.JLabel();
@@ -87,6 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("Jollibee Construction Timekeeping");
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Jollibee Construction.png")));
+        setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         panelLogin.setBackground(new java.awt.Color(255, 204, 51));
@@ -199,10 +206,66 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanelCardPanel.setPreferredSize(new java.awt.Dimension(0, 0));
         mainPanelCardPanel.setLayout(new java.awt.CardLayout());
 
+        welcomePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        labelWelcomeProjectWatch.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelWelcomeProjectWatch.setForeground(new java.awt.Color(231, 28, 35));
+        labelWelcomeProjectWatch.setText("Project Watch");
+
+        labelWelcomePreviousMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png"))); // NOI18N
+
+        labelWelcomeMonthYear.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelWelcomeMonthYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelWelcomeMonthYear.setText("MONTH YEAR");
+
+        labelWelcomeNextMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right.png"))); // NOI18N
+
+        panelWelcomeCalendar.setBackground(new java.awt.Color(255, 255, 255));
+        panelWelcomeCalendar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 0, new java.awt.Color(224, 224, 224)));
+        panelWelcomeCalendar.setLayout(new java.awt.GridLayout(6, 7));
+
+        javax.swing.GroupLayout welcomePanelLayout = new javax.swing.GroupLayout(welcomePanel);
+        welcomePanel.setLayout(welcomePanelLayout);
+        welcomePanelLayout.setHorizontalGroup(
+            welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePanelLayout.createSequentialGroup()
+                .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(welcomePanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelWelcomeProjectWatch, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelWelcomeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(welcomePanelLayout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(labelWelcomePreviousMonth)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelWelcomeMonthYear, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelWelcomeNextMonth)))
+                .addContainerGap(342, Short.MAX_VALUE))
+        );
+        welcomePanelLayout.setVerticalGroup(
+            welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelWelcomeProjectWatch)
+                .addGap(18, 18, 18)
+                .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelWelcomePreviousMonth)
+                    .addComponent(labelWelcomeNextMonth)
+                    .addComponent(labelWelcomeMonthYear))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelWelcomeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
+        );
+
+        mainPanelCardPanel.add(welcomePanel, "card7");
+
         viewEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
         viewEmployeePanel.setName("viewEmployeePanel"); // NOI18N
 
         labelViewEmployeeName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelViewEmployeeName.setForeground(new java.awt.Color(231, 28, 35));
         labelViewEmployeeName.setText("LastName, FirstName MiddleName");
 
         labelViewEmployeeID.setText("ID Number");
@@ -299,6 +362,7 @@ public class MainFrame extends javax.swing.JFrame {
         addEmployeePanel.setName("addEmployeePanel"); // NOI18N
 
         labelAddEmployee.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelAddEmployee.setForeground(new java.awt.Color(231, 28, 35));
         labelAddEmployee.setText("Add New Employee");
 
         labelAddEmployeeIDNumber.setText("ID Number");
@@ -377,6 +441,7 @@ public class MainFrame extends javax.swing.JFrame {
         editEmployeePanel.setName("editEmployeePanel"); // NOI18N
 
         labelEditEmployee.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelEditEmployee.setForeground(new java.awt.Color(231, 28, 35));
         labelEditEmployee.setText("Edit Employee");
 
         labelEditEmployeeIDNumber.setText("ID Number");
@@ -518,6 +583,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewEmployeeName;
     private javax.swing.JLabel labelViewEmployeeNextMonth;
     private javax.swing.JLabel labelViewEmployeePreviousMonth;
+    private javax.swing.JLabel labelWelcomeMonthYear;
+    private javax.swing.JLabel labelWelcomeNextMonth;
+    private javax.swing.JLabel labelWelcomePreviousMonth;
+    private javax.swing.JLabel labelWelcomeProjectWatch;
     private javax.swing.JButton loginButtonLogin;
     private javax.swing.JLabel loginLabelJollibeeConstructionLogo;
     private javax.swing.JPasswordField loginPasswordFieldPassword;
@@ -532,6 +601,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelViewEmployeeCalendar;
+    private javax.swing.JPanel panelWelcomeCalendar;
     private javax.swing.JPanel testing;
     private javax.swing.JTextField textFieldAddEmployeeFirstName;
     private javax.swing.JTextField textFieldAddEmployeeIDNumber;
@@ -544,6 +614,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldEditEmployeeMiddleName;
     private javax.swing.JTextField textFieldEditEmployeeSalary;
     private javax.swing.JPanel viewEmployeePanel;
+    private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JPanel getAddEmployeePanel() {
@@ -646,6 +717,22 @@ public class MainFrame extends javax.swing.JFrame {
         return labelViewEmployeePreviousMonth;
     }
 
+    public javax.swing.JLabel getLabelWelcomeMonthYear() {
+        return labelWelcomeMonthYear;
+    }
+
+    public javax.swing.JLabel getLabelWelcomeNextMonth() {
+        return labelWelcomeNextMonth;
+    }
+
+    public javax.swing.JLabel getLabelWelcomePreviousMonth() {
+        return labelWelcomePreviousMonth;
+    }
+
+    public javax.swing.JLabel getLabelWelcomeProjectWatch() {
+        return labelWelcomeProjectWatch;
+    }
+
     public javax.swing.JButton getLoginButtonLogin() {
         return loginButtonLogin;
     }
@@ -702,8 +789,8 @@ public class MainFrame extends javax.swing.JFrame {
         return panelViewEmployeeCalendar;
     }
 
-    public javax.swing.JPanel getViewEmployeePanel() {
-        return viewEmployeePanel;
+    public javax.swing.JPanel getPanelWelcomeCalendar() {
+        return panelWelcomeCalendar;
     }
 
     public javax.swing.JPanel getTesting() {
@@ -749,4 +836,14 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTextField getTextFieldEditEmployeeSalary() {
         return textFieldEditEmployeeSalary;
     }
+
+    public javax.swing.JPanel getViewEmployeePanel() {
+        return viewEmployeePanel;
+    }
+
+    public javax.swing.JPanel getWelcomePanel() {
+        return welcomePanel;
+    }
+
+    
 }

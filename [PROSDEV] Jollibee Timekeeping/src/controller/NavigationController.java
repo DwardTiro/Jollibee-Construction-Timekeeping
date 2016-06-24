@@ -7,6 +7,7 @@ public class NavigationController implements Listen{
     
     private final LoginController loginController = LoginController.getInstance();
     private final HeaderController headerController = HeaderController.getInstance();
+    private final WelcomeController welcomeController = WelcomeController.getInstance();
     private final AddEmployeeController addEmployeeController = AddEmployeeController.getInstance();
     private final EditEmployeeController editEmployeeController = EditEmployeeController.getInstance();
     private final ViewEmployeeController viewEmployeeController = ViewEmployeeController.getInstance();
