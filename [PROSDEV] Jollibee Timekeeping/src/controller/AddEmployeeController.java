@@ -2,9 +2,15 @@
 package controller;
 
 import gui.MainFrame;
+import gui.PopBox;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.DbConnection;
 
 public class AddEmployeeController implements Listen, PanelChanger{
 
@@ -29,6 +35,10 @@ public class AddEmployeeController implements Listen, PanelChanger{
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                
+                String salary_value = mainFrame.getTextFieldAddEmployeeSalary().getText();
+                System.out.println("Salary value is "+ salary_value);
+                
                 if(!mainFrame.getTextFieldAddEmployeeIDNumber().getText().isEmpty() &&
                    !mainFrame.getTextFieldAddEmployeeLastName().getText().isEmpty() &&
                    !mainFrame.getTextFieldAddEmployeeFirstName().getText().isEmpty() &&
@@ -39,10 +49,13 @@ public class AddEmployeeController implements Listen, PanelChanger{
                             mainFrame.getTextFieldAddEmployeeLastName().getText(),
                             mainFrame.getTextFieldAddEmployeeFirstName().getText(),
                             mainFrame.getTextFieldAddEmployeeMiddleName().getText(),
-                            Float.parseFloat(mainFrame.getTextFieldAddEmployeeSalary().toString()))){
+                            Double.parseDouble(salary_value))){
                         // success: notify user
+                        PopBox.infoBox("Employee Added!","");
+                        
                     } else{
                         // failure: notify user
+                        PopBox.infoBox("Failed to add employee!","");
                     }
                 }
             }
@@ -72,9 +85,28 @@ public class AddEmployeeController implements Listen, PanelChanger{
     }
     
     // returns true if successful in adding employee, false if there is a similar IDNumber in database
-    private boolean tryAddEmployee(int IDNumber, String lastName, String firstName, String middleName, float salary){
+    private boolean tryAddEmployee(int IDNumber, String lastName, String firstName, String middleName, double salary){
         boolean tryAdd = false;
         
+        String mySQL_string = "INSERT INTO `employee` "+"\n"+
+        "(`id`, `first_name`, `last_name`, `middle_name`, `salary`)" +"\n"+
+        "VALUES (?,?,?,?,?);";
+        
+        if(salary > 0){
+            try {
+                PreparedStatement ps = DbConnection.getConnection().prepareStatement(mySQL_string);
+                ps.setInt(1, IDNumber);
+                ps.setString(2, firstName);
+                ps.setString(3, lastName);
+                ps.setString(4,middleName);
+                ps.setDouble(5, salary);
+                tryAdd= true; 
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+      
         // logic here
         
         return tryAdd;

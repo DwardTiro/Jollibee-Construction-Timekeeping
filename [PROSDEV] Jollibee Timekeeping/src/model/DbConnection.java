@@ -14,9 +14,17 @@ import java.sql.SQLException;
  * @author Jet
  */
 public class DbConnection {
-     public static Connection con = getConnection("root", "", "timekeep");
+    public static Connection con = null;
     
-    private static Connection getConnection(String user, String password, String schema){
+    public static Connection getConnection(){
+        
+        if(DbConnection.con == null){
+            DbConnection.con = getConnectionInstance("root", "", "timekeep");
+        }
+        return DbConnection.con;
+    }
+    
+    private static Connection getConnectionInstance(String user, String password, String schema){
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
