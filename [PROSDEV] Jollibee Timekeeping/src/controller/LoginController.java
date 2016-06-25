@@ -2,6 +2,7 @@ package controller;
 
 import gui.MainFrame;
 import java.awt.CardLayout;
+import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -133,10 +134,12 @@ public class LoginController implements Listen, PanelChanger {
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
 
         });

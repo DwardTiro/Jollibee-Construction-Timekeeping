@@ -2,6 +2,7 @@
 package controller;
 
 import gui.MainFrame;
+import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -53,10 +54,14 @@ public class AddEmployeeController implements Listen, PanelChanger{
             public void mouseReleased(MouseEvent e) {}
 
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
 
             @Override
-            public void mouseExited(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
             
         });
     }

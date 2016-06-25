@@ -3,6 +3,7 @@ package controller;
 import gui.CalendarDatePanel;
 import gui.MainFrame;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -54,11 +55,13 @@ public class ViewEmployeeController implements Listen, PanelChanger{
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 mainFrame.getLabelViewEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right Hover.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 mainFrame.getLabelViewEmployeeNextMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Right.png")));
             }
         });
@@ -79,11 +82,13 @@ public class ViewEmployeeController implements Listen, PanelChanger{
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 mainFrame.getLabelViewEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left Hover.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 mainFrame.getLabelViewEmployeePreviousMonth().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png")));
             }
         });

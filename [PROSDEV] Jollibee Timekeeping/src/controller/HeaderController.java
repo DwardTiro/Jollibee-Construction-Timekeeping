@@ -2,6 +2,7 @@ package controller;
 
 import gui.MainFrame;
 import java.awt.CardLayout;
+import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
@@ -65,10 +66,14 @@ public class HeaderController implements Listen {
             public void mouseReleased(MouseEvent e) {}
 
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
 
             @Override
-            public void mouseExited(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
         });
     }
     
