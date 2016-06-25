@@ -190,19 +190,6 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="mainLabelLogout">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/Logout.png"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Logout"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="3" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.01" weightY="1.0"/>
-                </Constraint>
-              </Constraints>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="mainPanelCardPanel">
@@ -883,10 +870,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="sidePanelLabelManageEmployees">
+                <Component class="javax.swing.JLabel" name="sidePanelLabelManageEmployee">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/Add Employee.png"/>
+                      <Image iconType="3" name="/img/Manage Employee.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -895,10 +882,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="sidePanelLabelManageProjects">
+                <Component class="javax.swing.JLabel" name="sidePanelLabelManageProject">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/Add Employee.png"/>
+                      <Image iconType="3" name="/img/Manage Project.png"/>
                     </Property>
                   </Properties>
                   <Constraints>

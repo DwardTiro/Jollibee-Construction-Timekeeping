@@ -41,7 +41,6 @@ public class MainFrame extends javax.swing.JFrame {
         mainLabelJollibeeConstructionLogo = new javax.swing.JLabel();
         mainTextFieldSearch = new javax.swing.JTextField();
         mainLabelName = new javax.swing.JLabel();
-        mainLabelLogout = new javax.swing.JLabel();
         mainPanelCardPanel = new javax.swing.JPanel();
         welcomePanel = new javax.swing.JPanel();
         labelWelcomeProjectWatch = new javax.swing.JLabel();
@@ -91,8 +90,8 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanelSidePanelContainer = new javax.swing.JPanel();
         sidePanelLabelProjectWatch = new javax.swing.JLabel();
         sidePanelLabelAddEmployee = new javax.swing.JLabel();
-        sidePanelLabelManageEmployees = new javax.swing.JLabel();
-        sidePanelLabelManageProjects = new javax.swing.JLabel();
+        sidePanelLabelManageEmployee = new javax.swing.JLabel();
+        sidePanelLabelManageProject = new javax.swing.JLabel();
         sidePanelLabelLogout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,15 +187,6 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         mainPanelHeader.add(mainLabelName, gridBagConstraints);
-
-        mainLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout.png"))); // NOI18N
-        mainLabelLogout.setToolTipText("Logout");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 0.01;
-        gridBagConstraints.weighty = 1.0;
-        mainPanelHeader.add(mainLabelLogout, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -549,17 +539,17 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         mainPanelSidePanelContainer.add(sidePanelLabelAddEmployee, gridBagConstraints);
 
-        sidePanelLabelManageEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add Employee.png"))); // NOI18N
+        sidePanelLabelManageEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Manage Employee.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        mainPanelSidePanelContainer.add(sidePanelLabelManageEmployees, gridBagConstraints);
+        mainPanelSidePanelContainer.add(sidePanelLabelManageEmployee, gridBagConstraints);
 
-        sidePanelLabelManageProjects.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add Employee.png"))); // NOI18N
+        sidePanelLabelManageProject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Manage Project.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        mainPanelSidePanelContainer.add(sidePanelLabelManageProjects, gridBagConstraints);
+        mainPanelSidePanelContainer.add(sidePanelLabelManageProject, gridBagConstraints);
 
         sidePanelLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout Admin.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -622,7 +612,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField loginPasswordFieldPassword;
     private javax.swing.JTextField loginTextFieldUsername;
     private javax.swing.JLabel mainLabelJollibeeConstructionLogo;
-    private javax.swing.JLabel mainLabelLogout;
     private javax.swing.JLabel mainLabelName;
     private javax.swing.JPanel mainPanelCardPanel;
     private javax.swing.JPanel mainPanelHeader;
@@ -635,8 +624,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelWelcomeCalendar;
     private javax.swing.JLabel sidePanelLabelAddEmployee;
     private javax.swing.JLabel sidePanelLabelLogout;
-    private javax.swing.JLabel sidePanelLabelManageEmployees;
-    private javax.swing.JLabel sidePanelLabelManageProjects;
+    private javax.swing.JLabel sidePanelLabelManageEmployee;
+    private javax.swing.JLabel sidePanelLabelManageProject;
     private javax.swing.JLabel sidePanelLabelProjectWatch;
     private javax.swing.JPanel testing;
     private javax.swing.JTextField textFieldAddEmployeeFirstName;
@@ -789,10 +778,6 @@ public class MainFrame extends javax.swing.JFrame {
         return mainLabelJollibeeConstructionLogo;
     }
 
-    public javax.swing.JLabel getMainLabelLogout() {
-        return mainLabelLogout;
-    }
-
     public javax.swing.JLabel getMainLabelName() {
         return mainLabelName;
     }
@@ -807,6 +792,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getMainPanelSidePanel() {
         return mainPanelSidePanel;
+    }
+
+    public javax.swing.JPanel getMainPanelSidePanelContainer() {
+        return mainPanelSidePanelContainer;
     }
 
     public javax.swing.JTextField getMainTextFieldSearch() {
@@ -827,6 +816,26 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getPanelWelcomeCalendar() {
         return panelWelcomeCalendar;
+    }
+
+    public javax.swing.JLabel getSidePanelLabelAddEmployee() {
+        return sidePanelLabelAddEmployee;
+    }
+
+    public javax.swing.JLabel getSidePanelLabelLogout() {
+        return sidePanelLabelLogout;
+    }
+
+    public javax.swing.JLabel getSidePanelLabelManageEmployee() {
+        return sidePanelLabelManageEmployee;
+    }
+
+    public javax.swing.JLabel getSidePanelLabelManageProject() {
+        return sidePanelLabelManageProject;
+    }
+
+    public javax.swing.JLabel getSidePanelLabelProjectWatch() {
+        return sidePanelLabelProjectWatch;
     }
 
     public javax.swing.JPanel getTesting() {
@@ -881,5 +890,4 @@ public class MainFrame extends javax.swing.JFrame {
         return welcomePanel;
     }
 
-    
 }
