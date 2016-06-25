@@ -28,7 +28,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,2,0,0,5,86"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-49,0,0,3,-16"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
@@ -216,7 +216,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.8" weightY="1.0"/>
+              <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.9" weightY="1.0"/>
             </Constraint>
           </Constraints>
 
@@ -241,7 +241,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelWelcomeProjectWatch" min="-2" pref="700" max="-2" attributes="0"/>
                                       <Component id="panelWelcomeCalendar" min="-2" pref="710" max="-2" attributes="0"/>
@@ -256,7 +256,7 @@
                                   <Component id="labelWelcomeNextMonth" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="342" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -272,8 +272,8 @@
                               <Component id="labelWelcomeMonthYear" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="panelWelcomeCalendar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="111" max="32767" attributes="0"/>
+                          <Component id="panelWelcomeCalendar" min="-2" pref="420" max="-2" attributes="0"/>
+                          <EmptySpace pref="60" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -353,7 +353,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelViewEmployeeID" min="-2" max="-2" attributes="0"/>
                                       <Component id="panelViewEmployeeCalendar" alignment="0" min="-2" pref="700" max="-2" attributes="0"/>
@@ -369,7 +369,7 @@
                                   <Component id="labelViewEmployeeNextMonth" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="352" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -380,7 +380,7 @@
                           <Component id="labelViewEmployeeName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="labelViewEmployeeID" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="57" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -550,7 +550,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelAddEmployee" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -693,7 +693,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelEditEmployee" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -715,7 +715,7 @@
                               </Group>
                               <Component id="buttonEditEmployeeSaveChanges" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="737" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -751,7 +751,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="buttonEditEmployeeSaveChanges" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="362" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -836,22 +836,92 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.2" weightY="1.0"/>
+              <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.1" weightY="1.0"/>
             </Constraint>
           </Constraints>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="mainPanelSidePanelContainer">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f7" green="f7" red="f7" type="rgb"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[0, 0]"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                  <CardConstraints cardName="card2"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="sidePanelLabelProjectWatch">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/img/Project Watch.png"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="sidePanelLabelAddEmployee">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/img/Add Employee.png"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="sidePanelLabelManageEmployees">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/img/Add Employee.png"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="sidePanelLabelManageProjects">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/img/Add Employee.png"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="0" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="sidePanelLabelLogout">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/img/Add Employee.png"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="0" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>
