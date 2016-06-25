@@ -561,7 +561,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         mainPanelSidePanelContainer.add(sidePanelLabelManageProjects, gridBagConstraints);
 
-        sidePanelLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add Employee.png"))); // NOI18N
+        sidePanelLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout Admin.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;

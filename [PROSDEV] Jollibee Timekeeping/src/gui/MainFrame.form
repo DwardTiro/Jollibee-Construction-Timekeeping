@@ -910,7 +910,7 @@
                 <Component class="javax.swing.JLabel" name="sidePanelLabelLogout">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/Add Employee.png"/>
+                      <Image iconType="3" name="/img/Logout Admin.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
