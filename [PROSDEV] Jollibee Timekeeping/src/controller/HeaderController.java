@@ -1,10 +1,18 @@
 package controller;
 
 import gui.MainFrame;
+import gui.PopBox;
 import java.awt.CardLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
+import model.Employee;
 
 public class HeaderController implements Listen {
     
@@ -47,7 +55,60 @@ public class HeaderController implements Listen {
                 }
             } 
         });
+        
+        mainFrame.getMainTextFieldSearch().addKeyListener(new KeyListener(){
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyChar() == KeyEvent.VK_ENTER &&  mainFrame.getMainTextFieldSearch().hasFocus()){
+                    
+                    String s = mainFrame.getMainTextFieldSearch().getText();
+                    System.out.println("Bro ! "+s);
+                    if(!s.isEmpty()){
+                        System.out.println("Bro2 ! "+s);
+                        try {
+                            ArrayList<Employee> empList = Employee.searchDB(s);
+                            if(empList == null){
+                                PopBox.infoBox("No search Result", "");
+                            }else{
+                                System.out.println("U got results");
+                                SearchResultController.getInstance().setModel(empList);
+                                SearchResultController.getInstance().showPanel();
+                                
+                            }
+                            
+                            
+                        } catch (SQLException ex) {
+                            Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+                }    
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            
+            
+        });
+        
+        
+        
     }
+    
+    
+    public void search(String input){
+        
+        
+    }
+    
     
     public void showPanel(){
         System.out.println("Here!!! :D");

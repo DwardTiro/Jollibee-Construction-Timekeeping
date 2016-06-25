@@ -86,6 +86,10 @@ public class MainFrame extends javax.swing.JFrame {
         textFieldEditEmployeeMiddleName = new javax.swing.JTextField();
         textFieldEditEmployeeSalary = new javax.swing.JTextField();
         buttonEditEmployeeSaveChanges = new javax.swing.JButton();
+        searchResultPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        employeeList = new javax.swing.JList();
+        viewEmployeeButton = new javax.swing.JButton();
         mainPanelSidePanel = new javax.swing.JPanel();
         mainPanelSidePanelContainer = new javax.swing.JPanel();
         sidePanelLabelProjectWatch = new javax.swing.JLabel();
@@ -98,7 +102,6 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("Jollibee Construction Timekeeping");
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Jollibee Construction.png")));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         panelLogin.setBackground(new java.awt.Color(255, 204, 51));
@@ -253,7 +256,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelWelcomeMonthYear, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelWelcomeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(welcomePanel, "welcomePanel");
@@ -513,6 +516,33 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelCardPanel.add(editEmployeePanel, "editEmployeePanel");
 
+        jScrollPane3.setViewportView(employeeList);
+
+        viewEmployeeButton.setText("View");
+
+        javax.swing.GroupLayout searchResultPanelLayout = new javax.swing.GroupLayout(searchResultPanel);
+        searchResultPanel.setLayout(searchResultPanelLayout);
+        searchResultPanelLayout.setHorizontalGroup(
+            searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchResultPanelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewEmployeeButton)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        searchResultPanelLayout.setVerticalGroup(
+            searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchResultPanelLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewEmployeeButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        mainPanelCardPanel.add(searchResultPanel, "searchResultPanel");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -583,9 +613,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton buttonAddEmployee;
     private javax.swing.JButton buttonEditEmployeeSaveChanges;
     private javax.swing.JPanel editEmployeePanel;
+    private javax.swing.JList employeeList;
     private javax.swing.JLabel employeeTime;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelAddEmployee;
     private javax.swing.JLabel labelAddEmployeeFirstName;
     private javax.swing.JLabel labelAddEmployeeIDNumber;
@@ -622,6 +654,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelViewEmployeeCalendar;
     private javax.swing.JPanel panelWelcomeCalendar;
+    private javax.swing.JPanel searchResultPanel;
     private javax.swing.JLabel sidePanelLabelAddEmployee;
     private javax.swing.JLabel sidePanelLabelLogout;
     private javax.swing.JLabel sidePanelLabelManageEmployee;
@@ -638,6 +671,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldEditEmployeeLastName;
     private javax.swing.JTextField textFieldEditEmployeeMiddleName;
     private javax.swing.JTextField textFieldEditEmployeeSalary;
+    private javax.swing.JButton viewEmployeeButton;
     private javax.swing.JPanel viewEmployeePanel;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
@@ -889,5 +923,18 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel getWelcomePanel() {
         return welcomePanel;
     }
-
+    
+    public javax.swing.JPanel getSearchResultPanel() {
+        return searchResultPanel;
+    }
+   
+    public javax.swing.JList getSearchLists(){
+        return employeeList;
+    }
+    
+    public javax.swing.JButton getViewEmployeeButton(){
+        return viewEmployeeButton;
+    }
+    
+    
 }

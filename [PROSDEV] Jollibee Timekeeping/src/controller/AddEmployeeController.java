@@ -3,6 +3,7 @@ package controller;
 
 import gui.MainFrame;
 import gui.PopBox;
+import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.DbConnection;
+import model.Employee;
 
 public class AddEmployeeController implements Listen, PanelChanger{
 
@@ -81,27 +83,29 @@ public class AddEmployeeController implements Listen, PanelChanger{
     
     @Override
     public void showPanel() {
-        
+        System.out.println("Here!!!!");
+        CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
+        cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
     }
     
     // returns true if successful in adding employee, false if there is a similar IDNumber in database
     private boolean tryAddEmployee(int IDNumber, String lastName, String firstName, String middleName, double salary){
         boolean tryAdd = false;
         
-        String mySQL_string = "INSERT INTO `employee` "+"\n"+
-        "(`id`, `first_name`, `last_name`, `middle_name`, `salary`)" +"\n"+
-        "VALUES (?,?,?,?,?);";
+        String mySQL_string = Employee.getAddEmployeeStatement();
         
         if(salary > 0){
             try {
+                /*
                 PreparedStatement ps = DbConnection.getConnection().prepareStatement(mySQL_string);
                 ps.setInt(1, IDNumber);
                 ps.setString(2, firstName);
                 ps.setString(3, lastName);
                 ps.setString(4,middleName);
                 ps.setDouble(5, salary);
+                */
+                Employee.addDB(IDNumber, firstName, lastName, middleName, salary);
                 tryAdd= true; 
-                ps.executeUpdate();
             } catch (SQLException ex) {
                 Logger.getLogger(AddEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
             }

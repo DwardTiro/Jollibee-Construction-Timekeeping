@@ -3,19 +3,26 @@ package controller;
 import gui.AttendanceFrame;
 import gui.CalendarDatePanel;
 import gui.MainFrame;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import model.AttendanceModel;
 import model.CalendarModel;
+import model.Employee;
 
 public class ViewEmployeeController implements Listen, PanelChanger{
 
     private static final ViewEmployeeController viewEmployeeController = new ViewEmployeeController();
     private final MainFrame mainFrame;
+    private final JPanel mainCardPanel;
+    private final CardLayout mainLayout;
     
     private final String PANEL_NAME = "viewEmployeePanel";
     
@@ -25,10 +32,13 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     private ArrayList<AttendanceModel> attendance;
     private final CalendarModel calendarModel;
     
+    private int viewID;
+    
     private ViewEmployeeController(){
         mainFrame = MainFrame.getInstance();
         calendarModel = CalendarModel.getInstance();
-        
+        mainCardPanel = mainFrame.getMainPanelCardPanel();
+        mainLayout =(CardLayout) mainCardPanel.getLayout();
         attendance = new ArrayList<>();
         addListeners();
         buildCalendar(); //  remove here
@@ -95,8 +105,22 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         });
     }
     
+    public void setViewID(int id){
+        this.viewID = id;
+    }
+    
     @Override
     public void showPanel() {
+        try {
+            Employee toShow = Employee.getEmployeeByID(viewID);
+            mainFrame.getLabelViewEmployeeName().setText(toShow.toString());
+            mainFrame.getLabelViewEmployeeID().setText(toShow.getID()+"");
+            mainLayout.show(mainCardPanel, PANEL_NAME);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
     }
     
