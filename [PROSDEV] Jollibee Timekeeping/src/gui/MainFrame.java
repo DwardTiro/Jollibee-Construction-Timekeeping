@@ -207,6 +207,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanelCardPanel.setLayout(new java.awt.CardLayout());
 
         welcomePanel.setBackground(new java.awt.Color(255, 255, 255));
+        welcomePanel.setName("welcomePanel"); // NOI18N
 
         labelWelcomeProjectWatch.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         labelWelcomeProjectWatch.setForeground(new java.awt.Color(231, 28, 35));
@@ -259,7 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(111, Short.MAX_VALUE))
         );
 
-        mainPanelCardPanel.add(welcomePanel, "card7");
+        mainPanelCardPanel.add(welcomePanel, "welcomePanel");
 
         viewEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
         viewEmployeePanel.setName("viewEmployeePanel"); // NOI18N
