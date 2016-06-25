@@ -23,6 +23,7 @@ public class LoginController implements Listen, PanelChanger {
 
     private final String USERNAME_FIELD_DEFAULT = "Username";
     private final String PASSWORD_FIELD_DEFAULT = "Password";
+    private final String CARD_LOGIN = "panelLogin";
     private final String PANEL_NAME = "panelMain";
 
     private LoginController() {
@@ -147,7 +148,7 @@ public class LoginController implements Listen, PanelChanger {
 
     @Override
     public void showPanel() {
-
+        logout();
     }
 
     // returns true if login is successful (username and password is correct), false otherwise
@@ -177,5 +178,10 @@ public class LoginController implements Listen, PanelChanger {
         }
 
         return login;
+    }
+    
+    private void logout(){
+        CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
+        cardLayout.show(mainFrame.getContentPane(), CARD_LOGIN);
     }
 }

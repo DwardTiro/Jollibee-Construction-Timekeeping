@@ -35,7 +35,7 @@ public class WelcomeController implements Listen, PanelChanger{
     }
     
     @Override
-    public void addListeners() {
+    public final void addListeners() {
         mainFrame.getLabelWelcomeNextMonth().addMouseListener(new MouseListener(){
 
             @Override

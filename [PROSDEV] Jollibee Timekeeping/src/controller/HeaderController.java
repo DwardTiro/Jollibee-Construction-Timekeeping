@@ -2,17 +2,13 @@ package controller;
 
 import gui.MainFrame;
 import java.awt.CardLayout;
-import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 public class HeaderController implements Listen {
     
     private final String SEARCH_FIELD_DEFAULT = "Search";
-    private final String CARD_LOGIN = "panelLogin";
     private final String HOME_PAGE = "add_time";
     
     private static final HeaderController controller = new HeaderController();
@@ -51,39 +47,10 @@ public class HeaderController implements Listen {
                 }
             } 
         });
-        
-        mainFrame.getMainLabelLogout().addMouseListener(new MouseListener(){
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                logout();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            }
-        });
     }
     
     public void showPanel(){
         System.out.println("Here!!! :D");
         mainLayout.show(mainCardPanel, HOME_PAGE);
-    }
-    
-    private void logout(){
-        CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
-        cardLayout.show(mainFrame.getContentPane(), CARD_LOGIN);
     }
 }
