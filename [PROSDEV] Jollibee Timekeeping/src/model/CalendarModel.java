@@ -141,6 +141,18 @@ public class CalendarModel {
         refreshCalendar();
     }
     
+    public void restartCalendar(){
+        Calendar c = Calendar.getInstance();    // this takes current date
+
+        c.set(Calendar.DAY_OF_MONTH, 1);        // gets the first day of the month
+        
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        firstDay = getEquivalentDay(preset[0]);
+        month = getEquivalentMonth(preset[1]);
+        year = Integer.parseInt(preset[5]);
+        maxDays = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+    
     private void refreshCalendar(){
         Calendar c = Calendar.getInstance();
         c.set(year, month - 1, 1);

@@ -3,6 +3,7 @@ package controller;
 
 import gui.CalendarDatePanel;
 import gui.MainFrame;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
@@ -93,7 +94,8 @@ public class WelcomeController implements Listen, PanelChanger{
 
     @Override
     public void showPanel() {
-    
+        CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
+        cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
     }
     
     // sample only
