@@ -120,6 +120,10 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         
     }
     
+    public int getID(){
+        return this.viewID;
+    }
+    
     public void setViewID(int id){
         this.viewID = id;
     }
@@ -184,7 +188,7 @@ public class ViewEmployeeController implements Listen, PanelChanger{
             mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }
         for(int i = 0; i < calendarModel.getMaxDays(); i++){
-            JPanel temp = new CalendarDatePanel(i + 1, "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
+            JPanel temp = new CalendarDatePanel(i + 1,calendarModel.getMonth(),calendarModel.getYear(), "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             viewCalendar[i] = temp;
             mainFrame.getPanelViewEmployeeCalendar().add(temp);
