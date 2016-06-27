@@ -48,10 +48,13 @@ public class SearchResultController implements Listen, PanelChanger{
         mainFrame.getViewEmployeeButton().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) { 
-              System.out.println("CLICK! "+mainFrame.getSearchLists().getSelectedValue().toString());
-              Employee selected = (Employee) mainFrame.getSearchLists().getSelectedValue();
-              ViewEmployeeController.getInstance().setViewID(selected.getID());
-              ViewEmployeeController.getInstance().showPanel();
+              //System.out.println("CLICK! "+mainFrame.getSearchLists().getSelectedValue().toString());
+              if(mainFrame.getSearchLists().getSelectedValue()!= null){
+                Employee selected = (Employee) mainFrame.getSearchLists().getSelectedValue();
+                ViewEmployeeController.getInstance().setViewID(selected.getID());
+                ViewEmployeeController.getInstance().showPanel();  
+              }
+
             } 
         });
         

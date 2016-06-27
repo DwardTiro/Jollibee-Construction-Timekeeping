@@ -7,11 +7,11 @@ import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DbConnection;
+
 import model.Employee;
 
 public class AddEmployeeController implements Listen, PanelChanger{

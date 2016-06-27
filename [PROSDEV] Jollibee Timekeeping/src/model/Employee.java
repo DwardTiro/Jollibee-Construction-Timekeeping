@@ -62,6 +62,20 @@ public class Employee {
         }else return null;
     }
     
+    public static void editEmployee(int IDNumber,String firstName,String lastName,String middleName,double salary) throws SQLException{
+        String mysqlString ="UPDATE `employee` SET `first_name`=?, "
+                + "`last_name`=?, `middle_name`=?,"
+                + " `salary`=? WHERE `id`=?;";
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString); 
+        ps.setInt(5,IDNumber);
+        ps.setString(1, firstName);
+        ps.setString(2, lastName);
+        ps.setString(3,middleName);
+        ps.setDouble(4, salary);
+        ps.executeUpdate();
+    }
+    
+    
     public static Employee getEmployeeByID(int id) throws SQLException{
         System.out.println("id is "+id);
         String mysqlString = "select id,first_name,last_Name,middle_name,salary\n" +
@@ -73,9 +87,7 @@ public class Employee {
         ResultSet rs = ps.executeQuery();
         rs.next();
         return new Employee(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5));
-        
-        
-        
+             
     }
     
     
@@ -96,6 +108,24 @@ public class Employee {
     public int getID(){
         return this.id;
     }
+    
+    public String getFname(){
+        return this.fname;
+    }
+    
+    public String getLname(){
+        return this.lname;
+    }
+    
+    public String getMname(){
+        return this.mname;
+    }
+    
+    public double getSalary(){
+        return this.salary;
+    }
+    
+    
     
     @Override
     public String toString(){

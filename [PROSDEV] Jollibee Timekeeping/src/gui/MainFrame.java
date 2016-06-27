@@ -71,6 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
         labelViewEmployeeMonthYear = new javax.swing.JLabel();
         labelViewEmployeeNextMonth = new javax.swing.JLabel();
         labelViewEmployeePreviousMonth = new javax.swing.JLabel();
+        editEmployeeButton = new javax.swing.JButton();
         testing = new javax.swing.JPanel();
         add_time = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -396,25 +397,26 @@ public class MainFrame extends javax.swing.JFrame {
 
         labelViewEmployeePreviousMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png"))); // NOI18N
 
+        editEmployeeButton.setText("Edit");
+
         javax.swing.GroupLayout viewEmployeePanelLayout = new javax.swing.GroupLayout(viewEmployeePanel);
         viewEmployeePanel.setLayout(viewEmployeePanelLayout);
         viewEmployeePanelLayout.setHorizontalGroup(
             viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewEmployeePanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
                 .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(viewEmployeePanelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelViewEmployeeID)
-                            .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelViewEmployeeName)))
-                    .addGroup(viewEmployeePanelLayout.createSequentialGroup()
-                        .addGap(267, 267, 267)
+                        .addComponent(editEmployeeButton)
+                        .addGap(102, 102, 102)
                         .addComponent(labelViewEmployeePreviousMonth)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelViewEmployeeMonthYear, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelViewEmployeeNextMonth)))
+                        .addComponent(labelViewEmployeeNextMonth))
+                    .addComponent(labelViewEmployeeID)
+                    .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelViewEmployeeName))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         viewEmployeePanelLayout.setVerticalGroup(
@@ -426,13 +428,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelViewEmployeeID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(viewEmployeePanelLayout.createSequentialGroup()
-                        .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelViewEmployeeMonthYear)
-                            .addComponent(labelViewEmployeePreviousMonth))
+                    .addComponent(labelViewEmployeeNextMonth, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewEmployeePanelLayout.createSequentialGroup()
+                        .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelViewEmployeeMonthYear)
+                                .addComponent(labelViewEmployeePreviousMonth))
+                            .addComponent(editEmployeeButton, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelViewEmployeeNextMonth))
+                        .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(50, 50, 50))
         );
 
@@ -488,6 +492,8 @@ public class MainFrame extends javax.swing.JFrame {
         labelEditEmployeeMiddleName.setText("Middle Name");
 
         labelEditEmployeeSalary.setText("Salary");
+
+        textFieldEditEmployeeIDNumber.setEditable(false);
 
         buttonEditEmployeeSaveChanges.setBackground(new java.awt.Color(231, 28, 35));
         buttonEditEmployeeSaveChanges.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -647,6 +653,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel add_time;
     private javax.swing.JButton buttonAddEmployee;
     private javax.swing.JButton buttonEditEmployeeSaveChanges;
+    private javax.swing.JButton editEmployeeButton;
     private javax.swing.JPanel editEmployeePanel;
     private javax.swing.JList employeeList;
     private javax.swing.JLabel employeeTime;
@@ -992,6 +999,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getWelcomePanel() {
         return welcomePanel;
+    }
+    
+    
+    public javax.swing.JButton getEditEmployeeButton(){
+        return editEmployeeButton;
     }
     
     
