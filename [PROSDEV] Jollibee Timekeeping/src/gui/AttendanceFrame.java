@@ -25,6 +25,8 @@ public class AttendanceFrame extends javax.swing.JFrame {
         this.day = day;
         this.month = month;
         this.year = year;
+        
+
         initComponents();
         SpinnerDateModel model1 = new SpinnerDateModel();
         model1.setCalendarField(Calendar.MINUTE);
@@ -147,14 +149,18 @@ public class AttendanceFrame extends javax.swing.JFrame {
             //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
             //Date time_in = new SimpleDateFormat("HH:mm").parse(spinnerTimeIn.getValue()));
            
-            Date time_in = (Date) spinnerTimeIn.getValue();
-             System.out.println(time_in.toString());
-            Date time_out = (Date) spinnerTimeOut.getValue();
-            //Date time_out = new SimpleDateFormat("HH:mm").parse(spinnerTimeOut.getValue().toString());
+            System.out.println("Date passed to me "+day+" "+month+" "+year);
             
-            AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), time_in, time_in, time_out);
+            Date time_in = (Date) spinnerTimeIn.getValue();
+            System.out.println(time_in.toString());
+            Date time_out = (Date) spinnerTimeOut.getValue();
+            Date date_today = new SimpleDateFormat("yyyy:MM:dd").parse(year+":"+month+":"+day);
+            
+            AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out);
             
         }catch (SQLException ex) {
+            Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         

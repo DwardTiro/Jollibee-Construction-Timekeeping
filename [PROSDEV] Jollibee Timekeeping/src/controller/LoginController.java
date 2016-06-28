@@ -1,6 +1,7 @@
 package controller;
 
 import gui.MainFrame;
+import gui.PopBox;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.event.FocusEvent;
@@ -119,10 +120,10 @@ public class LoginController implements Listen, PanelChanger {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
-                CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
-                cardLayout.show(mainFrame.getContentPane(), PANEL_NAME);
-                //}
+                if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
+                    CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
+                    cardLayout.show(mainFrame.getContentPane(), PANEL_NAME);
+                }
             }
 
             @Override
@@ -159,7 +160,7 @@ public class LoginController implements Listen, PanelChanger {
                 + "and password = '" + password + "'";
         System.out.println("Im here!!");
         try {
-            Statement s = DbConnection.con.createStatement();
+            Statement s = DbConnection.getConnection().createStatement();
             System.out.println(query);
             s.executeQuery(query);
 
@@ -168,9 +169,10 @@ public class LoginController implements Listen, PanelChanger {
             if (rs.next()) {
                 login = true;
                 System.out.println("Success Login");
-
+                
             } else {
                 System.out.println("Failed to log in");
+                PopBox.infoBox("Failed to log in", "");
             }
             // backend logic here
         } catch (SQLException ex) {

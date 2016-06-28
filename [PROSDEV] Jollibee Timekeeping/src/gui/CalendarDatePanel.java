@@ -48,8 +48,8 @@ public class CalendarDatePanel extends javax.swing.JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Here!!");
-                System.out.println("Day :"+ myDay + ":"+ myMonth+":"+myYear);
+                //System.out.println("Here!!");
+                //System.out.println("Day :"+ myDay + ":"+ myMonth+":"+myYear);
                 AttendanceFrame addEditHours = new AttendanceFrame(myDay,myMonth,myYear);
                 addEditHours.setVisible(true);
             }

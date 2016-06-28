@@ -131,7 +131,6 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         panelLogin.add(loginTextFieldUsername, gridBagConstraints);
 
-        loginPasswordFieldPassword.setText("Password");
         loginPasswordFieldPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -371,7 +370,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelManageEmployee)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelManageEmployeeAttendance)
-                .addContainerGap(502, Short.MAX_VALUE))
+                .addContainerGap(505, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(manageEmployeePanel, "manageEmployeePanel");
