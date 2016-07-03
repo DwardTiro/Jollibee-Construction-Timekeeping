@@ -43,7 +43,7 @@ public class SearchResultController implements Listen, PanelChanger{
     }
     
     @Override
-    public void addListeners() {
+    public final void addListeners() {
         
         mainFrame.getViewEmployeeButton().addActionListener(new ActionListener() { 
             @Override
@@ -57,12 +57,10 @@ public class SearchResultController implements Listen, PanelChanger{
 
             } 
         });
-        
     }
 
     @Override
     public void showPanel(){
-        System.out.println("Here!!!");
         DefaultListModel listModel = new DefaultListModel();
         for(Employee emp: this.employee_list){
             listModel.addElement(emp);
@@ -71,9 +69,4 @@ public class SearchResultController implements Listen, PanelChanger{
         mainLayout.show(mainCardPanel, PANEL_NAME);
         
     }
-    
-    
-    
-    
-    
 }

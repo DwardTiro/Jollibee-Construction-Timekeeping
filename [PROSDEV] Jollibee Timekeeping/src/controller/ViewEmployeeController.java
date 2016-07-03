@@ -157,6 +157,13 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         
         for(int i = 0; i < calendarModel.getFirstDay(); i++){
             JPanel temp = new JPanel();
+            temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
+            temp.setBackground(Color.WHITE);
+            mainFrame.getPanelViewEmployeeCalendar().add(temp);
+        }
+        for(int i = 0; i < calendarModel.getMaxDays(); i++){
+            JPanel temp = new CalendarDatePanel(i + 1,calendarModel.getMonth(),calendarModel.getYear(), "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
+            temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             
             temp.addMouseListener(new MouseListener(){
 
@@ -185,13 +192,6 @@ public class ViewEmployeeController implements Listen, PanelChanger{
                 }
             });
             
-            temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
-            temp.setBackground(Color.WHITE);
-            mainFrame.getPanelViewEmployeeCalendar().add(temp);
-        }
-        for(int i = 0; i < calendarModel.getMaxDays(); i++){
-            JPanel temp = new CalendarDatePanel(i + 1,calendarModel.getMonth(),calendarModel.getYear(), "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
-            temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             viewCalendar[i] = temp;
             mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }
