@@ -102,7 +102,7 @@ public class Employee {
     public static String getEmployeeHoursStatement(){
         return "SELECT TIMESTAMPDIFF(HOUR, time_in, time_out)"+"\n"+
                 "FROM attendance"+"\n"+
-                "WHERE emp_id like ?";
+                "WHERE emp_id = ?";
     }
     
     public static String getAddEmployeeStatement(){

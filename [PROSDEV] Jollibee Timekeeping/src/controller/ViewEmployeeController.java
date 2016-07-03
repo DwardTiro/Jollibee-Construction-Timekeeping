@@ -141,8 +141,6 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         } catch (SQLException ex) {
             Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }
     
     // sample only
