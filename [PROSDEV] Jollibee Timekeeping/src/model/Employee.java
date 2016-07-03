@@ -10,19 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-
 /**
  *
  * @author Jet
  */
 public class Employee {
     
-    private int id;
-    private String fname;
-    private String lname;
-    private String mname;
-    private double salary;
+    private final int id;
+    private final String fname;
+    private final String lname;
+    private final String mname;
+    private final double salary;
     
     public Employee(int id,String fname, String lname, String mname, double salary){
         this.id= id;
@@ -98,8 +96,7 @@ public class Employee {
         ps.setInt(1,id);
         ResultSet rs = ps.executeQuery();
         rs.next();
-        return new Employee(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5));
-             
+        return new Employee(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5));    
     }
     
     public static String getEmployeeHoursStatement(){
@@ -142,15 +139,8 @@ public class Employee {
         return this.salary;
     }
     
-    
-    
     @Override
     public String toString(){
         return this.lname+", "+this.fname;
     }
-    
-    
-    
-    
-    
 }

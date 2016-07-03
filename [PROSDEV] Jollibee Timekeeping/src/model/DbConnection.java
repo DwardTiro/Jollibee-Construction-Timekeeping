@@ -14,12 +14,16 @@ import java.sql.SQLException;
  * @author Jet
  */
 public class DbConnection {
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "password";
+    private static final String SCHEMA = "timekeep";
+    
     public static Connection con = null;
     
     public static Connection getConnection(){
         
         if(DbConnection.con == null){
-            DbConnection.con = getConnectionInstance("root", "", "timekeep");
+            DbConnection.con = getConnectionInstance(USERNAME, PASSWORD, SCHEMA);
         }
         return DbConnection.con;
     }
