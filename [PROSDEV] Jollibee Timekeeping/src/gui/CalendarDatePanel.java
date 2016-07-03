@@ -20,17 +20,9 @@ public class CalendarDatePanel extends javax.swing.JPanel {
     private final Color COLOR_ABSENT = Color.RED;
     private final Color COLOR_LEAVE = Color.PINK;
     private final Color COLOR_NO_PROJ = Color.BLACK;
-    
-    private int myMonth;
-    private int myYear;
-    private int myDay;
-    
-        public CalendarDatePanel(int day,int month,int year, String projectName, int attendanceStatus) {
+   
+    public CalendarDatePanel(int day,int month,int year, String projectName, int attendanceStatus) {
         initComponents();
-        System.out.println("Called in cosntructor"+ day+" "+month+" "+year);
-        this.myDay = day;
-        this.myYear= year;
-        this.myMonth = month;
         
         labelDay.setText(String.valueOf(day));
         labelProjectName.setText(projectName);
@@ -43,34 +35,8 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
             case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
         }
-        
-        this.addMouseListener(new MouseListener(){
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                //System.out.println("Here!!");
-                //System.out.println("Day :"+ myDay + ":"+ myMonth+":"+myYear);
-                AttendanceFrame addEditHours = new AttendanceFrame(myDay,myMonth,myYear);
-                addEditHours.setVisible(true);
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-
-            @Override
-            public void mouseExited(MouseEvent e) {}
-            
-        });
     }
-    
-    
-   
+        
     public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
         initComponents();
         

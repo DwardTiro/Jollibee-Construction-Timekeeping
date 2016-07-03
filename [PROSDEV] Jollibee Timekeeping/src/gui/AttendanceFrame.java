@@ -14,18 +14,14 @@ import javax.swing.SpinnerDateModel;
 import model.AttendanceModel;
 
 public class AttendanceFrame extends javax.swing.JFrame {
-    
-    
     private int day;
     private int month;
     private int year;
-    
     
     public AttendanceFrame(int day,int month, int year) {
         this.day = day;
         this.month = month;
         this.year = year;
-        
 
         initComponents();
         SpinnerDateModel model1 = new SpinnerDateModel();
@@ -40,8 +36,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
         spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
     }
     
-    
-   
     public AttendanceFrame() {
         initComponents();
         SpinnerDateModel model1 = new SpinnerDateModel();
@@ -142,10 +136,9 @@ public class AttendanceFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
         try {
-            // TODO add your handling code here
             //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
             //Date time_in = new SimpleDateFormat("HH:mm").parse(spinnerTimeIn.getValue()));
            
@@ -163,8 +156,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }//GEN-LAST:event_buttonSubmitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
