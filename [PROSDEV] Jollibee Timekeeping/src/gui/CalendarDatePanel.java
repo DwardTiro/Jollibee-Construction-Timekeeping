@@ -8,6 +8,9 @@ import java.awt.event.MouseListener;
 
 public class CalendarDatePanel extends javax.swing.JPanel {
 
+    public static final int ONE_HOUR_MILLISEC = 3600000;
+    public static final int EIGHT_HOURS_MILLISEC = ONE_HOUR_MILLISEC * 8;
+    
     public static final int ATTENDANCE_STATUS_COMPLETE = 1;
     public static final int ATTENDANCE_STATUS_UNDERTIME = 2;
     public static final int ATTENDANCE_STATUS_OVERTIME = 3;
@@ -21,6 +24,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
     private final Color COLOR_ABSENT = Color.RED;
     private final Color COLOR_LEAVE = Color.PINK;
     private final Color COLOR_NO_PROJ = Color.BLACK;
+    private final Color COLOR_DEFAULT = Color.WHITE;
    
     private final int day;
     private final int month;
@@ -45,6 +49,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
             case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
             case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
+            default:                            panelAttendanceStatus.setBackground(COLOR_DEFAULT);
         }
     }
         

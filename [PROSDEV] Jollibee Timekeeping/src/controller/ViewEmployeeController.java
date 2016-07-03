@@ -9,13 +9,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import model.AttendanceModel;
 import model.CalendarModel;
+import model.DbConnection;
 import model.Employee;
 
 public class ViewEmployeeController implements Listen, PanelChanger{
@@ -25,6 +32,10 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     private final JPanel mainCardPanel;
     private final CardLayout mainLayout;
     
+    private final String SQL_GET_ATTENDANCE = "SELECT * FROM attendance where Month(date) = Month(?) and Year(date) = Year(?) and emp_id = ? order by date";
+    private final String SQL_DATE_ATTRIBUTE = "date";
+    private final String SQL_TIMEIN_ATTRIBUTE = "time_in";
+    private final String SQL_TIMEOUT_ATTRIBUTE = "time_out";
     private final String PANEL_NAME = "viewEmployeePanel";
     
     private JPanel viewCalendar[];
@@ -33,6 +44,7 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     private ArrayList<AttendanceModel> attendance;
     private final CalendarModel calendarModel;
     private Employee employee;
+    private Employee employeeToShow;
     private int viewID;
     
     private ViewEmployeeController(){
@@ -42,7 +54,6 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         mainLayout =(CardLayout) mainCardPanel.getLayout();
         attendance = new ArrayList<>();
         addListeners();
-        buildCalendar(); //  remove here
     }
     
     public static ViewEmployeeController getInstance(){
@@ -110,13 +121,9 @@ public class ViewEmployeeController implements Listen, PanelChanger{
             public void actionPerformed(ActionEvent e) {
                 EditEmployeeController.getInstance().setViewID(viewID);
                 EditEmployeeController.getInstance().showPanel();
-                
-                
             }
                  
         });
-        
-        
     }
     
     public int getID(){
@@ -130,13 +137,13 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     @Override
     public void showPanel() {
         try {
-            Employee toShow = Employee.getEmployeeByID(viewID);
-            mainFrame.getLabelViewEmployeeName().setText(toShow.toString());
-            mainFrame.getLabelViewEmployeeID().setText(toShow.getID()+"");
-            employee= Employee.getEmployeeByID(this.getID());
+            employeeToShow = Employee.getEmployeeByID(viewID);
+            mainFrame.getLabelViewEmployeeName().setText(employeeToShow.toString());
+            mainFrame.getLabelViewEmployeeID().setText(employeeToShow.getID()+"");
+            employee = Employee.getEmployeeByID(this.getID());
             mainFrame.getlabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalary());
             mainLayout.show(mainCardPanel, PANEL_NAME);
-            
+            buildCalendar();
         } catch (SQLException ex) {
             Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -150,22 +157,76 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         
         mainFrame.getLabelViewEmployeeMonthYear().setText(monthToString(calendarModel.getMonth()) + " " + calendarModel.getYear());
         
-        // fill attendance arraylist here
+        attendance = new ArrayList<>();
+        
+        try {
+            PreparedStatement stmt = DbConnection.getConnection().prepareStatement(SQL_GET_ATTENDANCE);
+            
+            String dateString = calendarModel.getYear() + "-" + calendarModel.getMonth() + "-01";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = sdf.parse(dateString);
+            stmt.setDate(1, new java.sql.Date(date.getTime()));
+            stmt.setDate(2, new java.sql.Date(date.getTime()));
+            stmt.setInt(3, employeeToShow.getID());
+            
+            System.out.println(stmt.toString());
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Date d = rs.getDate(SQL_DATE_ATTRIBUTE);
+                Time tIn = rs.getTime(SQL_TIMEIN_ATTRIBUTE);
+                Time tOut = rs.getTime(SQL_TIMEOUT_ATTRIBUTE);
+                
+                String[] dArray = sdf.format(d).split("-");
+                attendance.add(new AttendanceModel(Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]), Integer.parseInt(dArray[0]), tIn, tOut));
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JPanel temp;
         
         for(int i = 0; i < calendarModel.getFirstDay(); i++){
-            JPanel temp = new JPanel();
+            temp = new JPanel();
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             temp.setBackground(Color.WHITE);
             mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }
+        
+        int curIndex = 0;
         for(int i = 0; i < calendarModel.getMaxDays(); i++){
-            JPanel temp = new CalendarDatePanel(i + 1,calendarModel.getMonth(),calendarModel.getYear(), "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
+            String projectName = "";
+            int status = 0;
+            
+            if(curIndex < attendance.size() &&  attendance.get(curIndex).getDay() == i+1){
+                long timediff = attendance.get(curIndex).getTimeOut().getTime() - attendance.get(curIndex).getTimeIn().getTime();
+                
+                // undertime
+                if(timediff < CalendarDatePanel.EIGHT_HOURS_MILLISEC){
+                    status = CalendarDatePanel.ATTENDANCE_STATUS_UNDERTIME;
+                } 
+                // overtime
+                else if(timediff > CalendarDatePanel.EIGHT_HOURS_MILLISEC + CalendarDatePanel.ONE_HOUR_MILLISEC){
+                    status = CalendarDatePanel.ATTENDANCE_STATUS_OVERTIME;
+                }
+                // complete
+                else if(timediff > CalendarDatePanel.EIGHT_HOURS_MILLISEC && timediff < CalendarDatePanel.EIGHT_HOURS_MILLISEC + CalendarDatePanel.ONE_HOUR_MILLISEC){
+                    status = CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE;
+                }
+                curIndex++;
+            }
+            
+            temp = new CalendarDatePanel(i + 1,calendarModel.getMonth(),calendarModel.getYear(), projectName, status);
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             viewCalendar[i] = temp;
             mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }
         for(int i = calendarModel.getMaxDays() + calendarModel.getFirstDay(); i < CALENDAR_ROWS * CALENDAR_COLS; i++){
-            JPanel temp = new JPanel();
+            temp = new JPanel();
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             temp.setBackground(Color.WHITE);
             mainFrame.getPanelViewEmployeeCalendar().add(temp);

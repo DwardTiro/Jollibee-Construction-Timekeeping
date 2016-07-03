@@ -2,7 +2,6 @@
 package gui;
 
 import controller.ViewEmployeeController;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -151,9 +150,7 @@ public class AttendanceFrame extends javax.swing.JFrame {
             
             AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out);
             
-        }catch (SQLException ex) {
-            Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+        }catch (ParseException ex) {
             Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonSubmitActionPerformed

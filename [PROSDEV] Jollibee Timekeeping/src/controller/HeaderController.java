@@ -68,9 +68,7 @@ public class HeaderController implements Listen {
                 if(e.getKeyChar() == KeyEvent.VK_ENTER &&  mainFrame.getMainTextFieldSearch().hasFocus()){
                     
                     String s = mainFrame.getMainTextFieldSearch().getText();
-                    System.out.println("Bro ! "+s);
                     if(!s.isEmpty()){
-                        System.out.println("Bro2 ! "+s);
                         try {
                             ArrayList<Employee> empList = Employee.searchDB(s);
                             if(empList == null){
@@ -78,11 +76,8 @@ public class HeaderController implements Listen {
                             }else{
                                 System.out.println("U got results");
                                 SearchResultController.getInstance().setModel(empList);
-                                SearchResultController.getInstance().showPanel();
-                                
+                                SearchResultController.getInstance().showPanel();   
                             }
-                            
-                            
                         } catch (SQLException ex) {
                             Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -95,12 +90,7 @@ public class HeaderController implements Listen {
             public void keyReleased(KeyEvent e) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
-            
-            
         });
-        
-        
-        
     }
     
     
@@ -109,9 +99,7 @@ public class HeaderController implements Listen {
         
     }
     
-    
     public void showPanel(){
-        System.out.println("Here!!! :D");
         mainLayout.show(mainCardPanel, HOME_PAGE);
     }
 }

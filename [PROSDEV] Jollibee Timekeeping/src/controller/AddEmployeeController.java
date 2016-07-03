@@ -39,7 +39,6 @@ public class AddEmployeeController implements Listen, PanelChanger{
             public void mouseClicked(MouseEvent e) {
                 
                 String salary_value = mainFrame.getTextFieldAddEmployeeSalary().getText();
-                System.out.println("Salary value is "+ salary_value);
                 
                 if(!mainFrame.getTextFieldAddEmployeeIDNumber().getText().isEmpty() &&
                    !mainFrame.getTextFieldAddEmployeeLastName().getText().isEmpty() &&
@@ -83,7 +82,6 @@ public class AddEmployeeController implements Listen, PanelChanger{
     
     @Override
     public void showPanel() {
-        System.out.println("Here!!!!");
         CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
     }

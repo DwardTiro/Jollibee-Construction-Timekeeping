@@ -168,6 +168,4 @@ public class NavigationController implements Listen{
         
         });
     }
-    
-    
 }
