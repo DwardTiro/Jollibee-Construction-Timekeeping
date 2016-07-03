@@ -1,6 +1,5 @@
 package controller;
 
-import gui.AttendanceFrame;
 import gui.CalendarDatePanel;
 import gui.MainFrame;
 import java.awt.CardLayout;
@@ -51,7 +50,7 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     }
     
     @Override
-    public void addListeners() {
+    public final void addListeners() {
         mainFrame.getLabelViewEmployeeNextMonth().addMouseListener(new MouseListener(){
 
             @Override
