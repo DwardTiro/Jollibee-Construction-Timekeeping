@@ -32,7 +32,19 @@ public class Employee {
         this.salary = salary;
     }
     
-    
+    public double computeSalary() throws SQLException{
+        double cSalary = 0;
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(Employee.getEmployeeHoursStatement());
+        ps.setInt(1, this.id);
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            cSalary = cSalary + (this.salary * rs.getInt(1));
+            System.out.println(cSalary);
+        }
+        
+        return cSalary;
+    }
     
     public static void addDB(int IDNumber,String firstName,String lastName,String middleName,double salary) throws SQLException{
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(Employee.getAddEmployeeStatement());
@@ -90,6 +102,11 @@ public class Employee {
              
     }
     
+    public static String getEmployeeHoursStatement(){
+        return "SELECT TIMESTAMPDIFF(HOUR, time_in, time_out)"+"\n"+
+                "FROM attendance"+"\n"+
+                "WHERE emp_id like ?";
+    }
     
     public static String getAddEmployeeStatement(){
         return "INSERT INTO `employee` "+"\n"+

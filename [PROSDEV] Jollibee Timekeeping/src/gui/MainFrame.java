@@ -72,6 +72,7 @@ public class MainFrame extends javax.swing.JFrame {
         labelViewEmployeeNextMonth = new javax.swing.JLabel();
         labelViewEmployeePreviousMonth = new javax.swing.JLabel();
         editEmployeeButton = new javax.swing.JButton();
+        labelViewEmployeeSalary = new javax.swing.JLabel();
         testing = new javax.swing.JPanel();
         add_time = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -398,6 +399,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         editEmployeeButton.setText("Edit");
 
+        labelViewEmployeeSalary.setText("Computed Salary");
+
         javax.swing.GroupLayout viewEmployeePanelLayout = new javax.swing.GroupLayout(viewEmployeePanel);
         viewEmployeePanel.setLayout(viewEmployeePanelLayout);
         viewEmployeePanelLayout.setHorizontalGroup(
@@ -405,18 +408,23 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(viewEmployeePanelLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelViewEmployeeName)
                     .addGroup(viewEmployeePanelLayout.createSequentialGroup()
-                        .addComponent(editEmployeeButton)
-                        .addGap(102, 102, 102)
-                        .addComponent(labelViewEmployeePreviousMonth)
+                        .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(viewEmployeePanelLayout.createSequentialGroup()
+                                .addComponent(labelViewEmployeeID)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelViewEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(viewEmployeePanelLayout.createSequentialGroup()
+                                .addComponent(editEmployeeButton)
+                                .addGap(102, 102, 102)
+                                .addComponent(labelViewEmployeePreviousMonth)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelViewEmployeeMonthYear, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelViewEmployeeNextMonth))
-                    .addComponent(labelViewEmployeeID)
-                    .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelViewEmployeeName))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(labelViewEmployeeNextMonth)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         viewEmployeePanelLayout.setVerticalGroup(
             viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,7 +432,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(labelViewEmployeeName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelViewEmployeeID)
+                .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelViewEmployeeID)
+                    .addComponent(labelViewEmployeeSalary))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelViewEmployeeNextMonth, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -678,6 +688,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewEmployeeName;
     private javax.swing.JLabel labelViewEmployeeNextMonth;
     private javax.swing.JLabel labelViewEmployeePreviousMonth;
+    private javax.swing.JLabel labelViewEmployeeSalary;
     private javax.swing.JLabel labelWelcomeMonthYear;
     private javax.swing.JLabel labelWelcomeNextMonth;
     private javax.swing.JLabel labelWelcomePreviousMonth;
@@ -824,6 +835,10 @@ public class MainFrame extends javax.swing.JFrame {
         return labelViewEmployeeID;
     }
 
+    public javax.swing.JLabel getlabelViewEmployeeSalary(){
+        return labelViewEmployeeSalary;
+    }
+    
     public javax.swing.JLabel getLabelViewEmployeeMonthYear() {
         return labelViewEmployeeMonthYear;
     }

@@ -33,7 +33,7 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     private final int CALENDAR_COLS = 7;
     private ArrayList<AttendanceModel> attendance;
     private final CalendarModel calendarModel;
-    
+    private Employee employee;
     private int viewID;
     
     private ViewEmployeeController(){
@@ -134,6 +134,8 @@ public class ViewEmployeeController implements Listen, PanelChanger{
             Employee toShow = Employee.getEmployeeByID(viewID);
             mainFrame.getLabelViewEmployeeName().setText(toShow.toString());
             mainFrame.getLabelViewEmployeeID().setText(toShow.getID()+"");
+            employee= Employee.getEmployeeByID(this.getID());
+            mainFrame.getlabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalary());
             mainLayout.show(mainCardPanel, PANEL_NAME);
             
         } catch (SQLException ex) {

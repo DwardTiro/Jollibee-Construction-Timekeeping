@@ -536,20 +536,28 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="editEmployeeButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                                  <Component id="labelViewEmployeePreviousMonth" min="-2" max="-2" attributes="0"/>
+                              <Component id="panelViewEmployeeCalendar" alignment="0" min="-2" pref="700" max="-2" attributes="0"/>
+                              <Component id="labelViewEmployeeName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="labelViewEmployeeID" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="labelViewEmployeeSalary" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="editEmployeeButton" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="labelViewEmployeePreviousMonth" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelViewEmployeeMonthYear" min="-2" pref="164" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelViewEmployeeNextMonth" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="labelViewEmployeeID" min="-2" max="-2" attributes="0"/>
-                              <Component id="panelViewEmployeeCalendar" alignment="0" min="-2" pref="700" max="-2" attributes="0"/>
-                              <Component id="labelViewEmployeeName" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="116" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -559,7 +567,10 @@
                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           <Component id="labelViewEmployeeName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="labelViewEmployeeID" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelViewEmployeeID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelViewEmployeeSalary" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelViewEmployeeNextMonth" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -642,6 +653,11 @@
                 <Component class="javax.swing.JButton" name="editEmployeeButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Edit"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelViewEmployeeSalary">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Computed Salary"/>
                   </Properties>
                 </Component>
               </SubComponents>
