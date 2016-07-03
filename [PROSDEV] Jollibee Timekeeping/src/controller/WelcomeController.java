@@ -115,7 +115,7 @@ public class WelcomeController implements Listen, PanelChanger{
             mainFrame.getPanelWelcomeCalendar().add(temp);
         }
         for(int i = 0; i < calendarModel.getMaxDays(); i++){
-            JPanel temp = new CalendarDatePanel(i + 1, "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
+            JPanel temp = new CalendarDatePanel(i + 1, calendarModel.getMonth(), calendarModel.getYear(), "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             viewCalendar[i] = temp;
             mainFrame.getPanelWelcomeCalendar().add(temp);

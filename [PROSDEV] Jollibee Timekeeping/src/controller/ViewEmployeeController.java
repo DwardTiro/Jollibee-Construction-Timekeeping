@@ -164,34 +164,6 @@ public class ViewEmployeeController implements Listen, PanelChanger{
         for(int i = 0; i < calendarModel.getMaxDays(); i++){
             JPanel temp = new CalendarDatePanel(i + 1,calendarModel.getMonth(),calendarModel.getYear(), "project", CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE);
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
-            
-            temp.addMouseListener(new MouseListener(){
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    AttendanceFrame addEditHours = new AttendanceFrame();
-                    addEditHours.setVisible(true);
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
-            
             viewCalendar[i] = temp;
             mainFrame.getPanelViewEmployeeCalendar().add(temp);
         }

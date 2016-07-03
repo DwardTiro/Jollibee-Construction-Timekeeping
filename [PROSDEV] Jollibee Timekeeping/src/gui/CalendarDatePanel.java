@@ -2,6 +2,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -21,8 +22,36 @@ public class CalendarDatePanel extends javax.swing.JPanel {
     private final Color COLOR_LEAVE = Color.PINK;
     private final Color COLOR_NO_PROJ = Color.BLACK;
    
-    public CalendarDatePanel(int day,int month,int year, String projectName, int attendanceStatus) {
+    private final int day;
+    private final int month;
+    private final int year;
+    
+    public CalendarDatePanel(int day, int month, int year, String projectName, int attendanceStatus) {
         initComponents();
+        
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        
+        labelDay.setText(String.valueOf(day));
+        labelProjectName.setText(projectName);
+        
+        addListeners();
+        
+        switch(attendanceStatus){
+            case ATTENDANCE_STATUS_COMPLETE:    panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
+            case ATTENDANCE_STATUS_UNDERTIME:   panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
+            case ATTENDANCE_STATUS_OVERTIME:    panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
+            case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
+            case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
+            case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
+        }
+    }
+        
+    /*public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
+        initComponents();
+        
+        this.day = day;
         
         labelDay.setText(String.valueOf(day));
         labelProjectName.setText(projectName);
@@ -36,27 +65,15 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
         }
     }
-        
-    public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
-        initComponents();
-        
-        labelDay.setText(String.valueOf(day));
-        labelProjectName.setText(projectName);
-        
-        switch(attendanceStatus){
-            case ATTENDANCE_STATUS_COMPLETE:    panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
-            case ATTENDANCE_STATUS_UNDERTIME:   panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
-            case ATTENDANCE_STATUS_OVERTIME:    panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
-            case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
-            case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
-            case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
-        }
-        
+    */
+
+    private void addListeners(){
         this.addMouseListener(new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //System.out.println("Day :"+ myDay + ":"+ myMonth+":"+myYear);
+                AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
+                addEditHours.setVisible(true);
             }
 
             @Override
@@ -66,14 +83,18 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             public void mouseReleased(MouseEvent e) {}
 
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
 
             @Override
-            public void mouseExited(MouseEvent e) {}
-            
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        
         });
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -130,7 +151,6 @@ public class CalendarDatePanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelDay;
