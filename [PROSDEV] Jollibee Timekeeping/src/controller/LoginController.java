@@ -10,11 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.DbConnection;
 
 public class LoginController implements Listen, PanelChanger {
@@ -121,8 +119,9 @@ public class LoginController implements Listen, PanelChanger {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
-                    CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
-                    cardLayout.show(mainFrame.getContentPane(), PANEL_NAME);
+                    login();
+                }else{
+                    PopBox.infoBox("Failed to log in", "");
                 }
             }
 
@@ -156,30 +155,33 @@ public class LoginController implements Listen, PanelChanger {
     private boolean tryLogin(String username, String password) {
         boolean login = false;
         ResultSet rs = null;
-        String query = "select id,password from admin where username = '" + username + "'\n"
-                + "and password = '" + password + "'";
-        System.out.println("Im here!!");
+        
+        String query = "select id,password from admin where username = ? and password = ?";
+        
         try {
-            Statement s = DbConnection.getConnection().createStatement();
-            System.out.println(query);
-            s.executeQuery(query);
-
-            rs = s.getResultSet();
-
+            PreparedStatement preparedStatement = DbConnection.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            
+            rs = preparedStatement.executeQuery();
+            
             if (rs.next()) {
                 login = true;
-                System.out.println("Success Login");
                 
-            } else {
-                System.out.println("Failed to log in");
-                PopBox.infoBox("Failed to log in", "");
             }
-            // backend logic here
         } catch (SQLException ex) {
-            Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
         return login;
+    }
+    
+    private void login(){
+        CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
+        cardLayout.show(mainFrame.getContentPane(), PANEL_NAME);
+        
+        mainFrame.getLoginTextFieldUsername().setText(USERNAME_FIELD_DEFAULT);
+        mainFrame.getLoginPasswordFieldPassword().setText("");
     }
     
     private void logout(){
