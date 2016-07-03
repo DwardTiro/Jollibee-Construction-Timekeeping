@@ -222,21 +222,24 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelWelcomeProjectWatch" min="-2" pref="700" max="-2" attributes="0"/>
-                              <Component id="panelWelcomeCalendar" min="-2" pref="710" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelWelcomeProjectWatch" min="-2" pref="700" max="-2" attributes="0"/>
+                                      <Component id="panelWelcomeCalendar" min="-2" pref="710" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
+                                  <Component id="labelWelcomePreviousMonth" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelWelcomeMonthYear" min="-2" pref="164" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelWelcomeNextMonth" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace pref="106" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="labelWelcomePreviousMonth" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="labelWelcomeMonthYear" min="-2" pref="164" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="labelWelcomeNextMonth" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
