@@ -30,6 +30,14 @@ public class Employee {
         this.salary = salary;
     }
     
+    public void updateProject(int proj_id) throws SQLException{
+        String mysqlstring="UPDATE `employee` SET `project_id` =? WHERE `id` = ?";
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
+        ps.setInt(1, proj_id);
+        ps.setInt(2, this.getID());
+        ps.executeUpdate();
+    }
+    
     public double computeSalary() throws SQLException{
         double cSalary = 0;
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(Employee.getEmployeeHoursStatement());
