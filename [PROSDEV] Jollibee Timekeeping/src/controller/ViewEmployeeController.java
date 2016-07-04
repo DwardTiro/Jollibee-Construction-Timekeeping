@@ -215,7 +215,7 @@ public class ViewEmployeeController implements Listen, PanelChanger{
                     status = CalendarDatePanel.ATTENDANCE_STATUS_OVERTIME;
                 }
                 // complete
-                else if(timediff > CalendarDatePanel.EIGHT_HOURS_MILLISEC && timediff < CalendarDatePanel.EIGHT_HOURS_MILLISEC + CalendarDatePanel.ONE_HOUR_MILLISEC){
+                else if(timediff >= CalendarDatePanel.EIGHT_HOURS_MILLISEC && timediff < CalendarDatePanel.EIGHT_HOURS_MILLISEC + CalendarDatePanel.ONE_HOUR_MILLISEC){
                     status = CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE;
                 }
                 curIndex++;

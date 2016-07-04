@@ -92,6 +92,7 @@ public class AttendanceFrame extends javax.swing.JFrame {
                     MainFrame.getInstance().getViewEmployeePanel().repaint();
                     MainFrame.getInstance().getViewEmployeePanel().revalidate();
                 }
+                AttendanceFrame.this.dispose();
             }
 
         });
