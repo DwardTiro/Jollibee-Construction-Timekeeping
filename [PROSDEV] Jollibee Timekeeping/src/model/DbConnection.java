@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class DbConnection {
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "";
     private static final String SCHEMA = "timekeep";
     
     public static Connection con = null;

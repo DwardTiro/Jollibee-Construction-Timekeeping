@@ -1020,5 +1020,11 @@ public class MainFrame extends javax.swing.JFrame {
         return editEmployeeButton;
     }
     
+    public void showError(String error, String head){
+        PopBox.infoBox(error, head);
+    }
+    
+
+    
     
 }

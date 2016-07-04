@@ -150,7 +150,8 @@ public class ViewEmployeeController implements Listen, PanelChanger{
     }
     
     // sample only
-    private void buildCalendar(){
+    public void buildCalendar(){
+        
         viewCalendar = new JPanel[CALENDAR_ROWS * CALENDAR_COLS];
         
         mainFrame.getPanelViewEmployeeCalendar().removeAll();

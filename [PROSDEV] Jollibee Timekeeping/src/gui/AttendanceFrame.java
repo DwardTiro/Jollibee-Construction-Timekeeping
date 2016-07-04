@@ -1,7 +1,9 @@
-
 package gui;
 
 import controller.ViewEmployeeController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,42 +15,95 @@ import javax.swing.SpinnerDateModel;
 import model.AttendanceModel;
 
 public class AttendanceFrame extends javax.swing.JFrame {
+
     private int day;
     private int month;
     private int year;
-    
-    public AttendanceFrame(int day,int month, int year) {
+
+    public AttendanceFrame(int day, int month, int year) {
         this.day = day;
         this.month = month;
         this.year = year;
 
         initComponents();
+        addListener_employee();
         SpinnerDateModel model1 = new SpinnerDateModel();
         model1.setCalendarField(Calendar.MINUTE);
         spinnerTimeIn.setModel(model1);
         spinnerTimeIn.setEditor(new JSpinner.DateEditor(spinnerTimeIn, "h:mm a"));
-        
+
         SpinnerDateModel model2 = new SpinnerDateModel();
         model2.setCalendarField(Calendar.MINUTE);
-        
+
         spinnerTimeOut.setModel(model2);
         spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
     }
     
+    
+    
+
     public AttendanceFrame() {
         initComponents();
         SpinnerDateModel model1 = new SpinnerDateModel();
         model1.setCalendarField(Calendar.MINUTE);
         spinnerTimeIn.setModel(model1);
         spinnerTimeIn.setEditor(new JSpinner.DateEditor(spinnerTimeIn, "h:mm a"));
-        
+
         SpinnerDateModel model2 = new SpinnerDateModel();
         model2.setCalendarField(Calendar.MINUTE);
-        
+
         spinnerTimeOut.setModel(model2);
         spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
     }
 
+    private void addListener_employee() {
+
+        buttonSubmit.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+            //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
+                    //Date time_in = new SimpleDateFormat("HH:mm").parse(spinnerTimeIn.getValue()));
+
+                    System.out.println("Date passed to me " + day + " " + month + " " + year);
+
+                    Date time_in = (Date) spinnerTimeIn.getValue();
+                    System.out.println(time_in.toString());
+                    Date time_out = (Date) spinnerTimeOut.getValue();
+                    Date date_today = new SimpleDateFormat("yyyy:MM:dd").parse(year + ":" + month + ":" + day);
+                    int leave = 0;
+                    if(isLeave.isSelected()){
+                        leave = 1;
+                    }
+                         
+                    AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out,leave);
+                    
+                    
+                    close();
+                } catch (ParseException ex) {
+                    //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    MainFrame.getInstance().showError("Invalid Date","");
+                } catch (SQLException ex) {
+                     PopBox.infoBox("Unable to add Attendance","Error");
+                    //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }finally{
+                    ViewEmployeeController.getInstance().buildCalendar();
+                    MainFrame.getInstance().getViewEmployeePanel().repaint();
+                    MainFrame.getInstance().getViewEmployeePanel().revalidate();
+                }
+            }
+
+        });
+
+    }
+
+    
+    public void close(){
+        //super.dispose();
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -60,6 +115,7 @@ public class AttendanceFrame extends javax.swing.JFrame {
         spinnerTimeIn = new javax.swing.JSpinner();
         spinnerTimeOut = new javax.swing.JSpinner();
         buttonSubmit = new javax.swing.JButton();
+        isLeave = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Attendance");
@@ -78,11 +134,8 @@ public class AttendanceFrame extends javax.swing.JFrame {
         buttonSubmit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         buttonSubmit.setForeground(new java.awt.Color(255, 255, 255));
         buttonSubmit.setText("Submit");
-        buttonSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSubmitActionPerformed(evt);
-            }
-        });
+
+        isLeave.setText("Leave(?)");
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
@@ -92,8 +145,11 @@ public class AttendanceFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelAttendance)
-                    .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(buttonSubmit)
+                    .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelMainLayout.createSequentialGroup()
+                            .addComponent(isLeave)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonSubmit))
                         .addGroup(panelMainLayout.createSequentialGroup()
                             .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(labelTimeIn)
@@ -117,9 +173,11 @@ public class AttendanceFrame extends javax.swing.JFrame {
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTimeOut)
                     .addComponent(spinnerTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(buttonSubmit)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonSubmit)
+                    .addComponent(isLeave))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,28 +193,10 @@ public class AttendanceFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
-        try {
-            //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
-            //Date time_in = new SimpleDateFormat("HH:mm").parse(spinnerTimeIn.getValue()));
-           
-            System.out.println("Date passed to me "+day+" "+month+" "+year);
-            
-            Date time_in = (Date) spinnerTimeIn.getValue();
-            System.out.println(time_in.toString());
-            Date time_out = (Date) spinnerTimeOut.getValue();
-            Date date_today = new SimpleDateFormat("yyyy:MM:dd").parse(year+":"+month+":"+day);
-            
-            AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out);
-            
-        }catch (ParseException ex) {
-            Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_buttonSubmitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSubmit;
+    private javax.swing.JCheckBox isLeave;
     private javax.swing.JLabel labelAttendance;
     private javax.swing.JLabel labelTimeIn;
     private javax.swing.JLabel labelTimeOut;
