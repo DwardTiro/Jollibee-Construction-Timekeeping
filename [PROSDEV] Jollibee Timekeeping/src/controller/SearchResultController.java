@@ -9,13 +9,9 @@ import gui.MainFrame;
 import gui.SearchResultsPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javafx.scene.Cursor;
-import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Employee;
@@ -58,15 +54,16 @@ public class SearchResultController implements PanelChanger {
         return controller;
     }
 
-    public final void addListeners(ArrayList<SearchResultsPanel> resultsPanels){
+    public final void addListeners(ArrayList<SearchResultsPanel> resultsPanels, ArrayList<Employee> empList){
         
         for(int i = 0; i < resultsPanels.size(); i++){
             final JLabel label = resultsPanels.get(i).getLabelName();
-            
+            final Employee emp = empList.get(i);
             resultsPanels.get(i).getLabelName().addMouseListener(new MouseListener(){
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    
+                    ViewEmployeeController.getInstance().setViewID(emp.getID());
+                    ViewEmployeeController.getInstance().showPanel();
                 }
 
                 @Override

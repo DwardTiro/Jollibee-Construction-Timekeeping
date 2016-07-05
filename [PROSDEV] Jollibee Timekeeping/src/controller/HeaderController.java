@@ -98,7 +98,7 @@ public class HeaderController implements Listen {
                                 mainFrame.getPanelSearchResultsContainer().revalidate();
                                 
                                 SearchResultController.getInstance().showPanel();
-                                SearchResultController.getInstance().addListeners(resultsPanels);
+                                SearchResultController.getInstance().addListeners(resultsPanels, empList);
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
