@@ -16,7 +16,6 @@ public class SearchResultsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelName = new javax.swing.JLabel();
         labelIDNumber = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -54,7 +53,7 @@ public class SearchResultsPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelIDNumber;
-    private javax.swing.JLabel labelName;
+    private final javax.swing.JLabel labelName = new javax.swing.JLabel();
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JLabel getLabelIDNumber() {

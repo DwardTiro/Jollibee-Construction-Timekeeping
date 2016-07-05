@@ -6,11 +6,17 @@
 package controller;
 
 import gui.MainFrame;
+import gui.SearchResultsPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javafx.scene.Cursor;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Employee;
 
@@ -18,11 +24,14 @@ import model.Employee;
  *
  * @author Jet
  */
-public class SearchResultController implements Listen, PanelChanger {
+public class SearchResultController implements PanelChanger {
 
     private static final SearchResultController controller = new SearchResultController();
 
     private final String PANEL_NAME = "searchResultsScrollPane";
+    
+    private final Color COLOR_RED = new Color(231,28,35);
+    private final Color COLOR_GRAY = new Color(51,51,51);
     
     //private static final AssignProjectController controller2 = new AssignProjectController();
     private final MainFrame mainFrame;
@@ -39,8 +48,6 @@ public class SearchResultController implements Listen, PanelChanger {
         mainLayout = (CardLayout) mainCardPanel.getLayout();
         projPanel = mainFrame.getAssignProjectPanel();
         projPanel.setVisible(false);
-
-        addListeners();
     }
 
     public void setModel(ArrayList<Employee> emplist) {
@@ -51,39 +58,36 @@ public class SearchResultController implements Listen, PanelChanger {
         return controller;
     }
 
-    @Override
-    public final void addListeners() {
-
-        mainFrame.getAssignProjectButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                //System.out.println("CLICK! "+mainFrame.getSearchLists().getSelectedValue().toString());
-                if (mainFrame.getSearchLists().getSelectedValue() != null) {
-                    Employee selected = (Employee) mainFrame.getSearchLists().getSelectedValue();
-
-                    AssignProjectController.getInstance().setViewID(selected.getID());
-                    AssignProjectController.getInstance().showPanel();
-                    projPanel.setVisible(true);
+    public final void addListeners(ArrayList<SearchResultsPanel> resultsPanels){
+        
+        for(int i = 0; i < resultsPanels.size(); i++){
+            final JLabel label = resultsPanels.get(i).getLabelName();
+            
+            resultsPanels.get(i).getLabelName().addMouseListener(new MouseListener(){
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    
                 }
 
-            }
-        });
+                @Override
+                public void mousePressed(MouseEvent e) {}
 
-        mainFrame.getViewEmployeeButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                @Override
+                public void mouseReleased(MouseEvent e) {}
 
-                //System.out.println("CLICK! "+mainFrame.getSearchLists().getSelectedValue().toString());
-                if (mainFrame.getSearchLists().getSelectedValue() != null) {
-                    Employee selected = (Employee) mainFrame.getSearchLists().getSelectedValue();
-                    ViewEmployeeController.getInstance().setViewID(selected.getID());
-                    ViewEmployeeController.getInstance().showPanel();
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    label.setForeground(COLOR_RED);
+                    mainFrame.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 }
 
-            }
-        });
-
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    label.setForeground(COLOR_GRAY);
+                    mainFrame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                }
+            });
+        }
     }
 
     @Override

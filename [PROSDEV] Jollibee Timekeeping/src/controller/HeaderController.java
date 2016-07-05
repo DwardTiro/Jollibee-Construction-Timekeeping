@@ -82,6 +82,9 @@ public class HeaderController implements Listen {
                                 System.out.println("U got results");
                                 //SearchResultController.getInstance().setModel(empList);
                                 //SearchResultController.getInstance().showPanel();
+                                
+                                ArrayList<SearchResultsPanel> resultsPanels = new ArrayList<>();
+                                
                                 mainFrame.getPanelSearchResultsContainer().removeAll();
                                 mainFrame.getLabelSearchResults().setText(SEARCH_RESULT_LABEL_POSITIVE + mainFrame.getMainTextFieldSearch().getText());
                                 mainFrame.getPanelSearchResultsContainer().setPreferredSize(new Dimension(SearchResultsPanel.PANEL_WIDTH, SearchResultsPanel.PANEL_HEIGHT * empList.size()));
@@ -89,10 +92,13 @@ public class HeaderController implements Listen {
                                     Employee e = empList.get(i);
                                     SearchResultsPanel srp = new SearchResultsPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
                                     mainFrame.getPanelSearchResultsContainer().add(srp);
+                                    resultsPanels.add(srp);
                                 }
                                 mainFrame.getPanelSearchResultsContainer().repaint();
                                 mainFrame.getPanelSearchResultsContainer().revalidate();
+                                
                                 SearchResultController.getInstance().showPanel();
+                                SearchResultController.getInstance().addListeners(resultsPanels);
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
