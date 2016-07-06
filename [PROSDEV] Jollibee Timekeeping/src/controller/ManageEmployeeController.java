@@ -5,8 +5,10 @@ import gui.ManageEmployeeAttendancePanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import model.CalendarModel;
 import model.Employee;
+import model.Project;
 
 public class ManageEmployeeController implements Listen, PanelChanger {
 
@@ -21,6 +23,9 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     private ArrayList<Employee> employees;
     private ArrayList<ManageEmployeeAttendancePanel> attendancePanels;
     
+    private ArrayList<Project> projects;
+    private ArrayList<JLabel> projectsLabels;
+    
     private ManageEmployeeController(){
         mainFrame = MainFrame.getInstance();
         calendarModel = CalendarModel.getInstance();
@@ -31,6 +36,9 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         
         employees = new ArrayList<>();
         attendancePanels = new ArrayList<>();
+        
+        projects = new ArrayList<>();
+        projectsLabels = new ArrayList<>();
         
         addListeners();
     }
@@ -50,8 +58,11 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
         
         attendancePanels = new ArrayList<>();
+        projectsLabels = new ArrayList<>();
         
         employees = Employee.getAllEmployees();
+        projects = Project.getProjectList();
+        
         if(!employees.isEmpty()){
             
             int len = employees.size();
@@ -70,6 +81,24 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             mainFrame.getPanelManageEmployeeContainer().repaint();
             mainFrame.getPanelManageEmployeeContainer().revalidate();
         }
+        /*
+        if(!projects.isEmpty()){
+            
+            int len = projects.size();
+            
+            mainFrame.getPanelManageEmployeeProjectContainer().removeAll();
+            
+            for(int i = 0; i < len; i++){
+                Project p = projects.get(i);
+                JLabel label = new JLabel(p.getName());
+                mainFrame.getPanelManageEmployeeProjectContainer().add(label);
+                projectsLabels.add(label);
+            }
+            
+            mainFrame.getPanelManageEmployeeProjectContainer().repaint();
+            mainFrame.getPanelManageEmployeeProjectContainer().revalidate();
+        }
+        */
     }
     
     private String monthToString(int month){

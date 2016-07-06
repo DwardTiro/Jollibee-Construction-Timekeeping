@@ -121,7 +121,7 @@ public class WelcomeController implements Listen, PanelChanger{
             JPanel temp = new CalendarDatePanel(i + 1, calendarModel.getMonth(), calendarModel.getYear(), "", status);
             temp.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(224, 224, 224)));
             
-            if((i+1) == dayToday)
+            if((i+1) == dayToday && calendarModel.getMonth() == calendarModel.getMonthToday() && calendarModel.getYear() == calendarModel.getYearToday())
                 temp.setBackground(Color.LIGHT_GRAY);
             
             viewCalendar[i] = temp;

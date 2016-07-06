@@ -169,4 +169,18 @@ public class CalendarModel {
         
         return Integer.parseInt(preset[2]);
     }
+    
+    public int getMonthToday(){
+        Calendar c = Calendar.getInstance();    // this takes current date
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        
+        return getEquivalentMonth(preset[1]);
+    }
+    
+    public int getYearToday(){
+        Calendar c = Calendar.getInstance();    // this takes current date
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        
+        return Integer.parseInt(preset[5]);
+    }
 }
