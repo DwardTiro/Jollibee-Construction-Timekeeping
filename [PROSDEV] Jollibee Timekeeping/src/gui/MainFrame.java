@@ -57,9 +57,6 @@ public class MainFrame extends javax.swing.JFrame {
         textFieldAddEmployeeMiddleName = new javax.swing.JTextField();
         textFieldAddEmployeeSalary = new javax.swing.JTextField();
         buttonAddEmployee = new javax.swing.JButton();
-        manageEmployeePanel = new javax.swing.JPanel();
-        labelManageEmployee = new javax.swing.JLabel();
-        labelManageEmployeeAttendance = new javax.swing.JLabel();
         viewEmployeePanel = new javax.swing.JPanel();
         labelViewEmployeeName = new javax.swing.JLabel();
         labelViewEmployeeID = new javax.swing.JLabel();
@@ -69,7 +66,6 @@ public class MainFrame extends javax.swing.JFrame {
         labelViewEmployeePreviousMonth = new javax.swing.JLabel();
         editEmployeeButton = new javax.swing.JButton();
         labelViewEmployeeSalary = new javax.swing.JLabel();
-        testing = new javax.swing.JPanel();
         add_time = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -101,6 +97,10 @@ public class MainFrame extends javax.swing.JFrame {
         searchResultsPanel = new javax.swing.JPanel();
         labelSearchResults = new javax.swing.JLabel();
         panelSearchResultsContainer = new javax.swing.JPanel();
+        manageEmployeeScrollPane = new javax.swing.JScrollPane();
+        manageEmployeePanel = new javax.swing.JPanel();
+        labelManageEmployee = new javax.swing.JLabel();
+        labelManageEmployeeAttendance = new javax.swing.JLabel();
         mainPanelSidePanel = new javax.swing.JPanel();
         mainPanelSidePanelContainer = new javax.swing.JPanel();
         sidePanelLabelProjectWatch = new javax.swing.JLabel();
@@ -350,38 +350,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelCardPanel.add(addEmployeePanel, "addEmployeePanel");
 
-        manageEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
-        manageEmployeePanel.setName("manageEmployeePanel"); // NOI18N
-
-        labelManageEmployee.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        labelManageEmployee.setForeground(new java.awt.Color(231, 28, 35));
-        labelManageEmployee.setText("Manage Employee");
-
-        labelManageEmployeeAttendance.setText("Attendance for Month Day, Year");
-
-        javax.swing.GroupLayout manageEmployeePanelLayout = new javax.swing.GroupLayout(manageEmployeePanel);
-        manageEmployeePanel.setLayout(manageEmployeePanelLayout);
-        manageEmployeePanelLayout.setHorizontalGroup(
-            manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manageEmployeePanelLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelManageEmployeeAttendance)
-                    .addComponent(labelManageEmployee))
-                .addContainerGap(606, Short.MAX_VALUE))
-        );
-        manageEmployeePanelLayout.setVerticalGroup(
-            manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manageEmployeePanelLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(labelManageEmployee)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelManageEmployeeAttendance)
-                .addContainerGap(508, Short.MAX_VALUE))
-        );
-
-        mainPanelCardPanel.add(manageEmployeePanel, "manageEmployeePanel");
-
         viewEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
         viewEmployeePanel.setName("viewEmployeePanel"); // NOI18N
 
@@ -456,11 +424,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         mainPanelCardPanel.add(viewEmployeePanel, "viewEmployeePanel");
-
-        testing.setBackground(new java.awt.Color(255, 255, 255));
-        testing.setMinimumSize(new java.awt.Dimension(0, 0));
-        testing.setPreferredSize(new java.awt.Dimension(0, 0));
-        mainPanelCardPanel.add(testing, "card3");
 
         add_time.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -690,6 +653,42 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelCardPanel.add(searchResultsScrollPane, "searchResultsScrollPane");
 
+        manageEmployeeScrollPane.setBorder(null);
+
+        manageEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
+        manageEmployeePanel.setName("manageEmployeePanel"); // NOI18N
+
+        labelManageEmployee.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelManageEmployee.setForeground(new java.awt.Color(231, 28, 35));
+        labelManageEmployee.setText("Manage Employee");
+
+        labelManageEmployeeAttendance.setText("Attendance for Month Day, Year");
+
+        javax.swing.GroupLayout manageEmployeePanelLayout = new javax.swing.GroupLayout(manageEmployeePanel);
+        manageEmployeePanel.setLayout(manageEmployeePanelLayout);
+        manageEmployeePanelLayout.setHorizontalGroup(
+            manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageEmployeePanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelManageEmployeeAttendance)
+                    .addComponent(labelManageEmployee))
+                .addContainerGap(606, Short.MAX_VALUE))
+        );
+        manageEmployeePanelLayout.setVerticalGroup(
+            manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageEmployeePanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelManageEmployee)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelManageEmployeeAttendance)
+                .addContainerGap(508, Short.MAX_VALUE))
+        );
+
+        manageEmployeeScrollPane.setViewportView(manageEmployeePanel);
+
+        mainPanelCardPanel.add(manageEmployeeScrollPane, "manageEmployeeScrollPane");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -812,6 +811,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanelSidePanelContainer;
     private javax.swing.JTextField mainTextFieldSearch;
     private javax.swing.JPanel manageEmployeePanel;
+    private javax.swing.JScrollPane manageEmployeeScrollPane;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelSearchResultsContainer;
@@ -826,7 +826,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel sidePanelLabelManageEmployee;
     private javax.swing.JLabel sidePanelLabelManageProject;
     private javax.swing.JLabel sidePanelLabelProjectWatch;
-    private javax.swing.JPanel testing;
     private javax.swing.JTextField textFieldAddEmployeeFirstName;
     private javax.swing.JTextField textFieldAddEmployeeIDNumber;
     private javax.swing.JTextField textFieldAddEmployeeLastName;
@@ -1125,10 +1124,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JLabel getSidePanelLabelProjectWatch() {
         return sidePanelLabelProjectWatch;
-    }
-
-    public javax.swing.JPanel getTesting() {
-        return testing;
     }
 
     public javax.swing.JTextField getTextFieldAddEmployeeFirstName() {
