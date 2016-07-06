@@ -55,7 +55,38 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     
     @Override
     public final void addListeners() {
-        
+        int len = projects.size();
+        for(int i = 0; i < len; i++){
+            int index = i;
+            JLabel label = projectsPanels.get(i).getLabelProjectName();
+            
+            label.addMouseListener(new MouseListener(){
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " for " + projects.get(index).getName());
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {}
+
+                @Override
+                public void mouseReleased(MouseEvent e) {}
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    label.setForeground(new Color(231,28,35));
+                    label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    label.setForeground(new Color(51,51,51));
+                    label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+            
+            });
+        }
     }
 
     @Override

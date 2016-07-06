@@ -1062,26 +1062,28 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="buttonManageEmployeeSubmit" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelManageEmployeeAttendance" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelManageEmployee" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="buttonManageEmployeeSubmit" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="labelManageEmployee" min="-2" pref="500" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
+                                          <Component id="panelManageEmployeeContainer" alignment="1" min="-2" pref="500" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="panelManageEmployeeContainer" alignment="1" min="-2" pref="500" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="labelManageEmployeeAttendance" min="-2" pref="500" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace pref="299" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="panelManageEmployeeProjectContainer" min="-2" pref="250" max="-2" attributes="0"/>
                                   <Component id="labelManageProjectFilter" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="370" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1091,16 +1093,16 @@
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="labelManageEmployee" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelManageEmployeeAttendance" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelManageProjectFilter" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="panelManageEmployeeContainer" pref="457" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
+                                      <Component id="labelManageEmployeeAttendance" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="panelManageEmployeeContainer" pref="460" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="labelManageProjectFilter" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="panelManageEmployeeProjectContainer" max="32767" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
