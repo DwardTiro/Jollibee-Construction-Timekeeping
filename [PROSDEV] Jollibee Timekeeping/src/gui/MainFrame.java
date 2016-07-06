@@ -542,11 +542,6 @@ public class MainFrame extends javax.swing.JFrame {
         viewEmployeeButton.setText("View");
 
         assignProjectButton.setText("Assign Project");
-        assignProjectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignProjectButtonActionPerformed(evt);
-            }
-        });
 
         assignProjectLabel.setText("Assign Project to Employee");
 
@@ -676,7 +671,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         panelManageEmployeeContainerLayout.setVerticalGroup(
             panelManageEmployeeContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 455, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
 
         buttonManageEmployeeSubmit.setBackground(new java.awt.Color(231, 28, 35));
@@ -706,10 +701,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelManageEmployeeAttendance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonManageEmployeeSubmit)
-                .addContainerGap())
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         manageEmployeeScrollPane.setViewportView(manageEmployeePanel);
@@ -775,10 +770,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void assignProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignProjectButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_assignProjectButtonActionPerformed
 
     public static MainFrame getInstance(){
         return mainFrame;

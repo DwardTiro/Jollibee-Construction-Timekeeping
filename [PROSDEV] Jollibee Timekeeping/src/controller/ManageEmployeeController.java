@@ -12,7 +12,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     private final CalendarModel calendarModel;
     
     private final String ATTENDANCE_STRING = "Attendance for ";
-    private final String PANEL_NAME = "manageEmployeePanel";
+    private final String PANEL_NAME = "manageEmployeeScrollPane";
     
     private ManageEmployeeController(){
         mainFrame = MainFrame.getInstance();

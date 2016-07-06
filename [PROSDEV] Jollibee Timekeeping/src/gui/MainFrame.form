@@ -880,9 +880,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Assign Project"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignProjectButtonActionPerformed"/>
-                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="assignProjectPanel">
 
@@ -1080,10 +1077,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelManageEmployeeAttendance" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="panelManageEmployeeContainer" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="panelManageEmployeeContainer" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="buttonManageEmployeeSubmit" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1120,7 +1117,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="455" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="430" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
