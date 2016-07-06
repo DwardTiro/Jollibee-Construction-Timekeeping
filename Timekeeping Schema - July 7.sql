@@ -158,7 +158,7 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
-  `projectID` int(11) NOT NULL,
+  `projectID` int(11) NOT NULL AUTO_INCREMENT,
   `projectName` varchar(45) NOT NULL,
   `dateStarted` date NOT NULL,
   `dateDue` date NOT NULL,
@@ -184,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-06 17:01:41
+-- Dump completed on 2016-07-06 17:05:30
