@@ -161,4 +161,12 @@ public class CalendarModel {
         setFirstDay(getEquivalentDay(preset[0]));
         setMaxDays(c.getActualMaximum(Calendar.DAY_OF_MONTH));
     }
+    
+    // returns the current day
+    public int getDayToday(){
+        Calendar c = Calendar.getInstance();    // this takes current date
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        
+        return Integer.parseInt(preset[2]);
+    }
 }

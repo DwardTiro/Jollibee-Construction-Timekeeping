@@ -20,7 +20,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         
         calendarModel.restartCalendar();
         
-        mainFrame.getLabelManageEmployeeAttendance().setText(ATTENDANCE_STRING + monthToString(calendarModel.getMonth()) + " " + calendarModel.getYear());
+        mainFrame.getLabelManageEmployeeAttendance().setText(ATTENDANCE_STRING + monthToString(calendarModel.getMonth()) + " " + calendarModel.getDayToday() + ", " + calendarModel.getYear());
         
         addListeners();
     }
