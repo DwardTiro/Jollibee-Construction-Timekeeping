@@ -34,7 +34,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
 
         SpinnerDateModel model2 = new SpinnerDateModel();
         model2.setCalendarField(Calendar.MINUTE);
-
         spinnerTimeOut.setModel(model2);
         spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
     }

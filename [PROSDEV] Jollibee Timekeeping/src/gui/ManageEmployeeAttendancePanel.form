@@ -12,9 +12,6 @@
         </MatteColorBorder>
       </Border>
     </Property>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[770, 80]"/>
-    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -31,13 +28,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="labelName" pref="500" max="32767" attributes="0"/>
-                  <Component id="labelIDNumber" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelName" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelIDNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="labelTimeIn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="spinnerTimeIn" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="labelTimeOut" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="spinnerTimeOut" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="246" max="32767" attributes="0"/>
+              <EmptySpace pref="181" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,7 +54,14 @@
               <Component id="labelName" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="labelIDNumber" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelTimeIn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="spinnerTimeIn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelTimeOut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="spinnerTimeOut" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,11 +72,8 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="LastName, FirstName MiddleName"/>
+        <Property name="text" type="java.lang.String" value="LastName, FirstName Middle Name"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="labelIDNumber">
       <Properties>
@@ -72,6 +82,20 @@
         </Property>
         <Property name="text" type="java.lang.String" value="ID Number"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelTimeIn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Time In: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="spinnerTimeIn">
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelTimeOut">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Time Out: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="spinnerTimeOut">
     </Component>
   </SubComponents>
 </Form>
