@@ -14,18 +14,30 @@ public class Project {
     
     private final int id;
     private final String name;
+    private final java.util.Date dateStarted;
+    private final java.util.Date dateDue;
     
-    public Project(int id,String name){
-        this.id= id;
+    public Project(int id, String name, java.util.Date dateStarted, java.util.Date dateDue){
+        this.id = id;
         this.name = name;
+        this.dateStarted = dateStarted;
+        this.dateDue = dateDue;
     }
    
     public int getID(){
-       return this.id; 
+       return id; 
     }
     
     public String getName(){
-        return this.name;
+        return name;
+    }
+    
+    public java.util.Date getDateStarted(){
+        return dateStarted;
+    }
+    
+    public java.util.Date getDateDue(){
+        return dateDue;
     }
     
     // gets projects that are not yet due
@@ -43,7 +55,7 @@ public class Project {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                projectList.add(new Project(rs.getInt(1), rs.getString(2)));
+                projectList.add(new Project(rs.getInt(1), rs.getString(2), new java.util.Date(rs.getDate(3).getTime()), new java.util.Date(rs.getDate(4).getTime())));
             }
         } catch (SQLException | ParseException ex) {
             Logger.getLogger(Project.class.getName()).log(Level.SEVERE, null, ex);

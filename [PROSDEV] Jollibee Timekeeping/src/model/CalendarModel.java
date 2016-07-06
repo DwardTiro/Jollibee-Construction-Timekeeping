@@ -90,7 +90,7 @@ public class CalendarModel {
         this.year = year;
     }
     
-    private int getEquivalentMonth(String month){
+    public int getEquivalentMonth(String month){
         int tempMonth = 0;
         switch(month){
             case "Jan" : tempMonth = 1;     break;
