@@ -671,6 +671,7 @@ public class MainFrame extends javax.swing.JFrame {
         buttonManageEmployeeSubmit.setText("Submit");
 
         panelManageEmployeeContainer.setBackground(new java.awt.Color(255, 255, 255));
+        panelManageEmployeeContainer.setPreferredSize(new java.awt.Dimension(600, 120));
         panelManageEmployeeContainer.setLayout(new java.awt.GridLayout(1, 1));
 
         labelManageProjectFilter.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -679,25 +680,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         panelManageEmployeeProjectContainer.setBackground(new java.awt.Color(255, 255, 255));
         panelManageEmployeeProjectContainer.setMaximumSize(new java.awt.Dimension(0, 0));
+        panelManageEmployeeProjectContainer.setPreferredSize(new java.awt.Dimension(250, 28));
         panelManageEmployeeProjectContainer.setLayout(new javax.swing.BoxLayout(panelManageEmployeeProjectContainer, javax.swing.BoxLayout.Y_AXIS));
 
         javax.swing.GroupLayout manageEmployeePanelLayout = new javax.swing.GroupLayout(manageEmployeePanel);
         manageEmployeePanel.setLayout(manageEmployeePanelLayout);
         manageEmployeePanelLayout.setHorizontalGroup(
             manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageEmployeePanelLayout.createSequentialGroup()
+            .addGroup(manageEmployeePanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
                 .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(manageEmployeePanelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
+                    .addComponent(labelManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(buttonManageEmployeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(buttonManageEmployeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageEmployeePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelManageEmployeeAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                            .addComponent(labelManageEmployeeAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(199, 199, 199)
                 .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelManageEmployeeProjectContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelManageProjectFilter))
@@ -706,21 +705,21 @@ public class MainFrame extends javax.swing.JFrame {
         manageEmployeePanelLayout.setVerticalGroup(
             manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageEmployeePanelLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(labelManageProjectFilter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelManageEmployeeProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(manageEmployeePanelLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(labelManageEmployee)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(manageEmployeePanelLayout.createSequentialGroup()
-                        .addComponent(labelManageEmployeeAttendance)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
-                    .addGroup(manageEmployeePanelLayout.createSequentialGroup()
-                        .addComponent(labelManageProjectFilter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelManageEmployeeProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(labelManageEmployeeAttendance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(buttonManageEmployeeSubmit)
-                .addGap(50, 50, 50))
+                .addGap(378, 378, 378))
         );
 
         manageEmployeeScrollPane.setViewportView(manageEmployeePanel);

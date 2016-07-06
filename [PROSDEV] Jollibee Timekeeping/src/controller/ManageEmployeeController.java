@@ -55,7 +55,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     
     @Override
     public final void addListeners() {
-        int len = projects.size();
+        int len = projectsPanels.size();
         for(int i = 0; i < len; i++){
             int index = i;
             JLabel label = projectsPanels.get(i).getLabelProjectName();
@@ -64,7 +64,26 @@ public class ManageEmployeeController implements Listen, PanelChanger {
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " for " + projects.get(index).getName());
+                    if(index < projects.size())
+                        showEmployeesInProject(projects.get(index).getID());
+                    else
+                        showEmployeesInProject(-1);
+                    
+                    if(!employees.isEmpty() && index < projects.size()){
+                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " for " + projects.get(index).getName());
+                        mainFrame.getButtonManageEmployeeSubmit().setVisible(true);
+                        mainFrame.getButtonManageEmployeeSubmit().setEnabled(true);
+                    }
+                    else if(index == projects.size()){
+                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " for All Projects");
+                        mainFrame.getButtonManageEmployeeSubmit().setVisible(true);
+                        mainFrame.getButtonManageEmployeeSubmit().setEnabled(true);
+                    }
+                    else if(employees.isEmpty()){
+                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_NEGATIVE_STRING + projects.get(index).getName());
+                        mainFrame.getButtonManageEmployeeSubmit().setVisible(false);
+                        mainFrame.getButtonManageEmployeeSubmit().setEnabled(false);
+                    }
                 }
 
                 @Override
@@ -87,6 +106,31 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             
             });
         }
+        
+        mainFrame.getButtonManageEmployeeSubmit().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.getButtonManageEmployeeSubmit().setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainFrame.getButtonManageEmployeeSubmit().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        
+        });
     }
 
     @Override
@@ -94,60 +138,67 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
         
-        attendancePanels = new ArrayList<>();
-        projectsPanels = new ArrayList<>();
-        
         employees = Employee.getAllEmployees();
         projects = Project.getProjectList();
         
+        refreshEmployeeList();
+        refreshProjectList();
+        
+        addListeners();
+    }
+    
+    private void refreshEmployeeList(){
+        attendancePanels = new ArrayList<>();
+        int len = employees.size();
+        
+        mainFrame.getPanelManageEmployeeContainer().removeAll();
+        GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
+        layout.setRows(len);
+        mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, (int)mainFrame.getLabelManageEmployee().getAlignmentY() + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
+        
         if(!employees.isEmpty()){
-            
-            int len = employees.size();
-            
-            mainFrame.getPanelManageEmployeeContainer().removeAll();
-            GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
-            layout.setRows(len);
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
-            mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, (int)mainFrame.getLabelManageEmployee().getAlignmentY() + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
-            
             for(int i = 0; i < len; i++){
                 Employee e = employees.get(i);
                 ManageEmployeeAttendancePanel panel = new ManageEmployeeAttendancePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
                 mainFrame.getPanelManageEmployeeContainer().add(panel);
                 attendancePanels.add(panel);
             }
-            
-            mainFrame.getPanelManageEmployeeContainer().repaint();
-            mainFrame.getPanelManageEmployeeContainer().revalidate();
         }
+        mainFrame.getPanelManageEmployeeContainer().repaint();
+        mainFrame.getPanelManageEmployeeContainer().revalidate();
+    }
+    
+    private void refreshProjectList(){
+        projectsPanels = new ArrayList<>();
         
+        int len = projects.size();
+            
+        mainFrame.getPanelManageEmployeeProjectContainer().removeAll();
+        mainFrame.getPanelManageEmployeeProjectContainer().setPreferredSize(new Dimension(ManageEmployeeFilterPanel.PANEL_WIDTH, ManageEmployeeFilterPanel.PANEL_HEIGHT * len));
+            
         if(!projects.isEmpty()){
-            
-            int len = projects.size();
-            
-            mainFrame.getPanelManageEmployeeProjectContainer().removeAll();
-            mainFrame.getPanelManageEmployeeProjectContainer().setPreferredSize(new Dimension(ManageEmployeeFilterPanel.PANEL_WIDTH, ManageEmployeeFilterPanel.PANEL_HEIGHT * len));
-            
             for(int i = 0; i < len; i++){
                 Project p = projects.get(i);
                 ManageEmployeeFilterPanel panel = new ManageEmployeeFilterPanel(p.getName());
                 mainFrame.getPanelManageEmployeeProjectContainer().add(panel);
                 projectsPanels.add(panel);
             }
-            
-            ManageEmployeeFilterPanel panel = new ManageEmployeeFilterPanel("All Projects");
-            mainFrame.getPanelManageEmployeeProjectContainer().add(panel);
-            projectsPanels.add(panel);
-            
-            mainFrame.getPanelManageEmployeeProjectContainer().repaint();
-            mainFrame.getPanelManageEmployeeProjectContainer().revalidate();
         }
-        addListeners();
-        
+        ManageEmployeeFilterPanel panel = new ManageEmployeeFilterPanel("All Projects");
+        mainFrame.getPanelManageEmployeeProjectContainer().add(panel);
+        projectsPanels.add(panel);
+            
+        mainFrame.getPanelManageEmployeeProjectContainer().repaint();
+        mainFrame.getPanelManageEmployeeProjectContainer().revalidate();
     }
     
     private void showEmployeesInProject(int projectID){
-        
+        if(projectID != -1)
+            employees = Employee.getEmployeeByProject(projectID);
+        else
+            employees = Employee.getAllEmployees();
+        refreshEmployeeList();
     }
     
     private String monthToString(int month){

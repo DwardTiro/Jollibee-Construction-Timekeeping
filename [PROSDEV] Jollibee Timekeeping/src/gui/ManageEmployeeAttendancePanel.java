@@ -39,6 +39,7 @@ public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(224, 224, 224)));
+        setMaximumSize(new java.awt.Dimension(500, 120));
         setMinimumSize(new java.awt.Dimension(500, 120));
 
         labelName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
