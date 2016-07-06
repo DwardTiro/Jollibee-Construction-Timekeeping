@@ -105,6 +105,10 @@ public class MainFrame extends javax.swing.JFrame {
         panelManageEmployeeContainer = new javax.swing.JPanel();
         labelManageProjectFilter = new javax.swing.JLabel();
         panelManageEmployeeProjectContainer = new javax.swing.JPanel();
+        manageProjectScrollPane = new javax.swing.JScrollPane();
+        manageProjectPanel = new javax.swing.JPanel();
+        labelManageProject = new javax.swing.JLabel();
+        panelManageProjectContainer = new javax.swing.JPanel();
         mainPanelSidePanel = new javax.swing.JPanel();
         mainPanelSidePanelContainer = new javax.swing.JPanel();
         sidePanelLabelProjectWatch = new javax.swing.JLabel();
@@ -726,6 +730,43 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelCardPanel.add(manageEmployeeScrollPane, "manageEmployeeScrollPane");
 
+        manageProjectScrollPane.setBorder(null);
+
+        manageProjectPanel.setBackground(new java.awt.Color(255, 255, 255));
+        manageProjectPanel.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        labelManageProject.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelManageProject.setForeground(new java.awt.Color(231, 28, 35));
+        labelManageProject.setText("Manage Active Projects");
+
+        panelManageProjectContainer.setBackground(new java.awt.Color(255, 255, 255));
+        panelManageProjectContainer.setLayout(new java.awt.GridLayout(1, 1));
+
+        javax.swing.GroupLayout manageProjectPanelLayout = new javax.swing.GroupLayout(manageProjectPanel);
+        manageProjectPanel.setLayout(manageProjectPanelLayout);
+        manageProjectPanelLayout.setHorizontalGroup(
+            manageProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageProjectPanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(manageProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelManageProjectContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelManageProject))
+                .addContainerGap(538, Short.MAX_VALUE))
+        );
+        manageProjectPanelLayout.setVerticalGroup(
+            manageProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageProjectPanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelManageProject)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelManageProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                .addGap(447, 447, 447))
+        );
+
+        manageProjectScrollPane.setViewportView(manageProjectPanel);
+
+        mainPanelCardPanel.add(manageProjectScrollPane, "manageProjectScrollPane");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -822,6 +863,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelEditEmployeeSalary;
     private javax.swing.JLabel labelManageEmployee;
     private javax.swing.JLabel labelManageEmployeeAttendance;
+    private javax.swing.JLabel labelManageProject;
     private javax.swing.JLabel labelManageProjectFilter;
     private javax.swing.JLabel labelSearchResults;
     private javax.swing.JLabel labelViewEmployeeID;
@@ -847,10 +889,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mainTextFieldSearch;
     private javax.swing.JPanel manageEmployeePanel;
     private javax.swing.JScrollPane manageEmployeeScrollPane;
+    private javax.swing.JPanel manageProjectPanel;
+    private javax.swing.JScrollPane manageProjectScrollPane;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelManageEmployeeContainer;
     private javax.swing.JPanel panelManageEmployeeProjectContainer;
+    private javax.swing.JPanel panelManageProjectContainer;
     private javax.swing.JPanel panelSearchResultsContainer;
     private javax.swing.JPanel panelViewEmployeeCalendar;
     private javax.swing.JPanel panelWelcomeCalendar;
@@ -1020,6 +1065,10 @@ public class MainFrame extends javax.swing.JFrame {
         return labelManageEmployeeAttendance;
     }
 
+    public javax.swing.JLabel getLabelManageProject() {
+        return labelManageProject;
+    }
+
     public javax.swing.JLabel getLabelManageProjectFilter() {
         return labelManageProjectFilter;
     }
@@ -1120,6 +1169,14 @@ public class MainFrame extends javax.swing.JFrame {
         return manageEmployeeScrollPane;
     }
 
+    public javax.swing.JPanel getManageProjectPanel() {
+        return manageProjectPanel;
+    }
+
+    public javax.swing.JScrollPane getManageProjectScrollPane() {
+        return manageProjectScrollPane;
+    }
+
     public javax.swing.JPanel getPanelLogin() {
         return panelLogin;
     }
@@ -1134,6 +1191,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getPanelManageEmployeeProjectContainer() {
         return panelManageEmployeeProjectContainer;
+    }
+
+    public javax.swing.JPanel getPanelManageProjectContainer() {
+        return panelManageProjectContainer;
     }
 
     public javax.swing.JPanel getPanelSearchResultsContainer() {
