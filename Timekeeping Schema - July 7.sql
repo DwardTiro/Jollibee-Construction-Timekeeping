@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `timekeep` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `timekeep`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: timekeep
@@ -99,7 +97,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (321,'Jet','Virtusio','Cor',10,NULL),(400,'Jet','2nd','2nd',200,NULL),(901,'Firstname','Lastname','woah',10,NULL),(902,'Firstname','Lastname','woah',100,NULL),(903,'arren1','arren','arren',100,NULL),(904,'arren2','arren','arren',100,NULL),(905,'arren3','arren','arren',100,NULL),(906,'arren4','arren','arren',100,NULL),(907,'arren5','arren','arren',100,NULL),(908,'arren6','arren','arren',100,NULL),(909,'arren7','arren','arren',100,NULL),(910,'arren8','arren','arren',100,NULL);
+INSERT INTO `employee` VALUES (321,'Jet','Virtusio','Cor',10,1),(400,'Jet','2nd','2nd',200,1),(901,'Firstname','Lastname','woah',10,1),(902,'Firstname','Lastname','woah',100,2),(903,'arren1','arren','arren',100,2),(904,'arren2','arren','arren',100,2),(905,'arren3','arren','arren',100,2),(906,'arren4','arren','arren',100,3),(907,'arren5','arren','arren',100,3),(908,'arren6','arren','arren',100,4),(909,'arren7','arren','arren',100,5),(910,'arren8','arren','arren',100,6);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +161,7 @@ CREATE TABLE `project` (
   `dateStarted` date NOT NULL,
   `dateDue` date NOT NULL,
   PRIMARY KEY (`projectID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,6 +170,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
+INSERT INTO `project` VALUES (1,'Project 1','2016-07-01','2016-07-15'),(2,'Project 2','2016-07-01','2016-07-16'),(3,'Project 3','2016-07-01','2016-07-17'),(4,'Project 4','2016-07-01','2016-07-18'),(5,'Project 5','2016-07-01','2016-07-19'),(6,'Project 6','2016-07-01','2016-07-20'),(7,'Project 7','2016-07-01','2016-07-21'),(8,'Project 8','2016-07-01','2016-07-22'),(9,'Project 9','2016-07-01','2016-07-23'),(10,'Project 10','2016-07-01','2016-07-24');
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -184,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-06 17:05:30
+-- Dump completed on 2016-07-06 17:11:58
