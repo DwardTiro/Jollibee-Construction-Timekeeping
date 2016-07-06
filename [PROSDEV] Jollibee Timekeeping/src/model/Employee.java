@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -93,6 +95,25 @@ public class Employee {
         ps.executeUpdate();
     }
     
+    public static ArrayList<Employee> getAllEmployees(){
+        
+        ArrayList<Employee> employees = new ArrayList<>();
+        
+        String mysqlString = "select * from employee order by last_name";
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                employees.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5)));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return employees;
+    }
     
     public static Employee getEmployeeByID(int id) throws SQLException{
         System.out.println("id is "+id);

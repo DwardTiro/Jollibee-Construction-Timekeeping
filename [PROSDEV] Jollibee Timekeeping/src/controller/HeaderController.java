@@ -88,7 +88,6 @@ public class HeaderController implements Listen {
                                 mainFrame.getPanelSearchResultsContainer().removeAll();
                                 mainFrame.getLabelSearchResults().setText(SEARCH_RESULT_LABEL_POSITIVE + mainFrame.getMainTextFieldSearch().getText());
                                 mainFrame.getPanelSearchResultsContainer().setPreferredSize(new Dimension(SearchResultsPanel.PANEL_WIDTH, SearchResultsPanel.PANEL_HEIGHT * empList.size()));
-                                
                                 mainFrame.getSearchResultsPanel().setPreferredSize(new Dimension(mainFrame.getSearchResultsPanel().getPreferredSize().width, (int)mainFrame.getLabelSearchResults().getAlignmentY() + mainFrame.getLabelSearchResults().getPreferredSize().height + SearchResultsPanel.PANEL_HEIGHT * empList.size()));
                                 
                                 for(int i = 0; i < empList.size(); i++){

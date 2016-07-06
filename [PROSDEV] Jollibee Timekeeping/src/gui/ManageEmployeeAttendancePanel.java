@@ -6,6 +6,8 @@ import javax.swing.SpinnerDateModel;
 
 public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
 
+    public static final int PANEL_WIDTH = 500;
+    public static final int PANEL_HEIGHT = 120;
     
     public ManageEmployeeAttendancePanel(String name, String idNumber) {
         initComponents();
@@ -65,7 +67,7 @@ public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
                         .addComponent(labelTimeOut)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spinnerTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
