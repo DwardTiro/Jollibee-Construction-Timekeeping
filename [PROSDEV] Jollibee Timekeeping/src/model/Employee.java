@@ -115,6 +115,28 @@ public class Employee {
         return employees;
     }
     
+    public static ArrayList<Employee> getEmployeeByProject(int projectID){
+        ArrayList<Employee> employees = new ArrayList<>();
+        
+        String mysqlString = "select * from employee where project_id = ? order by last_name";
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+            
+            ps.setInt(1, projectID);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                employees.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5)));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return employees;
+    }
+    
     public static Employee getEmployeeByID(int id) throws SQLException{
         System.out.println("id is "+id);
         String mysqlString = "select id,first_name,last_Name,middle_name,salary\n" +

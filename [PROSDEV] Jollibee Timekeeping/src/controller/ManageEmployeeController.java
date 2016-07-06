@@ -2,8 +2,14 @@ package controller;
 
 import gui.MainFrame;
 import gui.ManageEmployeeAttendancePanel;
+import gui.ManageEmployeeFilterPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import model.CalendarModel;
@@ -17,6 +23,8 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     private final MainFrame mainFrame;
     private final CalendarModel calendarModel;
     
+    private final String MANAGE_EMPLOYEE_STRING = "Manage Employee";
+    private final String MANAGE_EMPLOYEE_NEGATIVE_STRING = "No Employee to Manage for ";
     private final String ATTENDANCE_STRING = "Attendance for ";
     private final String PANEL_NAME = "manageEmployeeScrollPane";
     
@@ -24,7 +32,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     private ArrayList<ManageEmployeeAttendancePanel> attendancePanels;
     
     private ArrayList<Project> projects;
-    private ArrayList<JLabel> projectsLabels;
+    private ArrayList<ManageEmployeeFilterPanel> projectsPanels;
     
     private ManageEmployeeController(){
         mainFrame = MainFrame.getInstance();
@@ -38,9 +46,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         attendancePanels = new ArrayList<>();
         
         projects = new ArrayList<>();
-        projectsLabels = new ArrayList<>();
-        
-        addListeners();
+        projectsPanels = new ArrayList<>();
     }
     
     public static ManageEmployeeController getInstance(){
@@ -58,7 +64,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
         
         attendancePanels = new ArrayList<>();
-        projectsLabels = new ArrayList<>();
+        projectsPanels = new ArrayList<>();
         
         employees = Employee.getAllEmployees();
         projects = Project.getProjectList();
@@ -68,8 +74,10 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             int len = employees.size();
             
             mainFrame.getPanelManageEmployeeContainer().removeAll();
-            mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * len));
-            mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, (int)mainFrame.getLabelManageEmployee().getAlignmentY() + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + mainFrame.getPanelManageEmployeeContainer().getPreferredSize().height + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
+            GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
+            layout.setRows(len);
+            //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
+            mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, (int)mainFrame.getLabelManageEmployee().getAlignmentY() + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
             
             for(int i = 0; i < len; i++){
                 Employee e = employees.get(i);
@@ -81,24 +89,34 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             mainFrame.getPanelManageEmployeeContainer().repaint();
             mainFrame.getPanelManageEmployeeContainer().revalidate();
         }
-        /*
+        
         if(!projects.isEmpty()){
             
             int len = projects.size();
             
             mainFrame.getPanelManageEmployeeProjectContainer().removeAll();
+            mainFrame.getPanelManageEmployeeProjectContainer().setPreferredSize(new Dimension(ManageEmployeeFilterPanel.PANEL_WIDTH, ManageEmployeeFilterPanel.PANEL_HEIGHT * len));
             
             for(int i = 0; i < len; i++){
                 Project p = projects.get(i);
-                JLabel label = new JLabel(p.getName());
-                mainFrame.getPanelManageEmployeeProjectContainer().add(label);
-                projectsLabels.add(label);
+                ManageEmployeeFilterPanel panel = new ManageEmployeeFilterPanel(p.getName());
+                mainFrame.getPanelManageEmployeeProjectContainer().add(panel);
+                projectsPanels.add(panel);
             }
+            
+            ManageEmployeeFilterPanel panel = new ManageEmployeeFilterPanel("All Projects");
+            mainFrame.getPanelManageEmployeeProjectContainer().add(panel);
+            projectsPanels.add(panel);
             
             mainFrame.getPanelManageEmployeeProjectContainer().repaint();
             mainFrame.getPanelManageEmployeeProjectContainer().revalidate();
         }
-        */
+        addListeners();
+        
+    }
+    
+    private void showEmployeesInProject(int projectID){
+        
     }
     
     private String monthToString(int month){
@@ -121,5 +139,4 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         
         return sMonth;
     }
-    
 }
