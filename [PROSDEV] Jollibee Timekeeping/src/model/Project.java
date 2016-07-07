@@ -40,7 +40,7 @@ public class Project {
         return dateDue;
     }
     
-    // gets projects that are not yet due
+    // gets projects that are not yet past due date
     public static ArrayList<Project> getProjectList(){
         ArrayList<Project> projectList = new ArrayList<>();
         String mysqlstring = "SELECT * FROM project where DATEDIFF(dateDue, ?) >= 0 order by projectName";

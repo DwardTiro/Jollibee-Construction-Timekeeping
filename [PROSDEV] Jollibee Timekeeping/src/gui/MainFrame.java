@@ -109,6 +109,9 @@ public class MainFrame extends javax.swing.JFrame {
         manageProjectPanel = new javax.swing.JPanel();
         labelManageProject = new javax.swing.JLabel();
         panelManageProjectContainer = new javax.swing.JPanel();
+        viewProjectPanel = new javax.swing.JPanel();
+        labelViewProjectName = new javax.swing.JLabel();
+        labelViewProjectDuration = new javax.swing.JLabel();
         mainPanelSidePanel = new javax.swing.JPanel();
         mainPanelSidePanelContainer = new javax.swing.JPanel();
         sidePanelLabelProjectWatch = new javax.swing.JLabel();
@@ -767,6 +770,37 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelCardPanel.add(manageProjectScrollPane, "manageProjectScrollPane");
 
+        viewProjectPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        labelViewProjectName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelViewProjectName.setForeground(new java.awt.Color(231, 28, 35));
+        labelViewProjectName.setText("Project Name");
+
+        labelViewProjectDuration.setText("Date Started - Date Due");
+
+        javax.swing.GroupLayout viewProjectPanelLayout = new javax.swing.GroupLayout(viewProjectPanel);
+        viewProjectPanel.setLayout(viewProjectPanelLayout);
+        viewProjectPanelLayout.setHorizontalGroup(
+            viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewProjectPanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelViewProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                    .addComponent(labelViewProjectDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
+        );
+        viewProjectPanelLayout.setVerticalGroup(
+            viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewProjectPanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelViewProjectName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelViewProjectDuration)
+                .addContainerGap(551, Short.MAX_VALUE))
+        );
+
+        mainPanelCardPanel.add(viewProjectPanel, "viewProjectPanel");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -872,6 +906,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewEmployeeNextMonth;
     private javax.swing.JLabel labelViewEmployeePreviousMonth;
     private javax.swing.JLabel labelViewEmployeeSalary;
+    private javax.swing.JLabel labelViewProjectDuration;
+    private javax.swing.JLabel labelViewProjectName;
     private javax.swing.JLabel labelWelcomeMonthYear;
     private javax.swing.JLabel labelWelcomeNextMonth;
     private javax.swing.JLabel labelWelcomePreviousMonth;
@@ -920,6 +956,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldEditEmployeeSalary;
     private javax.swing.JButton viewEmployeeButton;
     private javax.swing.JPanel viewEmployeePanel;
+    private javax.swing.JPanel viewProjectPanel;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
 
@@ -940,7 +977,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // getters
-
     public javax.swing.JPanel getAddEmployeePanel() {
         return addEmployeePanel;
     }
@@ -1099,6 +1135,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JLabel getLabelViewEmployeeSalary() {
         return labelViewEmployeeSalary;
+    }
+
+    public javax.swing.JLabel getLabelViewProjectDuration() {
+        return labelViewProjectDuration;
+    }
+
+    public javax.swing.JLabel getLabelViewProjectName() {
+        return labelViewProjectName;
     }
 
     public javax.swing.JLabel getLabelWelcomeMonthYear() {
@@ -1291,6 +1335,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getViewEmployeePanel() {
         return viewEmployeePanel;
+    }
+
+    public javax.swing.JPanel getViewProjectPanel() {
+        return viewProjectPanel;
     }
 
     public javax.swing.JPanel getWelcomePanel() {

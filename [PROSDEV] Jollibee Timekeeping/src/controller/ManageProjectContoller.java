@@ -4,8 +4,12 @@ package controller;
 import gui.MainFrame;
 import gui.ManageProjectItemListPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import model.Project;
 
@@ -33,7 +37,40 @@ public class ManageProjectContoller implements Listen, PanelChanger{
     
     @Override
     public void addListeners() {
-    
+        int len = projectsPanels.size();
+        for(int i = 0 ; i < len; i++){
+            final int index = i;
+            final ManageProjectItemListPanel panel = projectsPanels.get(index);
+            final Project project = projects.get(index);
+            
+            panel.getLabelProjectName().addMouseListener(new MouseListener(){
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    ViewProjectController.getInstance().setProject(project);
+                    ViewProjectController.getInstance().showPanel();
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {}
+
+                @Override
+                public void mouseReleased(MouseEvent e) {}
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    panel.getLabelProjectName().setForeground(new Color(231,28,35));
+                    panel.getLabelProjectName().setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    panel.getLabelProjectName().setForeground(new Color(51,51,51));
+                    panel.getLabelProjectName().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+                
+            });
+        }
     }
 
     @Override
@@ -43,6 +80,7 @@ public class ManageProjectContoller implements Listen, PanelChanger{
         
         projects = Project.getProjectList();
         refreshProjectList();
+        addListeners();
     }
     
     private void refreshProjectList(){

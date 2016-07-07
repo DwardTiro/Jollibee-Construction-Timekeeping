@@ -1,6 +1,7 @@
 package gui;
 
 import java.util.Date;
+import javax.swing.JLabel;
 import model.CalendarModel;
 
 public class ManageProjectItemListPanel extends javax.swing.JPanel {
@@ -89,4 +90,9 @@ public class ManageProjectItemListPanel extends javax.swing.JPanel {
     private javax.swing.JLabel labelDateStarted;
     private javax.swing.JLabel labelProjectName;
     // End of variables declaration//GEN-END:variables
+
+    public JLabel getLabelProjectName(){
+        return labelProjectName;
+    }
+    
 }

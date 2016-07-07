@@ -20,6 +20,7 @@ public class NavigationController implements Listen{
     private final ViewEmployeeController viewEmployeeController = ViewEmployeeController.getInstance();
     private final ManageEmployeeController manageEmployeeController = ManageEmployeeController.getInstance();
     private final ManageProjectContoller manageProjectContoller = ManageProjectContoller.getInstance();
+    private final ViewProjectController viewProjectController = ViewProjectController.getInstance();
     
     private final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     private final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
