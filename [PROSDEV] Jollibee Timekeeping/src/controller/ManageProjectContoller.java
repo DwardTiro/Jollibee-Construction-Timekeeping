@@ -2,7 +2,7 @@
 package controller;
 
 import gui.MainFrame;
-import gui.ManageProjectItemListPanel;
+import gui.ManageProjectListItemPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -22,7 +22,7 @@ public class ManageProjectContoller implements Listen, PanelChanger{
     private final String PANEL_NAME = "manageProjectScrollPane";
     
     private ArrayList<Project> projects;
-    private ArrayList<ManageProjectItemListPanel> projectsPanels;
+    private ArrayList<ManageProjectListItemPanel> projectsPanels;
     
     private ManageProjectContoller(){
         mainFrame = MainFrame.getInstance();
@@ -40,7 +40,7 @@ public class ManageProjectContoller implements Listen, PanelChanger{
         int len = projectsPanels.size();
         for(int i = 0 ; i < len; i++){
             final int index = i;
-            final ManageProjectItemListPanel panel = projectsPanels.get(index);
+            final ManageProjectListItemPanel panel = projectsPanels.get(index);
             final Project project = projects.get(index);
             
             panel.getLabelProjectName().addMouseListener(new MouseListener(){
@@ -91,13 +91,13 @@ public class ManageProjectContoller implements Listen, PanelChanger{
         mainFrame.getPanelManageProjectContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelManageProjectContainer().getLayout();
         layout.setRows(len);
-        mainFrame.getManageProjectPanel().setPreferredSize(new Dimension(mainFrame.getManageProjectPanel().getPreferredSize().width, (int)mainFrame.getLabelManageProject().getAlignmentY() + mainFrame.getLabelManageProject().getPreferredSize().height + ManageProjectItemListPanel.PANEL_HEIGHT * (len+1)));
+        mainFrame.getManageProjectPanel().setPreferredSize(new Dimension(mainFrame.getManageProjectPanel().getPreferredSize().width, (int)mainFrame.getLabelManageProject().getAlignmentY() + mainFrame.getLabelManageProject().getPreferredSize().height + ManageProjectListItemPanel.PANEL_HEIGHT * (len+1)));
         //mainFrame.getPanelManageProjectContainer().setPreferredSize(new Dimension(ManageProjectItemListPanel.PANEL_WIDTH, ManageProjectItemListPanel.PANEL_HEIGHT * len));
             
         if(!projects.isEmpty()){
             for(int i = 0; i < len; i++){
                 Project p = projects.get(i);
-                ManageProjectItemListPanel panel = new ManageProjectItemListPanel(p.getName(), p.getDateStarted(), p.getDateDue());
+                ManageProjectListItemPanel panel = new ManageProjectListItemPanel(p.getName(), p.getDateStarted(), p.getDateDue());
                 mainFrame.getPanelManageProjectContainer().add(panel);
                 projectsPanels.add(panel);
             }

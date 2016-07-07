@@ -109,9 +109,12 @@ public class MainFrame extends javax.swing.JFrame {
         manageProjectPanel = new javax.swing.JPanel();
         labelManageProject = new javax.swing.JLabel();
         panelManageProjectContainer = new javax.swing.JPanel();
+        viewProjectScrollPane = new javax.swing.JScrollPane();
         viewProjectPanel = new javax.swing.JPanel();
         labelViewProjectName = new javax.swing.JLabel();
         labelViewProjectDuration = new javax.swing.JLabel();
+        labelViewProjectMembers = new javax.swing.JLabel();
+        panelViewProjectMembersContainer = new javax.swing.JPanel();
         mainPanelSidePanel = new javax.swing.JPanel();
         mainPanelSidePanelContainer = new javax.swing.JPanel();
         sidePanelLabelProjectWatch = new javax.swing.JLabel();
@@ -258,13 +261,13 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(labelWelcomeProjectWatch, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panelWelcomeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(welcomePanelLayout.createSequentialGroup()
-                        .addGap(312, 312, 312)
+                        .addGap(335, 335, 335)
                         .addComponent(labelWelcomePreviousMonth)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelWelcomeMonthYear, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelWelcomeNextMonth)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         welcomePanelLayout.setVerticalGroup(
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -723,7 +726,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelManageEmployeeAttendance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonManageEmployeeSubmit)
                 .addGap(378, 378, 378))
@@ -754,7 +757,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(manageProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelManageProjectContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelManageProject))
-                .addContainerGap(538, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         manageProjectPanelLayout.setVerticalGroup(
             manageProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -762,13 +765,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(labelManageProject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelManageProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addComponent(panelManageProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(467, 467, 467))
         );
 
         manageProjectScrollPane.setViewportView(manageProjectPanel);
 
         mainPanelCardPanel.add(manageProjectScrollPane, "manageProjectScrollPane");
+
+        viewProjectScrollPane.setBorder(null);
 
         viewProjectPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -778,15 +783,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         labelViewProjectDuration.setText("Date Started - Date Due");
 
+        labelViewProjectMembers.setText("Project Members:");
+
+        panelViewProjectMembersContainer.setBackground(new java.awt.Color(255, 255, 255));
+        panelViewProjectMembersContainer.setLayout(new java.awt.GridLayout(1, 1));
+
         javax.swing.GroupLayout viewProjectPanelLayout = new javax.swing.GroupLayout(viewProjectPanel);
         viewProjectPanel.setLayout(viewProjectPanelLayout);
         viewProjectPanelLayout.setHorizontalGroup(
             viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewProjectPanelLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelViewProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-                    .addComponent(labelViewProjectDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelViewProjectMembers)
+                    .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelViewProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                        .addComponent(labelViewProjectDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(428, Short.MAX_VALUE))
         );
         viewProjectPanelLayout.setVerticalGroup(
@@ -796,10 +809,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelViewProjectName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelViewProjectDuration)
-                .addContainerGap(551, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(labelViewProjectMembers)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addGap(431, 431, 431))
         );
 
-        mainPanelCardPanel.add(viewProjectPanel, "viewProjectPanel");
+        viewProjectScrollPane.setViewportView(viewProjectPanel);
+
+        mainPanelCardPanel.add(viewProjectScrollPane, "viewProjectScrollPane");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -907,6 +926,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewEmployeePreviousMonth;
     private javax.swing.JLabel labelViewEmployeeSalary;
     private javax.swing.JLabel labelViewProjectDuration;
+    private javax.swing.JLabel labelViewProjectMembers;
     private javax.swing.JLabel labelViewProjectName;
     private javax.swing.JLabel labelWelcomeMonthYear;
     private javax.swing.JLabel labelWelcomeNextMonth;
@@ -934,6 +954,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelManageProjectContainer;
     private javax.swing.JPanel panelSearchResultsContainer;
     private javax.swing.JPanel panelViewEmployeeCalendar;
+    private javax.swing.JPanel panelViewProjectMembersContainer;
     private javax.swing.JPanel panelWelcomeCalendar;
     private javax.swing.JList projectList;
     private javax.swing.JPanel searchResultPanel;
@@ -957,6 +978,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton viewEmployeeButton;
     private javax.swing.JPanel viewEmployeePanel;
     private javax.swing.JPanel viewProjectPanel;
+    private javax.swing.JScrollPane viewProjectScrollPane;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
 
@@ -977,6 +999,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // getters
+
     public javax.swing.JPanel getAddEmployeePanel() {
         return addEmployeePanel;
     }
@@ -1141,6 +1164,10 @@ public class MainFrame extends javax.swing.JFrame {
         return labelViewProjectDuration;
     }
 
+    public javax.swing.JLabel getLabelViewProjectMembers() {
+        return labelViewProjectMembers;
+    }
+
     public javax.swing.JLabel getLabelViewProjectName() {
         return labelViewProjectName;
     }
@@ -1249,6 +1276,10 @@ public class MainFrame extends javax.swing.JFrame {
         return panelViewEmployeeCalendar;
     }
 
+    public javax.swing.JPanel getPanelViewProjectMembersContainer() {
+        return panelViewProjectMembersContainer;
+    }
+
     public javax.swing.JPanel getPanelWelcomeCalendar() {
         return panelWelcomeCalendar;
     }
@@ -1341,7 +1372,12 @@ public class MainFrame extends javax.swing.JFrame {
         return viewProjectPanel;
     }
 
+    public javax.swing.JScrollPane getViewProjectScrollPane() {
+        return viewProjectScrollPane;
+    }
+
     public javax.swing.JPanel getWelcomePanel() {
         return welcomePanel;
     }
+    
 }

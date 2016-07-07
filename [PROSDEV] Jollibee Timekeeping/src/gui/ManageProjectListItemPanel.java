@@ -4,12 +4,12 @@ import java.util.Date;
 import javax.swing.JLabel;
 import model.CalendarModel;
 
-public class ManageProjectItemListPanel extends javax.swing.JPanel {
+public class ManageProjectListItemPanel extends javax.swing.JPanel {
 
     public static final int PANEL_WIDTH = 600;
     public static final int PANEL_HEIGHT = 100;
     
-    public ManageProjectItemListPanel(String projectName, Date dateStarted, Date dateDue) {
+    public ManageProjectListItemPanel(String projectName, Date dateStarted, Date dateDue) {
         initComponents();
         labelProjectName.setText(projectName);
         String[] preset = dateStarted.toString().split(" ");
