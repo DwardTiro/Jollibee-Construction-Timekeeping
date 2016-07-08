@@ -1,23 +1,24 @@
-
 package gui;
 
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import model.AttendanceModel;
 
 public class CalendarDatePanel extends javax.swing.JPanel {
 
     public static final int ONE_HOUR_MILLISEC = 3600000;
     public static final int EIGHT_HOURS_MILLISEC = ONE_HOUR_MILLISEC * 8;
-    
+
     public static final int ATTENDANCE_STATUS_COMPLETE = 1;
     public static final int ATTENDANCE_STATUS_UNDERTIME = 2;
     public static final int ATTENDANCE_STATUS_OVERTIME = 3;
     public static final int ATTENDANCE_STATUS_ABSENT = 4;
     public static final int ATTENDANCE_STATUS_LEAVE = 5;
     public static final int ATTENDANCE_STATUS_NO_PROJ = 6;
-    
+
     private final Color COLOR_COMPLETE = Color.GREEN;
     private final Color COLOR_UNDERTIME = Color.YELLOW;
     private final Color COLOR_OVERTIME = Color.BLUE;
@@ -25,55 +26,109 @@ public class CalendarDatePanel extends javax.swing.JPanel {
     private final Color COLOR_LEAVE = Color.PINK;
     private final Color COLOR_NO_PROJ = Color.BLACK;
     private final Color COLOR_DEFAULT = Color.WHITE;
-   
+
     private final int day;
     private final int month;
     private final int year;
-    
-    public CalendarDatePanel(int day, int month, int year, String projectName, int attendanceStatus) {
+
+    public CalendarDatePanel(int emp_id, int day, int month, int year, String projectName, int attendanceStatus) throws SQLException {
         initComponents();
-        
+
         this.day = day;
         this.month = month;
         this.year = year;
-        
-        labelDay.setText(String.valueOf(day));
-        labelProjectName.setText(projectName);
-        
-        addListeners();
-        
-        switch(attendanceStatus){
-            case ATTENDANCE_STATUS_COMPLETE:    panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
-            case ATTENDANCE_STATUS_UNDERTIME:   panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
-            case ATTENDANCE_STATUS_OVERTIME:    panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
-            case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
-            case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
-            case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
-            default:                            panelAttendanceStatus.setBackground(COLOR_DEFAULT); panelAttendanceStatus.setOpaque(false);
-        }
-    }
-        
-    /*public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
-        initComponents();
-        
-        this.day = day;
-        
-        labelDay.setText(String.valueOf(day));
-        labelProjectName.setText(projectName);
-        
-        switch(attendanceStatus){
-            case ATTENDANCE_STATUS_COMPLETE:    panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
-            case ATTENDANCE_STATUS_UNDERTIME:   panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
-            case ATTENDANCE_STATUS_OVERTIME:    panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
-            case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
-            case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
-            case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
-        }
-    }
-    */
 
-    private void addListeners(){
-        this.addMouseListener(new MouseListener(){
+        labelDay.setText(String.valueOf(day));
+        labelProjectName.setText(projectName);
+
+        if (AttendanceModel.isPaid(emp_id, month, day, year)) {
+            addListenersPaid();
+        } else {
+            addListeners();
+        }
+
+        switch (attendanceStatus) {
+            case ATTENDANCE_STATUS_COMPLETE:
+                panelAttendanceStatus.setBackground(COLOR_COMPLETE);
+                break;
+            case ATTENDANCE_STATUS_UNDERTIME:
+                panelAttendanceStatus.setBackground(COLOR_UNDERTIME);
+                break;
+            case ATTENDANCE_STATUS_OVERTIME:
+                panelAttendanceStatus.setBackground(COLOR_OVERTIME);
+                break;
+            case ATTENDANCE_STATUS_ABSENT:
+                panelAttendanceStatus.setBackground(COLOR_ABSENT);
+                break;
+            case ATTENDANCE_STATUS_LEAVE:
+                panelAttendanceStatus.setBackground(COLOR_LEAVE);
+                break;
+            case ATTENDANCE_STATUS_NO_PROJ:
+                panelAttendanceStatus.setBackground(COLOR_NO_PROJ);
+                break;
+            default:
+                panelAttendanceStatus.setBackground(COLOR_DEFAULT);
+                panelAttendanceStatus.setOpaque(false);
+        }
+    }
+
+    public CalendarDatePanel(int day, int month, int year, String projectName, int attendanceStatus) {
+        initComponents();
+
+        this.day = day;
+        this.month = month;
+        this.year = year;
+
+        labelDay.setText(String.valueOf(day));
+        labelProjectName.setText(projectName);
+
+        addListeners();
+
+        switch (attendanceStatus) {
+            case ATTENDANCE_STATUS_COMPLETE:
+                panelAttendanceStatus.setBackground(COLOR_COMPLETE);
+                break;
+            case ATTENDANCE_STATUS_UNDERTIME:
+                panelAttendanceStatus.setBackground(COLOR_UNDERTIME);
+                break;
+            case ATTENDANCE_STATUS_OVERTIME:
+                panelAttendanceStatus.setBackground(COLOR_OVERTIME);
+                break;
+            case ATTENDANCE_STATUS_ABSENT:
+                panelAttendanceStatus.setBackground(COLOR_ABSENT);
+                break;
+            case ATTENDANCE_STATUS_LEAVE:
+                panelAttendanceStatus.setBackground(COLOR_LEAVE);
+                break;
+            case ATTENDANCE_STATUS_NO_PROJ:
+                panelAttendanceStatus.setBackground(COLOR_NO_PROJ);
+                break;
+            default:
+                panelAttendanceStatus.setBackground(COLOR_DEFAULT);
+                panelAttendanceStatus.setOpaque(false);
+        }
+    }
+
+    /*public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
+     initComponents();
+        
+     this.day = day;
+        
+     labelDay.setText(String.valueOf(day));
+     labelProjectName.setText(projectName);
+        
+     switch(attendanceStatus){
+     case ATTENDANCE_STATUS_COMPLETE:    panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
+     case ATTENDANCE_STATUS_UNDERTIME:   panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
+     case ATTENDANCE_STATUS_OVERTIME:    panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
+     case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
+     case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
+     case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
+     }
+     }
+     */
+    private void addListeners() {
+        this.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -82,10 +137,12 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {
+            }
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+            }
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -96,10 +153,41 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             public void mouseExited(MouseEvent e) {
                 setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
-        
+
         });
     }
-    
+
+    private void addListenersPaid() {
+        this.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
+                //addEditHours.setVisible(true);
+                PopBox.infoBox("Already paid cant edit", "Error");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+
+        });
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
