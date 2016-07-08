@@ -2,7 +2,7 @@ package controller;
 
 import gui.MainFrame;
 import gui.ManageEmployeeAttendancePanel;
-import gui.ManageEmployeeFilterPanel;
+import gui.ProjectFilterPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -32,7 +32,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     private ArrayList<ManageEmployeeAttendancePanel> attendancePanels;
     
     private ArrayList<Project> projects;
-    private ArrayList<ManageEmployeeFilterPanel> projectsPanels;
+    private ArrayList<ProjectFilterPanel> projectsPanels;
     
     private ManageEmployeeController(){
         mainFrame = MainFrame.getInstance();
@@ -175,17 +175,17 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         int len = projects.size();
             
         mainFrame.getPanelManageEmployeeProjectContainer().removeAll();
-        mainFrame.getPanelManageEmployeeProjectContainer().setPreferredSize(new Dimension(ManageEmployeeFilterPanel.PANEL_WIDTH, ManageEmployeeFilterPanel.PANEL_HEIGHT * len));
+        mainFrame.getPanelManageEmployeeProjectContainer().setPreferredSize(new Dimension(ProjectFilterPanel.PANEL_WIDTH, ProjectFilterPanel.PANEL_HEIGHT * len));
             
         if(!projects.isEmpty()){
             for(int i = 0; i < len; i++){
                 Project p = projects.get(i);
-                ManageEmployeeFilterPanel panel = new ManageEmployeeFilterPanel(p.getName());
+                ProjectFilterPanel panel = new ProjectFilterPanel(p.getName());
                 mainFrame.getPanelManageEmployeeProjectContainer().add(panel);
                 projectsPanels.add(panel);
             }
         }
-        ManageEmployeeFilterPanel panel = new ManageEmployeeFilterPanel("All Projects");
+        ProjectFilterPanel panel = new ProjectFilterPanel("All Projects");
         mainFrame.getPanelManageEmployeeProjectContainer().add(panel);
         projectsPanels.add(panel);
             

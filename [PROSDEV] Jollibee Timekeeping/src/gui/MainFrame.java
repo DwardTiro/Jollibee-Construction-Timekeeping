@@ -114,12 +114,20 @@ public class MainFrame extends javax.swing.JFrame {
         panelViewProjectMembersContainer = new javax.swing.JPanel();
         labelViewProjectAddEmployee = new javax.swing.JLabel();
         panelViewProjectAddEmployeeContainer = new javax.swing.JPanel();
+        computeSalaryScrollPane = new javax.swing.JScrollPane();
+        computeSalaryPanel = new javax.swing.JPanel();
+        labelComputeSalary = new javax.swing.JLabel();
+        panelComputeSalaryEmployeeContainer = new javax.swing.JPanel();
+        labelComputeSalaryFilter = new javax.swing.JLabel();
+        panelComputeSalaryFilterContainer = new javax.swing.JPanel();
+        buttonComputeSalaryRelease = new javax.swing.JButton();
         mainPanelSidePanel = new javax.swing.JPanel();
         mainPanelSidePanelContainer = new javax.swing.JPanel();
         sidePanelLabelProjectWatch = new javax.swing.JLabel();
         sidePanelLabelAddEmployee = new javax.swing.JLabel();
         sidePanelLabelManageEmployee = new javax.swing.JLabel();
         sidePanelLabelManageProject = new javax.swing.JLabel();
+        sidePanelLabelComputeSalary = new javax.swing.JLabel();
         sidePanelLabelLogout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -281,7 +289,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelWelcomeMonthYear, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelWelcomeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(welcomePanel, "welcomePanel");
@@ -373,7 +381,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(textFieldAddEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonAddEmployee)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(addEmployeePanel, "addEmployeePanel");
@@ -552,7 +560,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelEditEmployeeSalary))
                 .addGap(18, 18, 18)
                 .addComponent(buttonEditEmployeeSaveChanges)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(editEmployeePanel, "editEmployeePanel");
@@ -626,7 +634,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(assignProjectButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(assignProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(searchResultPanel, "searchResultPanel");
@@ -742,7 +750,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelManageEmployeeAttendance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonManageEmployeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(361, 361, 361))
@@ -784,7 +792,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(labelManageProject, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelManageProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addComponent(panelManageProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(447, 447, 447))
         );
 
@@ -861,6 +869,70 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelCardPanel.add(viewProjectScrollPane, "viewProjectScrollPane");
 
+        computeSalaryScrollPane.setBorder(null);
+
+        computeSalaryPanel.setBackground(new java.awt.Color(255, 255, 255));
+        computeSalaryPanel.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        labelComputeSalary.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
+        labelComputeSalary.setForeground(new java.awt.Color(0, 0, 0));
+        labelComputeSalary.setText("COMPUTE SALARY");
+        labelComputeSalary.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
+        labelComputeSalary.setOpaque(true);
+
+        panelComputeSalaryEmployeeContainer.setBackground(new java.awt.Color(255, 255, 255));
+        panelComputeSalaryEmployeeContainer.setPreferredSize(new java.awt.Dimension(600, 100));
+        panelComputeSalaryEmployeeContainer.setLayout(new java.awt.GridLayout(1, 1));
+
+        labelComputeSalaryFilter.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
+        labelComputeSalaryFilter.setText("Filter by project:");
+
+        panelComputeSalaryFilterContainer.setBackground(new java.awt.Color(255, 255, 255));
+        panelComputeSalaryFilterContainer.setPreferredSize(new java.awt.Dimension(250, 28));
+        panelComputeSalaryFilterContainer.setLayout(new javax.swing.BoxLayout(panelComputeSalaryFilterContainer, javax.swing.BoxLayout.Y_AXIS));
+
+        buttonComputeSalaryRelease.setBackground(new java.awt.Color(231, 28, 35));
+        buttonComputeSalaryRelease.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        buttonComputeSalaryRelease.setForeground(new java.awt.Color(255, 255, 255));
+        buttonComputeSalaryRelease.setText("Release Salary");
+
+        javax.swing.GroupLayout computeSalaryPanelLayout = new javax.swing.GroupLayout(computeSalaryPanel);
+        computeSalaryPanel.setLayout(computeSalaryPanelLayout);
+        computeSalaryPanelLayout.setHorizontalGroup(
+            computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(computeSalaryPanelLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonComputeSalaryRelease, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(labelComputeSalary, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelComputeSalaryEmployeeContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelComputeSalaryFilterContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelComputeSalaryFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        computeSalaryPanelLayout.setVerticalGroup(
+            computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(computeSalaryPanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelComputeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelComputeSalaryFilter))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelComputeSalaryFilterContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelComputeSalaryEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonComputeSalaryRelease)
+                .addGap(363, 363, 363))
+        );
+
+        computeSalaryScrollPane.setViewportView(computeSalaryPanel);
+
+        mainPanelCardPanel.add(computeSalaryScrollPane, "computeSalaryScrollPane");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -899,10 +971,16 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         mainPanelSidePanelContainer.add(sidePanelLabelManageProject, gridBagConstraints);
 
-        sidePanelLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout Admin.png"))); // NOI18N
+        sidePanelLabelComputeSalary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Compute Salary.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        mainPanelSidePanelContainer.add(sidePanelLabelComputeSalary, gridBagConstraints);
+
+        sidePanelLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout Admin.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
         mainPanelSidePanelContainer.add(sidePanelLabelLogout, gridBagConstraints);
 
         mainPanelSidePanel.add(mainPanelSidePanelContainer, "card2");
@@ -932,8 +1010,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel assignProjectLabel;
     private javax.swing.JPanel assignProjectPanel;
     private javax.swing.JButton buttonAddEmployee;
+    private javax.swing.JButton buttonComputeSalaryRelease;
     private javax.swing.JButton buttonEditEmployeeSaveChanges;
     private javax.swing.JButton buttonManageEmployeeSubmit;
+    private javax.swing.JPanel computeSalaryPanel;
+    private javax.swing.JScrollPane computeSalaryScrollPane;
     private javax.swing.JButton editEmployeeButton;
     private javax.swing.JPanel editEmployeePanel;
     private javax.swing.JList employeeList;
@@ -945,6 +1026,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelAddEmployeeLastName;
     private javax.swing.JLabel labelAddEmployeeMiddleName;
     private javax.swing.JLabel labelAddEmployeeSalary;
+    private javax.swing.JLabel labelComputeSalary;
+    private javax.swing.JLabel labelComputeSalaryFilter;
     private javax.swing.JLabel labelEditEmployee;
     private javax.swing.JLabel labelEditEmployeeFirstName;
     private javax.swing.JLabel labelEditEmployeeIDNumber;
@@ -985,6 +1068,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane manageEmployeeScrollPane;
     private javax.swing.JPanel manageProjectPanel;
     private javax.swing.JScrollPane manageProjectScrollPane;
+    private javax.swing.JPanel panelComputeSalaryEmployeeContainer;
+    private javax.swing.JPanel panelComputeSalaryFilterContainer;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelManageEmployeeContainer;
@@ -1000,6 +1085,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel searchResultsPanel;
     private javax.swing.JScrollPane searchResultsScrollPane;
     private javax.swing.JLabel sidePanelLabelAddEmployee;
+    private javax.swing.JLabel sidePanelLabelComputeSalary;
     private javax.swing.JLabel sidePanelLabelLogout;
     private javax.swing.JLabel sidePanelLabelManageEmployee;
     private javax.swing.JLabel sidePanelLabelManageProject;
@@ -1062,12 +1148,24 @@ public class MainFrame extends javax.swing.JFrame {
         return buttonAddEmployee;
     }
 
+    public javax.swing.JButton getButtonComputeSalaryRelease() {
+        return buttonComputeSalaryRelease;
+    }
+
     public javax.swing.JButton getButtonEditEmployeeSaveChanges() {
         return buttonEditEmployeeSaveChanges;
     }
 
     public javax.swing.JButton getButtonManageEmployeeSubmit() {
         return buttonManageEmployeeSubmit;
+    }
+
+    public javax.swing.JPanel getComputeSalaryPanel() {
+        return computeSalaryPanel;
+    }
+
+    public javax.swing.JScrollPane getComputeSalaryScrollPane() {
+        return computeSalaryScrollPane;
     }
 
     public javax.swing.JButton getEditEmployeeButton() {
@@ -1112,6 +1210,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JLabel getLabelAddEmployeeSalary() {
         return labelAddEmployeeSalary;
+    }
+
+    public javax.swing.JLabel getLabelComputeSalary() {
+        return labelComputeSalary;
+    }
+
+    public javax.swing.JLabel getLabelComputeSalaryFilter() {
+        return labelComputeSalaryFilter;
     }
 
     public javax.swing.JLabel getLabelEditEmployee() {
@@ -1274,6 +1380,14 @@ public class MainFrame extends javax.swing.JFrame {
         return manageProjectScrollPane;
     }
 
+    public javax.swing.JPanel getPanelComputeSalaryEmployeeContainer() {
+        return panelComputeSalaryEmployeeContainer;
+    }
+
+    public javax.swing.JPanel getPanelComputeSalaryFilterContainer() {
+        return panelComputeSalaryFilterContainer;
+    }
+
     public javax.swing.JPanel getPanelLogin() {
         return panelLogin;
     }
@@ -1332,6 +1446,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JLabel getSidePanelLabelAddEmployee() {
         return sidePanelLabelAddEmployee;
+    }
+
+    public javax.swing.JLabel getSidePanelLabelComputeSalary() {
+        return sidePanelLabelComputeSalary;
     }
 
     public javax.swing.JLabel getSidePanelLabelLogout() {

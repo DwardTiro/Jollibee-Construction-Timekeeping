@@ -4,12 +4,12 @@ package gui;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ManageEmployeeFilterPanel extends javax.swing.JPanel {
+public class ProjectFilterPanel extends javax.swing.JPanel {
 
     public static final int PANEL_WIDTH = 250;
     public static final int PANEL_HEIGHT = 28;
     
-    public ManageEmployeeFilterPanel(String projectName) {
+    public ProjectFilterPanel(String projectName) {
         initComponents();
         
         labelProjectName.setText(projectName);

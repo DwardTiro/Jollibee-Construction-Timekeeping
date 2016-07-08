@@ -21,6 +21,7 @@ public class NavigationController implements Listen{
     private final ManageEmployeeController manageEmployeeController = ManageEmployeeController.getInstance();
     private final ManageProjectContoller manageProjectContoller = ManageProjectContoller.getInstance();
     private final ViewProjectController viewProjectController = ViewProjectController.getInstance();
+    private final ComputeSalaryController computeSalaryController = ComputeSalaryController.getInstance();
     
     private final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     private final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
@@ -138,6 +139,33 @@ public class NavigationController implements Listen{
             @Override
             public void mouseExited(MouseEvent e) {
                 mainFrame.getSidePanelLabelManageProject().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Manage Project.png")));
+                mainFrame.setCursor(DEFAULT_CURSOR);
+            }
+        
+        });
+        
+        mainFrame.getSidePanelLabelComputeSalary().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                computeSalaryController.showPanel();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.getSidePanelLabelComputeSalary().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Compute Salary Hover.png")));
+                mainFrame.setCursor(HAND_CURSOR);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainFrame.getSidePanelLabelComputeSalary().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Compute Salary.png")));
                 mainFrame.setCursor(DEFAULT_CURSOR);
             }
         
