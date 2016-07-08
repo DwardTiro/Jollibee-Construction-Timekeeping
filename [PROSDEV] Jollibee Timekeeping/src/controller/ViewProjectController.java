@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import model.CalendarModel;
@@ -91,7 +92,12 @@ public class ViewProjectController implements Listen, PanelChanger{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    
+                    try{
+                        employee.setProject();
+                    }catch(SQLException s){
+                        s.printStackTrace();
+                    }
+                    showPanel();
                 }
 
                 @Override
@@ -126,8 +132,16 @@ public class ViewProjectController implements Listen, PanelChanger{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    ViewEmployeeController.getInstance().setViewID(employee.getID());
-                    ViewEmployeeController.getInstance().showPanel();
+                    try{
+                        
+                        employee.updateProject(project.getID());
+                        
+                    }catch(SQLException s){
+                        s.printStackTrace();
+                    }
+                    showPanel();
+                    //ViewEmployeeController.getInstance().setViewID(employee.getID());
+                    //ViewEmployeeController.getInstance().showPanel();
                 }
 
                 @Override

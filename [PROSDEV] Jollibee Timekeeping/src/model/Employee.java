@@ -31,6 +31,13 @@ public class Employee {
         this.mname = mname;
         this.salary = salary;
     }
+    
+    public void setProject() throws SQLException{
+        String mysqlstring = "UPDATE `employee` SET `project_id` = NULL WHERE `id` = ?";
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
+        ps.setInt(1, this.getID());
+        ps.executeUpdate();
+    }
 
     public void updateProject(int proj_id) throws SQLException {
         String mysqlstring = "UPDATE `employee` SET `project_id` =? WHERE `id` = ?";
