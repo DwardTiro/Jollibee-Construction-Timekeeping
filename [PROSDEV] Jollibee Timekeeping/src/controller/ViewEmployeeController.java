@@ -140,18 +140,28 @@ public class ViewEmployeeController implements Listen, PanelChanger{
             employeeToShow = Employee.getEmployeeByID(viewID);
             mainFrame.getLabelViewEmployeeName().setText(employeeToShow.toString());
             mainFrame.getLabelViewEmployeeID().setText(employeeToShow.getID()+"");
-            employee = Employee.getEmployeeByID(this.getID());
-            mainFrame.getLabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalary());
+            //employee = Employee.getEmployeeByID(this.getID());
+            //mainFrame.getLabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalary());
             mainLayout.show(mainCardPanel, PANEL_NAME);
             calendarModel.restartCalendar();
             buildCalendar();
         } catch (SQLException ex) {
-            Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            //Logger.getLogger(ViewoEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     // sample only
     public void buildCalendar(){
+        
+        try {
+            employee = Employee.getEmployeeByID(this.getID());
+            mainFrame.getLabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalaryMonth(calendarModel.getMonth(),calendarModel.getYear()));
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
         
         viewCalendar = new JPanel[CALENDAR_ROWS * CALENDAR_COLS];
         

@@ -54,6 +54,32 @@ public class Employee {
         return cSalary;
     }
 
+    public double computeSalaryMonth(int month,int year) throws SQLException{
+        double csalary = 0;
+        String query ="select emp_id, sum(compute_salary) as total from attendance where \n" +
+        "month(date) = ? \n" +
+        "and year(date) = ? \n" +
+        "and emp_id = ?";
+        
+        System.out.println(query);
+        System.out.println(month+" "+year);
+        
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(query);
+        ps.setInt(3, this.id);
+        ps.setInt(1,month);
+        ps.setInt(2,year);
+        
+        ResultSet rs =ps.executeQuery();
+        rs.next();
+        
+        csalary = rs.getDouble("total");
+        
+        return csalary;
+        
+    }
+    
+    
+    
     public static void addDB(int IDNumber, String firstName, String lastName, String middleName, double salary) throws SQLException {
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(Employee.getAddEmployeeStatement());
         ps.setInt(1, IDNumber);
