@@ -86,8 +86,16 @@ public class AttendanceModel {
         System.out.println("Time in: " + time_in + ": " + "Time out: " + time_out);
 
             //long hours = TimeUnit.MILLISECONDS.toHours(diff);
-        Double salary = getSalaryOfEmp(id) * (hour2 - hour1);
-
+        
+        int totalHours = (hour2 - hour1);
+        int overTime = 0;
+        if(totalHours > 8){
+            overTime = totalHours -8;
+            totalHours = 8;
+        }
+        
+        Double salary = (getSalaryOfEmp(id) *totalHours) + ((getSalaryOfEmp(id) + (getSalaryOfEmp(id)*0.25)) *overTime);
+        
         System.out.println("Salary is :" + salary + " hour is " + (hour2 - hour1));
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
         ps.setInt(1, id);
