@@ -90,7 +90,7 @@ public class CalendarModel {
         this.year = year;
     }
     
-    private int getEquivalentMonth(String month){
+    public int getEquivalentMonth(String month){
         int tempMonth = 0;
         switch(month){
             case "Jan" : tempMonth = 1;     break;
@@ -160,5 +160,27 @@ public class CalendarModel {
         
         setFirstDay(getEquivalentDay(preset[0]));
         setMaxDays(c.getActualMaximum(Calendar.DAY_OF_MONTH));
+    }
+    
+    // returns the current day
+    public int getDayToday(){
+        Calendar c = Calendar.getInstance();    // this takes current date
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        
+        return Integer.parseInt(preset[2]);
+    }
+    
+    public int getMonthToday(){
+        Calendar c = Calendar.getInstance();    // this takes current date
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        
+        return getEquivalentMonth(preset[1]);
+    }
+    
+    public int getYearToday(){
+        Calendar c = Calendar.getInstance();    // this takes current date
+        String[] preset = String.valueOf(c.getTime()).split(" ");
+        
+        return Integer.parseInt(preset[5]);
     }
 }

@@ -19,6 +19,8 @@ public class NavigationController implements Listen{
     private final EditEmployeeController editEmployeeController = EditEmployeeController.getInstance();
     private final ViewEmployeeController viewEmployeeController = ViewEmployeeController.getInstance();
     private final ManageEmployeeController manageEmployeeController = ManageEmployeeController.getInstance();
+    private final ManageProjectContoller manageProjectContoller = ManageProjectContoller.getInstance();
+    private final ViewProjectController viewProjectController = ViewProjectController.getInstance();
     
     private final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     private final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
@@ -118,7 +120,7 @@ public class NavigationController implements Listen{
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                // add later
+                manageProjectContoller.showPanel();
             }
 
             @Override
