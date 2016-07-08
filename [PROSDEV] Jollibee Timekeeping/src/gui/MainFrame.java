@@ -749,11 +749,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelManageEmployeeAttendance)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(50, 50, 50)
                 .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonManageEmployeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(361, 361, 361))
+                .addGap(322, 322, 322))
         );
 
         manageEmployeeScrollPane.setViewportView(manageEmployeePanel);
