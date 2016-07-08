@@ -466,7 +466,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(labelViewEmployeeNextMonth))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                        .addContainerGap(74, Short.MAX_VALUE))))
         );
 
         mainPanelCardPanel.add(viewEmployeePanel, "viewEmployeePanel");
@@ -672,7 +672,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(labelSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panelSearchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                .addComponent(panelSearchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -882,7 +882,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         panelComputeSalaryEmployeeContainer.setBackground(new java.awt.Color(255, 255, 255));
         panelComputeSalaryEmployeeContainer.setPreferredSize(new java.awt.Dimension(600, 100));
-        panelComputeSalaryEmployeeContainer.setLayout(new java.awt.GridLayout(1, 1));
+        panelComputeSalaryEmployeeContainer.setLayout(new javax.swing.BoxLayout(panelComputeSalaryEmployeeContainer, javax.swing.BoxLayout.Y_AXIS));
 
         labelComputeSalaryFilter.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
         labelComputeSalaryFilter.setText("Filter by project:");
@@ -924,9 +924,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelComputeSalaryFilterContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelComputeSalaryEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonComputeSalaryRelease)
-                .addGap(363, 363, 363))
+                .addGap(410, 410, 410))
         );
 
         computeSalaryScrollPane.setViewportView(computeSalaryPanel);

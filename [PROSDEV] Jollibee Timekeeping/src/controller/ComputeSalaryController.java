@@ -124,9 +124,10 @@ public class ComputeSalaryController implements Listen, PanelChanger{
         int len = employees.size();
         
         mainFrame.getPanelComputeSalaryEmployeeContainer().removeAll();
-        GridLayout layout = (GridLayout)mainFrame.getPanelComputeSalaryEmployeeContainer().getLayout();
-        layout.setRows(len + 1);
+        //GridLayout layout = (GridLayout)mainFrame.getPanelComputeSalaryEmployeeContainer().getLayout();
+        //layout.setRows(len + 1);
         mainFrame.getComputeSalaryPanel().setPreferredSize(new Dimension(mainFrame.getComputeSalaryPanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelComputeSalary().getPreferredSize().height + ComputeSalaryEmployeePanel.PANEL_HEIGHT * (len + 2) + mainFrame.getButtonComputeSalaryRelease().getPreferredSize().height));
+        mainFrame.getPanelComputeSalaryEmployeeContainer().setPreferredSize(new Dimension(ComputeSalaryEmployeePanel.PANEL_WIDTH, ComputeSalaryEmployeePanel.PANEL_WIDTH * (len + 1)));
         
         if(!employees.isEmpty()){
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
