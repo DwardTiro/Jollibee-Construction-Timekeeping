@@ -6,11 +6,7 @@ import java.awt.Toolkit;
 public class MainFrame extends javax.swing.JFrame {
 
     private static final MainFrame mainFrame = new MainFrame();
-    private static final int SPACE_ABOVE = 60;
-
-    public static int getSPACE_ABOVE() {
-        return SPACE_ABOVE;
-    }
+    public static final int SPACE_ABOVE = 60;
     
     private MainFrame() {
         

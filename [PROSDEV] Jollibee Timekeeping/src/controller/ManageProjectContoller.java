@@ -91,7 +91,7 @@ public class ManageProjectContoller implements Listen, PanelChanger{
         mainFrame.getPanelManageProjectContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelManageProjectContainer().getLayout();
         layout.setRows(len);
-        mainFrame.getManageProjectPanel().setPreferredSize(new Dimension(mainFrame.getManageProjectPanel().getPreferredSize().width, MainFrame.getSPACE_ABOVE() + mainFrame.getLabelManageProject().getPreferredSize().height + ManageProjectListItemPanel.PANEL_HEIGHT * len));
+        mainFrame.getManageProjectPanel().setPreferredSize(new Dimension(mainFrame.getManageProjectPanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelManageProject().getPreferredSize().height + ManageProjectListItemPanel.PANEL_HEIGHT * len));
         //mainFrame.getPanelManageProjectContainer().setPreferredSize(new Dimension(ManageProjectItemListPanel.PANEL_WIDTH, ManageProjectItemListPanel.PANEL_HEIGHT * len));
         
         if(!projects.isEmpty()){
