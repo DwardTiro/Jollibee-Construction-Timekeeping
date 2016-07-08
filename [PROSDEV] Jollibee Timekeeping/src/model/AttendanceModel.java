@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,6 +15,36 @@ public class AttendanceModel {
     private final int year;
     private final Time timeIn;
     private final Time timeOut;
+    
+    private int entry_num;
+    private int emp_id;
+    private double salary;
+    private int paid;
+    private int leave;
+    private Date date;
+    
+    private static final String[] column_name = { "entry_num", "emp_id","date",
+        "time_in", "time_out", "compute_salary" ,"paid","leave"};
+    
+    
+    
+    public AttendanceModel(int entry_num,int emp_id,Date date, Time timeIn,Time timeOut, double salary, int paid, int leave){
+        this.entry_num = entry_num;
+        this.emp_id = emp_id;
+        this.salary = salary;
+        this.paid = paid;
+        this.leave = leave;
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+        this.date = date;
+        Calendar cal =  Calendar.getInstance();
+        cal.setTime(date);
+       
+        this.month = 
+        this.day = cal.get(Calendar.DAY_OF_MONTH);
+        this.year = cal.get(Calendar.YEAR);
+    }
+    
 
     public AttendanceModel(int month, int day, int year, Time timeIn, Time timeOut) {
         this.month = month;
@@ -21,6 +52,7 @@ public class AttendanceModel {
         this.year = year;
         this.timeIn = timeIn;
         this.timeOut = timeOut;
+        this.entry_num = -1;
     }
 
     public int getMonth() {
@@ -59,7 +91,7 @@ public class AttendanceModel {
             
             //long hours = TimeUnit.MILLISECONDS.toHours(diff);
       
-            Double salary = getSalary(id) * (hour2-hour1);
+            Double salary = getSalaryOfEmp(id) * (hour2-hour1);
             
             System.out.println("Salary is :"+ salary +" hour is "+ (hour2 - hour1));
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
@@ -73,7 +105,7 @@ public class AttendanceModel {
             
     }
 
-    public static double getSalary(int id) throws SQLException {
+    public static double getSalaryOfEmp(int id) throws SQLException {
         double cSalary;
         PreparedStatement ps = DbConnection.getConnection().prepareStatement("select id,salary from employee where id = ?");
         ps.setInt(1, id);
@@ -83,5 +115,34 @@ public class AttendanceModel {
         
         return cSalary;
     }
-
+    
+    public static ArrayList<AttendanceModel> getUnpaid() throws SQLException{
+        ArrayList<AttendanceModel> list = new ArrayList<>();
+        String query = "select entry_num, emp_id,`date`, time_in, time_out, compute_salary\n" +
+                        "paid,`leave` from attendance where paid = 0";    
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        // private final String[] column_name = { "entry_num", "emp_id","date",
+        // "time_in", "time_out", "compute_salary" ,"paid","leave"};
+        
+        while(rs.next()){
+            list.add(new AttendanceModel(rs.getInt(column_name[0]), rs.getInt(column_name[1]),
+            rs.getDate(column_name[2]), rs.getTime(column_name[3]),rs.getTime(column_name[4]),
+            rs.getDouble(column_name[5]),rs.getInt(column_name[6]),rs.getInt(column_name[7])));
+        }
+        
+        return list;
+    }
+    
+    public void setPaid() throws SQLException{
+        
+        String sql = "UPDATE `attendance` SET `paid`='1' WHERE `entry_num`= ?";
+        PreparedStatement ps = DbConnection.getConnection().prepareCall(sql);
+        ps.setInt(1, this.entry_num);
+        ps.executeUpdate(); 
+        
+    }
+    
+    
+   
 }
