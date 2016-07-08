@@ -49,13 +49,16 @@
     <Component class="javax.swing.JLabel" name="labelDay">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="18" style="1"/>
+          <Font name="Open Sans Light" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Day"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelProjectName">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Open Sans Light" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Project Name"/>
       </Properties>
     </Component>

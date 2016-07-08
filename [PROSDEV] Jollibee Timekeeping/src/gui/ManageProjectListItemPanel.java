@@ -28,12 +28,15 @@ public class ManageProjectListItemPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(224, 224, 224)));
+        setPreferredSize(new java.awt.Dimension(600, 100));
 
-        labelProjectName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelProjectName.setFont(new java.awt.Font("Open Sans Light", 1, 18)); // NOI18N
         labelProjectName.setText("Project Name");
 
+        labelDateStarted.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelDateStarted.setText("Date Started: ");
 
+        labelDateDue.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelDateDue.setText("Date Due: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -53,14 +56,14 @@ public class ManageProjectListItemPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelProjectName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelDateStarted)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelDateDue)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
     }// </editor-fold>//GEN-END:initComponents
 

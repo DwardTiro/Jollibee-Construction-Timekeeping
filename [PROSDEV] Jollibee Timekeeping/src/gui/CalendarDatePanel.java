@@ -110,9 +110,10 @@ public class CalendarDatePanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        labelDay.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelDay.setFont(new java.awt.Font("Open Sans Light", 1, 18)); // NOI18N
         labelDay.setText("Day");
 
+        labelProjectName.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelProjectName.setText("Project Name");
 
         panelAttendanceStatus.setBackground(new java.awt.Color(0, 255, 0));

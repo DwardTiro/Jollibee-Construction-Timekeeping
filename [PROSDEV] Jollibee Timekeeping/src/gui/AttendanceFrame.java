@@ -123,18 +123,27 @@ public class AttendanceFrame extends javax.swing.JFrame {
 
         panelMain.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelAttendance.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelAttendance.setFont(new java.awt.Font("Open Sans Light", 1, 18)); // NOI18N
+        labelAttendance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelAttendance.setText("Attendance");
+        labelAttendance.setOpaque(true);
 
+        labelTimeIn.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
         labelTimeIn.setText("Time in:");
 
+        labelTimeOut.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
         labelTimeOut.setText("Time out:");
 
+        spinnerTimeIn.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+
+        spinnerTimeOut.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+
         buttonSubmit.setBackground(new java.awt.Color(231, 28, 35));
-        buttonSubmit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        buttonSubmit.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
         buttonSubmit.setForeground(new java.awt.Color(255, 255, 255));
         buttonSubmit.setText("Submit");
 
+        isLeave.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
         isLeave.setText("Leave(?)");
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
@@ -142,23 +151,22 @@ public class AttendanceFrame extends javax.swing.JFrame {
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAttendance)
-                    .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(panelMainLayout.createSequentialGroup()
-                            .addComponent(isLeave)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonSubmit))
-                        .addGroup(panelMainLayout.createSequentialGroup()
-                            .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelTimeIn)
-                                .addComponent(labelTimeOut))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(spinnerTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(spinnerTimeIn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(panelMainLayout.createSequentialGroup()
+                        .addComponent(isLeave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSubmit))
+                    .addGroup(panelMainLayout.createSequentialGroup()
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTimeIn)
+                            .addComponent(labelTimeOut))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spinnerTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinnerTimeIn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(labelAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +185,7 @@ public class AttendanceFrame extends javax.swing.JFrame {
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonSubmit)
                     .addComponent(isLeave))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -23,8 +23,8 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     private final MainFrame mainFrame;
     private final CalendarModel calendarModel;
     
-    private final String MANAGE_EMPLOYEE_STRING = "Manage Employee";
-    private final String MANAGE_EMPLOYEE_NEGATIVE_STRING = "No Employee to Manage for ";
+    private final String MANAGE_EMPLOYEE_STRING = "MANAGE EMPLOYEE";
+    private final String MANAGE_EMPLOYEE_NEGATIVE_STRING = "NO EMPLOYEE TO MANAGE FOR ";
     private final String ATTENDANCE_STRING = "Attendance for ";
     private final String PANEL_NAME = "manageEmployeeScrollPane";
     
@@ -70,17 +70,17 @@ public class ManageEmployeeController implements Listen, PanelChanger {
                         showEmployeesInProject(-1);
                     
                     if(!employees.isEmpty() && index < projects.size()){
-                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " for " + projects.get(index).getName());
+                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " FOR " + projects.get(index).getName().toUpperCase());
                         mainFrame.getButtonManageEmployeeSubmit().setVisible(true);
                         mainFrame.getButtonManageEmployeeSubmit().setEnabled(true);
                     }
                     else if(index == projects.size()){
-                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " for All Projects");
+                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " FOR ALL PROJECTS");
                         mainFrame.getButtonManageEmployeeSubmit().setVisible(true);
                         mainFrame.getButtonManageEmployeeSubmit().setEnabled(true);
                     }
                     else if(employees.isEmpty()){
-                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_NEGATIVE_STRING + projects.get(index).getName());
+                        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_NEGATIVE_STRING + projects.get(index).getName().toUpperCase());
                         mainFrame.getButtonManageEmployeeSubmit().setVisible(false);
                         mainFrame.getButtonManageEmployeeSubmit().setEnabled(false);
                     }
@@ -154,7 +154,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         mainFrame.getPanelManageEmployeeContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
         layout.setRows(len);
-        mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, (int)mainFrame.getLabelManageEmployee().getAlignmentY() + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
+        mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
         
         if(!employees.isEmpty()){
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));

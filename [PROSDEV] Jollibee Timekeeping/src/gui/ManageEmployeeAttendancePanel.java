@@ -42,15 +42,22 @@ public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(500, 120));
         setMinimumSize(new java.awt.Dimension(500, 120));
 
-        labelName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelName.setFont(new java.awt.Font("Open Sans Light", 1, 18)); // NOI18N
         labelName.setText("LastName, FirstName Middle Name");
 
+        labelIDNumber.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelIDNumber.setForeground(new java.awt.Color(153, 153, 153));
         labelIDNumber.setText("ID Number");
 
+        labelTimeIn.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelTimeIn.setText("Time In: ");
 
+        spinnerTimeIn.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+
+        labelTimeOut.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelTimeOut.setText("Time Out: ");
+
+        spinnerTimeOut.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,18 +65,20 @@ public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelName)
-                    .addComponent(labelIDNumber)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelTimeIn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spinnerTimeIn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelIDNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(labelTimeIn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spinnerTimeIn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(29, 29, 29)
                         .addComponent(labelTimeOut)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spinnerTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +93,7 @@ public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
                     .addComponent(spinnerTimeIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTimeOut)
                     .addComponent(spinnerTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
