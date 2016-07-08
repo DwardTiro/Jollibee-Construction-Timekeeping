@@ -20,8 +20,8 @@ public class HeaderController implements Listen {
 
     private final String SEARCH_FIELD_DEFAULT = "Search";
     private final String HOME_PAGE = "add_time";
-    private final String SEARCH_RESULT_LABEL_POSITIVE = "Search Results for ";
-    private final String SEARCH_RESULT_LABEL_NEGATIVE = "No Search Result for ";
+    private final String SEARCH_RESULT_LABEL_POSITIVE = "SEARCH RESULTS FOR ";
+    private final String SEARCH_RESULT_LABEL_NEGATIVE = "NO SEARCH RESULT FOR ";
     private static final HeaderController controller = new HeaderController();
 
     private final MainFrame mainFrame;
@@ -77,7 +77,7 @@ public class HeaderController implements Listen {
                                 mainFrame.getPanelSearchResultsContainer().setPreferredSize(new Dimension(0,0));
                                 mainFrame.getPanelSearchResultsContainer().repaint();
                                 mainFrame.getPanelSearchResultsContainer().revalidate();
-                                mainFrame.getLabelSearchResults().setText(SEARCH_RESULT_LABEL_NEGATIVE + mainFrame.getMainTextFieldSearch().getText());
+                                mainFrame.getLabelSearchResults().setText(SEARCH_RESULT_LABEL_NEGATIVE + mainFrame.getMainTextFieldSearch().getText().toUpperCase());
                             } else {
                                 System.out.println("U got results");
                                 //SearchResultController.getInstance().setModel(empList);
@@ -86,9 +86,9 @@ public class HeaderController implements Listen {
                                 ArrayList<SearchResultsPanel> resultsPanels = new ArrayList<>();
                                 
                                 mainFrame.getPanelSearchResultsContainer().removeAll();
-                                mainFrame.getLabelSearchResults().setText(SEARCH_RESULT_LABEL_POSITIVE + mainFrame.getMainTextFieldSearch().getText());
+                                mainFrame.getLabelSearchResults().setText(SEARCH_RESULT_LABEL_POSITIVE + mainFrame.getMainTextFieldSearch().getText().toUpperCase());
                                 mainFrame.getPanelSearchResultsContainer().setPreferredSize(new Dimension(SearchResultsPanel.PANEL_WIDTH, SearchResultsPanel.PANEL_HEIGHT * empList.size()));
-                                mainFrame.getSearchResultsPanel().setPreferredSize(new Dimension(mainFrame.getSearchResultsPanel().getPreferredSize().width, (int)mainFrame.getLabelSearchResults().getAlignmentY() + mainFrame.getLabelSearchResults().getPreferredSize().height + SearchResultsPanel.PANEL_HEIGHT * empList.size()));
+                                mainFrame.getSearchResultsPanel().setPreferredSize(new Dimension(mainFrame.getSearchResultsPanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelSearchResults().getPreferredSize().height + SearchResultsPanel.PANEL_HEIGHT * (empList.size())));
                                 
                                 for(int i = 0; i < empList.size(); i++){
                                     Employee e = empList.get(i);

@@ -22,9 +22,10 @@ public class SearchResultsPanel extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(224, 224, 224)));
         setMaximumSize(new java.awt.Dimension(770, 80));
 
-        labelName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelName.setFont(new java.awt.Font("Open Sans Light", 1, 18)); // NOI18N
         labelName.setText("LastName, FirstName MiddleName");
 
+        labelIDNumber.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelIDNumber.setForeground(new java.awt.Color(153, 153, 153));
         labelIDNumber.setText("ID Number");
 
@@ -46,7 +47,7 @@ public class SearchResultsPanel extends javax.swing.JPanel {
                 .addComponent(labelName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelIDNumber)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

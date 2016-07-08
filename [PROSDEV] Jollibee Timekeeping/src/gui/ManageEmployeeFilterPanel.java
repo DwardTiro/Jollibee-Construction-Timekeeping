@@ -25,6 +25,7 @@ public class ManageEmployeeFilterPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(250, 28));
         setMinimumSize(new java.awt.Dimension(0, 0));
 
+        labelProjectName.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelProjectName.setText("Project Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -23,9 +23,11 @@ public class ViewProjectMemberListItemPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(224, 224, 224)));
 
-        labelName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelName.setFont(new java.awt.Font("Open Sans Light", 1, 18)); // NOI18N
         labelName.setText("LastName, FirstName MiddleName");
 
+        labelIDNumber.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        labelIDNumber.setForeground(new java.awt.Color(153, 153, 153));
         labelIDNumber.setText("ID Number");
 
         labelRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Remove Icon.png"))); // NOI18N
@@ -36,10 +38,10 @@ public class ViewProjectMemberListItemPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelName)
-                    .addComponent(labelIDNumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelIDNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelName, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(labelRemove)
                 .addContainerGap())
         );
@@ -52,7 +54,7 @@ public class ViewProjectMemberListItemPanel extends javax.swing.JPanel {
                     .addComponent(labelRemove))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelIDNumber)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
