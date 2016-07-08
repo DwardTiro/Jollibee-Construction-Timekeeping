@@ -2,6 +2,7 @@
 package controller;
 
 import gui.MainFrame;
+import gui.ManageProjectAddEmployeeListItemPanel;
 import gui.ViewProjectMemberListItemPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -23,11 +24,15 @@ public class ViewProjectController implements Listen, PanelChanger{
     private final MainFrame mainFrame;
     
     private final String PANEL_NAME = "viewProjectScrollPane";
+    private final String ADD_EMPLOYEE_STRING = "Add Employee to ";
     
     private Project project;
     
     private ArrayList<Employee> projectMembers;
     private ArrayList<ViewProjectMemberListItemPanel> panelMembers;
+    
+    private ArrayList<Employee> unassignedEmployees;
+    private ArrayList<ManageProjectAddEmployeeListItemPanel> panelUnassigned;
     
     private ViewProjectController(){
         mainFrame = MainFrame.getInstance();
@@ -35,6 +40,9 @@ public class ViewProjectController implements Listen, PanelChanger{
         project = null;
         projectMembers = new ArrayList<>();
         panelMembers = new ArrayList<>();
+        
+        unassignedEmployees = new ArrayList<>();
+        panelUnassigned = new ArrayList<>();
     }
     
     public static ViewProjectController getInstance(){
@@ -107,6 +115,70 @@ public class ViewProjectController implements Listen, PanelChanger{
             });
         }
         
+        len = unassignedEmployees.size();
+        for(int i = 0; i < len; i++){
+            int index = i;
+            JLabel labelName = panelUnassigned.get(index).getLabelName();
+            JLabel labelAdd = panelUnassigned.get(index).getLabelAdd();
+            Employee employee = unassignedEmployees.get(index);
+            
+            labelName.addMouseListener(new MouseListener(){
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    ViewEmployeeController.getInstance().setViewID(employee.getID());
+                    ViewEmployeeController.getInstance().showPanel();
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {}
+
+                @Override
+                public void mouseReleased(MouseEvent e) {}
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    labelName.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    labelName.setForeground(new Color(231,28,35));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    labelName.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    labelName.setForeground(new Color(51,51,51));
+                }
+                
+            });
+            
+            labelAdd.addMouseListener(new MouseListener(){
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {}
+
+                @Override
+                public void mouseReleased(MouseEvent e) {}
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    labelAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    labelAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add Icon Hover.png")));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    labelAdd.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    labelAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add Icon.png")));
+                }
+                
+            });
+            
+        }
+        
     }
 
     @Override
@@ -115,12 +187,15 @@ public class ViewProjectController implements Listen, PanelChanger{
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
         
         mainFrame.getLabelViewProjectName().setText(project.getName());
+        mainFrame.getLabelViewProjectAddEmployee().setText(ADD_EMPLOYEE_STRING + project.getName());
         
         String[] presetDateStarted = project.getDateStarted().toString().split(" ");
         String[] presetDateDue = project.getDateDue().toString().split(" ");
         mainFrame.getLabelViewProjectDuration().setText(monthToString(CalendarModel.getInstance().getEquivalentMonth(presetDateStarted[1])) + " " + presetDateStarted[2] + ", " + presetDateStarted[5] + " - " + monthToString(CalendarModel.getInstance().getEquivalentMonth(presetDateDue[1])) + " " + presetDateDue[2] + ", " + presetDateDue[5]);
     
         refreshEmployeeList();
+        refreshUnassignedEmployeeList();
+        
         addListeners();
     }
     
@@ -132,12 +207,11 @@ public class ViewProjectController implements Listen, PanelChanger{
         mainFrame.getPanelViewProjectMembersContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelViewProjectMembersContainer().getLayout();
         layout.setRows(len);
-        mainFrame.getViewProjectPanel().setPreferredSize(new Dimension(mainFrame.getViewProjectPanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelViewProjectName().getPreferredSize().height + mainFrame.getLabelViewProjectDuration().getPreferredSize().height + mainFrame.getLabelViewProjectMembers().getPreferredSize().height + ViewProjectMemberListItemPanel.PANEL_HEIGHT * (len)));
+        mainFrame.getViewProjectPanel().setPreferredSize(new Dimension(mainFrame.getViewProjectPanel().getPreferredSize().width, MainFrame.getSPACE_ABOVE() + mainFrame.getLabelViewProjectName().getPreferredSize().height + mainFrame.getLabelViewProjectDuration().getPreferredSize().height + mainFrame.getLabelViewProjectMembers().getPreferredSize().height + ViewProjectMemberListItemPanel.PANEL_HEIGHT * (len)));
         
         if(!projectMembers.isEmpty()){
             for(int i = 0; i < len; i++){
                 Employee e = projectMembers.get(i);
-                System.out.println(i);
                 ViewProjectMemberListItemPanel panel = new ViewProjectMemberListItemPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
                 panelMembers.add(panel);
                 mainFrame.getPanelViewProjectMembersContainer().add(panel);
@@ -146,6 +220,28 @@ public class ViewProjectController implements Listen, PanelChanger{
         
         mainFrame.getPanelViewProjectMembersContainer().repaint();
         mainFrame.getPanelViewProjectMembersContainer().revalidate();
+    }
+    
+    public void refreshUnassignedEmployeeList(){
+        panelUnassigned = new ArrayList<>();
+        
+        unassignedEmployees = Employee.getEmployeeNotInProject();
+        int len = unassignedEmployees.size();
+        mainFrame.getPanelViewProjectAddEmployeeContainer().removeAll();
+        //GridLayout layout = (GridLayout)mainFrame.getPanelViewProjectAddEmployeeContainer().getLayout();
+        //layout.setRows(len);
+        mainFrame.getPanelViewProjectAddEmployeeContainer().setPreferredSize(new Dimension(ManageProjectAddEmployeeListItemPanel.PANEL_WIDTH, ManageProjectAddEmployeeListItemPanel.PANEL_HEIGHT * len));
+        if(!unassignedEmployees.isEmpty()){
+            for(int  i = 0; i < len; i++){
+                Employee e = unassignedEmployees.get(i);
+                ManageProjectAddEmployeeListItemPanel panel = new ManageProjectAddEmployeeListItemPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname());
+                panelUnassigned.add(panel);
+                mainFrame.getPanelViewProjectAddEmployeeContainer().add(panel);
+            }
+        }
+        
+        mainFrame.getPanelViewProjectAddEmployeeContainer().repaint();
+        mainFrame.getPanelViewProjectAddEmployeeContainer().revalidate();
     }
     
     public void setProject(Project project){

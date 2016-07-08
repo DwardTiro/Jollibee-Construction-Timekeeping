@@ -139,14 +139,12 @@ public class Employee {
         return employees;
     }
 
-    public static ArrayList<Employee> getEmployeeNotInProject(int projectID) {
+    public static ArrayList<Employee> getEmployeeNotInProject() {
         ArrayList<Employee> employees = new ArrayList<>();
 
-        String mysqlString = "select * from employee where project_id != ? order by last_name";
+        String mysqlString = "select * from employee where project_id is null order by last_name";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
-
-            ps.setInt(1, projectID);
 
             ResultSet rs = ps.executeQuery();
 
