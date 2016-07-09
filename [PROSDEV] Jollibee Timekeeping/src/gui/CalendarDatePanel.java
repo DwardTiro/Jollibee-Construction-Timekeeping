@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import model.AttendanceModel;
+import model.CalendarModel;
 
 public class CalendarDatePanel extends javax.swing.JPanel {
 
@@ -43,7 +44,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
 
         if (AttendanceModel.isPaid(emp_id, month, day, year)) {
             addListenersPaid();
-        } else {
+        } else if(!AttendanceModel.isPaid(emp_id, month, day, year) && year <= CalendarModel.getInstance().getYearToday() && month <= CalendarModel.getInstance().getMonthToday() && day <= CalendarModel.getInstance().getDayToday()){
             addListeners();
         }
 
