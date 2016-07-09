@@ -47,29 +47,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             addListeners();
         }
 
-        switch (attendanceStatus) {
-            case ATTENDANCE_STATUS_COMPLETE:
-                panelAttendanceStatus.setBackground(COLOR_COMPLETE);
-                break;
-            case ATTENDANCE_STATUS_UNDERTIME:
-                panelAttendanceStatus.setBackground(COLOR_UNDERTIME);
-                break;
-            case ATTENDANCE_STATUS_OVERTIME:
-                panelAttendanceStatus.setBackground(COLOR_OVERTIME);
-                break;
-            case ATTENDANCE_STATUS_ABSENT:
-                panelAttendanceStatus.setBackground(COLOR_ABSENT);
-                break;
-            case ATTENDANCE_STATUS_LEAVE:
-                panelAttendanceStatus.setBackground(COLOR_LEAVE);
-                break;
-            case ATTENDANCE_STATUS_NO_PROJ:
-                panelAttendanceStatus.setBackground(COLOR_NO_PROJ);
-                break;
-            default:
-                panelAttendanceStatus.setBackground(COLOR_DEFAULT);
-                panelAttendanceStatus.setOpaque(false);
-        }
+        setStatus(attendanceStatus);
     }
 
     public CalendarDatePanel(int day, int month, int year, String projectName, int attendanceStatus) {
@@ -82,33 +60,22 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         labelDay.setText(String.valueOf(day));
         labelProjectName.setText(projectName);
 
+        setStatus(attendanceStatus);
+        
         addListeners();
-
-        switch (attendanceStatus) {
-            case ATTENDANCE_STATUS_COMPLETE:
-                panelAttendanceStatus.setBackground(COLOR_COMPLETE);
-                break;
-            case ATTENDANCE_STATUS_UNDERTIME:
-                panelAttendanceStatus.setBackground(COLOR_UNDERTIME);
-                break;
-            case ATTENDANCE_STATUS_OVERTIME:
-                panelAttendanceStatus.setBackground(COLOR_OVERTIME);
-                break;
-            case ATTENDANCE_STATUS_ABSENT:
-                panelAttendanceStatus.setBackground(COLOR_ABSENT);
-                break;
-            case ATTENDANCE_STATUS_LEAVE:
-                panelAttendanceStatus.setBackground(COLOR_LEAVE);
-                break;
-            case ATTENDANCE_STATUS_NO_PROJ:
-                panelAttendanceStatus.setBackground(COLOR_NO_PROJ);
-                break;
-            default:
-                panelAttendanceStatus.setBackground(COLOR_DEFAULT);
-                panelAttendanceStatus.setOpaque(false);
-        }
     }
 
+    public CalendarDatePanel(int day, int month, int year, String projectName) {
+        initComponents();
+
+        this.day = day;
+        this.month = month;
+        this.year = year;
+
+        labelDay.setText(String.valueOf(day));
+        labelProjectName.setText(projectName);
+    }
+    
     /*public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
      initComponents();
         
@@ -127,6 +94,33 @@ public class CalendarDatePanel extends javax.swing.JPanel {
      }
      }
      */
+    
+    public void setStatus(int attendanceStatus){
+        switch (attendanceStatus) {
+            case ATTENDANCE_STATUS_COMPLETE:
+                panelAttendanceStatus.setBackground(COLOR_COMPLETE);
+                break;
+            case ATTENDANCE_STATUS_UNDERTIME:
+                panelAttendanceStatus.setBackground(COLOR_UNDERTIME);
+                break;
+            case ATTENDANCE_STATUS_OVERTIME:
+                panelAttendanceStatus.setBackground(COLOR_OVERTIME);
+                break;
+            case ATTENDANCE_STATUS_ABSENT:
+                panelAttendanceStatus.setBackground(COLOR_ABSENT);
+                break;
+            case ATTENDANCE_STATUS_LEAVE:
+                panelAttendanceStatus.setBackground(COLOR_LEAVE);
+                break;
+            case ATTENDANCE_STATUS_NO_PROJ:
+                panelAttendanceStatus.setBackground(COLOR_NO_PROJ);
+                break;
+            default:
+                panelAttendanceStatus.setBackground(COLOR_DEFAULT);
+                panelAttendanceStatus.setOpaque(false);
+        }
+    }
+    
     private void addListeners() {
         this.addMouseListener(new MouseListener() {
 
@@ -188,6 +182,10 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         });
     }
 
+    public void setProjectName(String projectName){
+        labelProjectName.setText(projectName);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -201,7 +199,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         labelDay.setFont(new java.awt.Font("Open Sans Light", 1, 18)); // NOI18N
         labelDay.setText("Day");
 
-        labelProjectName.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        labelProjectName.setFont(new java.awt.Font("Open Sans Light", 1, 10)); // NOI18N
         labelProjectName.setText("Project Name");
 
         panelAttendanceStatus.setBackground(new java.awt.Color(0, 255, 0));
