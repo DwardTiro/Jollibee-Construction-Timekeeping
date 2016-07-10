@@ -1527,4 +1527,10 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel getWelcomePanel() {
         return welcomePanel;
     }
+    
+    public javax.swing.JButton getReleaseSalaryButton(){
+        return buttonComputeSalaryRelease;
+    }
+    
+    
 }

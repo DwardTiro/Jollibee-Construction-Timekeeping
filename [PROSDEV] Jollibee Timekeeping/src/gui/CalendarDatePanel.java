@@ -5,6 +5,8 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import model.AttendanceModel;
 import model.CalendarModel;
 
@@ -31,23 +33,41 @@ public class CalendarDatePanel extends javax.swing.JPanel {
     private final int day;
     private final int month;
     private final int year;
+    private int emp_id;
 
     public CalendarDatePanel(int emp_id, int day, int month, int year, String projectName, int attendanceStatus) throws SQLException {
         initComponents();
-
+        this.emp_id = emp_id;
         this.day = day;
         this.month = month;
         this.year = year;
 
         labelDay.setText(String.valueOf(day));
         labelProjectName.setText(projectName);
+        /*
+         if (AttendanceModel.isPaid(emp_id, month, day, year)) {
+         addListenersPaid();
+         } else if(!AttendanceModel.isPaid(emp_id, month, day, year) && year <= CalendarModel.getInstance().getYearToday() && month <= CalendarModel.getInstance().getMonthToday() && day <= CalendarModel.getInstance().getDayToday()){
+         addListeners();
+         }
+         */
+        Calendar c = Calendar.getInstance();
+        c.set(year, month - 1, day);
+        Date date_clicked = c.getTime();
 
-        if (AttendanceModel.isPaid(emp_id, month, day, year)) {
-            addListenersPaid();
-        } else if(!AttendanceModel.isPaid(emp_id, month, day, year) && year <= CalendarModel.getInstance().getYearToday() && month <= CalendarModel.getInstance().getMonthToday() && day <= CalendarModel.getInstance().getDayToday()){
-            addListeners();
+        Date date_today = new Date();
+        int isPaid = AttendanceModel.isPaid(emp_id, month, day, year);
+
+        if (!date_clicked.after(date_today)) {
+            if (isPaid == -1) {
+                addListeners();
+            } else if (isPaid == -2) {
+                addListenersPaid();
+            } else{
+                addListenersEdit(isPaid);
+            }
         }
-
+        
         setStatus(attendanceStatus);
     }
 
@@ -62,7 +82,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         labelProjectName.setText(projectName);
 
         setStatus(attendanceStatus);
-        
+
         addListeners();
     }
 
@@ -76,7 +96,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         labelDay.setText(String.valueOf(day));
         labelProjectName.setText(projectName);
     }
-    
+
     /*public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
      initComponents();
         
@@ -95,8 +115,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
      }
      }
      */
-    
-    public void setStatus(int attendanceStatus){
+    public void setStatus(int attendanceStatus) {
         switch (attendanceStatus) {
             case ATTENDANCE_STATUS_COMPLETE:
                 panelAttendanceStatus.setBackground(COLOR_COMPLETE);
@@ -121,13 +140,43 @@ public class CalendarDatePanel extends javax.swing.JPanel {
                 panelAttendanceStatus.setOpaque(false);
         }
     }
-    
+
     private void addListeners() {
         this.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
+                addEditHours.setVisible(true);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+
+        });
+    }
+
+    private void addListenersEdit(int the_emp) {
+        this.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                AttendanceFrame addEditHours = new AttendanceFrame(day, month, year,the_emp);
                 addEditHours.setVisible(true);
             }
 
@@ -183,10 +232,41 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         });
     }
 
-    public void setProjectName(String projectName){
+    private void addListenersEdit() {
+        this.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                AttendanceFrame addEditHours = new AttendanceFrame(day, month, year, 1);
+                addEditHours.setVisible(true);
+                //PopBox.infoBox("Already paid cant edit", "Error");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+
+        });
+    }
+
+    public void setProjectName(String projectName) {
         labelProjectName.setText(projectName);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

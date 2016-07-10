@@ -23,13 +23,24 @@ public class Employee {
     private final String lname;
     private final String mname;
     private final double salary;
-
+    
+    private ArrayList<AttendanceModel> attendance;
+    
     public Employee(int id, String fname, String lname, String mname, double salary) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.mname = mname;
         this.salary = salary;
+        attendance = null;
+    }
+    
+    public void setAttendance(ArrayList<AttendanceModel> list){
+        this.attendance = list;
+    }
+    
+    public ArrayList<AttendanceModel> getAttendance(){
+        return attendance;
     }
     
     public void setProject() throws SQLException{
@@ -149,7 +160,7 @@ public class Employee {
 
         return employees;
     }
-
+    
     public static ArrayList<Employee> getEmployeeByProject(int projectID) {
         ArrayList<Employee> employees = new ArrayList<>();
 
@@ -249,4 +260,17 @@ public class Employee {
     public String toString() {
         return this.lname + ", " + this.fname;
     }
+    
+    
+    public Double getTotalSalary(){
+        double cSalary = 0;
+        if(attendance != null ){
+            for(AttendanceModel am: attendance ){
+                cSalary = cSalary + am.getSalary();
+            }
+        }
+        return cSalary;
+    }
+    
+    
 }

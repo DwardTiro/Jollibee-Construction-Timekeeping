@@ -9,11 +9,20 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
+import model.AttendanceModel;
 import model.Employee;
+import model.Payroll;
 import model.Project;
 
 public class ComputeSalaryController implements Listen, PanelChanger{
@@ -27,6 +36,7 @@ public class ComputeSalaryController implements Listen, PanelChanger{
     private final String MANAGE_EMPLOYEE_NEGATIVE_STRING = "NOTHING TO COMPUTE FOR ";
     
     private ArrayList<Employee> employees;
+    private Payroll payroll;
     private ArrayList<ComputeSalaryEmployeePanel> employeePanels;
     
     private ArrayList<Project> projects;
@@ -53,6 +63,30 @@ public class ComputeSalaryController implements Listen, PanelChanger{
     @Override
     public void addListeners() {
         int len = projectsPanels.size();
+        
+        MainFrame.getInstance().getReleaseSalaryButton().addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    
+                
+                if(!employees.isEmpty()){
+                    try {
+                        payroll.savePayroll();
+                        employees = Employee.getAllEmployees();
+                        projects = Project.getProjectList();
+                        refreshEmployeeList();
+                        refreshProjectList();
+                        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ComputeSalaryController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+           
+        });
+        
+        
         for(int i = 0; i < len; i++){
             int index = i;
             JLabel label = projectsPanels.get(i).getLabelProjectName();
@@ -104,6 +138,9 @@ public class ComputeSalaryController implements Listen, PanelChanger{
             
             });
         }
+        
+        
+        
     }
 
     @Override
@@ -119,7 +156,36 @@ public class ComputeSalaryController implements Listen, PanelChanger{
         addListeners();
     }
     
+    
+    
+    private void removeNoSalary() throws SQLException{
+         ArrayList<AttendanceModel> attendance;
+         Iterator<Employee> iterator = employees.iterator();
+         Employee emp;
+         while(iterator.hasNext()){
+             emp = iterator.next();
+             attendance = AttendanceModel.getUnpaidEmp(emp.getID());
+             if(attendance.isEmpty()){
+                 iterator.remove();
+             }else{
+                 emp.setAttendance(attendance);
+             }
+         }
+         
+    }
+    
+    
     private void refreshEmployeeList(){
+        
+        try {
+            //filter employee list those who have salaries.
+            removeNoSalary();
+            payroll = Payroll.computeSalary(employees);
+        } catch (SQLException ex) {
+            Logger.getLogger(ComputeSalaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         employeePanels = new ArrayList<>();
         int len = employees.size();
         
@@ -133,11 +199,12 @@ public class ComputeSalaryController implements Listen, PanelChanger{
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
             for(int i = 0; i < len; i++){
                 Employee e = employees.get(i);
-                ComputeSalaryEmployeePanel panel = new ComputeSalaryEmployeePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
+                ComputeSalaryEmployeePanel panel = new ComputeSalaryEmployeePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()),"Project Name", employees.get(i).getTotalSalary()+"");
                 mainFrame.getPanelComputeSalaryEmployeeContainer().add(panel);
                 employeePanels.add(panel);
             }
         }
+        totalPanel.setTotal(payroll.getTotal()+"");
         mainFrame.getPanelComputeSalaryEmployeeContainer().add(totalPanel);
         
         mainFrame.getPanelComputeSalaryEmployeeContainer().repaint();
@@ -175,4 +242,11 @@ public class ComputeSalaryController implements Listen, PanelChanger{
             employees = Employee.getAllEmployees();
         refreshEmployeeList();
     }
+    
+    
+    
+    
+    
+    
+    
 }

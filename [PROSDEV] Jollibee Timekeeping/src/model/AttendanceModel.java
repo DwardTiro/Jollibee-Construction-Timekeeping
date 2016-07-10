@@ -7,6 +7,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AttendanceModel {
 
@@ -52,6 +54,10 @@ public class AttendanceModel {
         this.entry_num = -1;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
     public int getMonth() {
         return month;
     }
@@ -72,6 +78,46 @@ public class AttendanceModel {
         return timeOut;
     }
 
+    public static void editAttendance(int id, Date date, Date time_in, Date time_out, int leave,int entry_id) throws SQLException {
+        
+            System.out.println("WAT??");
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(time_in);
+            int hour1 = cal.get(Calendar.HOUR_OF_DAY);
+            cal.setTime(time_out);
+            int hour2 = cal.get(Calendar.HOUR_OF_DAY);
+
+            String mysqlstring = "UPDATE `attendance` SET `time_in`= ?, \n"
+                    + "`time_out`= ?, `compute_salary`= ?, `leave`= ? \n"
+                    + "WHERE `entry_num`= ? ";
+            System.out.println(mysqlstring);
+            System.out.println("Time in: " + time_in + ": " + "Time out: " + time_out);
+
+            //long hours = TimeUnit.MILLISECONDS.toHours(diff);
+            int totalHours = (hour2 - hour1);
+            int overTime = 0;
+            if (totalHours > 8) {
+                overTime = totalHours - 8;
+                totalHours = 8;
+            }
+
+            Double salary = (getSalaryOfEmp(id) * totalHours) + ((getSalaryOfEmp(id) + (getSalaryOfEmp(id) * 0.25)) * overTime);
+
+            System.out.println("Salary is :" + salary + " hour is " + (hour2 - hour1));
+            PreparedStatement ps;
+
+            ps = DbConnection.getConnection().prepareStatement(mysqlstring);
+            ps.setTime(1, new java.sql.Time(time_in.getTime()));
+            ps.setTime(2, new java.sql.Time(time_out.getTime()));
+            ps.setDouble(3, salary);
+            ps.setInt(4, leave);
+            ps.setInt(5, entry_id);
+            System.out.println(ps);
+            ps.executeUpdate();
+
+
+    }
+
     public static void saveAttendance(int id, Date date, Date time_in, Date time_out, int leave) throws SQLException {
 
         Calendar cal = Calendar.getInstance();
@@ -85,17 +131,16 @@ public class AttendanceModel {
         System.out.println(mysqlstring);
         System.out.println("Time in: " + time_in + ": " + "Time out: " + time_out);
 
-            //long hours = TimeUnit.MILLISECONDS.toHours(diff);
-        
+        //long hours = TimeUnit.MILLISECONDS.toHours(diff);
         int totalHours = (hour2 - hour1);
         int overTime = 0;
-        if(totalHours > 8){
-            overTime = totalHours -8;
+        if (totalHours > 8) {
+            overTime = totalHours - 8;
             totalHours = 8;
         }
-        
-        Double salary = (getSalaryOfEmp(id) *totalHours) + ((getSalaryOfEmp(id) + (getSalaryOfEmp(id)*0.25)) *overTime);
-        
+
+        Double salary = (getSalaryOfEmp(id) * totalHours) + ((getSalaryOfEmp(id) + (getSalaryOfEmp(id) * 0.25)) * overTime);
+
         System.out.println("Salary is :" + salary + " hour is " + (hour2 - hour1));
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
         ps.setInt(1, id);
@@ -146,11 +191,14 @@ public class AttendanceModel {
 
     }
 
-    public static boolean isPaid(int emp_id, int month, int day, int year) throws SQLException {
-        
-        boolean isPaid = false;
-        
-        String sql = "select emp_id, paid from attendance\n"
+    public static int isPaid(int emp_id, int month, int day, int year) throws SQLException {
+        //-2 if paid
+        //0 if not paid
+        // -1 if no entry
+
+        int isPaid = -1;
+
+        String sql = "select emp_id,entry_num, paid from attendance\n"
                 + "where emp_id = ? \n"
                 + "and month(date) = ? \n"
                 + "and day(date) = ? \n"
@@ -158,17 +206,50 @@ public class AttendanceModel {
 
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(sql);
         ps.setInt(1, emp_id);
-        ps.setInt(2,month);
-        ps.setInt(3,day);
-        ps.setInt(4,year);
+        ps.setInt(2, month);
+        ps.setInt(3, day);
+        ps.setInt(4, year);
         ResultSet rs = ps.executeQuery();
-        
-        if(rs.next()){
-            if(rs.getInt("paid") != 0){
-                isPaid = true;
+
+        if (rs.next()) {
+            isPaid = rs.getInt(2);
+            if (rs.getInt("paid") != 0) {
+                isPaid = -2;
             }
         }
+
         return isPaid;
+    }
+
+    public static ArrayList<AttendanceModel> getUnpaidEmp(int id) throws SQLException {
+
+        ArrayList<AttendanceModel> list = new ArrayList<>();
+        String sql = "select entry_num,emp_id,`date`, time_in , time_out, compute_salary, `paid`, `leave`\n"
+                + "from attendance\n"
+                + "where emp_id = ? \n"
+                + "and paid =0";
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            list.add(new AttendanceModel(rs.getInt(column_name[0]), rs.getInt(column_name[1]),
+                    rs.getDate(column_name[2]), rs.getTime(column_name[3]), rs.getTime(column_name[4]),
+                    rs.getDouble(column_name[5]), rs.getInt(column_name[6]), rs.getInt(column_name[7])));
+        }
+
+        return list;
+    }
+
+    public void savePayRollEntry(int payroll) throws SQLException {
+
+        String query = "INSERT INTO `payroll_entry` (`payroll_id`, `attendance_id`) VALUES ( ? , ? );";
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(query);
+        ps.setInt(1, payroll);
+        ps.setInt(2, this.entry_num);
+        this.setPaid();
+        ps.executeUpdate();
+
     }
 
 }

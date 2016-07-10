@@ -37,9 +37,24 @@ public class AttendanceFrame extends javax.swing.JFrame {
         spinnerTimeOut.setModel(model2);
         spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
     }
-    
-    
-    
+
+    public AttendanceFrame(int day, int month, int year, int the_emp) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+
+        initComponents();
+        addListener_employeeEdit(the_emp);
+        SpinnerDateModel model1 = new SpinnerDateModel();
+        model1.setCalendarField(Calendar.MINUTE);
+        spinnerTimeIn.setModel(model1);
+        spinnerTimeIn.setEditor(new JSpinner.DateEditor(spinnerTimeIn, "h:mm a"));
+
+        SpinnerDateModel model2 = new SpinnerDateModel();
+        model2.setCalendarField(Calendar.MINUTE);
+        spinnerTimeOut.setModel(model2);
+        spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
+    }
 
     public AttendanceFrame() {
         initComponents();
@@ -62,7 +77,7 @@ public class AttendanceFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-            //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
+                    //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
                     //Date time_in = new SimpleDateFormat("HH:mm").parse(spinnerTimeIn.getValue()));
 
                     System.out.println("Date passed to me " + day + " " + month + " " + year);
@@ -72,21 +87,20 @@ public class AttendanceFrame extends javax.swing.JFrame {
                     Date time_out = (Date) spinnerTimeOut.getValue();
                     Date date_today = new SimpleDateFormat("yyyy:MM:dd").parse(year + ":" + month + ":" + day);
                     int leave = 0;
-                    if(isLeave.isSelected()){
+                    if (isLeave.isSelected()) {
                         leave = 1;
                     }
-                         
-                    AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out,leave);
-                    
-                    
+
+                    AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out, leave);
+
                     close();
                 } catch (ParseException ex) {
                     //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
-                    MainFrame.getInstance().showError("Invalid Date","");
+                    MainFrame.getInstance().showError("Invalid Date", "");
                 } catch (SQLException ex) {
-                     PopBox.infoBox("Unable to add Attendance","Error");
+                    PopBox.infoBox("Unable to add Attendance", "Error");
                     //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }finally{
+                } finally {
                     ViewEmployeeController.getInstance().buildCalendar();
                     MainFrame.getInstance().getViewEmployeePanel().repaint();
                     MainFrame.getInstance().getViewEmployeePanel().revalidate();
@@ -99,11 +113,55 @@ public class AttendanceFrame extends javax.swing.JFrame {
     }
 
     
-    public void close(){
-        //super.dispose();
+    private void addListener_employeeEdit(int entry_id) {
+        
+        buttonSubmit.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    System.out.println("U edit here!!!");
+                    //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
+                    //Date time_in = new SimpleDateFormat("HH:mm").parse(spinnerTimeIn.getValue()));
+
+                    System.out.println("Date passed to me " + day + " " + month + " " + year);
+
+                    Date time_in = (Date) spinnerTimeIn.getValue();
+                    System.out.println(time_in.toString());
+                    Date time_out = (Date) spinnerTimeOut.getValue();
+                    Date date_today = new SimpleDateFormat("yyyy:MM:dd").parse(year + ":" + month + ":" + day);
+                    int leave = 0;
+                    if (isLeave.isSelected()) {
+                        leave = 1;
+                    }
+
+                    AttendanceModel.editAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out, leave,entry_id);
+
+                    close();
+                } catch (ParseException ex) {
+                    //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    MainFrame.getInstance().showError("Invalid Date", "");
+                } catch (SQLException ex) {
+                    PopBox.infoBox("Unable to add Attendance", "Error");
+                    //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    ViewEmployeeController.getInstance().buildCalendar();
+                    MainFrame.getInstance().getViewEmployeePanel().repaint();
+                    MainFrame.getInstance().getViewEmployeePanel().revalidate();
+                }
+                AttendanceFrame.this.dispose();
+            }
+
+        });
+
     }
     
     
+    
+    public void close() {
+        //super.dispose();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
