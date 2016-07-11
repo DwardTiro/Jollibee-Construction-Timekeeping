@@ -10,11 +10,18 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import model.CalendarModel;
+import java.util.Calendar;
+import java.text.ParseException;
+import java.util.Date;
 import model.Employee;
 import model.Project;
+import model.AttendanceModel;
 
 public class ManageEmployeeController implements Listen, PanelChanger {
 
@@ -112,6 +119,28 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // code later
+                Calendar calendar = Calendar.getInstance();
+                Date date = new java.sql.Date(calendar.getTime().getTime());
+                DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss zzz yyyy");
+                Date timeIn, timeOut;
+                
+                for(int i=0; i<attendancePanels.size();i++){
+                    try{
+                        timeIn = df.parse(attendancePanels.get(i).getSpinnerTimeIn().getValue().toString());
+                        
+                        timeOut = df.parse(attendancePanels.get(i).getSpinnerTimeOut().getValue().toString());
+                        int idnum = Integer.parseInt(attendancePanels.get(i).getLabelIDNumber().getText());
+                        
+                        AttendanceModel.saveAttendance(idnum,date, timeIn, timeOut, 0);
+                    }catch(ParseException s){
+                        s.printStackTrace();
+                    }catch(SQLException t){
+                        t.printStackTrace();
+                    }
+                    
+                }
+                showPanel();
+                refreshEmployeeList();
             }
 
             @Override
@@ -137,7 +166,6 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     public void showPanel() {
         CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
-        
         employees = Employee.getAllEmployees();
         projects = Project.getProjectList();
         
@@ -149,20 +177,27 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     
     private void refreshEmployeeList(){
         attendancePanels = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        Date curDate = new java.sql.Date(calendar.getTime().getTime());
+        employees.clear();
+        try{
+            employees = AttendanceModel.noAttendance(curDate);
+        }catch(SQLException s){
+            s.printStackTrace();
+        }
         int len = employees.size();
-        
         mainFrame.getPanelManageEmployeeContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
         layout.setRows(len);
         mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
-        
+        System.out.println(employees.size());
         if(!employees.isEmpty()){
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
-            for(int i = 0; i < len; i++){
+             for(int i = 0; i < employees.size(); i++){
                 Employee e = employees.get(i);
                 ManageEmployeeAttendancePanel panel = new ManageEmployeeAttendancePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
                 mainFrame.getPanelManageEmployeeContainer().add(panel);
-                attendancePanels.add(panel);
+                attendancePanels.add(panel); 
             }
         }
         mainFrame.getPanelManageEmployeeContainer().repaint();

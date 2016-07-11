@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -221,6 +223,27 @@ public class AttendanceModel {
         return isPaid;
     }
 
+    public static ArrayList<Employee> noAttendance(Date date) throws SQLException{
+        String mysqlstring="SELECT E.id FROM employee E INNER JOIN attendance A \n"
+                + "WHERE E.id = A.emp_id AND A.date = ?";
+        Calendar calendar = Calendar.getInstance();
+        Date curDate = new java.sql.Date(calendar.getTime().getTime());
+        ArrayList<Employee> empList = Employee.getAllEmployees();
+        System.out.println("Size "+empList.size());
+        PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
+        ps.setDate(1, new java.sql.Date(date.getTime()));
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            for(int i=0; i<empList.size();i++)
+                if(empList.get(i).getID()==rs.getInt(1))
+                    empList.remove(i);
+        }
+        System.out.println("Size "+empList.size());
+        return empList;
+    }
+    
+    
+    
     public static ArrayList<AttendanceModel> getUnpaidEmp(int id) throws SQLException {
 
         ArrayList<AttendanceModel> list = new ArrayList<>();
