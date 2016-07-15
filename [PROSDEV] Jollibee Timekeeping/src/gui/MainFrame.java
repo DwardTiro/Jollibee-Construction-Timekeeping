@@ -242,7 +242,6 @@ public class MainFrame extends javax.swing.JFrame {
         welcomePanel.setName("welcomePanel"); // NOI18N
 
         labelWelcomeProjectWatch.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelWelcomeProjectWatch.setForeground(new java.awt.Color(0, 0, 0));
         labelWelcomeProjectWatch.setText("PROJECT WATCH");
         labelWelcomeProjectWatch.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelWelcomeProjectWatch.setOpaque(true);
@@ -298,7 +297,6 @@ public class MainFrame extends javax.swing.JFrame {
         addEmployeePanel.setName("addEmployeePanel"); // NOI18N
 
         labelAddEmployee.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelAddEmployee.setForeground(new java.awt.Color(0, 0, 0));
         labelAddEmployee.setText("ADD NEW EMPLOYEE");
         labelAddEmployee.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelAddEmployee.setOpaque(true);
@@ -390,7 +388,6 @@ public class MainFrame extends javax.swing.JFrame {
         viewEmployeePanel.setName("viewEmployeePanel"); // NOI18N
 
         labelViewEmployeeName.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelViewEmployeeName.setForeground(new java.awt.Color(0, 0, 0));
         labelViewEmployeeName.setText("LastName, FirstName MiddleName");
         labelViewEmployeeName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelViewEmployeeName.setOpaque(true);
@@ -475,7 +472,6 @@ public class MainFrame extends javax.swing.JFrame {
         editEmployeePanel.setName("editEmployeePanel"); // NOI18N
 
         labelEditEmployee.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelEditEmployee.setForeground(new java.awt.Color(0, 0, 0));
         labelEditEmployee.setText("Edit Employee");
         labelEditEmployee.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelEditEmployee.setOpaque(true);
@@ -646,7 +642,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchResultsPanel.setPreferredSize(new java.awt.Dimension(0, 0));
 
         labelSearchResults.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelSearchResults.setForeground(new java.awt.Color(0, 0, 0));
         labelSearchResults.setText("SEARCH RESULTS FOR");
         labelSearchResults.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelSearchResults.setOpaque(true);
@@ -687,7 +682,6 @@ public class MainFrame extends javax.swing.JFrame {
         manageEmployeePanel.setPreferredSize(new java.awt.Dimension(0, 0));
 
         labelManageEmployee.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelManageEmployee.setForeground(new java.awt.Color(0, 0, 0));
         labelManageEmployee.setText("MANAGE EMPLOYEE");
         labelManageEmployee.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelManageEmployee.setOpaque(true);
@@ -707,7 +701,6 @@ public class MainFrame extends javax.swing.JFrame {
         panelManageEmployeeContainer.setLayout(new java.awt.GridLayout(1, 1));
 
         labelManageProjectFilter.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
-        labelManageProjectFilter.setForeground(new java.awt.Color(0, 0, 0));
         labelManageProjectFilter.setText("Filter by project:");
 
         panelManageEmployeeProjectContainer.setBackground(new java.awt.Color(255, 255, 255));
@@ -766,7 +759,6 @@ public class MainFrame extends javax.swing.JFrame {
         manageProjectPanel.setPreferredSize(new java.awt.Dimension(0, 0));
 
         labelManageProject.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelManageProject.setForeground(new java.awt.Color(0, 0, 0));
         labelManageProject.setText("MANAGE ACTIVE PROJECTS");
         labelManageProject.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelManageProject.setOpaque(true);
@@ -805,7 +797,6 @@ public class MainFrame extends javax.swing.JFrame {
         viewProjectPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         labelViewProjectName.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelViewProjectName.setForeground(new java.awt.Color(0, 0, 0));
         labelViewProjectName.setText("Project Name");
         labelViewProjectName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelViewProjectName.setOpaque(true);
@@ -875,7 +866,6 @@ public class MainFrame extends javax.swing.JFrame {
         computeSalaryPanel.setPreferredSize(new java.awt.Dimension(0, 0));
 
         labelComputeSalary.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelComputeSalary.setForeground(new java.awt.Color(0, 0, 0));
         labelComputeSalary.setText("COMPUTE SALARY");
         labelComputeSalary.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelComputeSalary.setOpaque(true);
@@ -923,7 +913,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelComputeSalaryFilterContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelComputeSalaryEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelComputeSalaryEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonComputeSalaryRelease)
                 .addGap(410, 410, 410))

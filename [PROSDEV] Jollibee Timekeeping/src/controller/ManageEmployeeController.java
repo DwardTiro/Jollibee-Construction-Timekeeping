@@ -10,11 +10,17 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import model.CalendarModel;
+import java.util.Calendar;
+import java.text.ParseException;
+import java.util.Date;
 import model.Employee;
 import model.Project;
+import model.AttendanceModel;
 
 public class ManageEmployeeController implements Listen, PanelChanger {
 
@@ -112,6 +118,23 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // code later
+                Calendar calendar = Calendar.getInstance();
+                Date date = new java.sql.Date(calendar.getTime().getTime());
+                DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss zzz yyyy");
+                Date timeIn, timeOut;
+                
+                for (ManageEmployeeAttendancePanel attendancePanel : attendancePanels) {
+                    try {
+                        timeIn = df.parse(attendancePanel.getSpinnerTimeIn().getValue().toString());
+                        timeOut = df.parse(attendancePanel.getSpinnerTimeOut().getValue().toString());
+                        int idnum = Integer.parseInt(attendancePanel.getLabelIDNumber().getText());
+                        AttendanceModel.saveAttendance(idnum,date, timeIn, timeOut, 0);
+                    }catch(ParseException ex){
+                        ex.toString();
+                    }
+                }
+                showPanel();
+                refreshEmployeeList();
             }
 
             @Override
@@ -137,7 +160,6 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     public void showPanel() {
         CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
-        
         employees = Employee.getAllEmployees();
         projects = Project.getProjectList();
         
@@ -149,8 +171,8 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     
     private void refreshEmployeeList(){
         attendancePanels = new ArrayList<>();
-        int len = employees.size();
         
+        int len = employees.size();
         mainFrame.getPanelManageEmployeeContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
         layout.setRows(len);
@@ -158,11 +180,10 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         
         if(!employees.isEmpty()){
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
-            for(int i = 0; i < len; i++){
-                Employee e = employees.get(i);
+            for (Employee e : employees) {
                 ManageEmployeeAttendancePanel panel = new ManageEmployeeAttendancePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
                 mainFrame.getPanelManageEmployeeContainer().add(panel);
-                attendancePanels.add(panel);
+                attendancePanels.add(panel); 
             }
         }
         mainFrame.getPanelManageEmployeeContainer().repaint();

@@ -8,8 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import model.AttendanceModel;
@@ -97,9 +95,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
                 } catch (ParseException ex) {
                     //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
                     MainFrame.getInstance().showError("Invalid Date", "");
-                } catch (SQLException ex) {
-                    PopBox.infoBox("Unable to add Attendance", "Error");
-                    //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
                     ViewEmployeeController.getInstance().buildCalendar();
                     MainFrame.getInstance().getViewEmployeePanel().repaint();
@@ -141,9 +136,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
                 } catch (ParseException ex) {
                     //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
                     MainFrame.getInstance().showError("Invalid Date", "");
-                } catch (SQLException ex) {
-                    PopBox.infoBox("Unable to add Attendance", "Error");
-                    //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
                     ViewEmployeeController.getInstance().buildCalendar();
                     MainFrame.getInstance().getViewEmployeePanel().repaint();
