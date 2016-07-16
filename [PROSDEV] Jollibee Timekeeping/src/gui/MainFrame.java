@@ -583,8 +583,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(labelSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panelSearchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelSearchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addGap(456, 456, 456))
         );
 
         searchResultsScrollPane.setViewportView(searchResultsPanel);
@@ -652,7 +652,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelManageProjectFilter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelManageEmployeeProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(513, 513, 513))
             .addGroup(manageEmployeePanelLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(labelManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -747,8 +747,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(labelViewProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelViewProjectAddEmployeeContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelViewProjectAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelViewProjectAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelViewProjectAddEmployeeContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
         viewProjectPanelLayout.setVerticalGroup(
@@ -795,7 +795,7 @@ public class MainFrame extends javax.swing.JFrame {
         labelComputeSalaryFilter.setText("Filter by project:");
 
         panelComputeSalaryFilterContainer.setBackground(new java.awt.Color(255, 255, 255));
-        panelComputeSalaryFilterContainer.setPreferredSize(new java.awt.Dimension(250, 28));
+        panelComputeSalaryFilterContainer.setPreferredSize(new java.awt.Dimension(300, 28));
         panelComputeSalaryFilterContainer.setLayout(new javax.swing.BoxLayout(panelComputeSalaryFilterContainer, javax.swing.BoxLayout.Y_AXIS));
 
         buttonComputeSalaryRelease.setBackground(new java.awt.Color(231, 28, 35));

@@ -881,9 +881,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="labelSearchResults" min="-2" pref="51" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="panelSearchResultsContainer" pref="524" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Component id="panelSearchResultsContainer" pref="80" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="456" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -980,9 +980,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                               <Component id="labelManageProjectFilter" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="panelManageEmployeeProjectContainer" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="513" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
@@ -1206,8 +1206,8 @@
                               </Group>
                               <EmptySpace pref="231" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="panelViewProjectAddEmployeeContainer" min="-2" pref="250" max="-2" attributes="0"/>
                                   <Component id="labelViewProjectAddEmployee" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="panelViewProjectAddEmployeeContainer" min="-2" pref="250" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
@@ -1426,7 +1426,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[250, 28]"/>
+                          <Dimension value="[300, 28]"/>
                         </Property>
                       </Properties>
 

@@ -145,7 +145,7 @@ public class Employee {
 
         ArrayList<Employee> employees = new ArrayList<>();
 
-        String mysqlString = "select * from employee order by last_name";
+        String mysqlString = "select * from employee order by last_name, first_name, middle_name";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
             ResultSet rs = ps.executeQuery();
@@ -233,7 +233,8 @@ public class Employee {
                 + "from employee" + "\n"
                 + "where first_name like ?" + "\n"
                 + "or last_name like ?" + "\n"
-                + "or middle_name like ?";
+                + "or middle_name like ?" + "\n"
+                + "order by last_name, first_name, middle_name";
     }
 
     @Override
