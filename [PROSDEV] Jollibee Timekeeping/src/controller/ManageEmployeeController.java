@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -124,20 +123,15 @@ public class ManageEmployeeController implements Listen, PanelChanger {
                 DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss zzz yyyy");
                 Date timeIn, timeOut;
                 
-                for(int i=0; i<attendancePanels.size();i++){
-                    try{
-                        timeIn = df.parse(attendancePanels.get(i).getSpinnerTimeIn().getValue().toString());
-                        
-                        timeOut = df.parse(attendancePanels.get(i).getSpinnerTimeOut().getValue().toString());
-                        int idnum = Integer.parseInt(attendancePanels.get(i).getLabelIDNumber().getText());
-                        
+                for (ManageEmployeeAttendancePanel attendancePanel : attendancePanels) {
+                    try {
+                        timeIn = df.parse(attendancePanel.getSpinnerTimeIn().getValue().toString());
+                        timeOut = df.parse(attendancePanel.getSpinnerTimeOut().getValue().toString());
+                        int idnum = Integer.parseInt(attendancePanel.getLabelIDNumber().getText());
                         AttendanceModel.saveAttendance(idnum,date, timeIn, timeOut, 0);
-                    }catch(ParseException s){
-                        s.printStackTrace();
-                    }catch(SQLException t){
-                        t.printStackTrace();
+                    }catch(ParseException ex){
+                        ex.toString();
                     }
-                    
                 }
                 showPanel();
                 refreshEmployeeList();
@@ -177,24 +171,16 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     
     private void refreshEmployeeList(){
         attendancePanels = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        Date curDate = new java.sql.Date(calendar.getTime().getTime());
-        employees.clear();
-        try{
-            employees = AttendanceModel.noAttendance(curDate);
-        }catch(SQLException s){
-            s.printStackTrace();
-        }
+        
         int len = employees.size();
         mainFrame.getPanelManageEmployeeContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
         layout.setRows(len);
         mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
-        System.out.println(employees.size());
+        
         if(!employees.isEmpty()){
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
-             for(int i = 0; i < employees.size(); i++){
-                Employee e = employees.get(i);
+            for (Employee e : employees) {
                 ManageEmployeeAttendancePanel panel = new ManageEmployeeAttendancePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
                 mainFrame.getPanelManageEmployeeContainer().add(panel);
                 attendancePanels.add(panel); 
