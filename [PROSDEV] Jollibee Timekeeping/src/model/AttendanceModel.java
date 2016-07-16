@@ -165,7 +165,7 @@ public class AttendanceModel {
         
         try {
             
-            PreparedStatement ps = DbConnection.getConnection().prepareStatement("select id,salary from employee where id = ?");
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement("select emp_id,salary from employee where emp_id = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();

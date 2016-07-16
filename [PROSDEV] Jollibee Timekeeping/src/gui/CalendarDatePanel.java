@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import model.AttendanceModel;
-import model.CalendarModel;
 
 public class CalendarDatePanel extends javax.swing.JPanel {
 

@@ -139,7 +139,8 @@ public class WelcomeController implements Listen, PanelChanger{
             
                 if((i+1) == Integer.parseInt(p.getDateDue().toString().split(" ")[2])){
                     temp.setProjectName(p.getName());
-                    temp.setStatus(CalendarDatePanel.ATTENDANCE_STATUS_ABSENT);
+                    //temp.setStatus(CalendarDatePanel.ATTENDANCE_STATUS_ABSENT);
+                    temp.setStatus(status);
                     index++;
                 }
                 else{

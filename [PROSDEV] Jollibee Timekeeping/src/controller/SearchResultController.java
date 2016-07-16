@@ -32,7 +32,6 @@ public class SearchResultController implements PanelChanger {
     //private static final AssignProjectController controller2 = new AssignProjectController();
     private final MainFrame mainFrame;
     private final JPanel mainCardPanel;
-    private final JPanel projPanel;
     private final CardLayout mainLayout;
     //private final String PANEL_NAME = "searchResultPanel";
     //private final String PANEL2_NAME = "assignProjectPanel";
@@ -42,8 +41,6 @@ public class SearchResultController implements PanelChanger {
         mainFrame = MainFrame.getInstance();
         mainCardPanel = mainFrame.getMainPanelCardPanel();
         mainLayout = (CardLayout) mainCardPanel.getLayout();
-        projPanel = mainFrame.getAssignProjectPanel();
-        projPanel.setVisible(false);
     }
 
     public void setModel(ArrayList<Employee> emplist) {
@@ -62,7 +59,7 @@ public class SearchResultController implements PanelChanger {
             resultsPanels.get(i).getLabelName().addMouseListener(new MouseListener(){
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    ViewEmployeeController.getInstance().setViewID(emp.getID());
+                    ViewEmployeeController.getInstance().setViewID(emp.getEmpID());
                     ViewEmployeeController.getInstance().showPanel();
                 }
 

@@ -2,11 +2,10 @@
 package gui;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class ProjectFilterPanel extends javax.swing.JPanel {
 
-    public static final int PANEL_WIDTH = 250;
+    public static final int PANEL_WIDTH = 300;
     public static final int PANEL_HEIGHT = 28;
     
     public ProjectFilterPanel(String projectName) {
@@ -22,7 +21,7 @@ public class ProjectFilterPanel extends javax.swing.JPanel {
         labelProjectName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(250, 28));
+        setMaximumSize(new java.awt.Dimension(300, 28));
         setMinimumSize(new java.awt.Dimension(0, 0));
 
         labelProjectName.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
@@ -34,7 +33,7 @@ public class ProjectFilterPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(labelProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

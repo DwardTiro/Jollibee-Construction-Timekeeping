@@ -64,7 +64,7 @@ public class ViewProjectController implements Listen, PanelChanger{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    ViewEmployeeController.getInstance().setViewID(employee.getID());
+                    ViewEmployeeController.getInstance().setViewID(employee.getEmpID());
                     ViewEmployeeController.getInstance().showPanel();
                 }
 
@@ -93,7 +93,7 @@ public class ViewProjectController implements Listen, PanelChanger{
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     try{
-                        employee.setProject();
+                        employee.setProjectToNull();
                     }catch(SQLException s){
                         s.printStackTrace();
                     }
@@ -132,16 +132,8 @@ public class ViewProjectController implements Listen, PanelChanger{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    try{
-                        
-                        employee.updateProject(project.getID());
-                        
-                    }catch(SQLException s){
-                        s.printStackTrace();
-                    }
-                    showPanel();
-                    //ViewEmployeeController.getInstance().setViewID(employee.getID());
-                    //ViewEmployeeController.getInstance().showPanel();
+                    ViewEmployeeController.getInstance().setViewID(employee.getEmpID());
+                    ViewEmployeeController.getInstance().showPanel();
                 }
 
                 @Override
@@ -168,7 +160,12 @@ public class ViewProjectController implements Listen, PanelChanger{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    
+                    try{
+                       employee.setProject(project.getID()); 
+                    }catch(SQLException s){
+                        s.printStackTrace();
+                    }
+                    showPanel();
                 }
 
                 @Override
@@ -226,7 +223,7 @@ public class ViewProjectController implements Listen, PanelChanger{
         if(!projectMembers.isEmpty()){
             for(int i = 0; i < len; i++){
                 Employee e = projectMembers.get(i);
-                ViewProjectMemberListItemPanel panel = new ViewProjectMemberListItemPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
+                ViewProjectMemberListItemPanel panel = new ViewProjectMemberListItemPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getIdNumber()));
                 panelMembers.add(panel);
                 mainFrame.getPanelViewProjectMembersContainer().add(panel);
             }

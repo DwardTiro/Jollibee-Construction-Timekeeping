@@ -3,6 +3,7 @@ package controller;
 import gui.MainFrame;
 import gui.PopBox;
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -13,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.AdminModel;
 import model.DbConnection;
 
 public class LoginController implements Listen, PanelChanger {
@@ -22,6 +24,10 @@ public class LoginController implements Listen, PanelChanger {
 
     private final String USERNAME_FIELD_DEFAULT = "Username";
     private final String PASSWORD_FIELD_DEFAULT = "Password";
+    
+    private final String TYPE_ADMINISTRATOR  = "Administrator";
+    private final String TYPE_ENCODER = "Encoder";
+    
     private final String CARD_LOGIN = "panelLogin";
     private final String PANEL_NAME = "panelMain";
 
@@ -118,7 +124,9 @@ public class LoginController implements Listen, PanelChanger {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))){
+                AdminModel admin;
+                if((admin = tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))) != null){
+                    NavigationController.getInstance().setAdmin(admin);
                     login();
                 }else{
                     PopBox.infoBox("Failed to log in", "");
@@ -151,12 +159,11 @@ public class LoginController implements Listen, PanelChanger {
         logout();
     }
 
-    // returns true if login is successful (username and password is correct), false otherwise
-    private boolean tryLogin(String username, String password) {
-        boolean login = false;
+    private AdminModel tryLogin(String username, String password) {
+        AdminModel admin = null;
         ResultSet rs = null;
         
-        String query = "select id,password from admin where username = ? and password = ?";
+        String query = "select * from admin where username = ? and password = ?";
         
         try {
             PreparedStatement preparedStatement = DbConnection.getConnection().prepareStatement(query);
@@ -166,14 +173,12 @@ public class LoginController implements Listen, PanelChanger {
             rs = preparedStatement.executeQuery();
             
             if (rs.next()) {
-                login = true;
-                
+                admin = new AdminModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        return login;
+        return admin;
     }
     
     private void login(){
@@ -182,6 +187,27 @@ public class LoginController implements Listen, PanelChanger {
         
         mainFrame.getLoginTextFieldUsername().setText(USERNAME_FIELD_DEFAULT);
         mainFrame.getLoginPasswordFieldPassword().setText("");
+        mainFrame.getMainLabelName().setText(NavigationController.getInstance().getAdmin().getName());
+        
+        if(NavigationController.getInstance().getAdmin().getUserType().equals(TYPE_ENCODER)){
+            Container parent;
+            
+            parent = mainFrame.getSidePanelLabelAddEmployee().getParent();
+            parent.remove(mainFrame.getSidePanelLabelAddEmployee());
+            parent.repaint();
+            parent.revalidate();
+            
+            parent = mainFrame.getSidePanelLabelManageProject().getParent();
+            parent.remove(mainFrame.getSidePanelLabelManageProject());
+            parent.repaint();
+            parent.revalidate();
+            
+            parent = mainFrame.getSidePanelLabelComputeSalary().getParent();
+            parent.remove(mainFrame.getSidePanelLabelComputeSalary());
+            parent.repaint();
+            parent.revalidate();
+        }
+        
     }
     
     private void logout(){

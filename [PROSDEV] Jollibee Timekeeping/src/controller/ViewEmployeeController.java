@@ -143,7 +143,7 @@ public class ViewEmployeeController implements Listen, PanelChanger {
         try {
             employeeToShow = Employee.getEmployeeByID(viewID);
             mainFrame.getLabelViewEmployeeName().setText(employeeToShow.toString());
-            mainFrame.getLabelViewEmployeeID().setText(employeeToShow.getID() + "");
+            mainFrame.getLabelViewEmployeeID().setText(employeeToShow.getIdNumber() + "");
             //employee = Employee.getEmployeeByID(this.getID());
             //mainFrame.getLabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalary());
             mainLayout.show(mainCardPanel, PANEL_NAME);
@@ -181,7 +181,7 @@ public class ViewEmployeeController implements Listen, PanelChanger {
             Date date = sdf.parse(dateString);
             stmt.setDate(1, new java.sql.Date(date.getTime()));
             stmt.setDate(2, new java.sql.Date(date.getTime()));
-            stmt.setInt(3, employeeToShow.getID());
+            stmt.setInt(3, employeeToShow.getEmpID());
 
             System.out.println(stmt.toString());
 

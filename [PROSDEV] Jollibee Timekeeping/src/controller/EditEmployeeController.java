@@ -83,7 +83,7 @@ public class EditEmployeeController implements Listen, PanelChanger{
     public void refreshView(){
         try {
             Employee toShow = Employee.getEmployeeByID(this.viewID);
-            mainFrame.getTextFieldEditEmployeeIDNumber().setText(toShow.getID()+"");
+            mainFrame.getTextFieldEditEmployeeIDNumber().setText(toShow.getIdNumber()+"");
             mainFrame.getTextFieldEditEmployeeFirstName().setText(toShow.getFname());
             mainFrame.getTextFieldEditEmployeeMiddleName().setText(toShow.getMname());
             mainFrame.getTextFieldEditEmployeeLastName().setText(toShow.getLname());

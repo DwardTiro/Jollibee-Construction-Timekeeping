@@ -1,7 +1,6 @@
 package controller;
 
 import gui.MainFrame;
-import gui.PopBox;
 import gui.SearchResultsPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -92,7 +91,7 @@ public class HeaderController implements Listen {
                                 
                                 for(int i = 0; i < empList.size(); i++){
                                     Employee e = empList.get(i);
-                                    SearchResultsPanel srp = new SearchResultsPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
+                                    SearchResultsPanel srp = new SearchResultsPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getIdNumber()));
                                     mainFrame.getPanelSearchResultsContainer().add(srp);
                                     resultsPanels.add(srp);
                                 }

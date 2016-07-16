@@ -80,16 +80,6 @@ public class MainFrame extends javax.swing.JFrame {
         textFieldEditEmployeeMiddleName = new javax.swing.JTextField();
         textFieldEditEmployeeSalary = new javax.swing.JTextField();
         buttonEditEmployeeSaveChanges = new javax.swing.JButton();
-        searchResultPanel = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        employeeList = new javax.swing.JList();
-        viewEmployeeButton = new javax.swing.JButton();
-        assignProjectButton = new javax.swing.JButton();
-        assignProjectPanel = new javax.swing.JPanel();
-        assignProjectLabel = new javax.swing.JLabel();
-        assignButton = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        projectList = new javax.swing.JList();
         searchResultsScrollPane = new javax.swing.JScrollPane();
         searchResultsPanel = new javax.swing.JPanel();
         labelSearchResults = new javax.swing.JLabel();
@@ -561,80 +551,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelCardPanel.add(editEmployeePanel, "editEmployeePanel");
 
-        jScrollPane3.setViewportView(employeeList);
-
-        viewEmployeeButton.setText("View");
-
-        assignProjectButton.setText("Assign Project");
-
-        assignProjectLabel.setText("Assign Project to Employee");
-
-        assignButton.setText("Assign");
-
-        jScrollPane4.setViewportView(projectList);
-
-        javax.swing.GroupLayout assignProjectPanelLayout = new javax.swing.GroupLayout(assignProjectPanel);
-        assignProjectPanel.setLayout(assignProjectPanelLayout);
-        assignProjectPanelLayout.setHorizontalGroup(
-            assignProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(assignProjectPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(assignProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(assignProjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(assignProjectPanelLayout.createSequentialGroup()
-                        .addGroup(assignProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(assignButton)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 91, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        assignProjectPanelLayout.setVerticalGroup(
-            assignProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(assignProjectPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(assignProjectLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(assignButton)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout searchResultPanelLayout = new javax.swing.GroupLayout(searchResultPanel);
-        searchResultPanel.setLayout(searchResultPanelLayout);
-        searchResultPanelLayout.setHorizontalGroup(
-            searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchResultPanelLayout.createSequentialGroup()
-                .addGroup(searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchResultPanelLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(searchResultPanelLayout.createSequentialGroup()
-                                .addComponent(viewEmployeeButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(assignProjectButton))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)))
-                    .addGroup(searchResultPanelLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(assignProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        searchResultPanelLayout.setVerticalGroup(
-            searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchResultPanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewEmployeeButton)
-                    .addComponent(assignProjectButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(assignProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        mainPanelCardPanel.add(searchResultPanel, "searchResultPanel");
-
         searchResultsScrollPane.setBorder(null);
         searchResultsScrollPane.setName("searchResultsScrollPane"); // NOI18N
 
@@ -705,7 +621,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         panelManageEmployeeProjectContainer.setBackground(new java.awt.Color(255, 255, 255));
         panelManageEmployeeProjectContainer.setMaximumSize(new java.awt.Dimension(0, 0));
-        panelManageEmployeeProjectContainer.setPreferredSize(new java.awt.Dimension(250, 28));
+        panelManageEmployeeProjectContainer.setPreferredSize(new java.awt.Dimension(300, 28));
         panelManageEmployeeProjectContainer.setLayout(new javax.swing.BoxLayout(panelManageEmployeeProjectContainer, javax.swing.BoxLayout.Y_AXIS));
 
         javax.swing.GroupLayout manageEmployeePanelLayout = new javax.swing.GroupLayout(manageEmployeePanel);
@@ -724,10 +640,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(90, 90, 90)
                         .addComponent(labelManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(199, 199, 199)
-                .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelManageEmployeeProjectContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelManageProjectFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(89, 89, 89))
+                .addGroup(manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelManageProjectFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelManageEmployeeProjectContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
         manageEmployeePanelLayout.setVerticalGroup(
             manageEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,11 +658,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelManageEmployeeAttendance)
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
                 .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonManageEmployeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(322, 322, 322))
+                .addGap(354, 354, 354))
         );
 
         manageEmployeeScrollPane.setViewportView(manageEmployeePanel);
@@ -833,7 +749,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelViewProjectAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelViewProjectAddEmployeeContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(491, Short.MAX_VALUE))
         );
         viewProjectPanelLayout.setVerticalGroup(
             viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -842,18 +758,19 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelViewProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelViewProjectDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelViewProjectMembers)
-                    .addComponent(labelViewProjectAddEmployee))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(viewProjectPanelLayout.createSequentialGroup()
-                        .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(396, 396, 396))
-                    .addGroup(viewProjectPanelLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(labelViewProjectAddEmployee)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelViewProjectAddEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(452, 452, 452))))
+                        .addGap(452, 452, 452))
+                    .addGroup(viewProjectPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(labelViewProjectMembers)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         viewProjectScrollPane.setViewportView(viewProjectPanel);
@@ -938,40 +855,32 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanelSidePanelContainer.setBackground(new java.awt.Color(247, 247, 247));
         mainPanelSidePanelContainer.setPreferredSize(new java.awt.Dimension(0, 0));
-        mainPanelSidePanelContainer.setLayout(new java.awt.GridBagLayout());
+        mainPanelSidePanelContainer.setLayout(new javax.swing.BoxLayout(mainPanelSidePanelContainer, javax.swing.BoxLayout.Y_AXIS));
 
+        sidePanelLabelProjectWatch.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sidePanelLabelProjectWatch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Project Watch.png"))); // NOI18N
-        mainPanelSidePanelContainer.add(sidePanelLabelProjectWatch, new java.awt.GridBagConstraints());
+        sidePanelLabelProjectWatch.setAlignmentX(0.5F);
+        mainPanelSidePanelContainer.add(sidePanelLabelProjectWatch);
 
         sidePanelLabelAddEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add Employee.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        mainPanelSidePanelContainer.add(sidePanelLabelAddEmployee, gridBagConstraints);
+        sidePanelLabelAddEmployee.setAlignmentX(0.5F);
+        mainPanelSidePanelContainer.add(sidePanelLabelAddEmployee);
 
         sidePanelLabelManageEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Manage Employee.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        mainPanelSidePanelContainer.add(sidePanelLabelManageEmployee, gridBagConstraints);
+        sidePanelLabelManageEmployee.setAlignmentX(0.5F);
+        mainPanelSidePanelContainer.add(sidePanelLabelManageEmployee);
 
         sidePanelLabelManageProject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Manage Project.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        mainPanelSidePanelContainer.add(sidePanelLabelManageProject, gridBagConstraints);
+        sidePanelLabelManageProject.setAlignmentX(0.5F);
+        mainPanelSidePanelContainer.add(sidePanelLabelManageProject);
 
         sidePanelLabelComputeSalary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Compute Salary.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        mainPanelSidePanelContainer.add(sidePanelLabelComputeSalary, gridBagConstraints);
+        sidePanelLabelComputeSalary.setAlignmentX(0.5F);
+        mainPanelSidePanelContainer.add(sidePanelLabelComputeSalary);
 
         sidePanelLabelLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logout Admin.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        mainPanelSidePanelContainer.add(sidePanelLabelLogout, gridBagConstraints);
+        sidePanelLabelLogout.setAlignmentX(0.5F);
+        mainPanelSidePanelContainer.add(sidePanelLabelLogout);
 
         mainPanelSidePanel.add(mainPanelSidePanelContainer, "card2");
 
@@ -995,10 +904,6 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addEmployeePanel;
-    private javax.swing.JButton assignButton;
-    private javax.swing.JButton assignProjectButton;
-    private javax.swing.JLabel assignProjectLabel;
-    private javax.swing.JPanel assignProjectPanel;
     private javax.swing.JButton buttonAddEmployee;
     private javax.swing.JButton buttonComputeSalaryRelease;
     private javax.swing.JButton buttonEditEmployeeSaveChanges;
@@ -1007,9 +912,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane computeSalaryScrollPane;
     private javax.swing.JButton editEmployeeButton;
     private javax.swing.JPanel editEmployeePanel;
-    private javax.swing.JList employeeList;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelAddEmployee;
     private javax.swing.JLabel labelAddEmployeeFirstName;
     private javax.swing.JLabel labelAddEmployeeIDNumber;
@@ -1070,8 +972,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelViewProjectAddEmployeeContainer;
     private javax.swing.JPanel panelViewProjectMembersContainer;
     private javax.swing.JPanel panelWelcomeCalendar;
-    private javax.swing.JList projectList;
-    private javax.swing.JPanel searchResultPanel;
     private javax.swing.JPanel searchResultsPanel;
     private javax.swing.JScrollPane searchResultsScrollPane;
     private javax.swing.JLabel sidePanelLabelAddEmployee;
@@ -1090,48 +990,19 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldEditEmployeeLastName;
     private javax.swing.JTextField textFieldEditEmployeeMiddleName;
     private javax.swing.JTextField textFieldEditEmployeeSalary;
-    private javax.swing.JButton viewEmployeeButton;
     private javax.swing.JPanel viewEmployeePanel;
     private javax.swing.JPanel viewProjectPanel;
     private javax.swing.JScrollPane viewProjectScrollPane;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JList getSearchLists(){
-        return employeeList;
-    }
-    
-    public javax.swing.JList getProjLists(){
-        return projectList;
-    }
-    
     public void showError(String error, String head){
         PopBox.infoBox(error, head);
-    }
-
-    public void setAssignProjectLabel(String s){
-        this.assignProjectLabel.setText(s);
     }
     
     // getters
     public javax.swing.JPanel getAddEmployeePanel() {
         return addEmployeePanel;
-    }
-
-    public javax.swing.JButton getAssignButton() {
-        return assignButton;
-    }
-
-    public javax.swing.JButton getAssignProjectButton() {
-        return assignProjectButton;
-    }
-
-    public javax.swing.JLabel getAssignProjectLabel() {
-        return assignProjectLabel;
-    }
-
-    public javax.swing.JPanel getAssignProjectPanel() {
-        return assignProjectPanel;
     }
 
     public javax.swing.JButton getButtonAddEmployee() {
@@ -1165,19 +1036,6 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel getEditEmployeePanel() {
         return editEmployeePanel;
     }
-
-    public javax.swing.JList getEmployeeList() {
-        return employeeList;
-    }
-
-    public javax.swing.JScrollPane getjScrollPane3() {
-        return jScrollPane3;
-    }
-
-    public javax.swing.JScrollPane getjScrollPane4() {
-        return jScrollPane4;
-    }
-
     public javax.swing.JLabel getLabelAddEmployee() {
         return labelAddEmployee;
     }
@@ -1418,14 +1276,6 @@ public class MainFrame extends javax.swing.JFrame {
         return panelWelcomeCalendar;
     }
 
-    public javax.swing.JList getProjectList() {
-        return projectList;
-    }
-
-    public javax.swing.JPanel getSearchResultPanel() {
-        return searchResultPanel;
-    }
-
     public javax.swing.JPanel getSearchResultsPanel() {
         return searchResultsPanel;
     }
@@ -1496,10 +1346,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JTextField getTextFieldEditEmployeeSalary() {
         return textFieldEditEmployeeSalary;
-    }
-
-    public javax.swing.JButton getViewEmployeeButton() {
-        return viewEmployeeButton;
     }
 
     public javax.swing.JPanel getViewEmployeePanel() {

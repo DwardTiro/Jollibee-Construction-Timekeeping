@@ -18,50 +18,52 @@ import java.util.logging.Logger;
  */
 public class Employee {
 
-    private final int id;
+    private final int empID;
+    private final int idNumber;
     private final String fname;
     private final String lname;
     private final String mname;
     private final double salary;
-    
+
     private ArrayList<AttendanceModel> attendance;
-    
-    public Employee(int id, String fname, String lname, String mname, double salary) {
-        this.id = id;
+
+    public Employee(int empID, int idNumber, String fname, String lname, String mname, double salary) {
+        this.empID = empID;
+        this.idNumber = idNumber;
         this.fname = fname;
         this.lname = lname;
         this.mname = mname;
         this.salary = salary;
         attendance = null;
     }
-    
-    public void setAttendance(ArrayList<AttendanceModel> list){
+
+    public void setAttendance(ArrayList<AttendanceModel> list) {
         this.attendance = list;
     }
-    
-    public ArrayList<AttendanceModel> getAttendance(){
+
+    public ArrayList<AttendanceModel> getAttendance() {
         return attendance;
     }
-    
-    public void setProject() throws SQLException{
-        String mysqlstring = "UPDATE `employee` SET `project_id` = NULL WHERE `id` = ?";
+
+    public void setProjectToNull() throws SQLException {
+        String mysqlstring = "UPDATE `employee` SET `project_id` = NULL WHERE `emp_id` = ?";
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
-        ps.setInt(1, this.getID());
+        ps.setInt(1, this.getEmpID());
         ps.executeUpdate();
     }
 
-    public void updateProject(int proj_id) throws SQLException {
-        String mysqlstring = "UPDATE `employee` SET `project_id` =? WHERE `id` = ?";
+    public void setProject(int proj_id) throws SQLException {
+        String mysqlstring = "UPDATE `employee` SET `project_id` = ? WHERE `emp_id` = ?";
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
         ps.setInt(1, proj_id);
-        ps.setInt(2, this.getID());
+        ps.setInt(2, this.getEmpID());
         ps.executeUpdate();
     }
 
     public double computeSalary() throws SQLException {
         double cSalary = 0;
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(Employee.getEmployeeHoursStatement());
-        ps.setInt(1, this.id);
+        ps.setInt(1, this.empID);
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
@@ -72,32 +74,30 @@ public class Employee {
         return cSalary;
     }
 
-    public double computeSalaryMonth(int month,int year) throws SQLException{
+    public double computeSalaryMonth(int month, int year) throws SQLException {
         double csalary = 0;
-        String query ="select emp_id, sum(compute_salary) as total from attendance where \n" +
-        "month(date) = ? \n" +
-        "and year(date) = ? \n" +
-        "and emp_id = ?";
-        
+        String query = "select emp_id, sum(compute_salary) as total from attendance where \n"
+                + "month(date) = ? \n"
+                + "and year(date) = ? \n"
+                + "and emp_id = ?";
+
         System.out.println(query);
-        System.out.println(month+" "+year);
-        
+        System.out.println(month + " " + year);
+
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(query);
-        ps.setInt(3, this.id);
-        ps.setInt(1,month);
-        ps.setInt(2,year);
-        
-        ResultSet rs =ps.executeQuery();
+        ps.setInt(3, this.empID);
+        ps.setInt(1, month);
+        ps.setInt(2, year);
+
+        ResultSet rs = ps.executeQuery();
         rs.next();
-        
+
         csalary = rs.getDouble("total");
-        
+
         return csalary;
-        
+
     }
-    
-    
-    
+
     public static void addDB(int IDNumber, String firstName, String lastName, String middleName, double salary) throws SQLException {
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(Employee.getAddEmployeeStatement());
         ps.setInt(1, IDNumber);
@@ -118,7 +118,7 @@ public class Employee {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            empList.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5)));
+            empList.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
         }
 
         if (empList.size() >= 0) {
@@ -131,7 +131,7 @@ public class Employee {
     public static void editEmployee(int IDNumber, String firstName, String lastName, String middleName, double salary) throws SQLException {
         String mysqlString = "UPDATE `employee` SET `first_name`=?, "
                 + "`last_name`=?, `middle_name`=?,"
-                + " `salary`=? WHERE `id`=?;";
+                + " `salary`=? WHERE `id_number`=?;";
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
         ps.setInt(5, IDNumber);
         ps.setString(1, firstName);
@@ -151,7 +151,7 @@ public class Employee {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                employees.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5)));
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
             }
 
         } catch (SQLException ex) {
@@ -160,7 +160,7 @@ public class Employee {
 
         return employees;
     }
-    
+
     public static ArrayList<Employee> getEmployeeByProject(int projectID) {
         ArrayList<Employee> employees = new ArrayList<>();
 
@@ -173,7 +173,7 @@ public class Employee {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                employees.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5)));
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
             }
 
         } catch (SQLException ex) {
@@ -193,7 +193,7 @@ public class Employee {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                employees.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5)));
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
             }
 
         } catch (SQLException ex) {
@@ -202,18 +202,18 @@ public class Employee {
 
         return employees;
     }
-    
+
     public static Employee getEmployeeByID(int id) throws SQLException {
         System.out.println("id is " + id);
-        String mysqlString = "select id,first_name,last_Name,middle_name,salary\n"
+        String mysqlString = "select emp_id, id_number,first_name,last_Name,middle_name,salary\n"
                 + "from employee\n"
-                + "where id = ?";
+                + "where emp_id = ?";
 
         PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         rs.next();
-        return new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5));
+        return new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6));
     }
 
     public static String getEmployeeHoursStatement() {
@@ -224,53 +224,54 @@ public class Employee {
 
     public static String getAddEmployeeStatement() {
         return "INSERT INTO `employee` " + "\n"
-                + "(`id`, `first_name`, `last_name`, `middle_name`, `salary`)" + "\n"
+                + "(`id_number`, `first_name`, `last_name`, `middle_name`, `salary`)" + "\n"
                 + "VALUES (?,?,?,?,?);";
     }
 
     public static String getSearchStatement() {
-        return "select id,first_name,last_Name,middle_name,salary" + "\n"
+        return "select emp_id,id_number,first_name,last_Name,middle_name,salary" + "\n"
                 + "from employee" + "\n"
                 + "where first_name like ?" + "\n"
                 + "or last_name like ?" + "\n"
                 + "or middle_name like ?";
     }
 
-    public int getID() {
-        return this.id;
-    }
-
-    public String getFname() {
-        return this.fname;
-    }
-
-    public String getLname() {
-        return this.lname;
-    }
-
-    public String getMname() {
-        return this.mname;
-    }
-
-    public double getSalary() {
-        return this.salary;
-    }
-
     @Override
     public String toString() {
         return this.lname + ", " + this.fname;
     }
-    
-    
-    public Double getTotalSalary(){
+
+    public Double getTotalSalary() {
         double cSalary = 0;
-        if(attendance != null ){
-            for(AttendanceModel am: attendance ){
+        if (attendance != null) {
+            for (AttendanceModel am : attendance) {
                 cSalary = cSalary + am.getSalary();
             }
         }
         return cSalary;
     }
-    
-    
+
+    public int getEmpID() {
+        return empID;
+    }
+
+    public int getIdNumber() {
+        return idNumber;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public String getMname() {
+        return mname;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
 }

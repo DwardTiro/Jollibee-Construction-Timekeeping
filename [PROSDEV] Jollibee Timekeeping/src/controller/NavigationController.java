@@ -5,6 +5,7 @@ import gui.MainFrame;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import model.AdminModel;
 
 public class NavigationController implements Listen{
 
@@ -23,10 +24,13 @@ public class NavigationController implements Listen{
     private final ViewProjectController viewProjectController = ViewProjectController.getInstance();
     private final ComputeSalaryController computeSalaryController = ComputeSalaryController.getInstance();
     
+    private AdminModel admin; 
+    
     private final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     private final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
     
     private NavigationController(){
+        admin = null;
         addListeners();
     }
     
@@ -198,4 +202,13 @@ public class NavigationController implements Listen{
         
         });
     }
+    
+    public AdminModel getAdmin(){
+        return admin;
+    }
+    
+    public void setAdmin(AdminModel admin){
+        this.admin = admin;
+    }
+    
 }

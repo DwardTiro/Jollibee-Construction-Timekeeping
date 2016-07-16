@@ -181,7 +181,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         if(!employees.isEmpty()){
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
             for (Employee e : employees) {
-                ManageEmployeeAttendancePanel panel = new ManageEmployeeAttendancePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getID()));
+                ManageEmployeeAttendancePanel panel = new ManageEmployeeAttendancePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getIdNumber()));
                 mainFrame.getPanelManageEmployeeContainer().add(panel);
                 attendancePanels.add(panel); 
             }
