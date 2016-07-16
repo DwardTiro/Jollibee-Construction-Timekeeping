@@ -23,6 +23,7 @@ public class ComputeSalaryTotalPanel extends javax.swing.JPanel {
 
         labelTotal.setFont(new java.awt.Font("Open Sans Light", 1, 20)); // NOI18N
         labelTotal.setForeground(new java.awt.Color(231, 28, 35));
+        labelTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelTotal.setText("P 100,000,000.00");
 
         javax.swing.GroupLayout panelTotalLayout = new javax.swing.GroupLayout(panelTotal);
