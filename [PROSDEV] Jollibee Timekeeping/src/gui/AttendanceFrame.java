@@ -1,5 +1,6 @@
 package gui;
 
+import controller.ManageEmployeeController;
 import controller.ViewEmployeeController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,8 +8,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import model.AttendanceModel;
 
 public class AttendanceFrame extends javax.swing.JFrame {
@@ -28,11 +33,27 @@ public class AttendanceFrame extends javax.swing.JFrame {
         model1.setCalendarField(Calendar.MINUTE);
         spinnerTimeIn.setModel(model1);
         spinnerTimeIn.setEditor(new JSpinner.DateEditor(spinnerTimeIn, "h:mm a"));
+        ((JSpinner.DefaultEditor) spinnerTimeIn.getEditor()).getTextField().setEditable(false);
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        spinnerTimeIn.setValue(calendar.getTime());
+        
 
         SpinnerDateModel model2 = new SpinnerDateModel();
         model2.setCalendarField(Calendar.MINUTE);
         spinnerTimeOut.setModel(model2);
         spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
+        ((JSpinner.DefaultEditor) spinnerTimeOut.getEditor()).getTextField().setEditable(false);
+        
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        spinnerTimeOut.setValue(calendar.getTime());
+        
+        addSpinnersListener();
     }
 
     public AttendanceFrame(int day, int month, int year, int the_emp) {
@@ -46,25 +67,26 @@ public class AttendanceFrame extends javax.swing.JFrame {
         model1.setCalendarField(Calendar.MINUTE);
         spinnerTimeIn.setModel(model1);
         spinnerTimeIn.setEditor(new JSpinner.DateEditor(spinnerTimeIn, "h:mm a"));
+        ((JSpinner.DefaultEditor) spinnerTimeIn.getEditor()).getTextField().setEditable(false);
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        spinnerTimeIn.setValue(calendar.getTime());
 
         SpinnerDateModel model2 = new SpinnerDateModel();
         model2.setCalendarField(Calendar.MINUTE);
         spinnerTimeOut.setModel(model2);
         spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
-    }
-
-    public AttendanceFrame() {
-        initComponents();
-        SpinnerDateModel model1 = new SpinnerDateModel();
-        model1.setCalendarField(Calendar.MINUTE);
-        spinnerTimeIn.setModel(model1);
-        spinnerTimeIn.setEditor(new JSpinner.DateEditor(spinnerTimeIn, "h:mm a"));
-
-        SpinnerDateModel model2 = new SpinnerDateModel();
-        model2.setCalendarField(Calendar.MINUTE);
-
-        spinnerTimeOut.setModel(model2);
-        spinnerTimeOut.setEditor(new JSpinner.DateEditor(spinnerTimeOut, "h:mm a"));
+        ((JSpinner.DefaultEditor) spinnerTimeOut.getEditor()).getTextField().setEditable(false);
+        
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        spinnerTimeOut.setValue(calendar.getTime());
+        
+        addSpinnersListener();
     }
 
     private void addListener_employee() {
@@ -90,7 +112,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
 
                     AttendanceModel.saveAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out, leave);
 
-                    close();
                 } catch (ParseException ex) {
                     //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
                     MainFrame.getInstance().showError("Invalid Date", "");
@@ -131,7 +152,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
 
                     AttendanceModel.editAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out, leave,entry_id);
 
-                    close();
                 } catch (ParseException ex) {
                     //Logger.getLogger(AttendanceFrame.class.getName()).log(Level.SEVERE, null, ex);
                     MainFrame.getInstance().showError("Invalid Date", "");
@@ -146,13 +166,51 @@ public class AttendanceFrame extends javax.swing.JFrame {
         });
 
     }
-    
-    
-    
-    public void close() {
-        //super.dispose();
-    }
 
+    private void addSpinnersListener(){
+        spinnerTimeIn.addChangeListener(new ChangeListener(){
+
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    try {
+                        String timeInString = new SimpleDateFormat("h:mm a").format(spinnerTimeIn.getValue());
+                        String timeOutString = new SimpleDateFormat("h:mm a").format(spinnerTimeOut.getValue());
+                        
+                        Date timeIn = new SimpleDateFormat("h:mm a").parse(timeInString);
+                        Date timeOut = new SimpleDateFormat("h:mm a").parse(timeOutString);
+                        
+                        if(timeIn.getTime() > timeOut.getTime()){
+                            spinnerTimeOut.getModel().setValue(spinnerTimeIn.getModel().getValue());
+                        }
+                        
+                    } catch (ParseException ex) {
+                        Logger.getLogger(ManageEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            
+            spinnerTimeOut.addChangeListener(new ChangeListener(){
+
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    try {
+                        String timeInString = new SimpleDateFormat("h:mm a").format(spinnerTimeIn.getValue());
+                        String timeOutString = new SimpleDateFormat("h:mm a").format(spinnerTimeOut.getValue());
+                        
+                        Date timeIn = new SimpleDateFormat("h:mm a").parse(timeInString);
+                        Date timeOut = new SimpleDateFormat("h:mm a").parse(timeOutString);
+                        
+                        if(timeOut.getTime() < timeIn.getTime()){
+                            spinnerTimeIn.getModel().setValue(spinnerTimeOut.getModel().getValue());
+                        }
+                        
+                    } catch (ParseException ex) {
+                        Logger.getLogger(ManageEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

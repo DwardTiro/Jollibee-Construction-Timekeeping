@@ -121,7 +121,7 @@ public class AttendanceModel {
 
     }
 
-    public static void saveAttendance(int id, Date date, Date time_in, Date time_out, int leave){
+    public static void saveAttendance(int empID, Date date, Date time_in, Date time_out, int leave){
 
         try {
             Calendar cal = Calendar.getInstance();
@@ -143,11 +143,11 @@ public class AttendanceModel {
                 totalHours = 8;
             }
             
-            Double salary = (getSalaryOfEmp(id) * totalHours) + ((getSalaryOfEmp(id) + (getSalaryOfEmp(id) * 0.25)) * overTime);
+            Double salary = (getSalaryOfEmp(empID) * totalHours) + ((getSalaryOfEmp(empID) + (getSalaryOfEmp(empID) * 0.25)) * overTime);
             
             System.out.println("Salary is :" + salary + " hour is " + (hour2 - hour1));
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
-            ps.setInt(1, id);
+            ps.setInt(1, empID);
             ps.setDate(2, new java.sql.Date(date.getTime()));
             ps.setTime(3, new java.sql.Time(time_in.getTime()));
             ps.setTime(4, new java.sql.Time(time_out.getTime()));
@@ -160,16 +160,17 @@ public class AttendanceModel {
 
     }
 
-    public static double getSalaryOfEmp(int id){
+    public static double getSalaryOfEmp(int empID){
         double cSalary = -1;
         
         try {
             
-            PreparedStatement ps = DbConnection.getConnection().prepareStatement("select emp_id,salary from employee where emp_id = ?");
-            ps.setInt(1, id);
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement("select salary from employee where emp_id = ?");
+            ps.setInt(1, empID);
             ResultSet rs = ps.executeQuery();
-            rs.next();
-            cSalary = rs.getDouble(2);
+            if(rs.next()){
+                cSalary = rs.getDouble(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AttendanceModel.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -8,7 +8,10 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,16 +27,18 @@ public class Employee {
     private final String lname;
     private final String mname;
     private final double salary;
+    private final int projectID;
 
     private ArrayList<AttendanceModel> attendance;
 
-    public Employee(int empID, int idNumber, String fname, String lname, String mname, double salary) {
+    public Employee(int empID, int idNumber, String fname, String lname, String mname, double salary, int projectID) {
         this.empID = empID;
         this.idNumber = idNumber;
         this.fname = fname;
         this.lname = lname;
         this.mname = mname;
         this.salary = salary;
+        this.projectID = projectID;
         attendance = null;
     }
 
@@ -118,7 +123,7 @@ public class Employee {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            empList.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
+            empList.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7)));
         }
 
         if (empList.size() >= 0) {
@@ -151,7 +156,7 @@ public class Employee {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7)));
             }
 
         } catch (SQLException ex) {
@@ -164,7 +169,7 @@ public class Employee {
     public static ArrayList<Employee> getEmployeeByProject(int projectID) {
         ArrayList<Employee> employees = new ArrayList<>();
 
-        String mysqlString = "select * from employee where project_id = ? order by last_name";
+        String mysqlString = "select * from employee where project_id = ? order by last_name, first_name, middle_name";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
 
@@ -173,7 +178,7 @@ public class Employee {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7)));
             }
 
         } catch (SQLException ex) {
@@ -186,14 +191,14 @@ public class Employee {
     public static ArrayList<Employee> getEmployeeNotInProject() {
         ArrayList<Employee> employees = new ArrayList<>();
 
-        String mysqlString = "select * from employee where project_id is null order by last_name";
+        String mysqlString = "select * from employee where project_id is null order by last_name, first_name, middle_name";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7)));
             }
 
         } catch (SQLException ex) {
@@ -203,9 +208,60 @@ public class Employee {
         return employees;
     }
 
+    public static ArrayList<Employee> getEmployeeWithNoAttendanceForToday() {
+        ArrayList<Employee> employees = new ArrayList<>();
+
+        String mysqlString = "SELECT *\n"
+                + "FROM employee\n"
+                + "where emp_id not in (SELECT emp_id from attendance where date = ?)";
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+            Date dateToday = new SimpleDateFormat("yyyy:MM:dd").parse(CalendarModel.getInstance().getYearToday() + ":" + CalendarModel.getInstance().getMonthToday() + ":" + CalendarModel.getInstance().getDayToday());
+
+            ps.setDate(1, new java.sql.Date(dateToday.getTime()));
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7)));
+            }
+
+        } catch (SQLException | ParseException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return employees;
+    }
+
+    public static ArrayList<Employee> getEmployeeByProjectWithNoAttendanceForToday(int projectID) {
+        ArrayList<Employee> employees = new ArrayList<>();
+
+        String mysqlString = "SELECT *\n"
+                + "FROM employee\n"
+                + "where emp_id not in (SELECT emp_id from attendance where date = ?) and project_id = ?";
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+            Date dateToday = new SimpleDateFormat("yyyy:MM:dd").parse(CalendarModel.getInstance().getYearToday() + ":" + CalendarModel.getInstance().getMonthToday() + ":" + CalendarModel.getInstance().getDayToday());
+
+            ps.setDate(1, new java.sql.Date(dateToday.getTime()));
+            ps.setInt(2, projectID);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                employees.add(new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7)));
+            }
+
+        } catch (SQLException | ParseException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return employees;
+    }
+
     public static Employee getEmployeeByID(int id) throws SQLException {
         System.out.println("id is " + id);
-        String mysqlString = "select emp_id, id_number,first_name,last_Name,middle_name,salary\n"
+        String mysqlString = "select emp_id, id_number,first_name,last_Name,middle_name,salary,project_id\n"
                 + "from employee\n"
                 + "where emp_id = ?";
 
@@ -213,7 +269,7 @@ public class Employee {
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         rs.next();
-        return new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6));
+        return new Employee(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7));
     }
 
     public static String getEmployeeHoursStatement() {
@@ -229,7 +285,7 @@ public class Employee {
     }
 
     public static String getSearchStatement() {
-        return "select emp_id,id_number,first_name,last_Name,middle_name,salary" + "\n"
+        return "select emp_id,id_number,first_name,last_Name,middle_name,salary, project_id" + "\n"
                 + "from employee" + "\n"
                 + "where first_name like ?" + "\n"
                 + "or last_name like ?" + "\n"
@@ -274,5 +330,9 @@ public class Employee {
 
     public double getSalary() {
         return salary;
+    }
+
+    public int getProjectID() {
+        return projectID;
     }
 }
