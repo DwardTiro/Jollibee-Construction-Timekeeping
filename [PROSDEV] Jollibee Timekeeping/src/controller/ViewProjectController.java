@@ -257,7 +257,7 @@ public class ViewProjectController implements Listen, PanelChanger {
         //GridLayout layout = (GridLayout) mainFrame.getPanelViewProjectMembersContainer().getLayout();
         //layout.setRows(len);
         mainFrame.getPanelViewProjectMembersContainer().setPreferredSize(new Dimension(ViewProjectMemberListItemPanel.PANEL_WIDTH, ViewProjectMemberListItemPanel.PANEL_HEIGHT * len));
-        mainFrame.getViewProjectPanel().setPreferredSize(new Dimension(mainFrame.getViewProjectPanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelViewProjectName().getPreferredSize().height + mainFrame.getLabelViewProjectDuration().getPreferredSize().height + mainFrame.getLabelViewProjectMembers().getPreferredSize().height + ViewProjectMemberListItemPanel.PANEL_HEIGHT * (len + 1)));
+        mainFrame.getViewProjectPanel().setPreferredSize(new Dimension(mainFrame.getViewProjectPanel().getPreferredSize().width, MainFrame.getSPACE_ABOVE() + mainFrame.getLabelViewProjectName().getPreferredSize().height + mainFrame.getLabelViewProjectDuration().getPreferredSize().height + mainFrame.getLabelViewProjectMembers().getPreferredSize().height + ViewProjectMemberListItemPanel.PANEL_HEIGHT * (len + 1)));
 
         if (!projectMembers.isEmpty()) {
             for (int i = 0; i < len; i++) {

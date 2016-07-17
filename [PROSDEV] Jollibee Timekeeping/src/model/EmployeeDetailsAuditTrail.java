@@ -1,8 +1,10 @@
 package model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,6 +79,28 @@ public class EmployeeDetailsAuditTrail {
         return adminID;
     }
 
+    public static ArrayList<EmployeeDetailsAuditTrail> getEmployeeDetailsAuditTrailOfEmployee(int empID){
+        ArrayList<EmployeeDetailsAuditTrail> auditTrails = new ArrayList<>();
+        
+        String mysqlString = "select * from employee_details_audit_trail where emp_id = ? order by `date`, `time`";
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+
+            ps.setInt(1, empID);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                auditTrails.add(new EmployeeDetailsAuditTrail(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getTime(7), rs.getInt(8)));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return auditTrails;
+    }
+    
     public void addAuditTrail() {
 
         try {
@@ -97,9 +121,6 @@ public class EmployeeDetailsAuditTrail {
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeDetailsAuditTrail.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
     }
 
 }

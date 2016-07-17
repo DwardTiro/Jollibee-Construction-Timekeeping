@@ -1,9 +1,26 @@
 package gui;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class EditEmployeeChangesPanel extends javax.swing.JPanel {
 
-    public EditEmployeeChangesPanel() {
+    public static final int PANEL_WIDTH = 380;
+    public static final int PANEL_HEIGHT = 110;
+    
+    public EditEmployeeChangesPanel(String attributeName, String oldValue, String newValue, Date date, Time time, String adminName) {
         initComponents();
+        
+        labelAttributeName.setText(attributeName);
+        labelOldValue.setText(oldValue);
+        labelNewValue.setText(newValue);
+        
+        
+        String timeString = new SimpleDateFormat("h:mm a").format(new Date(time.getTime()));
+        
+        labelTimestamp.setText(date.toString() + " | " + timeString);
+        labelAdminName.setText(adminName);
     }
 
     @SuppressWarnings("unchecked")
@@ -59,7 +76,7 @@ public class EditEmployeeChangesPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelAttribute)
@@ -76,8 +93,8 @@ public class EditEmployeeChangesPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelTimestamp, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(labelAdminName, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(labelAdminName, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)))
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

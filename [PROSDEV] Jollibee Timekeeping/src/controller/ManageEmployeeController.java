@@ -270,7 +270,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         mainFrame.getPanelManageEmployeeContainer().removeAll();
         GridLayout layout = (GridLayout)mainFrame.getPanelManageEmployeeContainer().getLayout();
         layout.setRows(len);
-        mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
+        mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, MainFrame.getSPACE_ABOVE() + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
         
         if(!employees.isEmpty()){
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));

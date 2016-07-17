@@ -6,7 +6,15 @@ import java.awt.Toolkit;
 public class MainFrame extends javax.swing.JFrame {
 
     private static final MainFrame mainFrame = new MainFrame();
-    public static final int SPACE_ABOVE = 60;
+    private static final int SPACE_ABOVE = 60;
+
+    public static MainFrame getMainFrame() {
+        return mainFrame;
+    }
+
+    public static int getSPACE_ABOVE() {
+        return SPACE_ABOVE;
+    }
     
     private MainFrame() {
         
@@ -494,20 +502,10 @@ public class MainFrame extends javax.swing.JFrame {
         buttonEditEmployeeSaveChanges.setText("Save Changes");
 
         scrollPaneEditEmployeeChanges.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPaneEditEmployeeChanges.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(224, 224, 224)));
 
         panelEditEmployeeChangesContainer.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panelEditEmployeeChangesContainerLayout = new javax.swing.GroupLayout(panelEditEmployeeChangesContainer);
-        panelEditEmployeeChangesContainer.setLayout(panelEditEmployeeChangesContainerLayout);
-        panelEditEmployeeChangesContainerLayout.setHorizontalGroup(
-            panelEditEmployeeChangesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
-        );
-        panelEditEmployeeChangesContainerLayout.setVerticalGroup(
-            panelEditEmployeeChangesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 447, Short.MAX_VALUE)
-        );
-
+        panelEditEmployeeChangesContainer.setLayout(new javax.swing.BoxLayout(panelEditEmployeeChangesContainer, javax.swing.BoxLayout.Y_AXIS));
         scrollPaneEditEmployeeChanges.setViewportView(panelEditEmployeeChangesContainer);
 
         labelEditEmployeeChanges.setFont(new java.awt.Font("Open Sans Light", 1, 20)); // NOI18N
@@ -544,9 +542,9 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(labelEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelEditEmployeeChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelEditEmployeeChanges, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(scrollPaneEditEmployeeChanges))
                 .addGap(40, 40, 40))
         );
@@ -1077,6 +1075,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel getEditEmployeePanel() {
         return editEmployeePanel;
     }
+
     public javax.swing.JLabel getLabelAddEmployee() {
         return labelAddEmployee;
     }
@@ -1111,6 +1110,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JLabel getLabelEditEmployee() {
         return labelEditEmployee;
+    }
+
+    public javax.swing.JLabel getLabelEditEmployeeChanges() {
+        return labelEditEmployeeChanges;
     }
 
     public javax.swing.JLabel getLabelEditEmployeeFirstName() {
@@ -1277,6 +1280,10 @@ public class MainFrame extends javax.swing.JFrame {
         return panelComputeSalaryFilterContainer;
     }
 
+    public javax.swing.JPanel getPanelEditEmployeeChangesContainer() {
+        return panelEditEmployeeChangesContainer;
+    }
+
     public javax.swing.JPanel getPanelLogin() {
         return panelLogin;
     }
@@ -1315,6 +1322,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getPanelWelcomeCalendar() {
         return panelWelcomeCalendar;
+    }
+
+    public javax.swing.JScrollPane getScrollPaneEditEmployeeChanges() {
+        return scrollPaneEditEmployeeChanges;
     }
 
     public javax.swing.JPanel getSearchResultsPanel() {
@@ -1404,10 +1415,4 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel getWelcomePanel() {
         return welcomePanel;
     }
-    
-    public javax.swing.JButton getReleaseSalaryButton(){
-        return buttonComputeSalaryRelease;
-    }
-    
-    
 }

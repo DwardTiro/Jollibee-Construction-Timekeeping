@@ -1,18 +1,22 @@
 package controller;
 
+import gui.EditEmployeeChangesPanel;
 import gui.MainFrame;
 import gui.PopBox;
 import java.awt.CardLayout;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.AdminModel;
 import model.CalendarModel;
 import model.Employee;
 import model.EmployeeDetailsAuditTrail;
@@ -24,11 +28,18 @@ public class EditEmployeeController implements Listen, PanelChanger{
     
     private final String PANEL_NAME = "editEmployeePanel";
     
+    private ArrayList<EmployeeDetailsAuditTrail> auditTrails;
+    private ArrayList<EditEmployeeChangesPanel> auditTrailPanels;
+    
     private int viewID;
     
     
     private EditEmployeeController(){
         mainFrame = MainFrame.getInstance();
+        
+        auditTrails = new ArrayList<>();
+        auditTrailPanels = new ArrayList<>();
+        
         addListeners();
     }
     
@@ -101,12 +112,28 @@ public class EditEmployeeController implements Listen, PanelChanger{
     }
     
     
-    
     @Override
     public void showPanel() {
         refreshView();
         CardLayout layout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
         layout.show(mainFrame.getMainPanelCardPanel(),PANEL_NAME);
+        
+        addAuditTrails();
+    }
+    
+    private void addAuditTrails(){
+        auditTrails = EmployeeDetailsAuditTrail.getEmployeeDetailsAuditTrailOfEmployee(viewID);
+        
+        auditTrailPanels = new ArrayList<>();
+        int len = auditTrails.size();
+        for(int i = 0; i < len; i++){
+            EditEmployeeChangesPanel panel = new EditEmployeeChangesPanel(auditTrails.get(i).getAttribute(), auditTrails.get(i).getOldValue(), auditTrails.get(i).getNewValue(), auditTrails.get(i).getDate(), auditTrails.get(i).getTime(), AdminModel.getAdminNameByID(auditTrails.get(i).getAdminID()));
+            auditTrailPanels.add(panel);
+            mainFrame.getPanelEditEmployeeChangesContainer().add(panel);
+        }
+        
+        mainFrame.getPanelEditEmployeeChangesContainer().setPreferredSize(new Dimension(EditEmployeeChangesPanel.PANEL_WIDTH, EditEmployeeChangesPanel.PANEL_HEIGHT * len));
+        
     }
     
     // returns true if successful in editing employee, false if there is a similar IDNumber in database

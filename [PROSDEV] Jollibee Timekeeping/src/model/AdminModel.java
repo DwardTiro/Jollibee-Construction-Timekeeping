@@ -1,5 +1,11 @@
 package model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class AdminModel {
     
     private final int id;
@@ -34,6 +40,24 @@ public class AdminModel {
 
     public String getUserType() {
         return userType;
+    }
+    
+    public static String getAdminNameByID(int id){
+        String name = "";
+        try {
+            String mysqlString = "select `name` from admin where id = ?";
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+            
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                name = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
     }
     
 }
