@@ -806,7 +806,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(labelViewProjectMembers)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(431, 431, 431))))
         );
 
         viewProjectScrollPane.setViewportView(viewProjectPanel);
