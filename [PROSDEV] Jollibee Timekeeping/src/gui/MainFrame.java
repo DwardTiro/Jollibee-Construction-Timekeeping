@@ -80,6 +80,9 @@ public class MainFrame extends javax.swing.JFrame {
         textFieldEditEmployeeMiddleName = new javax.swing.JTextField();
         textFieldEditEmployeeSalary = new javax.swing.JTextField();
         buttonEditEmployeeSaveChanges = new javax.swing.JButton();
+        scrollPaneEditEmployeeChanges = new javax.swing.JScrollPane();
+        panelEditEmployeeChangesContainer = new javax.swing.JPanel();
+        labelEditEmployeeChanges = new javax.swing.JLabel();
         searchResultsScrollPane = new javax.swing.JScrollPane();
         searchResultsPanel = new javax.swing.JPanel();
         labelSearchResults = new javax.swing.JLabel();
@@ -397,8 +400,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         labelViewEmployeePreviousMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Arrow Left.png"))); // NOI18N
 
-        editEmployeeButton.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
-        editEmployeeButton.setText("Edit");
+        editEmployeeButton.setBackground(new java.awt.Color(231, 28, 35));
+        editEmployeeButton.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N
+        editEmployeeButton.setForeground(new java.awt.Color(255, 255, 255));
+        editEmployeeButton.setText("Edit Details");
 
         labelViewEmployeeSalary.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelViewEmployeeSalary.setText("Computed Salary");
@@ -424,13 +429,13 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(labelViewEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))))
                         .addGap(152, 152, 152)
-                        .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editEmployeeButton)
-                            .addComponent(labelViewEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelViewEmployeeSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addComponent(editEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(viewEmployeePanelLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addComponent(labelViewEmployeeID)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(labelViewEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         viewEmployeePanelLayout.setVerticalGroup(
             viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,7 +467,7 @@ public class MainFrame extends javax.swing.JFrame {
         editEmployeePanel.setName("editEmployeePanel"); // NOI18N
 
         labelEditEmployee.setFont(new java.awt.Font("Open Sans Light", 1, 24)); // NOI18N
-        labelEditEmployee.setText("Edit Employee");
+        labelEditEmployee.setText("EDIT EMPLOYEE");
         labelEditEmployee.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
         labelEditEmployee.setOpaque(true);
 
@@ -488,6 +493,28 @@ public class MainFrame extends javax.swing.JFrame {
         buttonEditEmployeeSaveChanges.setForeground(new java.awt.Color(255, 255, 255));
         buttonEditEmployeeSaveChanges.setText("Save Changes");
 
+        scrollPaneEditEmployeeChanges.setBackground(new java.awt.Color(255, 255, 255));
+
+        panelEditEmployeeChangesContainer.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelEditEmployeeChangesContainerLayout = new javax.swing.GroupLayout(panelEditEmployeeChangesContainer);
+        panelEditEmployeeChangesContainer.setLayout(panelEditEmployeeChangesContainerLayout);
+        panelEditEmployeeChangesContainerLayout.setHorizontalGroup(
+            panelEditEmployeeChangesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 397, Short.MAX_VALUE)
+        );
+        panelEditEmployeeChangesContainerLayout.setVerticalGroup(
+            panelEditEmployeeChangesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 447, Short.MAX_VALUE)
+        );
+
+        scrollPaneEditEmployeeChanges.setViewportView(panelEditEmployeeChangesContainer);
+
+        labelEditEmployeeChanges.setFont(new java.awt.Font("Open Sans Light", 1, 20)); // NOI18N
+        labelEditEmployeeChanges.setText("CHANGES IN EMPLOYEE DETAILS");
+        labelEditEmployeeChanges.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 20, 0, 0, new java.awt.Color(238, 238, 238)));
+        labelEditEmployeeChanges.setOpaque(true);
+
         javax.swing.GroupLayout editEmployeePanelLayout = new javax.swing.GroupLayout(editEmployeePanel);
         editEmployeePanel.setLayout(editEmployeePanelLayout);
         editEmployeePanelLayout.setHorizontalGroup(
@@ -495,7 +522,6 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(editEmployeePanelLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(editEmployeePanelLayout.createSequentialGroup()
                         .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editEmployeePanelLayout.createSequentialGroup()
@@ -516,37 +542,47 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(textFieldEditEmployeeMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(labelEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelEditEmployeeChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollPaneEditEmployeeChanges))
+                .addGap(40, 40, 40))
         );
         editEmployeePanelLayout.setVerticalGroup(
             editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editEmployeePanelLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(labelEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelEditEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(labelEditEmployeeChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldEditEmployeeIDNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEditEmployeeIDNumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldEditEmployeeLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEditEmployeeLastName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldEditEmployeeFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEditEmployeeFirstName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldEditEmployeeMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEditEmployeeMiddleName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEditEmployeeSalary))
-                .addGap(18, 18, 18)
-                .addComponent(buttonEditEmployeeSaveChanges)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editEmployeePanelLayout.createSequentialGroup()
+                        .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldEditEmployeeIDNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEditEmployeeIDNumber))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldEditEmployeeLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEditEmployeeLastName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldEditEmployeeFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEditEmployeeFirstName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldEditEmployeeMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEditEmployeeMiddleName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEditEmployeeSalary))
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonEditEmployeeSaveChanges))
+                    .addComponent(scrollPaneEditEmployeeChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(editEmployeePanel, "editEmployeePanel");
@@ -920,6 +956,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelComputeSalary;
     private javax.swing.JLabel labelComputeSalaryFilter;
     private javax.swing.JLabel labelEditEmployee;
+    private javax.swing.JLabel labelEditEmployeeChanges;
     private javax.swing.JLabel labelEditEmployeeFirstName;
     private javax.swing.JLabel labelEditEmployeeIDNumber;
     private javax.swing.JLabel labelEditEmployeeLastName;
@@ -961,6 +998,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane manageProjectScrollPane;
     private javax.swing.JPanel panelComputeSalaryEmployeeContainer;
     private javax.swing.JPanel panelComputeSalaryFilterContainer;
+    private javax.swing.JPanel panelEditEmployeeChangesContainer;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelManageEmployeeContainer;
@@ -971,6 +1009,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelViewProjectAddEmployeeContainer;
     private javax.swing.JPanel panelViewProjectMembersContainer;
     private javax.swing.JPanel panelWelcomeCalendar;
+    private javax.swing.JScrollPane scrollPaneEditEmployeeChanges;
     private javax.swing.JPanel searchResultsPanel;
     private javax.swing.JScrollPane searchResultsScrollPane;
     private javax.swing.JLabel sidePanelLabelAddEmployee;

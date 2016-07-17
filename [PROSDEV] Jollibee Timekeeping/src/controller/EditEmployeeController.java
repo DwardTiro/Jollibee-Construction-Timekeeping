@@ -7,9 +7,15 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.CalendarModel;
 import model.Employee;
+import model.EmployeeDetailsAuditTrail;
 
 public class EditEmployeeController implements Listen, PanelChanger{
 
@@ -108,10 +114,37 @@ public class EditEmployeeController implements Listen, PanelChanger{
         boolean tryEdit = false;
         
         try {    
+            // for audit trail
+            Employee curEmployee = Employee.getEmployeeByID(viewID);
+            EmployeeDetailsAuditTrail audit;
+            
+            Date dateNow = new SimpleDateFormat("yyyy/MM/dd").parse(CalendarModel.getInstance().getYearToday() + "/" + CalendarModel.getInstance().getMonthToday() + "/" + CalendarModel.getInstance().getDayToday());
+            
+            DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+            Date timeNow = new Date();
+            timeFormat.format(timeNow);
+            
+            if(!curEmployee.getFname().equalsIgnoreCase(firstName)){
+                audit = new EmployeeDetailsAuditTrail(curEmployee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_FIRST_NAME, curEmployee.getFname(), firstName, dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                audit.addAuditTrail();
+            }
+            if(!curEmployee.getLname().equalsIgnoreCase(lastName)){
+                audit = new EmployeeDetailsAuditTrail(curEmployee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_LAST_NAME, curEmployee.getLname(), lastName, dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                audit.addAuditTrail();
+            }
+            if(!curEmployee.getMname().equalsIgnoreCase(middleName)){
+                audit = new EmployeeDetailsAuditTrail(curEmployee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_MIDDLE_NAME, curEmployee.getMname(), middleName, dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                audit.addAuditTrail();
+            }
+            if(curEmployee.getSalary() != salary){
+                audit = new EmployeeDetailsAuditTrail(curEmployee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_SALARY, String.valueOf(curEmployee.getSalary()), String.valueOf(salary), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                audit.addAuditTrail();
+            }
+            
             Employee.editEmployee(IDNumber, firstName, lastName, middleName, salary);
             tryEdit = true;
-        } catch (SQLException ex) {
             
+        } catch (SQLException | ParseException ex) {
             Logger.getLogger(EditEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
         

@@ -160,7 +160,7 @@ public class ViewEmployeeController implements Listen, PanelChanger {
 
         try {
             employee = Employee.getEmployeeByID(this.getID());
-            mainFrame.getLabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalaryMonth(calendarModel.getMonth(), calendarModel.getYear()));
+            mainFrame.getLabelViewEmployeeSalary().setText("Computed salary: " + employee.computeSalaryMonth(calendarModel.getMonth(), calendarModel.getYear()));
         } catch (SQLException ex) {
             Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
