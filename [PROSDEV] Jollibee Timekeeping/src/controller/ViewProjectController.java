@@ -40,6 +40,7 @@ public class ViewProjectController implements Listen, PanelChanger {
 
     private ArrayList<Employee> unassignedEmployees;
     private ArrayList<ManageProjectAddEmployeeListItemPanel> panelUnassigned;
+    private Object ViewEmployeeProjectMemberListItemPanel;
 
     private ViewProjectController() {
         mainFrame = MainFrame.getInstance();
@@ -253,9 +254,10 @@ public class ViewProjectController implements Listen, PanelChanger {
         projectMembers = Employee.getEmployeeByProject(project.getID());
         int len = projectMembers.size();
         mainFrame.getPanelViewProjectMembersContainer().removeAll();
-        GridLayout layout = (GridLayout) mainFrame.getPanelViewProjectMembersContainer().getLayout();
-        layout.setRows(len);
-        mainFrame.getViewProjectPanel().setPreferredSize(new Dimension(mainFrame.getViewProjectPanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelViewProjectName().getPreferredSize().height + mainFrame.getLabelViewProjectDuration().getPreferredSize().height + mainFrame.getLabelViewProjectMembers().getPreferredSize().height + ViewProjectMemberListItemPanel.PANEL_HEIGHT * (len)));
+        //GridLayout layout = (GridLayout) mainFrame.getPanelViewProjectMembersContainer().getLayout();
+        //layout.setRows(len);
+        mainFrame.getPanelViewProjectMembersContainer().setPreferredSize(new Dimension(ViewProjectMemberListItemPanel.PANEL_WIDTH, ViewProjectMemberListItemPanel.PANEL_HEIGHT * len));
+        mainFrame.getViewProjectPanel().setPreferredSize(new Dimension(mainFrame.getViewProjectPanel().getPreferredSize().width, MainFrame.SPACE_ABOVE + mainFrame.getLabelViewProjectName().getPreferredSize().height + mainFrame.getLabelViewProjectDuration().getPreferredSize().height + mainFrame.getLabelViewProjectMembers().getPreferredSize().height + ViewProjectMemberListItemPanel.PANEL_HEIGHT * (len + 1)));
 
         if (!projectMembers.isEmpty()) {
             for (int i = 0; i < len; i++) {

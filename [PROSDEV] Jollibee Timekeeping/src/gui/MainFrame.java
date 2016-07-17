@@ -104,9 +104,9 @@ public class MainFrame extends javax.swing.JFrame {
         labelViewProjectName = new javax.swing.JLabel();
         labelViewProjectDuration = new javax.swing.JLabel();
         labelViewProjectMembers = new javax.swing.JLabel();
-        panelViewProjectMembersContainer = new javax.swing.JPanel();
         labelViewProjectAddEmployee = new javax.swing.JLabel();
         panelViewProjectAddEmployeeContainer = new javax.swing.JPanel();
+        panelViewProjectMembersContainer = new javax.swing.JPanel();
         computeSalaryScrollPane = new javax.swing.JScrollPane();
         computeSalaryPanel = new javax.swing.JPanel();
         labelComputeSalary = new javax.swing.JLabel();
@@ -435,7 +435,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(viewEmployeePanelLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(labelViewEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         viewEmployeePanelLayout.setVerticalGroup(
             viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,7 +544,7 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(labelEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelEditEmployeeChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scrollPaneEditEmployeeChanges))
@@ -582,7 +582,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(buttonEditEmployeeSaveChanges))
                     .addComponent(scrollPaneEditEmployeeChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(editEmployeePanel, "editEmployeePanel");
@@ -619,7 +619,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(labelSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panelSearchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addComponent(panelSearchResultsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(456, 456, 456))
         );
 
@@ -695,7 +695,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelManageEmployeeAttendance)
                 .addGap(18, 18, 18)
-                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addComponent(panelManageEmployeeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonManageEmployeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(354, 354, 354))
@@ -760,9 +760,6 @@ public class MainFrame extends javax.swing.JFrame {
         labelViewProjectMembers.setText("Project Members:");
         labelViewProjectMembers.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(224, 224, 224)));
 
-        panelViewProjectMembersContainer.setBackground(new java.awt.Color(255, 255, 255));
-        panelViewProjectMembersContainer.setLayout(new java.awt.GridLayout(1, 1));
-
         labelViewProjectAddEmployee.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
         labelViewProjectAddEmployee.setText("Add Employee to ");
 
@@ -770,18 +767,24 @@ public class MainFrame extends javax.swing.JFrame {
         panelViewProjectAddEmployeeContainer.setPreferredSize(new java.awt.Dimension(250, 28));
         panelViewProjectAddEmployeeContainer.setLayout(new javax.swing.BoxLayout(panelViewProjectAddEmployeeContainer, javax.swing.BoxLayout.Y_AXIS));
 
+        panelViewProjectMembersContainer.setBackground(new java.awt.Color(255, 255, 255));
+        panelViewProjectMembersContainer.setPreferredSize(new java.awt.Dimension(600, 80));
+        panelViewProjectMembersContainer.setLayout(new javax.swing.BoxLayout(panelViewProjectMembersContainer, javax.swing.BoxLayout.Y_AXIS));
+
         javax.swing.GroupLayout viewProjectPanelLayout = new javax.swing.GroupLayout(viewProjectPanel);
         viewProjectPanel.setLayout(viewProjectPanelLayout);
         viewProjectPanelLayout.setHorizontalGroup(
             viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewProjectPanelLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelViewProjectMembers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                    .addComponent(labelViewProjectDuration, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelViewProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewProjectPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelViewProjectDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelViewProjectName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(231, 231, 231)
                 .addGroup(viewProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelViewProjectAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelViewProjectAddEmployeeContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -804,9 +807,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(viewProjectPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(labelViewProjectMembers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelViewProjectMembersContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(431, 431, 431))))
+                        .addGap(425, 425, 425))))
         );
 
         viewProjectScrollPane.setViewportView(viewProjectPanel);
@@ -849,7 +852,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(buttonComputeSalaryRelease, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelComputeSalaryEmployeeContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelComputeSalary, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(computeSalaryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelComputeSalaryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelComputeSalaryFilterContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
