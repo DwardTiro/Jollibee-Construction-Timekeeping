@@ -45,7 +45,7 @@ public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
         calendar.set(Calendar.SECOND, 0);
         spinnerTimeOut.setValue(calendar.getTime());
         
-        toAddStatus = false;
+        toAddStatus = true;
     }
     
     @SuppressWarnings("unchecked")
@@ -82,7 +82,7 @@ public class ManageEmployeeAttendancePanel extends javax.swing.JPanel {
 
         spinnerTimeOut.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
 
-        panelStatus.setBackground(new java.awt.Color(255, 255, 255));
+        panelStatus.setBackground(java.awt.Color.green);
 
         javax.swing.GroupLayout panelStatusLayout = new javax.swing.GroupLayout(panelStatus);
         panelStatus.setLayout(panelStatusLayout);
