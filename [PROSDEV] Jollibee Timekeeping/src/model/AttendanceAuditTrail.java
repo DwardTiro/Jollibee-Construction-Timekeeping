@@ -7,22 +7,20 @@ public class AttendanceAuditTrail {
     private final int auditTrailID;
     private final int empID;
     private final int attendanceEntryNum;
-    private final Time oldTimeIn;
-    private final Time newTimeIn;
-    private final Time oldTimeOut;
-    private final Time newTimeOut;
+    private final String attribute;
+    private final Time oldValue;
+    private final Time newValue;
     private final Date date;
     private final Time time;
     private final int adminID;
     
-    public AttendanceAuditTrail(int auditTrailID, int empID, int attendanceEntryNum, Time oldTimeIn, Time newTimeIn, Time oldTimeOut, Time newTimeOut, Date date, Time time, int adminID){
+    public AttendanceAuditTrail(int auditTrailID, int empID, int attendanceEntryNum, String attribute, Time oldValue, Time newValue, Date date, Time time, int adminID){
         this.auditTrailID = auditTrailID;
         this.empID = empID;
         this.attendanceEntryNum = attendanceEntryNum;
-        this.oldTimeIn = oldTimeIn;
-        this.newTimeIn = newTimeIn;
-        this.oldTimeOut = oldTimeOut;
-        this.newTimeOut = newTimeOut;
+        this.attribute = attribute;
+        this.oldValue = oldValue;
+        this.newValue = newValue;
         this.date = date;
         this.time = time;
         this.adminID = adminID;
@@ -40,20 +38,16 @@ public class AttendanceAuditTrail {
         return attendanceEntryNum;
     }
 
-    public Time getOldTimeIn() {
-        return oldTimeIn;
+    public String getAttribute() {
+        return attribute;
     }
 
-    public Time getNewTimeIn() {
-        return newTimeIn;
+    public Time getOldValue() {
+        return oldValue;
     }
 
-    public Time getOldTimeOut() {
-        return oldTimeOut;
-    }
-
-    public Time getNewTimeOut() {
-        return newTimeOut;
+    public Time getNewValue() {
+        return newValue;
     }
 
     public Date getDate() {
