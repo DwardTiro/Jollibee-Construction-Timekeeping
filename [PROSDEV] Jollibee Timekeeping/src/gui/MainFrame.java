@@ -75,13 +75,14 @@ public class MainFrame extends javax.swing.JFrame {
         labelViewEmployeePreviousMonth = new javax.swing.JLabel();
         labelViewEmployeeSalary = new javax.swing.JLabel();
         editEmployeeLabel = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        panelCurrentDate = new javax.swing.JPanel();
+        labelCurrentDay = new javax.swing.JLabel();
+        labelCurrentTimeIn = new javax.swing.JLabel();
+        labelCurrentTimeOut = new javax.swing.JLabel();
+        labelEditCurrentAttendance = new javax.swing.JLabel();
+        labelChangesAttendance = new javax.swing.JLabel();
+        scrollPaneChangesAttendance = new javax.swing.JScrollPane();
+        panelChangesAttendanceContainer = new javax.swing.JPanel();
         editEmployeePanel = new javax.swing.JPanel();
         labelEditEmployee = new javax.swing.JLabel();
         labelEditEmployeeIDNumber = new javax.swing.JLabel();
@@ -422,61 +423,69 @@ public class MainFrame extends javax.swing.JFrame {
         editEmployeeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Details.png"))); // NOI18N
         editEmployeeLabel.setOpaque(true);
 
-        jLabel1.setBackground(new java.awt.Color(226, 226, 226));
-        jLabel1.setFont(new java.awt.Font("Open Sans Light", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Day");
-        jLabel1.setOpaque(true);
+        labelCurrentDay.setBackground(new java.awt.Color(226, 226, 226));
+        labelCurrentDay.setFont(new java.awt.Font("Open Sans Light", 1, 36)); // NOI18N
+        labelCurrentDay.setForeground(new java.awt.Color(255, 255, 255));
+        labelCurrentDay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCurrentDay.setText("Day");
+        labelCurrentDay.setOpaque(true);
 
-        jLabel2.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
-        jLabel2.setText("Time In: ");
+        labelCurrentTimeIn.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        labelCurrentTimeIn.setText("Time In: ");
 
-        jLabel3.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
-        jLabel3.setText("Time Out: ");
+        labelCurrentTimeOut.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        labelCurrentTimeOut.setText("Time Out: ");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+        labelEditCurrentAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Small.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelCurrentDateLayout = new javax.swing.GroupLayout(panelCurrentDate);
+        panelCurrentDate.setLayout(panelCurrentDateLayout);
+        panelCurrentDateLayout.setHorizontalGroup(
+            panelCurrentDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCurrentDateLayout.createSequentialGroup()
+                .addComponent(labelCurrentDay, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelCurrentDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCurrentDateLayout.createSequentialGroup()
+                        .addGroup(panelCurrentDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCurrentTimeIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelCurrentTimeOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCurrentDateLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelEditCurrentAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        panelCurrentDateLayout.setVerticalGroup(
+            panelCurrentDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelCurrentDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelCurrentDateLayout.createSequentialGroup()
+                .addComponent(labelEditCurrentAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelCurrentTimeIn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelCurrentTimeOut)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addContainerGap())
+
+        labelChangesAttendance.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        labelChangesAttendance.setText("Changes in Attendance for ");
+
+        scrollPaneChangesAttendance.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(224, 224, 224)));
+
+        panelChangesAttendanceContainer.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelChangesAttendanceContainerLayout = new javax.swing.GroupLayout(panelChangesAttendanceContainer);
+        panelChangesAttendanceContainer.setLayout(panelChangesAttendanceContainerLayout);
+        panelChangesAttendanceContainerLayout.setHorizontalGroup(
+            panelChangesAttendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 298, Short.MAX_VALUE)
+        );
+        panelChangesAttendanceContainerLayout.setVerticalGroup(
+            panelChangesAttendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 446, Short.MAX_VALUE)
         );
 
-        jLabel4.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
-        jLabel4.setText("Changes in Attendance for ");
-
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(224, 224, 224)));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 297, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(jPanel2);
+        scrollPaneChangesAttendance.setViewportView(panelChangesAttendanceContainer);
 
         javax.swing.GroupLayout viewEmployeePanelLayout = new javax.swing.GroupLayout(viewEmployeePanel);
         viewEmployeePanel.setLayout(viewEmployeePanelLayout);
@@ -505,11 +514,11 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addGap(0, 0, 0)
                                     .addComponent(editEmployeeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addGap(88, 88, 88)
+                .addGroup(viewEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneChangesAttendance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelCurrentDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelChangesAttendance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
         viewEmployeePanelLayout.setVerticalGroup(
@@ -534,12 +543,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelViewEmployeeCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(viewEmployeePanelLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelCurrentDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addComponent(labelChangesAttendance)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(scrollPaneChangesAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelCardPanel.add(viewEmployeePanel, "viewEmployeePanel");
@@ -615,7 +624,7 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(textFieldEditEmployeeSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonEditEmployeeSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(labelEditEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(editEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelEditEmployeeChanges, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(scrollPaneEditEmployeeChanges))
@@ -1021,21 +1030,19 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane computeSalaryScrollPane;
     private javax.swing.JLabel editEmployeeLabel;
     private javax.swing.JPanel editEmployeePanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAddEmployee;
     private javax.swing.JLabel labelAddEmployeeFirstName;
     private javax.swing.JLabel labelAddEmployeeIDNumber;
     private javax.swing.JLabel labelAddEmployeeLastName;
     private javax.swing.JLabel labelAddEmployeeMiddleName;
     private javax.swing.JLabel labelAddEmployeeSalary;
+    private javax.swing.JLabel labelChangesAttendance;
     private javax.swing.JLabel labelComputeSalary;
     private javax.swing.JLabel labelComputeSalaryFilter;
+    private javax.swing.JLabel labelCurrentDay;
+    private javax.swing.JLabel labelCurrentTimeIn;
+    private javax.swing.JLabel labelCurrentTimeOut;
+    private javax.swing.JLabel labelEditCurrentAttendance;
     private javax.swing.JLabel labelEditEmployee;
     private javax.swing.JLabel labelEditEmployeeChanges;
     private javax.swing.JLabel labelEditEmployeeFirstName;
@@ -1077,8 +1084,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane manageEmployeeScrollPane;
     private javax.swing.JPanel manageProjectPanel;
     private javax.swing.JScrollPane manageProjectScrollPane;
+    private javax.swing.JPanel panelChangesAttendanceContainer;
     private javax.swing.JPanel panelComputeSalaryEmployeeContainer;
     private javax.swing.JPanel panelComputeSalaryFilterContainer;
+    private javax.swing.JPanel panelCurrentDate;
     private javax.swing.JPanel panelEditEmployeeChangesContainer;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
@@ -1090,6 +1099,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelViewProjectAddEmployeeContainer;
     private javax.swing.JPanel panelViewProjectMembersContainer;
     private javax.swing.JPanel panelWelcomeCalendar;
+    private javax.swing.JScrollPane scrollPaneChangesAttendance;
     private javax.swing.JScrollPane scrollPaneEditEmployeeChanges;
     private javax.swing.JPanel searchResultsPanel;
     private javax.swing.JScrollPane searchResultsScrollPane;
@@ -1180,12 +1190,32 @@ public class MainFrame extends javax.swing.JFrame {
         return labelAddEmployeeSalary;
     }
 
+    public javax.swing.JLabel getLabelChangesAttendance() {
+        return labelChangesAttendance;
+    }
+
     public javax.swing.JLabel getLabelComputeSalary() {
         return labelComputeSalary;
     }
 
     public javax.swing.JLabel getLabelComputeSalaryFilter() {
         return labelComputeSalaryFilter;
+    }
+
+    public javax.swing.JLabel getLabelCurrentDay() {
+        return labelCurrentDay;
+    }
+
+    public javax.swing.JLabel getLabelCurrentTimeIn() {
+        return labelCurrentTimeIn;
+    }
+
+    public javax.swing.JLabel getLabelCurrentTimeOut() {
+        return labelCurrentTimeOut;
+    }
+
+    public javax.swing.JLabel getLabelEditCurrentAttendance() {
+        return labelEditCurrentAttendance;
     }
 
     public javax.swing.JLabel getLabelEditEmployee() {
@@ -1352,12 +1382,20 @@ public class MainFrame extends javax.swing.JFrame {
         return manageProjectScrollPane;
     }
 
+    public javax.swing.JPanel getPanelChangesAttendanceContainer() {
+        return panelChangesAttendanceContainer;
+    }
+
     public javax.swing.JPanel getPanelComputeSalaryEmployeeContainer() {
         return panelComputeSalaryEmployeeContainer;
     }
 
     public javax.swing.JPanel getPanelComputeSalaryFilterContainer() {
         return panelComputeSalaryFilterContainer;
+    }
+
+    public javax.swing.JPanel getPanelCurrentDate() {
+        return panelCurrentDate;
     }
 
     public javax.swing.JPanel getPanelEditEmployeeChangesContainer() {
@@ -1402,6 +1440,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public javax.swing.JPanel getPanelWelcomeCalendar() {
         return panelWelcomeCalendar;
+    }
+
+    public javax.swing.JScrollPane getScrollPaneChangesAttendance() {
+        return scrollPaneChangesAttendance;
     }
 
     public javax.swing.JScrollPane getScrollPaneEditEmployeeChanges() {

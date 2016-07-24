@@ -1,12 +1,18 @@
 package gui;
 
+import controller.ViewEmployeeController;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.AttendanceModel;
 
 public class CalendarDatePanel extends javax.swing.JPanel {
@@ -70,21 +76,6 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         setStatus(attendanceStatus);
     }
 
-    public CalendarDatePanel(int day, int month, int year, String projectName, int attendanceStatus) {
-        initComponents();
-
-        this.day = day;
-        this.month = month;
-        this.year = year;
-
-        labelDay.setText(String.valueOf(day));
-        labelProjectName.setText(projectName);
-
-        setStatus(attendanceStatus);
-
-        addListeners();
-    }
-
     public CalendarDatePanel(int day, int month, int year, String projectName) {
         initComponents();
 
@@ -95,25 +86,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         labelDay.setText(String.valueOf(day));
         labelProjectName.setText(projectName);
     }
-
-    /*public CalendarDatePanel(int day, String projectName, int attendanceStatus) {
-     initComponents();
-        
-     this.day = day;
-        
-     labelDay.setText(String.valueOf(day));
-     labelProjectName.setText(projectName);
-        
-     switch(attendanceStatus){
-     case ATTENDANCE_STATUS_COMPLETE:    panelAttendanceStatus.setBackground(COLOR_COMPLETE); break;
-     case ATTENDANCE_STATUS_UNDERTIME:   panelAttendanceStatus.setBackground(COLOR_UNDERTIME); break;
-     case ATTENDANCE_STATUS_OVERTIME:    panelAttendanceStatus.setBackground(COLOR_OVERTIME); break;
-     case ATTENDANCE_STATUS_ABSENT:      panelAttendanceStatus.setBackground(COLOR_ABSENT); break;
-     case ATTENDANCE_STATUS_LEAVE:       panelAttendanceStatus.setBackground(COLOR_LEAVE); break;
-     case ATTENDANCE_STATUS_NO_PROJ:     panelAttendanceStatus.setBackground(COLOR_NO_PROJ); break;
-     }
-     }
-     */
+    
     public void setStatus(int attendanceStatus) {
         switch (attendanceStatus) {
             case ATTENDANCE_STATUS_COMPLETE:
@@ -145,8 +118,19 @@ public class CalendarDatePanel extends javax.swing.JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
-                addEditHours.setVisible(true);
+                
+                try {
+                    Date date = new SimpleDateFormat("yyyy/MM/dd").parse(year + "/" + month + "/" + day);
+                    AttendanceModel attendance = AttendanceModel.getAttendace(emp_id, date);
+                    
+                    DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                    
+                    ViewEmployeeController.getInstance().showCurrentDayDetails(day, timeFormat.format(new Date(attendance.getTimeIn().getTime())), timeFormat.format(new Date(attendance.getTimeOut().getTime())));
+                    //AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
+                    //addEditHours.setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CalendarDatePanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             @Override
@@ -175,8 +159,18 @@ public class CalendarDatePanel extends javax.swing.JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                AttendanceFrame addEditHours = new AttendanceFrame(day, month, year,the_emp);
-                addEditHours.setVisible(true);
+                try {
+                    Date date = new SimpleDateFormat("yyyy/MM/dd").parse(year + "/" + month + "/" + day);
+                    AttendanceModel attendance = AttendanceModel.getAttendace(emp_id, date);
+                    
+                    DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                    
+                    ViewEmployeeController.getInstance().showCurrentDayDetails(day, timeFormat.format(new Date(attendance.getTimeIn().getTime())), timeFormat.format(new Date(attendance.getTimeOut().getTime())));
+                    //AttendanceFrame addEditHours = new AttendanceFrame(day, month, year,the_emp);
+                    //addEditHours.setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CalendarDatePanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             @Override
@@ -208,37 +202,6 @@ public class CalendarDatePanel extends javax.swing.JPanel {
                 //AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
                 //addEditHours.setVisible(true);
                 PopBox.infoBox("Already paid cant edit", "Error");
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            }
-
-        });
-    }
-
-    private void addListenersEdit() {
-        this.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                AttendanceFrame addEditHours = new AttendanceFrame(day, month, year, 1);
-                addEditHours.setVisible(true);
-                //PopBox.infoBox("Already paid cant edit", "Error");
             }
 
             @Override

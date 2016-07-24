@@ -163,6 +163,7 @@ public class ViewEmployeeController implements Listen, PanelChanger {
             //employee = Employee.getEmployeeByID(this.getID());
             //mainFrame.getLabelViewEmployeeSalary().setText("Computed salary is: " + employee.computeSalary());
             mainLayout.show(mainCardPanel, PANEL_NAME);
+            hideCurrentDayDetails();
             calendarModel.restartCalendar();
             buildCalendar();
         } catch (SQLException ex) {
@@ -265,6 +266,23 @@ public class ViewEmployeeController implements Listen, PanelChanger {
         }
     }
 
+    private void hideCurrentDayDetails(){
+        mainFrame.getPanelCurrentDate().setVisible(false);
+        mainFrame.getLabelChangesAttendance().setVisible(false);
+        mainFrame.getScrollPaneChangesAttendance().setVisible(false);
+    }
+    
+    public void showCurrentDayDetails(int day, String timeIn, String timeOut){
+        mainFrame.getPanelCurrentDate().setVisible(true);
+        
+        mainFrame.getLabelCurrentDay().setText(String.valueOf(day));
+        mainFrame.getLabelCurrentTimeIn().setText("Time In: " + timeIn);
+        mainFrame.getLabelCurrentTimeOut().setText("Time Out: " + timeOut);
+        
+        //mainFrame.getLabelChangesAttendance().setVisible(true);
+        //mainFrame.getScrollPaneChangesAttendance().setVisible(true);
+    }
+    
     private String monthToString(int month) {
         String sMonth = "";
 
