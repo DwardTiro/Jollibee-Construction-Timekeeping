@@ -1,9 +1,12 @@
 package gui;
 
 import controller.ManageEmployeeController;
+import controller.NavigationController;
 import controller.ViewEmployeeController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,13 +17,15 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import model.AttendanceAuditTrail;
 import model.AttendanceModel;
+import model.CalendarModel;
 
 public class AttendanceFrame extends javax.swing.JFrame {
 
-    private int day;
-    private int month;
-    private int year;
+    private final int day;
+    private final int month;
+    private final int year;
 
     public AttendanceFrame(int day, int month, int year) {
         this.day = day;
@@ -41,7 +46,6 @@ public class AttendanceFrame extends javax.swing.JFrame {
         calendar.set(Calendar.SECOND, 0);
         spinnerTimeIn.setValue(calendar.getTime());
         
-
         SpinnerDateModel model2 = new SpinnerDateModel();
         model2.setCalendarField(Calendar.MINUTE);
         spinnerTimeOut.setModel(model2);
@@ -104,6 +108,7 @@ public class AttendanceFrame extends javax.swing.JFrame {
                     Date time_in = (Date) spinnerTimeIn.getValue();
                     System.out.println(time_in.toString());
                     Date time_out = (Date) spinnerTimeOut.getValue();
+                    System.out.println(time_out.toString());
                     Date date_today = new SimpleDateFormat("yyyy:MM:dd").parse(year + ":" + month + ":" + day);
                     int leave = 0;
                     if (isLeave.isSelected()) {
@@ -122,12 +127,9 @@ public class AttendanceFrame extends javax.swing.JFrame {
                 }
                 AttendanceFrame.this.dispose();
             }
-
         });
-
     }
 
-    
     private void addListener_employeeEdit(int entry_id) {
         
         buttonSubmit.addActionListener(new ActionListener() {
@@ -136,20 +138,60 @@ public class AttendanceFrame extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     System.out.println("U edit here!!!");
-                    //Date dateToday = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-"+month+"-"+day);
-                    //Date time_in = new SimpleDateFormat("HH:mm").parse(spinnerTimeIn.getValue()));
 
                     System.out.println("Date passed to me " + day + " " + month + " " + year);
 
                     Date time_in = (Date) spinnerTimeIn.getValue();
                     System.out.println(time_in.toString());
                     Date time_out = (Date) spinnerTimeOut.getValue();
+                    System.out.println(time_out.toString());
                     Date date_today = new SimpleDateFormat("yyyy:MM:dd").parse(year + ":" + month + ":" + day);
                     int leave = 0;
                     if (isLeave.isSelected()) {
                         leave = 1;
                     }
 
+                    // for audit trail
+                    DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                    Date timeNow = new Date();
+                    timeFormat.format(timeNow);
+                    
+                    Date dateNow = new SimpleDateFormat("yyyy/MM/dd").parse(CalendarModel.getInstance().getYearToday() + "/" + CalendarModel.getInstance().getMonthToday() + "/" + CalendarModel.getInstance().getDayToday());
+                    AttendanceModel attendanceModel = AttendanceModel.getAttendace(ViewEmployeeController.getInstance().getID(), date_today);
+                    
+                    AttendanceAuditTrail auditTrail;
+                    
+                    if(attendanceModel.getLeave() != leave && leave == 1){
+                        
+                        String oldValue = AttendanceAuditTrail.LEAVE_NOT_ON_LEAVE;
+                        String newValue = AttendanceAuditTrail.LEAVE_ON_LEAVE;
+                        
+                        auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_LEAVE, oldValue, newValue, dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                        auditTrail.addAuditTrail();
+                    }
+                    
+                    else{
+                        
+                        Time timeIn = new Time(time_in.getTime());
+                        Time timeOut = new Time(time_out.getTime());
+                        
+                        System.out.println(attendanceModel.getTimeIn().toLocalTime().getHour() + " " + timeIn.toLocalTime().getHour());
+                        System.out.println(attendanceModel.getTimeIn().toLocalTime().getMinute() + " " + timeIn.toLocalTime().getMinute());
+                        if(attendanceModel.getTimeIn().toLocalTime().getHour() != timeIn.toLocalTime().getHour()
+                            || attendanceModel.getTimeIn().toLocalTime().getMinute() != timeIn.toLocalTime().getMinute()){
+                            auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_IN, attendanceModel.getTimeIn().toString(), new Time(time_in.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                            auditTrail.addAuditTrail();
+                        }
+                        
+                        System.out.println(attendanceModel.getTimeOut().toLocalTime().getHour() + " " + timeOut.toLocalTime().getHour());
+                        System.out.println(attendanceModel.getTimeOut().toLocalTime().getMinute() + " " + timeOut.toLocalTime().getMinute());
+                        if(attendanceModel.getTimeOut().toLocalTime().getHour() != timeOut.toLocalTime().getHour()
+                            || attendanceModel.getTimeOut().toLocalTime().getMinute() != timeOut.toLocalTime().getMinute()){
+                            auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_OUT, attendanceModel.getTimeOut().toString(), new Time(time_out.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                            auditTrail.addAuditTrail();
+                        }
+                    }
+                    
                     AttendanceModel.editAttendance(ViewEmployeeController.getInstance().getID(), date_today, time_in, time_out, leave,entry_id);
 
                 } catch (ParseException ex) {
@@ -242,8 +284,10 @@ public class AttendanceFrame extends javax.swing.JFrame {
         labelTimeOut.setText("Time out:");
 
         spinnerTimeIn.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        spinnerTimeIn.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.HOUR));
 
         spinnerTimeOut.setFont(new java.awt.Font("Open Sans Light", 1, 12)); // NOI18N
+        spinnerTimeOut.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.HOUR));
 
         buttonSubmit.setBackground(new java.awt.Color(231, 28, 35));
         buttonSubmit.setFont(new java.awt.Font("Open Sans Light", 1, 14)); // NOI18N

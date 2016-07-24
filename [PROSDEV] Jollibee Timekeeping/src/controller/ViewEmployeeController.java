@@ -218,7 +218,6 @@ public class ViewEmployeeController implements Listen, PanelChanger {
 
             if (curIndex < attendance.size() && attendance.get(curIndex).getDay() == i + 1) {
                 long timediff = attendance.get(curIndex).getTimeOut().getTime() - attendance.get(curIndex).getTimeIn().getTime();
-                System.out.println("hello " + attendance.get(curIndex).getTimeIn() + " " + attendance.get(curIndex).getTimeOut() + " " + timediff + " " + CalendarDatePanel.EIGHT_HOURS_MILLISEC);
                 // undertime
                 if (timediff < CalendarDatePanel.EIGHT_HOURS_MILLISEC) {
                     status = CalendarDatePanel.ATTENDANCE_STATUS_UNDERTIME;
@@ -229,7 +228,6 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                 else if (timediff >= CalendarDatePanel.EIGHT_HOURS_MILLISEC && timediff < CalendarDatePanel.EIGHT_HOURS_MILLISEC + CalendarDatePanel.ONE_HOUR_MILLISEC) {
                     status = CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE;
                 }
-                System.out.println("STATUS " + status);
                 curIndex++;
             }
 

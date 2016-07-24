@@ -55,6 +55,17 @@ public class AttendanceModel {
         this.entry_num = -1;
     }
 
+    public AttendanceModel(int month, int day, int year, Time timeIn, Time timeOut, int leave) {
+        this.month = month;
+        this.day = day;
+        this.year = year;
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+        this.leave = leave;
+        
+        this.entry_num = -1;
+    }
+
     public double getSalary() {
         return salary;
     }
@@ -79,6 +90,10 @@ public class AttendanceModel {
         return timeOut;
     }
 
+    public int getLeave(){
+        return leave;
+    }
+    
     public static void editAttendance(int id, Date date, Date time_in, Date time_out, int leave, int entry_id){
 
         try {
@@ -276,5 +291,43 @@ public class AttendanceModel {
         } catch (SQLException ex) {
             Logger.getLogger(AttendanceModel.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static int getEntryNum(int empID, Date date){
+        int entryNum = -1;
+        try {
+            String query = "SELECT entry_num FROM attendance WHERE emp_id = ? and date = ?;";
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(query);
+            ps.setInt(1, empID);
+            ps.setDate(2, new java.sql.Date(date.getTime()));
+            
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                entryNum = rs.getInt(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendanceModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return entryNum;
+    }
+    
+    public static AttendanceModel getAttendace(int empID, Date date){
+        AttendanceModel attendance = null;
+        try {
+            String query = "SELECT MONTH(`date`), DAY(`date`), YEAR(`date`), time_in, time_out, `leave` FROM attendance WHERE emp_id = ? and date = ?;";
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(query);
+            ps.setInt(1, empID);
+            ps.setDate(2, new java.sql.Date(date.getTime()));
+            
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                attendance = new AttendanceModel(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getTime(4), rs.getTime(5), rs.getInt(6));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendanceModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return attendance;
     }
 }
