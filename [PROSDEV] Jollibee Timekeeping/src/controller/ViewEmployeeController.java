@@ -1,5 +1,6 @@
 package controller;
 
+import gui.AttendanceFrame;
 import gui.CalendarDatePanel;
 import gui.MainFrame;
 import java.awt.CardLayout;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import model.AttendanceModel;
 import model.CalendarModel;
@@ -41,16 +43,20 @@ public class ViewEmployeeController implements Listen, PanelChanger {
     private final int CALENDAR_COLS = 7;
     private ArrayList<AttendanceModel> attendance;
     private final CalendarModel calendarModel;
-    private Employee employee;
     private Employee employeeToShow;
     private int viewID;
 
+    private int daySelected;
+    
     private ViewEmployeeController() {
         mainFrame = MainFrame.getInstance();
         calendarModel = CalendarModel.getInstance();
         mainCardPanel = mainFrame.getMainPanelCardPanel();
         mainLayout = (CardLayout) mainCardPanel.getLayout();
         attendance = new ArrayList<>();
+        
+        daySelected = 0;
+        
         addListeners();
     }
 
@@ -144,6 +150,38 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                 mainFrame.getEditEmployeeLabel().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Details.png")));
             }
         });
+        
+        mainFrame.getLabelEditCurrentAttendance().addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    AttendanceFrame addEditHours = new AttendanceFrame(daySelected, calendarModel.getMonth(), calendarModel.getYear(), AttendanceModel.getEntryNum(employeeToShow.getEmpID(), new SimpleDateFormat("yyyy/MM/dd").parse(calendarModel.getYear() + "/" + calendarModel.getMonth() + "/" + daySelected)));
+                    addEditHours.setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.getLabelEditCurrentAttendance().setIcon(new ImageIcon(getClass().getResource("/img/Edit Small Hover.png")));
+                mainFrame.getLabelEditCurrentAttendance().setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainFrame.getLabelEditCurrentAttendance().setIcon(new ImageIcon(getClass().getResource("/img/Edit Small.png")));
+                mainFrame.getLabelEditCurrentAttendance().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        
+        });
     }
 
     public int getID() {
@@ -176,8 +214,7 @@ public class ViewEmployeeController implements Listen, PanelChanger {
     public void buildCalendar() {
 
         try {
-            employee = Employee.getEmployeeByID(this.getID());
-            mainFrame.getLabelViewEmployeeSalary().setText("Computed salary: " + employee.computeSalaryMonth(calendarModel.getMonth(), calendarModel.getYear()));
+            mainFrame.getLabelViewEmployeeSalary().setText("Computed salary: " + employeeToShow.computeSalaryMonth(calendarModel.getMonth(), calendarModel.getYear()));
         } catch (SQLException ex) {
             Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -266,7 +303,11 @@ public class ViewEmployeeController implements Listen, PanelChanger {
         }
     }
 
-    private void hideCurrentDayDetails(){
+    public void setDaySelected(int daySelected){
+        this.daySelected = daySelected;
+    }
+    
+    public void hideCurrentDayDetails(){
         mainFrame.getPanelCurrentDate().setVisible(false);
         mainFrame.getLabelChangesAttendance().setVisible(false);
         mainFrame.getScrollPaneChangesAttendance().setVisible(false);

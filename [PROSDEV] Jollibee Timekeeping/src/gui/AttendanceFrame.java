@@ -124,6 +124,9 @@ public class AttendanceFrame extends javax.swing.JFrame {
                     ViewEmployeeController.getInstance().buildCalendar();
                     MainFrame.getInstance().getViewEmployeePanel().repaint();
                     MainFrame.getInstance().getViewEmployeePanel().revalidate();
+                    
+                    DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                    ViewEmployeeController.getInstance().showCurrentDayDetails(day, timeFormat.format((Date) spinnerTimeIn.getValue()), timeFormat.format((Date) spinnerTimeOut.getValue()));
                 }
                 AttendanceFrame.this.dispose();
             }
@@ -196,6 +199,9 @@ public class AttendanceFrame extends javax.swing.JFrame {
                     ViewEmployeeController.getInstance().buildCalendar();
                     MainFrame.getInstance().getViewEmployeePanel().repaint();
                     MainFrame.getInstance().getViewEmployeePanel().revalidate();
+                
+                    DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                    ViewEmployeeController.getInstance().showCurrentDayDetails(day, timeFormat.format((Date) spinnerTimeIn.getValue()), timeFormat.format((Date) spinnerTimeOut.getValue()));
                 }
                 AttendanceFrame.this.dispose();
             }

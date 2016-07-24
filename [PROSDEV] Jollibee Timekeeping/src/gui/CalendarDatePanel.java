@@ -65,7 +65,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
 
         if (!date_clicked.after(date_today)) {
             if (isPaid == -1) {
-                addListeners();
+                addListenersAdd();
             } else if (isPaid == -2) {
                 addListenersPaid();
             } else{
@@ -112,25 +112,15 @@ public class CalendarDatePanel extends javax.swing.JPanel {
                 panelAttendanceStatus.setOpaque(false);
         }
     }
-
-    private void addListeners() {
-        this.addMouseListener(new MouseListener() {
+    
+    private void addListenersAdd() {
+        this.addMouseListener(new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                
-                try {
-                    Date date = new SimpleDateFormat("yyyy/MM/dd").parse(year + "/" + month + "/" + day);
-                    AttendanceModel attendance = AttendanceModel.getAttendace(emp_id, date);
-                    
-                    DateFormat timeFormat = new SimpleDateFormat("h:mm a");
-                    
-                    ViewEmployeeController.getInstance().showCurrentDayDetails(day, timeFormat.format(new Date(attendance.getTimeIn().getTime())), timeFormat.format(new Date(attendance.getTimeOut().getTime())));
-                    //AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
-                    //addEditHours.setVisible(true);
-                } catch (ParseException ex) {
-                    Logger.getLogger(CalendarDatePanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
+                addEditHours.setVisible(true);
+                ViewEmployeeController.getInstance().setDaySelected(day);
             }
 
             @Override
@@ -150,11 +140,13 @@ public class CalendarDatePanel extends javax.swing.JPanel {
             public void mouseExited(MouseEvent e) {
                 setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
-
+        
         });
+        
     }
 
     private void addListenersEdit(int the_emp) {
+        
         this.addMouseListener(new MouseListener() {
 
             @Override
@@ -166,8 +158,11 @@ public class CalendarDatePanel extends javax.swing.JPanel {
                     DateFormat timeFormat = new SimpleDateFormat("h:mm a");
                     
                     ViewEmployeeController.getInstance().showCurrentDayDetails(day, timeFormat.format(new Date(attendance.getTimeIn().getTime())), timeFormat.format(new Date(attendance.getTimeOut().getTime())));
+                    ViewEmployeeController.getInstance().setDaySelected(day);
                     //AttendanceFrame addEditHours = new AttendanceFrame(day, month, year,the_emp);
                     //addEditHours.setVisible(true);
+                    
+                    MainFrame.getInstance().getLabelEditCurrentAttendance().setVisible(true);
                 } catch (ParseException ex) {
                     Logger.getLogger(CalendarDatePanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -199,9 +194,22 @@ public class CalendarDatePanel extends javax.swing.JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //AttendanceFrame addEditHours = new AttendanceFrame(day, month, year);
-                //addEditHours.setVisible(true);
-                PopBox.infoBox("Already paid cant edit", "Error");
+                try {
+                    Date date = new SimpleDateFormat("yyyy/MM/dd").parse(year + "/" + month + "/" + day);
+                    AttendanceModel attendance = AttendanceModel.getAttendace(emp_id, date);
+                    
+                    DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                    if(attendance != null)
+                        ViewEmployeeController.getInstance().showCurrentDayDetails(day, timeFormat.format(new Date(attendance.getTimeIn().getTime())), timeFormat.format(new Date(attendance.getTimeOut().getTime())));
+                    else
+                        ViewEmployeeController.getInstance().hideCurrentDayDetails();
+                    
+                    MainFrame.getInstance().getLabelEditCurrentAttendance().setVisible(false);
+                    ViewEmployeeController.getInstance().setDaySelected(day);
+                    
+                } catch (ParseException ex) {
+                    Logger.getLogger(CalendarDatePanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             @Override
