@@ -68,8 +68,8 @@ public class ManageEmployeeController implements Listen, PanelChanger {
     
     @Override
     public final void addListeners() {
-        addAttendancePanelListeners();
-        addProjectPanelListeners();
+        //addAttendancePanelListeners();
+        //addProjectPanelListeners();
         
         mainFrame.getButtonManageEmployeeSubmit().addMouseListener(new MouseListener(){
 
@@ -282,6 +282,8 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         }
         mainFrame.getPanelManageEmployeeContainer().repaint();
         mainFrame.getPanelManageEmployeeContainer().revalidate();
+        
+        addAttendancePanelListeners();
     }
     
     private void refreshProjectList(){
@@ -306,6 +308,8 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             
         mainFrame.getPanelManageEmployeeProjectContainer().repaint();
         mainFrame.getPanelManageEmployeeProjectContainer().revalidate();
+        
+        addProjectPanelListeners();
     }
     
     private void showEmployeesInProject(int projectID){
