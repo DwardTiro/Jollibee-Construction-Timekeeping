@@ -175,16 +175,11 @@ public class AttendanceFrame extends javax.swing.JFrame {
                         Time timeIn = new Time(time_in.getTime());
                         Time timeOut = new Time(time_out.getTime());
                         
-                        System.out.println(attendanceModel.getTimeIn().toLocalTime().getHour() + " " + timeIn.toLocalTime().getHour());
-                        System.out.println(attendanceModel.getTimeIn().toLocalTime().getMinute() + " " + timeIn.toLocalTime().getMinute());
                         if(attendanceModel.getTimeIn().toLocalTime().getHour() != timeIn.toLocalTime().getHour()
                             || attendanceModel.getTimeIn().toLocalTime().getMinute() != timeIn.toLocalTime().getMinute()){
                             auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_IN, attendanceModel.getTimeIn().toString(), new Time(time_in.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
                             auditTrail.addAuditTrail();
                         }
-                        
-                        System.out.println(attendanceModel.getTimeOut().toLocalTime().getHour() + " " + timeOut.toLocalTime().getHour());
-                        System.out.println(attendanceModel.getTimeOut().toLocalTime().getMinute() + " " + timeOut.toLocalTime().getMinute());
                         if(attendanceModel.getTimeOut().toLocalTime().getHour() != timeOut.toLocalTime().getHour()
                             || attendanceModel.getTimeOut().toLocalTime().getMinute() != timeOut.toLocalTime().getMinute()){
                             auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_OUT, attendanceModel.getTimeOut().toString(), new Time(time_out.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
