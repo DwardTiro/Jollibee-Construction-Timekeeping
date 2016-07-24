@@ -120,13 +120,31 @@ public class ViewEmployeeController implements Listen, PanelChanger {
             }
         });
 
-        mainFrame.getEditEmployeeButton().addActionListener(new ActionListener() {
+        mainFrame.getEditEmployeeLabel().addMouseListener(new MouseListener(){
+
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 EditEmployeeController.getInstance().setViewID(viewID);
                 EditEmployeeController.getInstance().showPanel();
             }
 
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                mainFrame.getEditEmployeeLabel().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Details Hover.png")));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                mainFrame.getEditEmployeeLabel().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Details.png")));
+            }
         });
     }
 
