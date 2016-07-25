@@ -82,7 +82,7 @@ public class EmployeeDetailsAuditTrail {
     public static ArrayList<EmployeeDetailsAuditTrail> getEmployeeDetailsAuditTrailOfEmployee(int empID){
         ArrayList<EmployeeDetailsAuditTrail> auditTrails = new ArrayList<>();
         
-        String mysqlString = "select * from employee_details_audit_trail where emp_id = ? order by `date`, `time`";
+        String mysqlString = "select * from employee_details_audit_trail where emp_id = ? order by `date`, `time` desc";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
 

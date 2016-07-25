@@ -1,11 +1,14 @@
 package controller;
 
+import gui.AttendanceChangesPanel;
 import gui.AttendanceFrame;
 import gui.CalendarDatePanel;
 import gui.MainFrame;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
@@ -20,6 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import model.AdminModel;
+import model.AttendanceAuditTrail;
 import model.AttendanceModel;
 import model.CalendarModel;
 import model.DbConnection;
@@ -47,6 +52,8 @@ public class ViewEmployeeController implements Listen, PanelChanger {
     private int viewID;
 
     private int daySelected;
+    private ArrayList<AttendanceAuditTrail> auditTrail;
+    private ArrayList<AttendanceChangesPanel> auditTrailPanel;
     
     private ViewEmployeeController() {
         mainFrame = MainFrame.getInstance();
@@ -56,6 +63,7 @@ public class ViewEmployeeController implements Listen, PanelChanger {
         attendance = new ArrayList<>();
         
         daySelected = 0;
+        auditTrail = new ArrayList<>();
         
         addListeners();
     }
@@ -314,14 +322,45 @@ public class ViewEmployeeController implements Listen, PanelChanger {
     }
     
     public void showCurrentDayDetails(int day, String timeIn, String timeOut){
-        mainFrame.getPanelCurrentDate().setVisible(true);
-        
-        mainFrame.getLabelCurrentDay().setText(String.valueOf(day));
-        mainFrame.getLabelCurrentTimeIn().setText("Time In: " + timeIn);
-        mainFrame.getLabelCurrentTimeOut().setText("Time Out: " + timeOut);
-        
-        //mainFrame.getLabelChangesAttendance().setVisible(true);
-        //mainFrame.getScrollPaneChangesAttendance().setVisible(true);
+        try {
+            mainFrame.getPanelCurrentDate().setVisible(true);
+            
+            mainFrame.getLabelCurrentDay().setText(String.valueOf(day));
+            mainFrame.getLabelCurrentTimeIn().setText("Time In: " + timeIn);
+            mainFrame.getLabelCurrentTimeOut().setText("Time Out: " + timeOut);
+            
+            auditTrail = new ArrayList<>();
+            auditTrail = AttendanceAuditTrail.getAttendanceAuditTrailOfEmployee(employeeToShow.getEmpID(), new SimpleDateFormat("yyyy/MM/dd").parse(calendarModel.getYear() + "/" + calendarModel.getMonth() + "/" + day));
+            
+            auditTrailPanel = new ArrayList<>();
+            mainFrame.getPanelChangesAttendanceContainer().removeAll();
+            
+            int len = auditTrail.size();
+            
+            if(len > 0){
+                mainFrame.getLabelChangesAttendance().setVisible(true);
+                mainFrame.getScrollPaneChangesAttendance().setVisible(true);
+                
+                mainFrame.getLabelChangesAttendance().setText("Changes in Attendance for " + monthToString(calendarModel.getMonth()) + " " + day + ", " + calendarModel.getYear());
+                mainFrame.getPanelChangesAttendanceContainer().setPreferredSize(new Dimension(AttendanceChangesPanel.PANEL_WIDTH, AttendanceChangesPanel.PANEL_HEIGHT * len));
+                
+                for(int i = 0; i < len; i++){
+                    AttendanceChangesPanel temp = new AttendanceChangesPanel(auditTrail.get(i).getAttribute(), auditTrail.get(i).getOldValue(), auditTrail.get(i).getNewValue(), auditTrail.get(i).getDate(), auditTrail.get(i).getTime(), AdminModel.getAdminNameByID(auditTrail.get(i).getAdminID()));
+                    mainFrame.getPanelChangesAttendanceContainer().add(temp);
+                    auditTrailPanel.add(temp);
+                }
+                
+                mainFrame.getPanelChangesAttendanceContainer().repaint();
+                mainFrame.getPanelChangesAttendanceContainer().revalidate();
+                
+            }
+            else{
+                mainFrame.getLabelChangesAttendance().setVisible(false);
+                mainFrame.getScrollPaneChangesAttendance().setVisible(false);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private String monthToString(int month) {

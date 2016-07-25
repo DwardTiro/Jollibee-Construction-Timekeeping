@@ -177,15 +177,17 @@ public class AttendanceFrame extends javax.swing.JFrame {
                         
                         Time timeIn = new Time(time_in.getTime());
                         Time timeOut = new Time(time_out.getTime());
-                        
+                       
                         if(attendanceModel.getTimeIn().toLocalTime().getHour() != timeIn.toLocalTime().getHour()
                             || attendanceModel.getTimeIn().toLocalTime().getMinute() != timeIn.toLocalTime().getMinute()){
-                            auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_IN, attendanceModel.getTimeIn().toString(), new Time(time_in.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                            //auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_IN, attendanceModel.getTimeIn().toString(), new Time(time_in.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                            auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_IN, timeFormat.format(new Date(attendanceModel.getTimeIn().getTime())), timeFormat.format(new Date(time_in.getTime())), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
                             auditTrail.addAuditTrail();
                         }
                         if(attendanceModel.getTimeOut().toLocalTime().getHour() != timeOut.toLocalTime().getHour()
                             || attendanceModel.getTimeOut().toLocalTime().getMinute() != timeOut.toLocalTime().getMinute()){
-                            auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_OUT, attendanceModel.getTimeOut().toString(), new Time(time_out.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                            //auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_OUT, attendanceModel.getTimeOut().toString(), new Time(time_out.getTime()).toString(), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                            auditTrail = new AttendanceAuditTrail(ViewEmployeeController.getInstance().getID(), entry_id, AttendanceAuditTrail.ATTRIBUTE_TIME_OUT, timeFormat.format(new Date(attendanceModel.getTimeOut().getTime())), timeFormat.format(new Date(time_out.getTime())), dateNow, new Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
                             auditTrail.addAuditTrail();
                         }
                     }
