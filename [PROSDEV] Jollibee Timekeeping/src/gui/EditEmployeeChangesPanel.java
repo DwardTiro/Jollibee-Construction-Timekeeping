@@ -38,6 +38,8 @@ public class EditEmployeeChangesPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(224, 224, 224)));
+        setMaximumSize(new java.awt.Dimension(380, 110));
+        setMinimumSize(new java.awt.Dimension(380, 110));
 
         labelAttribute.setFont(new java.awt.Font("Open Sans Light", 0, 14)); // NOI18N
         labelAttribute.setForeground(new java.awt.Color(102, 102, 102));
