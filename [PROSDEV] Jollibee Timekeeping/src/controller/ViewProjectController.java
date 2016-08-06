@@ -58,7 +58,11 @@ public class ViewProjectController implements Listen, PanelChanger {
     }
 
     @Override
-    public void addListeners() {
+    public void addListeners(){
+        
+    }
+    
+    public void addProjectMemberListeners() {
         int len = projectMembers.size();
 
         for (int i = 0; i < len; i++) {
@@ -143,8 +147,10 @@ public class ViewProjectController implements Listen, PanelChanger {
 
             });
         }
-
-        len = unassignedEmployees.size();
+    }
+    
+    public void addUnassignedEmployeeListeners(){
+        int len = unassignedEmployees.size();
         for (int i = 0; i < len; i++) {
             int index = i;
             JLabel labelName = panelUnassigned.get(index).getLabelName();
@@ -227,7 +233,6 @@ public class ViewProjectController implements Listen, PanelChanger {
             });
 
         }
-
     }
 
     @Override
@@ -245,7 +250,8 @@ public class ViewProjectController implements Listen, PanelChanger {
         refreshEmployeeList();
         refreshUnassignedEmployeeList();
 
-        addListeners();
+        addProjectMemberListeners();
+        addUnassignedEmployeeListeners();
     }
 
     private void refreshEmployeeList() {

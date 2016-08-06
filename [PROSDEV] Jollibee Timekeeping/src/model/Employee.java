@@ -212,13 +212,14 @@ public class Employee {
         ArrayList<Employee> employees = new ArrayList<>();
 
         String mysqlString = "SELECT *\n"
-                + "FROM employee\n"
-                + "where emp_id not in (SELECT emp_id from attendance where date = ?)";
+                + "FROM employee E join project P on E.project_id = P.projectID\n"
+                + "where E.emp_id not in (SELECT emp_id from attendance where date = ?) and P.dateDue > ?";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
             Date dateToday = new SimpleDateFormat("yyyy:MM:dd").parse(CalendarModel.getInstance().getYearToday() + ":" + CalendarModel.getInstance().getMonthToday() + ":" + CalendarModel.getInstance().getDayToday());
 
             ps.setDate(1, new java.sql.Date(dateToday.getTime()));
+            ps.setDate(2, new java.sql.Date(dateToday.getTime()));
 
             ResultSet rs = ps.executeQuery();
 
@@ -237,15 +238,16 @@ public class Employee {
         ArrayList<Employee> employees = new ArrayList<>();
 
         String mysqlString = "SELECT *\n"
-                + "FROM employee\n"
-                + "where emp_id not in (SELECT emp_id from attendance where date = ?) and project_id = ?";
+                + "FROM employee E join project P on E.project_id = P.projectID\n"
+                + "where E.emp_id not in (SELECT emp_id from attendance where date = ?) and E.project_id = ? and P.dateDue > ?";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
             Date dateToday = new SimpleDateFormat("yyyy:MM:dd").parse(CalendarModel.getInstance().getYearToday() + ":" + CalendarModel.getInstance().getMonthToday() + ":" + CalendarModel.getInstance().getDayToday());
 
             ps.setDate(1, new java.sql.Date(dateToday.getTime()));
             ps.setInt(2, projectID);
-
+            ps.setDate(3, new java.sql.Date(dateToday.getTime()));
+            
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

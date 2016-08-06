@@ -36,8 +36,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="labelName" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelName" alignment="0" min="-2" pref="374" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="labelIDNumber" alignment="0" max="32767" attributes="0"/>
@@ -47,13 +47,15 @@
                               <Component id="spinnerTimeIn" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelTimeOut" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="spinnerTimeOut" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="checkBoxOnLeave" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
               <Component id="panelStatus" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -71,8 +73,9 @@
                   <Component id="spinnerTimeIn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelTimeOut" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="spinnerTimeOut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkBoxOnLeave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
           <Component id="panelStatus" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -148,5 +151,14 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.JCheckBox" name="checkBoxOnLeave">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Open Sans Light" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="On Leave"/>
+        <Property name="opaque" type="boolean" value="false"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

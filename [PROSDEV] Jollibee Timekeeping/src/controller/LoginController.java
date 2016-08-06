@@ -3,7 +3,6 @@ package controller;
 import gui.MainFrame;
 import gui.PopBox;
 import java.awt.CardLayout;
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -25,11 +24,12 @@ public class LoginController implements Listen, PanelChanger {
     private final String USERNAME_FIELD_DEFAULT = "Username";
     private final String PASSWORD_FIELD_DEFAULT = "Password";
     
-    private final String TYPE_ADMINISTRATOR  = "Administrator";
-    private final String TYPE_ENCODER = "Encoder";
+    public static final String TYPE_ADMINISTRATOR  = "Administrator";
+    public static final String TYPE_ENCODER = "Encoder";
     
     private final String CARD_LOGIN = "panelLogin";
     private final String PANEL_NAME = "panelMain";
+    private final String PANEL_WELCOME = "welcomePanel";
 
     private LoginController() {
         mainFrame = MainFrame.getInstance();
@@ -185,13 +185,21 @@ public class LoginController implements Listen, PanelChanger {
         CardLayout cardLayout = (CardLayout) mainFrame.getContentPane().getLayout();
         cardLayout.show(mainFrame.getContentPane(), PANEL_NAME);
         
+        cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
+        cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_WELCOME);
+        
+        mainFrame.getMainTextFieldSearch().setText("Search");
+        
         mainFrame.getLoginTextFieldUsername().setText(USERNAME_FIELD_DEFAULT);
         mainFrame.getLoginPasswordFieldPassword().setText("");
         mainFrame.getMainLabelName().setText(NavigationController.getInstance().getAdmin().getName());
         
         if(NavigationController.getInstance().getAdmin().getUserType().equals(TYPE_ENCODER)){
+            mainFrame.getSidePanelLabelAddEmployee().setVisible(false);
+            mainFrame.getSidePanelLabelManageProject().setVisible(false);
+            mainFrame.getSidePanelLabelComputeSalary().setVisible(false);
+            /*
             Container parent;
-            
             parent = mainFrame.getSidePanelLabelAddEmployee().getParent();
             parent.remove(mainFrame.getSidePanelLabelAddEmployee());
             parent.repaint();
@@ -206,6 +214,11 @@ public class LoginController implements Listen, PanelChanger {
             parent.remove(mainFrame.getSidePanelLabelComputeSalary());
             parent.repaint();
             parent.revalidate();
+            */
+        } else{
+            mainFrame.getSidePanelLabelAddEmployee().setVisible(true);
+            mainFrame.getSidePanelLabelManageProject().setVisible(true);
+            mainFrame.getSidePanelLabelComputeSalary().setVisible(true);
         }
         
     }

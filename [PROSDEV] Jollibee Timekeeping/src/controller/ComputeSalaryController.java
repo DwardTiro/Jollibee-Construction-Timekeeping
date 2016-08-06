@@ -30,8 +30,8 @@ public class ComputeSalaryController implements Listen, PanelChanger {
     private final MainFrame mainFrame;
 
     private final String PANEL_NAME = "computeSalaryScrollPane";
-    private final String MANAGE_EMPLOYEE_STRING = "COMPUTE SALARY";
-    private final String MANAGE_EMPLOYEE_NEGATIVE_STRING = "NOTHING TO COMPUTE FOR ";
+    private final String COMPUTE_SALARY_STRING = "COMPUTE SALARY";
+    private final String COMPUTE_SALARY_NEGATIVE_STRING = "NOTHING TO COMPUTE FOR ";
 
     private ArrayList<Employee> employees;
     private Payroll payroll;
@@ -52,6 +52,8 @@ public class ComputeSalaryController implements Listen, PanelChanger {
         projectsPanels = new ArrayList<>();
 
         totalPanel = new ComputeSalaryTotalPanel();
+        
+        addListeners();
     }
 
     public static ComputeSalaryController getInstance() {
@@ -60,8 +62,6 @@ public class ComputeSalaryController implements Listen, PanelChanger {
 
     @Override
     public void addListeners() {
-        int len = projectsPanels.size();
-
         MainFrame.getInstance().getButtonComputeSalaryRelease().addActionListener(new ActionListener() {
 
             @Override
@@ -82,7 +82,10 @@ public class ComputeSalaryController implements Listen, PanelChanger {
             }
 
         });
+    }
 
+    private void addProjectPanelListeners(){
+        int len = projectsPanels.size();
         for (int i = 0; i < len; i++) {
             int index = i;
             JLabel label = projectsPanels.get(i).getLabelProjectName();
@@ -98,18 +101,18 @@ public class ComputeSalaryController implements Listen, PanelChanger {
                     }
 
                     if (!employees.isEmpty() && index < projects.size()) {
-                        mainFrame.getLabelComputeSalary().setText(MANAGE_EMPLOYEE_STRING + " FOR " + projects.get(index).getName().toUpperCase());
-                        mainFrame.getButtonComputeSalaryRelease().setVisible(true);
-                        mainFrame.getButtonComputeSalaryRelease().setEnabled(true);
+                        mainFrame.getLabelComputeSalary().setText(COMPUTE_SALARY_STRING + " FOR " + projects.get(index).getName().toUpperCase());
+                        //mainFrame.getButtonComputeSalaryRelease().setVisible(true);
+                        //mainFrame.getButtonComputeSalaryRelease().setEnabled(true);
                     } else if (index == projects.size()) {
-                        mainFrame.getLabelComputeSalary().setText(MANAGE_EMPLOYEE_STRING + " FOR ALL PROJECTS");
-                        mainFrame.getButtonComputeSalaryRelease().setVisible(true);
-                        mainFrame.getButtonComputeSalaryRelease().setEnabled(true);
+                        mainFrame.getLabelComputeSalary().setText(COMPUTE_SALARY_STRING + " FOR ALL PROJECTS");
+                        //mainFrame.getButtonComputeSalaryRelease().setVisible(true);
+                        //mainFrame.getButtonComputeSalaryRelease().setEnabled(true);
                     } else if (employees.isEmpty()) {
-                        mainFrame.getLabelComputeSalary().setText(MANAGE_EMPLOYEE_NEGATIVE_STRING + projects.get(index).getName().toUpperCase());
-                        mainFrame.getButtonComputeSalaryRelease().setVisible(false);
-                        mainFrame.getButtonComputeSalaryRelease().setEnabled(false);
-                        mainFrame.getPanelComputeSalaryEmployeeContainer().remove(totalPanel);
+                        mainFrame.getLabelComputeSalary().setText(COMPUTE_SALARY_NEGATIVE_STRING + projects.get(index).getName().toUpperCase());
+                        //mainFrame.getButtonComputeSalaryRelease().setVisible(false);
+                        //mainFrame.getButtonComputeSalaryRelease().setEnabled(false);
+                        //mainFrame.getPanelComputeSalaryEmployeeContainer().remove(totalPanel);
                     }
                 }
 
@@ -135,9 +138,8 @@ public class ComputeSalaryController implements Listen, PanelChanger {
 
             });
         }
-
     }
-
+    
     @Override
     public void showPanel() {
         CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
@@ -148,7 +150,13 @@ public class ComputeSalaryController implements Listen, PanelChanger {
 
         refreshEmployeeList();
         refreshProjectList();
-        addListeners();
+        
+        if(employees.isEmpty()){
+            mainFrame.getLabelComputeSalary().setText(COMPUTE_SALARY_NEGATIVE_STRING + "ALL PROJECTS");
+            mainFrame.getButtonComputeSalaryRelease().setVisible(false);
+        } else{
+            mainFrame.getLabelComputeSalary().setText(COMPUTE_SALARY_STRING);
+        }
     }
 
     private void removeNoSalary() throws SQLException {
@@ -179,7 +187,6 @@ public class ComputeSalaryController implements Listen, PanelChanger {
 
         employeePanels = new ArrayList<>();
         int len = employees.size();
-
         mainFrame.getPanelComputeSalaryEmployeeContainer().removeAll();
         //GridLayout layout = (GridLayout)mainFrame.getPanelComputeSalaryEmployeeContainer().getLayout();
         //layout.setRows(len + 1);
@@ -187,6 +194,8 @@ public class ComputeSalaryController implements Listen, PanelChanger {
         mainFrame.getPanelComputeSalaryEmployeeContainer().setPreferredSize(new Dimension(ComputeSalaryEmployeePanel.PANEL_WIDTH, ComputeSalaryEmployeePanel.PANEL_WIDTH * (len + 1)));
 
         if (!employees.isEmpty()) {
+            mainFrame.getButtonComputeSalaryRelease().setVisible(true);
+            mainFrame.getPanelComputeSalaryEmployeeContainer().setVisible(true);
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
             for (int i = 0; i < len; i++) {
                 Employee e = employees.get(i);
@@ -194,6 +203,9 @@ public class ComputeSalaryController implements Listen, PanelChanger {
                 mainFrame.getPanelComputeSalaryEmployeeContainer().add(panel);
                 employeePanels.add(panel);
             }
+        } else{
+            mainFrame.getButtonComputeSalaryRelease().setVisible(false);
+            mainFrame.getPanelComputeSalaryEmployeeContainer().setVisible(false);
         }
         totalPanel.setTotal(payroll.getTotal() + "");
         mainFrame.getPanelComputeSalaryEmployeeContainer().add(totalPanel);
@@ -224,6 +236,8 @@ public class ComputeSalaryController implements Listen, PanelChanger {
 
         mainFrame.getPanelComputeSalaryFilterContainer().repaint();
         mainFrame.getPanelManageEmployeeProjectContainer().revalidate();
+        
+        addProjectPanelListeners();
     }
 
     private void showEmployeesInProject(int projectID) {

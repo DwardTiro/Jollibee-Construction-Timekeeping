@@ -1,5 +1,7 @@
 package gui;
 
+import controller.LoginController;
+import controller.NavigationController;
 import controller.ViewEmployeeController;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -27,12 +29,12 @@ public class CalendarDatePanel extends javax.swing.JPanel {
     public static final int ATTENDANCE_STATUS_LEAVE = 5;
     public static final int ATTENDANCE_STATUS_NO_PROJ = 6;
 
-    private final Color COLOR_COMPLETE = Color.GREEN;
-    private final Color COLOR_UNDERTIME = Color.YELLOW;
-    private final Color COLOR_OVERTIME = Color.BLUE;
-    private final Color COLOR_ABSENT = Color.RED;
-    private final Color COLOR_LEAVE = Color.PINK;
-    private final Color COLOR_NO_PROJ = Color.BLACK;
+    private final Color COLOR_COMPLETE = new Color(199, 255, 209);
+    private final Color COLOR_UNDERTIME = new Color(255, 250, 199);
+    private final Color COLOR_OVERTIME = new Color(199, 203, 255);
+    private final Color COLOR_ABSENT = new Color(255, 199, 199);
+    private final Color COLOR_LEAVE = new Color(250, 199, 255);
+    private final Color COLOR_NO_PROJ = new Color(212, 212, 212);
     private final Color COLOR_DEFAULT = Color.WHITE;
 
     private final int day;
@@ -63,12 +65,12 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         Date date_today = new Date();
         int isPaid = AttendanceModel.isPaid(emp_id, month, day, year);
 
-        if (!date_clicked.after(date_today)) {
-            if (isPaid == -1) {
+        if (!date_clicked.after(date_today) && attendanceStatus != CalendarDatePanel.ATTENDANCE_STATUS_NO_PROJ) {
+            if (isPaid == -1 && !NavigationController.getInstance().getAdmin().getUserType().equalsIgnoreCase(LoginController.TYPE_ENCODER)) {
                 addListenersAdd();
             } else if (isPaid == -2) {
                 addListenersPaid();
-            } else{
+            } else if(!NavigationController.getInstance().getAdmin().getUserType().equalsIgnoreCase(LoginController.TYPE_ENCODER)){
                 addListenersEdit(isPaid);
             }
         }
@@ -281,7 +283,7 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
                 .addComponent(labelDay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelProjectName)

@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
@@ -21,6 +23,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
 import javax.swing.JScrollBar;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
@@ -60,6 +63,8 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         
         projects = new ArrayList<>();
         projectsPanels = new ArrayList<>();
+        
+        addListeners();
     }
     
     public static ManageEmployeeController getInstance(){
@@ -89,7 +94,12 @@ public class ManageEmployeeController implements Listen, PanelChanger {
                             timeIn = df.parse(attendancePanel.getSpinnerTimeIn().getValue().toString());
                             timeOut = df.parse(attendancePanel.getSpinnerTimeOut().getValue().toString());
                             int empID = employee.getEmpID();
-                            AttendanceModel.saveAttendance(empID, date, timeIn, timeOut, 0);
+                            
+                            int leave = 0;
+                            if(attendancePanel.getCheckBoxOnLeave().isSelected())
+                                leave = 1;
+                            
+                            AttendanceModel.saveAttendance(empID, date, timeIn, timeOut, leave);
                         }catch(ParseException ex){
                             ex.toString();
                         }
@@ -125,6 +135,7 @@ public class ManageEmployeeController implements Listen, PanelChanger {
             ManageEmployeeAttendancePanel attendancePanel = attendancePanels.get(index);
             JSpinner timeInSpinner = attendancePanels.get(index).getSpinnerTimeIn();
             JSpinner timeOutSpinner = attendancePanels.get(index).getSpinnerTimeOut();
+            JCheckBox onLeave = attendancePanels.get(index).getCheckBoxOnLeave();
             
             timeInSpinner.addChangeListener(new ChangeListener(){
 
@@ -186,6 +197,44 @@ public class ManageEmployeeController implements Listen, PanelChanger {
                         Logger.getLogger(ManageEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            });
+            
+            onLeave.addActionListener(new ActionListener(){
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(onLeave.isSelected()){
+                        timeInSpinner.setEnabled(false);
+                        timeOutSpinner.setEnabled(false);
+                            
+                        attendancePanel.getPanelStatus().setBackground(ManageEmployeeAttendancePanel.COLOR_ADD);
+                        attendancePanel.setToAddStatus(true);
+                    }
+                    else{
+                        try {
+                            timeInSpinner.setEnabled(true);
+                            timeOutSpinner.setEnabled(true);
+                            
+                            String timeInString = new SimpleDateFormat("h:mm a").format(timeInSpinner.getValue());
+                            String timeOutString = new SimpleDateFormat("h:mm a").format(timeOutSpinner.getValue());
+                            
+                            Date timeIn = new SimpleDateFormat("h:mm a").parse(timeInString);
+                            Date timeOut = new SimpleDateFormat("h:mm a").parse(timeOutString);
+                            long diff = timeOut.getTime() - timeIn.getTime();
+                            
+                            if(diff > 0){
+                                attendancePanel.getPanelStatus().setBackground(ManageEmployeeAttendancePanel.COLOR_ADD);
+                                attendancePanel.setToAddStatus(true);
+                            } else {
+                                attendancePanel.getPanelStatus().setBackground(ManageEmployeeAttendancePanel.COLOR_DONT_ADD);
+                                attendancePanel.setToAddStatus(false);
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(ManageEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                
             });
         }
     }
@@ -251,7 +300,12 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         employees = Employee.getEmployeeWithNoAttendanceForToday();
         projects = Project.getProjectList();
         
-        mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING);
+        if(employees.isEmpty()){
+            mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_NEGATIVE_STRING + "ALL PROJECTS");
+            mainFrame.getButtonManageEmployeeSubmit().setVisible(false);
+        }
+        else
+            mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING);
         JScrollBar verticalScrollBar = mainFrame.getManageEmployeeScrollPane().getVerticalScrollBar();
         JScrollBar horizontalScrollBar = mainFrame.getManageEmployeeScrollPane().getHorizontalScrollBar();
         verticalScrollBar.setValue(verticalScrollBar.getMinimum());
@@ -259,8 +313,6 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         
         refreshEmployeeList();
         refreshProjectList();
-        
-        addListeners();
     }
     
     private void refreshEmployeeList(){
@@ -273,12 +325,16 @@ public class ManageEmployeeController implements Listen, PanelChanger {
         mainFrame.getManageEmployeePanel().setPreferredSize(new Dimension(mainFrame.getManageEmployeePanel().getPreferredSize().width, MainFrame.getSPACE_ABOVE() + mainFrame.getLabelManageEmployee().getPreferredSize().height + mainFrame.getLabelManageEmployeeAttendance().getPreferredSize().height + ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1) + mainFrame.getButtonManageEmployeeSubmit().getPreferredSize().height));
         
         if(!employees.isEmpty()){
+            mainFrame.getButtonManageEmployeeSubmit().setVisible(true);
             //mainFrame.getPanelManageEmployeeContainer().setPreferredSize(new Dimension(ManageEmployeeAttendancePanel.PANEL_WIDTH, ManageEmployeeAttendancePanel.PANEL_HEIGHT * (len + 1)));
             for (Employee e : employees) {
                 ManageEmployeeAttendancePanel panel = new ManageEmployeeAttendancePanel(e.getLname() + ", " + e.getFname() + " " + e.getMname(), String.valueOf(e.getIdNumber()));
                 mainFrame.getPanelManageEmployeeContainer().add(panel);
                 attendancePanels.add(panel); 
             }
+        }
+        else{
+            mainFrame.getButtonManageEmployeeSubmit().setVisible(false);
         }
         mainFrame.getPanelManageEmployeeContainer().repaint();
         mainFrame.getPanelManageEmployeeContainer().revalidate();

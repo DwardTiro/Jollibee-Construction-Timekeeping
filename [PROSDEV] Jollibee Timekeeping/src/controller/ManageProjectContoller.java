@@ -20,6 +20,8 @@ public class ManageProjectContoller implements Listen, PanelChanger{
     private final MainFrame mainFrame;
     
     private final String PANEL_NAME = "manageProjectScrollPane";
+    private final String MANAGE_PROJECT_STRING = "MANAGE ACTIVE PROJECT";
+    private final String MANAGE_PROJECT_NEGATIVE_STRING = "NO ACTIVE PROJECT TO MANAGE";
     
     private ArrayList<Project> projects;
     private ArrayList<ManageProjectListItemPanel> projectsPanels;
@@ -29,14 +31,20 @@ public class ManageProjectContoller implements Listen, PanelChanger{
         
         projects = new ArrayList<>();
         projectsPanels = new ArrayList<>();
+        addListeners();
     }
     
     public static ManageProjectContoller getInstance(){
         return ManageProjectContoller.manageProjectContoller;
     }
     
+    
     @Override
     public void addListeners() {
+    
+    }
+    
+    public void addProjectPanelListeners() {
         int len = projectsPanels.size();
         for(int i = 0 ; i < len; i++){
             final int index = i;
@@ -80,7 +88,6 @@ public class ManageProjectContoller implements Listen, PanelChanger{
         
         projects = Project.getProjectList();
         refreshProjectList();
-        addListeners();
     }
     
     private void refreshProjectList(){
@@ -95,15 +102,20 @@ public class ManageProjectContoller implements Listen, PanelChanger{
         //mainFrame.getPanelManageProjectContainer().setPreferredSize(new Dimension(ManageProjectItemListPanel.PANEL_WIDTH, ManageProjectItemListPanel.PANEL_HEIGHT * len));
         
         if(!projects.isEmpty()){
+            mainFrame.getLabelManageProject().setText(MANAGE_PROJECT_STRING);
             for(int i = 0; i < len; i++){
                 Project p = projects.get(i);
                 ManageProjectListItemPanel panel = new ManageProjectListItemPanel(p.getName(), p.getDateStarted(), p.getDateDue());
                 mainFrame.getPanelManageProjectContainer().add(panel);
                 projectsPanels.add(panel);
             }
+        }else{
+            mainFrame.getLabelManageProject().setText(MANAGE_PROJECT_NEGATIVE_STRING);
         }
             
         mainFrame.getPanelManageProjectContainer().repaint();
         mainFrame.getPanelManageProjectContainer().revalidate();
+        
+        addProjectPanelListeners();
     }
 }

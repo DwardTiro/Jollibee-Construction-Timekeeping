@@ -103,6 +103,8 @@ public class WelcomeController implements Listen, PanelChanger{
         CardLayout cardLayout = (CardLayout) mainFrame.getMainPanelCardPanel().getLayout();
         cardLayout.show(mainFrame.getMainPanelCardPanel(), PANEL_NAME);
         
+        calendarModel.restartCalendar();
+        
         buildCalendar();
     }
     

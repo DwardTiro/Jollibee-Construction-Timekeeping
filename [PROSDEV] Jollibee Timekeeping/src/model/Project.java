@@ -93,4 +93,48 @@ public class Project {
     public static void updateDB(int id) {
         String mysqlstring = "UPDATE '' SET 'proj_id'";
     }
+    
+    public static Project getProjectByID(int projectID){
+        Project project = null;
+        
+        String mysqlstring = "SELECT * FROM project where projectID = ?";
+
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
+
+            ps.setInt(1, projectID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                project = new Project(rs.getInt(1), rs.getString(2), new java.util.Date(rs.getDate(3).getTime()), new java.util.Date(rs.getDate(4).getTime()));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Project.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return project;
+    }
+    
+    public static Project getUndueProjectByID(int projectID, Date dateToday){
+        Project project = null;
+        
+        String mysqlstring = "SELECT * FROM project where projectID = ? and dateStarted <= ? and dateDue >= ?";
+
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlstring);
+
+            ps.setInt(1, projectID);
+            ps.setDate(2, dateToday);
+            ps.setDate(3, dateToday);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                project = new Project(rs.getInt(1), rs.getString(2), new java.util.Date(rs.getDate(3).getTime()), new java.util.Date(rs.getDate(4).getTime()));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Project.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return project;
+    }
 }
