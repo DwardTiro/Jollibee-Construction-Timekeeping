@@ -188,13 +188,15 @@ public class Employee {
         return employees;
     }
 
-    public static ArrayList<Employee> getEmployeeNotInProject() {
+    public static ArrayList<Employee> getEmployeeNotInProject(Date dateToday) {
         ArrayList<Employee> employees = new ArrayList<>();
 
-        String mysqlString = "select * from employee where project_id is null order by last_name, first_name, middle_name";
+        String mysqlString = "select * from employee E left join project P on E.project_id = P.projectID"
+                + " where E.project_id is null or P.dateDue < ?"
+                + "order by E.last_name, E.first_name, E.middle_name";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
-
+            ps.setDate(1, new java.sql.Date(dateToday.getTime()));
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

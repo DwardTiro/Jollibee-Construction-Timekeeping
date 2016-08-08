@@ -279,25 +279,29 @@ public class ViewProjectController implements Listen, PanelChanger {
     }
 
     public void refreshUnassignedEmployeeList() {
-        panelUnassigned = new ArrayList<>();
-
-        unassignedEmployees = Employee.getEmployeeNotInProject();
-        int len = unassignedEmployees.size();
-        mainFrame.getPanelViewProjectAddEmployeeContainer().removeAll();
-        //GridLayout layout = (GridLayout)mainFrame.getPanelViewProjectAddEmployeeContainer().getLayout();
-        //layout.setRows(len);
-        mainFrame.getPanelViewProjectAddEmployeeContainer().setPreferredSize(new Dimension(ManageProjectAddEmployeeListItemPanel.PANEL_WIDTH, ManageProjectAddEmployeeListItemPanel.PANEL_HEIGHT * len));
-        if (!unassignedEmployees.isEmpty()) {
-            for (int i = 0; i < len; i++) {
-                Employee e = unassignedEmployees.get(i);
-                ManageProjectAddEmployeeListItemPanel panel = new ManageProjectAddEmployeeListItemPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname());
-                panelUnassigned.add(panel);
-                mainFrame.getPanelViewProjectAddEmployeeContainer().add(panel);
+        try {
+            panelUnassigned = new ArrayList<>();
+            Date dateNow = new SimpleDateFormat("yyyy/MM/dd").parse(CalendarModel.getInstance().getYearToday() + "/" + CalendarModel.getInstance().getMonthToday() + "/" + CalendarModel.getInstance().getDayToday());
+            unassignedEmployees = Employee.getEmployeeNotInProject(dateNow);
+            int len = unassignedEmployees.size();
+            mainFrame.getPanelViewProjectAddEmployeeContainer().removeAll();
+            //GridLayout layout = (GridLayout)mainFrame.getPanelViewProjectAddEmployeeContainer().getLayout();
+            //layout.setRows(len);
+            mainFrame.getPanelViewProjectAddEmployeeContainer().setPreferredSize(new Dimension(ManageProjectAddEmployeeListItemPanel.PANEL_WIDTH, ManageProjectAddEmployeeListItemPanel.PANEL_HEIGHT * len));
+            if (!unassignedEmployees.isEmpty()) {
+                for (int i = 0; i < len; i++) {
+                    Employee e = unassignedEmployees.get(i);
+                    ManageProjectAddEmployeeListItemPanel panel = new ManageProjectAddEmployeeListItemPanel(e.getLname() + ", " + e.getFname() + " " + e.getMname());
+                    panelUnassigned.add(panel);
+                    mainFrame.getPanelViewProjectAddEmployeeContainer().add(panel);
+                }
             }
+            
+            mainFrame.getPanelViewProjectAddEmployeeContainer().repaint();
+            mainFrame.getPanelViewProjectAddEmployeeContainer().revalidate();
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewProjectController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        mainFrame.getPanelViewProjectAddEmployeeContainer().repaint();
-        mainFrame.getPanelViewProjectAddEmployeeContainer().revalidate();
     }
 
     public void setProject(Project project) {
