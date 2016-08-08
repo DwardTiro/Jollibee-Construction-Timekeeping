@@ -259,10 +259,15 @@ public class ManageEmployeeController implements Listen, PanelChanger {
                         mainFrame.getButtonManageEmployeeSubmit().setVisible(true);
                         mainFrame.getButtonManageEmployeeSubmit().setEnabled(true);
                     }
-                    else if(index == projects.size()){
+                    else if(!employees.isEmpty() && index == projects.size()){
                         mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_STRING + " FOR ALL PROJECTS");
                         mainFrame.getButtonManageEmployeeSubmit().setVisible(true);
                         mainFrame.getButtonManageEmployeeSubmit().setEnabled(true);
+                    }
+                    else if(employees.isEmpty() && index == projects.size()){
+                         mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_NEGATIVE_STRING + "ALL PROJECTS");
+                        mainFrame.getButtonManageEmployeeSubmit().setVisible(false);
+                        mainFrame.getButtonManageEmployeeSubmit().setEnabled(false);
                     }
                     else if(employees.isEmpty()){
                         mainFrame.getLabelManageEmployee().setText(MANAGE_EMPLOYEE_NEGATIVE_STRING + projects.get(index).getName().toUpperCase());
