@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -125,11 +127,15 @@ public class LoginController implements Listen, PanelChanger {
             @Override
             public void mouseClicked(MouseEvent e) {
                 AdminModel admin;
-                if((admin = tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))) != null){
-                    NavigationController.getInstance().setAdmin(admin);
-                    login();
-                }else{
-                    PopBox.infoBox("Failed to log in", "");
+                try{
+                    if((admin = tryLogin(mainFrame.getLoginTextFieldUsername().getText(), String.copyValueOf(mainFrame.getLoginPasswordFieldPassword().getPassword()))) != null){
+                        NavigationController.getInstance().setAdmin(admin);
+                        login();
+                    }else{
+                        PopBox.infoBox("Failed to log in", "");
+                    }
+                }catch(NoSuchAlgorithmException lel){
+                    lel.printStackTrace();
                 }
             }
 
@@ -154,18 +160,31 @@ public class LoginController implements Listen, PanelChanger {
         });
     }
 
+    public static String getHash(String password) throws java.security.NoSuchAlgorithmException{
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(password.getBytes());
+        byte[] b = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for(byte b1:b){
+            sb.append(Integer.toHexString(b1 & 0xff).toString());
+        }
+        System.out.println("Hash: "+sb.toString());
+        return sb.toString();
+    }
+    
     @Override
     public void showPanel() {
         logout();
     }
 
-    private AdminModel tryLogin(String username, String password) {
+    private AdminModel tryLogin(String username, String password) throws NoSuchAlgorithmException {
         AdminModel admin = null;
         ResultSet rs = null;
         
         String query = "select * from admin where username = ? and password = ?";
         
         try {
+            password = getHash(password);
             PreparedStatement preparedStatement = DbConnection.getConnection().prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
