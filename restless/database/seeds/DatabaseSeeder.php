@@ -13,8 +13,16 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
+		
+			DB::table('users')->insert(
+        	[
+        	'id'=>'2',
+            'name'=>'jetj',
+        	'user'=>'jet2',
+        	'password'=>Hash::make('123'),
+        	]);
 
-		// $this->call('UserTableSeeder');
+
 	}
 
 }
