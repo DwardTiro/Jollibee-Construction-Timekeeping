@@ -26,6 +26,8 @@ public class LoginController implements Listen, PanelChanger {
     private final String USERNAME_FIELD_DEFAULT = "Username";
     private final String PASSWORD_FIELD_DEFAULT = "Password";
     
+    private final String SALT = "-thisISaSALT";
+    
     public static final String TYPE_ADMINISTRATOR  = "Administrator";
     public static final String TYPE_ENCODER = "Encoder";
     
@@ -160,8 +162,9 @@ public class LoginController implements Listen, PanelChanger {
         });
     }
 
-    public static String getHash(String password) throws java.security.NoSuchAlgorithmException{
+    public String getHash(String password) throws java.security.NoSuchAlgorithmException{
         MessageDigest md = MessageDigest.getInstance("SHA-256");
+        password += SALT;
         md.update(password.getBytes());
         byte[] b = md.digest();
         StringBuffer sb = new StringBuffer();
