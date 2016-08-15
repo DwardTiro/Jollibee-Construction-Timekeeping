@@ -40,7 +40,7 @@ public class ViewEmployeeController implements Listen, PanelChanger {
     private final CardLayout mainLayout;
 
     private final String SQL_GET_ATTENDANCE = "SELECT * FROM attendance where Month(date) = Month(?) and Year(date) = Year(?) and emp_id = ? order by date";
-    private final String SQL_GET_PROJECT_FOR_ATTENDANCE = "SELECT * FROM employee_details_audit_trail where attribute = 'Project' and `date` <= ? and emp_id = ? LIMIT 1 ";
+    private final String SQL_GET_PROJECT_FOR_ATTENDANCE = "SELECT * FROM employee_details_audit_trail where attribute = 'Project' and `date` <= ? and emp_id = ? order by date desc, time desc ";
     private final String SQL_DATE_ATTRIBUTE = "date";
     private final String SQL_TIMEIN_ATTRIBUTE = "time_in";
     private final String SQL_TIMEOUT_ATTRIBUTE = "time_out";
@@ -324,22 +324,22 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                         status = CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE;
                     }
                     curIndex++;
-                    projectName = project.getName();
+                    //projectName = project.getName();
                 } 
                 
                 // absent
                 // if there is project and the date today is between date started and date due
                 else if(project != null && (date.after(dateJoined) || date.equals(dateJoined)) && (date.before(dateToday))){
                     status = CalendarDatePanel.ATTENDANCE_STATUS_ABSENT;
-                    projectName = project.getName();
+                    //projectName = project.getName();
                 }
                 // no project
                 // if there is no project and the date is not after the date today
-                else if((date.before(dateToday) || date.equals(dateToday)) && date.before(dateJoined)){
+                else if(project == null && (date.before(dateToday) || date.equals(dateToday))){
                     status = CalendarDatePanel.ATTENDANCE_STATUS_NO_PROJ;
                 }
                 
-                else if(project != null && date.equals(dateToday)){
+                if(project != null){
                     projectName = project.getName();
                 }
                 
@@ -471,23 +471,32 @@ public class ViewEmployeeController implements Listen, PanelChanger {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = sdf.parse(dateString);
 
+            String currentDateString = calendarModel.getYearToday() + "-" + calendarModel.getMonthToday() + "-" + calendarModel.getDayToday();
+            Date currentDate = sdf.parse(currentDateString);
+            
             stmt.setDate(1, new java.sql.Date(date.getTime()));
+            //stmt.setDate(2, new java.sql.Date(currentDate.getTime()));
             stmt.setInt(2, empID);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                //project = new Project(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getDate(4));
-                String projectID = rs.getString(5);
-                if(!projectID.equals("-1"))
-                    project = Project.getProjectByID(Integer.parseInt(projectID));
-                System.out.println(day + " rs: " + projectID);
+            if(date.before(currentDate) || date.equals(currentDate)){
+                ResultSet rs = stmt.executeQuery();
+                String projectID = "-1";
+                if (rs.next()) {
+                    //project = new Project(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getDate(4));
+                    projectID = rs.getString(5);
+                    if(!projectID.equals("-1")){
+                        project = Project.getProjectByID(Integer.parseInt(projectID));
+                    }
+                }
             }
             if (project == null) {
                 project = Project.getUndueProjectByID(employeeToShow.getProjectID(), new java.sql.Date(date.getTime()));
-                System.out.println(day + " null: " + project.getID());
             }
         } catch (SQLException | ParseException ex) {
             Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        if(project != null)
+            System.out.println(day + " " + project.getName());
         
         return project;
     }
