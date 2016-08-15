@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import model.AttendanceModel;
 import model.CalendarModel;
 import model.Employee;
 import model.EmployeeDetailsAuditTrail;
@@ -62,90 +63,101 @@ public class ViewProjectController implements Listen, PanelChanger {
         
     }
     
-    public void addProjectMemberListeners() {
-        int len = projectMembers.size();
-
-        for (int i = 0; i < len; i++) {
-            int index = i;
-            JLabel labelName = panelMembers.get(index).getLabelName();
-            JLabel labelRemove = panelMembers.get(index).getLabelRemove();
-            Employee employee = projectMembers.get(index);
-
-            labelName.addMouseListener(new MouseListener() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    ViewEmployeeController.getInstance().setViewID(employee.getEmpID());
-                    ViewEmployeeController.getInstance().showPanel();
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    labelName.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    labelName.setForeground(new Color(231, 28, 35));
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    labelName.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                    labelName.setForeground(new Color(51, 51, 51));
-                }
-
-            });
-
-            labelRemove.addMouseListener(new MouseListener() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    try {
-                        employee.setProjectToNull();
-
-                        Date dateNow = new SimpleDateFormat("yyyy/MM/dd").parse(CalendarModel.getInstance().getYearToday() + "/" + CalendarModel.getInstance().getMonthToday() + "/" + CalendarModel.getInstance().getDayToday());
-
-                        DateFormat timeFormat = new SimpleDateFormat("h:mm a");
-                        Date timeNow = new Date();
-                        timeFormat.format(timeNow);
-
-                        EmployeeDetailsAuditTrail audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, String.valueOf(project.getID()), String.valueOf(-1), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
-                        audit.addAuditTrail();
-
-                    } catch (SQLException s) {
-                        s.printStackTrace();
-                    } catch (ParseException ex) {
-                        Logger.getLogger(ViewProjectController.class.getName()).log(Level.SEVERE, null, ex);
+    public void addProjectMemberListeners(){
+        try {
+            int len = projectMembers.size();
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDateString = CalendarModel.getInstance().getYearToday() + "-" + CalendarModel.getInstance().getMonthToday() + "-" + CalendarModel.getInstance().getDayToday();
+            Date currentDate = sdf.parse(currentDateString);
+            
+            for (int i = 0; i < len; i++) {
+                int index = i;
+                JLabel labelName = panelMembers.get(index).getLabelName();
+                JLabel labelRemove = panelMembers.get(index).getLabelRemove();
+                Employee employee = projectMembers.get(index);
+                
+                labelName.addMouseListener(new MouseListener() {
+                    
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        ViewEmployeeController.getInstance().setViewID(employee.getEmpID());
+                        ViewEmployeeController.getInstance().showPanel();
                     }
-                    showPanel();
-                }
 
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                    }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                    }
 
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    labelRemove.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    labelRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Remove Icon Hover.png")));
-                }
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        labelName.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                        labelName.setForeground(new Color(231, 28, 35));
+                    }
 
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    labelRemove.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                    labelRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Remove Icon.png")));
-                }
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        labelName.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        labelName.setForeground(new Color(51, 51, 51));
+                    }
 
-            });
+                });
+                if(AttendanceModel.getAttendace(employee.getEmpID(), currentDate) == null){
+                    labelRemove.addMouseListener(new MouseListener() {
+                        
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            try {
+                                employee.setProjectToNull();
+                                
+                                Date dateNow = new SimpleDateFormat("yyyy/MM/dd").parse(CalendarModel.getInstance().getYearToday() + "/" + CalendarModel.getInstance().getMonthToday() + "/" + CalendarModel.getInstance().getDayToday());
+                                
+                                DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                                Date timeNow = new Date();
+                                timeFormat.format(timeNow);
+                                
+                                EmployeeDetailsAuditTrail audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, String.valueOf(project.getID()), String.valueOf(-1), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                                audit.addAuditTrail();
+                                
+                            } catch (SQLException s) {
+                                s.printStackTrace();
+                            } catch (ParseException ex) {
+                                Logger.getLogger(ViewProjectController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            showPanel();
+                        }
+                        
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                        }
+                        
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                        }
+                        
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            labelRemove.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                            labelRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Remove Icon Hover.png")));
+                        }
+                        
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            labelRemove.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                            labelRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Remove Icon.png")));
+                        }
+                        
+                    });
+                } else{
+                    labelRemove.setVisible(false);
+                }
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewProjectController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
