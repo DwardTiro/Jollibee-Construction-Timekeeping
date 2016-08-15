@@ -114,7 +114,7 @@ public class ViewProjectController implements Listen, PanelChanger {
                         Date timeNow = new Date();
                         timeFormat.format(timeNow);
 
-                        EmployeeDetailsAuditTrail audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, project.getName(), "No Project", dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                        EmployeeDetailsAuditTrail audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, String.valueOf(project.getID()), String.valueOf(-1), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
                         audit.addAuditTrail();
 
                     } catch (SQLException s) {
@@ -199,8 +199,17 @@ public class ViewProjectController implements Listen, PanelChanger {
                         DateFormat timeFormat = new SimpleDateFormat("h:mm a");
                         Date timeNow = new Date();
                         timeFormat.format(timeNow);
-
-                        EmployeeDetailsAuditTrail audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, "No Project", project.getName(), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                        
+                        EmployeeDetailsAuditTrail auditTrail = EmployeeDetailsAuditTrail.getLastProject(employee.getEmpID());
+                        EmployeeDetailsAuditTrail audit;
+                        
+                        if(auditTrail != null){
+                            audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, auditTrail.getNewValue(), String.valueOf(project.getID()), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                        } else{
+                            audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, "-1", String.valueOf(project.getID()), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
+                        }
+                        
+                        //audit = new EmployeeDetailsAuditTrail(employee.getEmpID(), EmployeeDetailsAuditTrail.ATTRIBUTE_PROJECT, auditTrail.getNewValue(), String.valueOf(project.getID()), dateNow, new java.sql.Time(timeNow.getTime()), NavigationController.getInstance().getAdmin().getId());
                         audit.addAuditTrail();
                     } catch (SQLException s) {
                         s.printStackTrace();

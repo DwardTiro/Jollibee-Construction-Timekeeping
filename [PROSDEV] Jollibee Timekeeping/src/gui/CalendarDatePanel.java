@@ -65,6 +65,8 @@ public class CalendarDatePanel extends javax.swing.JPanel {
         Date date_today = new Date();
         int isPaid = AttendanceModel.isPaid(emp_id, month, day, year);
 
+        System.out.println(day + " " + attendanceStatus);
+        
         if (!date_clicked.after(date_today) && attendanceStatus != CalendarDatePanel.ATTENDANCE_STATUS_NO_PROJ) {
             if (isPaid == -1 && !NavigationController.getInstance().getAdmin().getUserType().equalsIgnoreCase(LoginController.TYPE_ENCODER)) {
                 addListenersAdd();

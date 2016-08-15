@@ -20,6 +20,7 @@ import model.AdminModel;
 import model.CalendarModel;
 import model.Employee;
 import model.EmployeeDetailsAuditTrail;
+import model.Project;
 
 public class EditEmployeeController implements Listen, PanelChanger {
 
@@ -136,7 +137,28 @@ public class EditEmployeeController implements Listen, PanelChanger {
         auditTrailPanels = new ArrayList<>();
         int len = auditTrails.size();
         for (int i = 0; i < len; i++) {
-            EditEmployeeChangesPanel panel = new EditEmployeeChangesPanel(auditTrails.get(i).getAttribute(), auditTrails.get(i).getOldValue(), auditTrails.get(i).getNewValue(), auditTrails.get(i).getDate(), auditTrails.get(i).getTime(), AdminModel.getAdminNameByID(auditTrails.get(i).getAdminID()));
+            
+            EditEmployeeChangesPanel panel;
+            
+            if(auditTrails.get(i).getAttribute().equalsIgnoreCase("Project")){
+                String oldValue = auditTrails.get(i).getOldValue();
+                String newValue = auditTrails.get(i).getNewValue();
+                
+                if(oldValue.equals("-1")){
+                    oldValue = "No Project";
+                }else{
+                    oldValue = Project.getProjectByID(Integer.parseInt(oldValue)).getName();
+                }
+                if(newValue.equals("-1")){
+                    newValue = "No Project";
+                }else{
+                    newValue = Project.getProjectByID(Integer.parseInt(newValue)).getName();
+                }
+                
+                panel = new EditEmployeeChangesPanel(auditTrails.get(i).getAttribute(), oldValue, newValue, auditTrails.get(i).getDate(), auditTrails.get(i).getTime(), AdminModel.getAdminNameByID(auditTrails.get(i).getAdminID()));
+            }
+            else
+                panel = new EditEmployeeChangesPanel(auditTrails.get(i).getAttribute(), auditTrails.get(i).getOldValue(), auditTrails.get(i).getNewValue(), auditTrails.get(i).getDate(), auditTrails.get(i).getTime(), AdminModel.getAdminNameByID(auditTrails.get(i).getAdminID()));
             auditTrailPanels.add(panel);
             mainFrame.getPanelEditEmployeeChangesContainer().add(panel);
         }

@@ -29,6 +29,7 @@ import model.AttendanceModel;
 import model.CalendarModel;
 import model.DbConnection;
 import model.Employee;
+import model.EmployeeDetailsAuditTrail;
 import model.Project;
 
 public class ViewEmployeeController implements Listen, PanelChanger {
@@ -300,6 +301,11 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                 Project project = getProjectToday(i+1, employeeToShow.getEmpID());
                 int status = 0;
 
+                Date dateJoined = null;
+                if(project != null)
+                    dateJoined = EmployeeDetailsAuditTrail.getProjectJoiningDate(employeeToShow.getEmpID(), project.getID());
+                
+                // if there is an attendance
                 if (curIndex < attendance.size() && attendance.get(curIndex).getDay() == i + 1) {
                     long timediff = attendance.get(curIndex).getTimeOut().getTime() - attendance.get(curIndex).getTimeIn().getTime();
                     
@@ -318,21 +324,28 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                         status = CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE;
                     }
                     curIndex++;
+                    projectName = project.getName();
                 } 
+                
                 // absent
                 // if there is project and the date today is between date started and date due
-                else if(project != null && (date.after(project.getDateStarted()) || date.equals(project.getDateStarted())) && (date.before(dateToday))){
+                else if(project != null && (date.after(dateJoined) || date.equals(dateJoined)) && (date.before(dateToday))){
                     status = CalendarDatePanel.ATTENDANCE_STATUS_ABSENT;
+                    projectName = project.getName();
                 }
                 // no project
                 // if there is no project and the date is not after the date today
-                else if((date.before(dateToday) || date.equals(dateToday)) && project == null){
+                else if((date.before(dateToday) || date.equals(dateToday)) && date.before(dateJoined)){
                     status = CalendarDatePanel.ATTENDANCE_STATUS_NO_PROJ;
                 }
                 
-                if(project != null){
+                else if(project != null && date.equals(dateToday)){
                     projectName = project.getName();
                 }
+                
+                //if(project != null){
+                //    projectName = project.getName();
+                //}
                 
                 temp = new CalendarDatePanel(this.viewID, i + 1, calendarModel.getMonth(), calendarModel.getYear(), projectName, status);
                 if(date.equals(dateToday)){
@@ -462,10 +475,15 @@ public class ViewEmployeeController implements Listen, PanelChanger {
             stmt.setInt(2, empID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                project = new Project(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getDate(4));
+                //project = new Project(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getDate(4));
+                String projectID = rs.getString(5);
+                if(!projectID.equals("-1"))
+                    project = Project.getProjectByID(Integer.parseInt(projectID));
+                System.out.println(day + " rs: " + projectID);
             }
             if (project == null) {
                 project = Project.getUndueProjectByID(employeeToShow.getProjectID(), new java.sql.Date(date.getTime()));
+                System.out.println(day + " null: " + project.getID());
             }
         } catch (SQLException | ParseException ex) {
             Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);

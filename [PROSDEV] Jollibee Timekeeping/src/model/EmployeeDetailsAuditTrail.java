@@ -101,6 +101,51 @@ public class EmployeeDetailsAuditTrail {
         return auditTrails;
     }
     
+    public static EmployeeDetailsAuditTrail getLastProject(int empID){
+        EmployeeDetailsAuditTrail auditTrail = null;
+        
+        String mysqlString = "SELECT * FROM employee_details_audit_trail where attribute = 'Project' and emp_id = ? order by date desc, time desc;";
+        
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+
+            ps.setInt(1, empID);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                auditTrail = new EmployeeDetailsAuditTrail(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getTime(7), rs.getInt(8));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return auditTrail;
+    }
+    
+    public static Date getProjectJoiningDate(int empID, int projectID){
+        Date date = null;
+        
+        String mysqlString = "SELECT * FROM employee_details_audit_trail where attribute = 'Project' and emp_id = ? and new_value = ? order by date desc, time desc;";
+        
+        try {
+            PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
+
+            ps.setInt(1, empID);
+            ps.setString(2, String.valueOf(projectID));
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                date = rs.getDate(6);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return date;
+    }
+    
     public void addAuditTrail() {
 
         try {
