@@ -327,26 +327,34 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                         status = CalendarDatePanel.ATTENDANCE_STATUS_COMPLETE;
                     }
                     curIndex++;
-                    projectName = project.getName();
+                    //projectName = project.getName();
                 } 
                 
                 // absent
                 // if there is project and the date today is between date started and date due
                 else if(project != null && (date.after(dateJoined) || date.equals(dateJoined)) && (date.before(dateToday))){
                     status = CalendarDatePanel.ATTENDANCE_STATUS_ABSENT;
-                    projectName = project.getName();
+                    //projectName = project.getName();
                 }
                 
                 else if(project != null && (date.after(dateJoined) || date.equals(dateJoined)) && (date.equals(dateToday))){
-                    projectName = project.getName();
+                    status = 0;
                 }
                 
                 // no project
                 // if there is no project and the date is not after the date today
-                else if(project == null && (date.before(dateToday) || date.equals(dateToday))){
+                //else if(project == null && (date.before(dateToday) || date.equals(dateToday))){
+                else if(date.before(dateToday) || date.equals(dateToday)){
                     status = CalendarDatePanel.ATTENDANCE_STATUS_NO_PROJ;
                 }
                 
+                if(project != null && (date.after(dateJoined) || date.equals(dateJoined))){
+                    projectName = project.getName();
+                }
+                
+                if(dateJoined == null){
+                    System.out.println((i+1) + " null");
+                }
                 //if(project != null){
                 //    projectName = project.getName();
                 //}
@@ -493,15 +501,15 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                 }
             }
             if (project == null) {
-                System.out.println(day + " HELLO");
+            //    System.out.println(day + " HELLO");
                 project = Project.getUndueProjectByID(employeeToShow.getProjectID(), new java.sql.Date(date.getTime()));
             }
         } catch (SQLException | ParseException ex) {
             Logger.getLogger(ViewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(project != null)
-            System.out.println(day + " " + project.getName());
+        //if(project != null)
+        //    System.out.println(day + " " + project.getName());
         
         return project;
     }
