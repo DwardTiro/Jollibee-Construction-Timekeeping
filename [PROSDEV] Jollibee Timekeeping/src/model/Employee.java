@@ -215,7 +215,7 @@ public class Employee {
 
         String mysqlString = "SELECT *\n"
                 + "FROM employee E join project P on E.project_id = P.projectID\n"
-                + "where E.emp_id not in (SELECT emp_id from attendance where date = ?) and P.dateDue > ?";
+                + "where E.emp_id not in (SELECT emp_id from attendance where date = ?) and P.dateDue >= ?";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
             Date dateToday = new SimpleDateFormat("yyyy:MM:dd").parse(CalendarModel.getInstance().getYearToday() + ":" + CalendarModel.getInstance().getMonthToday() + ":" + CalendarModel.getInstance().getDayToday());
@@ -241,7 +241,7 @@ public class Employee {
 
         String mysqlString = "SELECT *\n"
                 + "FROM employee E join project P on E.project_id = P.projectID\n"
-                + "where E.emp_id not in (SELECT emp_id from attendance where date = ?) and E.project_id = ? and P.dateDue > ?";
+                + "where E.emp_id not in (SELECT emp_id from attendance where date = ?) and E.project_id = ? and P.dateDue >= ?";
         try {
             PreparedStatement ps = DbConnection.getConnection().prepareStatement(mysqlString);
             Date dateToday = new SimpleDateFormat("yyyy:MM:dd").parse(CalendarModel.getInstance().getYearToday() + ":" + CalendarModel.getInstance().getMonthToday() + ":" + CalendarModel.getInstance().getDayToday());
