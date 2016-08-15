@@ -224,6 +224,9 @@ public class ViewEmployeeController implements Listen, PanelChanger {
                 mainFrame.getLabelViewEmployeeName().setPreferredSize(new Dimension((int)mainFrame.getLabelViewEmployeeName().getPreferredSize().getWidth() + (int) mainFrame.getEditEmployeeLabel().getPreferredSize().getWidth(), (int)mainFrame.getLabelViewEmployeeName().getPreferredSize().getHeight()));
                 mainFrame.getEditEmployeeLabel().setVisible(false);
                 //mainFrame.getLabelEditCurrentAttendance().setVisible(false);
+            } else{
+                mainFrame.getLabelViewEmployeeName().setPreferredSize(new Dimension((int)mainFrame.getLabelViewEmployeeName().getPreferredSize().getWidth(), (int)mainFrame.getLabelViewEmployeeName().getPreferredSize().getHeight()));
+                mainFrame.getEditEmployeeLabel().setVisible(true);
             }
             
         } catch (SQLException ex) {
